@@ -70,14 +70,37 @@ export default function ConfidentialitePage() {
 
       <h2>5. Sous-traitants et localisation</h2>
       <p>
-        Les traitements sont réalisés sur une infrastructure située en{" "}
-        <span className="todo">pays / région</span>, opérée par{" "}
-        <span className="todo">hébergeur</span>. Les prestataires intervenant dans le
-        traitement automatisé des documents sont{" "}
-        <span className="todo">liste des sous-traitants IA et de leur localisation</span>.
-        La liste à jour est communiquée sur demande et toute évolution est notifiée
-        conformément au DPA. <span className="todo">Indiquer, le cas échéant, tout transfert
-        hors UE et les garanties associées (clauses contractuelles types).</span>
+        L&apos;ensemble des traitements est réalisé sur des infrastructures situées
+        dans l&apos;Union européenne. Les sous-traitants intervenant dans la
+        fourniture du service sont les suivants :
+      </p>
+      <ul>
+        <li>
+          <strong>Mistral AI</strong> (France) — analyse automatisée des documents.
+          Les données transmises ne sont pas utilisées pour entraîner de modèle.
+        </li>
+        <li>
+          <strong><span className="todo">Hébergeur applicatif</span></strong> —
+          exécution de l&apos;application, région{" "}
+          <span className="todo">préciser la région européenne</span>.
+        </li>
+        <li>
+          <strong><span className="todo">Hébergeur de la base de données</span></strong> —
+          stockage des données et des documents, région{" "}
+          <span className="todo">préciser la région européenne</span>.
+        </li>
+      </ul>
+      <p>
+        <span className="todo">
+          Préciser la forme sociale et le pays d&apos;établissement de chaque
+          sous-traitant. Lorsqu&apos;un prestataire est une société de droit
+          non européen exploitant une région européenne, les données restent
+          stockées dans l&apos;Union mais la société mère peut être soumise à une
+          législation extraterritoriale : le préciser et encadrer l&apos;accès par
+          des clauses contractuelles types.
+        </span>{" "}
+        La liste à jour est communiquée sur demande et toute évolution est
+        notifiée conformément au DPA.
       </p>
 
       <h2>6. Durées de conservation</h2>

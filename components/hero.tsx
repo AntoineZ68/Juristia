@@ -46,7 +46,7 @@ export function Hero() {
               </div>
 
               <p className="mt-6 text-[0.8125rem] leading-relaxed text-ink-faint">
-                {hosting.short} · Chiffrement de bout en bout · Vos dossiers ne
+                {hosting.short} · Modèle d&apos;IA français · Vos dossiers ne
                 servent jamais à entraîner de modèle.
               </p>
             </Reveal>

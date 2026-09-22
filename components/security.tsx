@@ -10,8 +10,11 @@ import { hosting } from "@/lib/site";
  */
 const pillars = [
   {
+    // Argument différenciant sur le marché français : mis en avant sur toute
+    // la largeur plutôt que noyé dans la grille.
     title: hosting.title,
     body: hosting.body,
+    featured: true,
   },
   {
     title: "Secret professionnel",
@@ -23,7 +26,14 @@ const pillars = [
   },
   {
     title: "Zéro entraînement",
-    body: "Vos procédures ne sont jamais utilisées pour entraîner un modèle, ni le nôtre, ni celui d'un tiers. Contractuellement garanti.",
+    body: "Vos procédures ne sont jamais utilisées pour entraîner un modèle, ni le nôtre, ni celui de nos sous-traitants. Contractuellement garanti.",
+  },
+  {
+    // ⚠️ Ne laisser cette carte que si l'export est réellement disponible
+    // dans l'application. Une promesse de réversibilité non tenue se retourne
+    // contre vous en audit comme en référencement client.
+    title: "Réversibilité",
+    body: "Vos dossiers et leurs analyses sont exportables à tout moment, et supprimés définitivement sur simple demande. Aucun effet de verrou.",
   },
 ];
 
@@ -54,7 +64,9 @@ export function Security() {
                 <Reveal
                   key={pillar.title}
                   delay={index * 80}
-                  className="bg-ink p-6 sm:p-7"
+                  className={`bg-ink p-6 sm:p-7 ${
+                    "featured" in pillar ? "sm:col-span-2" : ""
+                  }`}
                 >
                   <dt className="text-[1.0625rem] font-medium text-paper">
                     {pillar.title}

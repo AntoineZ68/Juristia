@@ -29,26 +29,29 @@ export const legalLinks = [
 ] as const;
 
 /**
- * ⚠️ ENGAGEMENT OPPOSABLE — à aligner sur l'infrastructure réelle avant publication.
+ * ⚠️ ENGAGEMENT OPPOSABLE — à maintenir aligné sur l'infrastructure réelle.
  *
- * Render ne propose AUCUNE région française : Oregon, Ohio, Virginie, Francfort,
- * Singapour. Tant que l'application tourne sur Render, la seule formulation exacte
- * est « Union européenne », et uniquement si le service est bien en région Frankfurt.
- * Supabase propose en revanche une région Paris (eu-west-3).
+ * État déclaré au 22/09/2026 : compute et base de données en région européenne,
+ * analyse réalisée par Mistral AI (société française). La chaîne ne comporte
+ * donc aucun fournisseur de modèles américain.
  *
- * Formulations possibles, par ordre de force commerciale décroissante :
- *   1. "Hébergement en France"          → compute ET base ET fichiers en France.
- *   2. "Hébergement dans l'Union européenne" → tout en UE (Render Frankfurt + Supabase UE).
- *   3. "Hébergement en Europe"          → formulation de repli, tant que ce n'est pas vérifié.
+ * Nuance à connaître avant de durcir la formulation : héberger EN Europe et
+ * n'avoir AUCUN sous-traitant non européen sont deux choses différentes. Si
+ * l'infrastructure est opérée par des sociétés de droit américain (Render Inc.,
+ * Supabase Inc.), leurs régions UE stockent bien les données en Europe, mais la
+ * maison mère reste soumise au CLOUD Act. D'où la formulation retenue :
+ * "hébergement et traitement dans l'Union européenne" (exact, vérifiable) plutôt
+ * que "aucun sous-traitant non européen" (faux en l'état). Le jour où le compute
+ * passe chez OVHcloud, Scaleway ou Clever Cloud, la mention peut être durcie —
+ * et c'est l'argument qui fera la différence sur les gros cabinets.
  *
- * La mention « aucun transfert hors UE » ne peut être affichée que si le fournisseur
- * de modèles d'IA traite lui aussi les données en UE. Un appel à une API américaine
- * (OpenAI, Anthropic sans résidence UE) constitue un transfert hors UE à déclarer.
+ * Les sous-traitants doivent être nommés dans la politique de confidentialité :
+ * c'est une obligation RGPD, pas une option marketing.
  */
 export const hosting = {
   /** Ligne courte sous le CTA du hero. */
-  short: "Hébergement dans l'Union européenne",
-  /** Titre de la carte dans la section sécurité. */
-  title: "Hébergement européen",
-  body: "Vos dossiers sont stockés et traités sur une infrastructure située dans l'Union européenne. La localisation exacte et la liste à jour des sous-traitants figurent dans la politique de confidentialité.",
+  short: "Hébergement et traitement dans l'Union européenne",
+  /** Carte mise en avant dans la section sécurité. */
+  title: "Une chaîne technique européenne",
+  body: "L'analyse est réalisée par Mistral AI, modèle français, sur une infrastructure située dans l'Union européenne. Aucune de vos pièces n'est transmise à un fournisseur américain de modèles d'IA. La liste des sous-traitants et de leurs localisations figure dans la politique de confidentialité.",
 } as const;

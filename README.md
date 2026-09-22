@@ -78,13 +78,14 @@ surlignage jaune (`.todo`) sur les pages légales :
    raison sociale, RCS, hébergeur, DPO, durées de conservation, ressort
    compétent. Trames à faire relire par un conseil — ce ne sont pas des
    documents juridiques validés.
-2. **Engagements de sécurité** : chaque affirmation est opposable. La mention
-   d'hébergement est centralisée dans `lib/site.ts` (objet `hosting`), avec les
-   trois formulations possibles et leurs conditions. Rappel : Render n'a aucune
-   région française (Oregon, Ohio, Virginie, Francfort, Singapour) — « hébergement
-   en France » est donc faux tant que le compute tourne sur Render. La mention
-   « aucun transfert hors UE » suppose que le fournisseur de modèles d'IA traite
-   lui aussi en UE. Ne jamais afficher une certification non obtenue.
+2. **Engagements de sécurité** : chaque affirmation est opposable. La chaîne
+   technique annoncée (Mistral AI + infrastructure UE) est centralisée dans
+   `lib/site.ts` (objet `hosting`), commentée avec la nuance « hébergé en UE »
+   vs « sous-traitants tous européens » — les deux ne sont pas équivalents tant
+   que les hébergeurs sont des sociétés de droit américain exploitant une région
+   européenne. Les sous-traitants doivent être nommés dans la politique de
+   confidentialité (obligation RGPD). La carte « Réversibilité » suppose une
+   fonction d'export réellement disponible dans l'application.
 3. **Tarifs** (`components/pricing.tsx`) : montants de départ à aligner sur la
    grille réelle, et à répercuter dans le JSON-LD de `app/layout.tsx`.
 4. **Promesses de performance** : « 2 800 pages », « 41 min » (hero et

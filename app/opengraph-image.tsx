@@ -66,7 +66,7 @@ export default function OpengraphImage() {
             paddingTop: "28px",
           }}
         >
-          Chronologie sourcée · Traçabilité au PDF · Hébergement en Europe
+          Chronologie sourcée · Traçabilité au PDF · IA française, données en UE
         </div>
       </div>
     ),
