@@ -27,3 +27,28 @@ export const legalLinks = [
   { label: "Conditions générales de vente", href: "/cgv" },
   { label: "Politique de confidentialité", href: "/confidentialite" },
 ] as const;
+
+/**
+ * ⚠️ ENGAGEMENT OPPOSABLE — à aligner sur l'infrastructure réelle avant publication.
+ *
+ * Render ne propose AUCUNE région française : Oregon, Ohio, Virginie, Francfort,
+ * Singapour. Tant que l'application tourne sur Render, la seule formulation exacte
+ * est « Union européenne », et uniquement si le service est bien en région Frankfurt.
+ * Supabase propose en revanche une région Paris (eu-west-3).
+ *
+ * Formulations possibles, par ordre de force commerciale décroissante :
+ *   1. "Hébergement en France"          → compute ET base ET fichiers en France.
+ *   2. "Hébergement dans l'Union européenne" → tout en UE (Render Frankfurt + Supabase UE).
+ *   3. "Hébergement en Europe"          → formulation de repli, tant que ce n'est pas vérifié.
+ *
+ * La mention « aucun transfert hors UE » ne peut être affichée que si le fournisseur
+ * de modèles d'IA traite lui aussi les données en UE. Un appel à une API américaine
+ * (OpenAI, Anthropic sans résidence UE) constitue un transfert hors UE à déclarer.
+ */
+export const hosting = {
+  /** Ligne courte sous le CTA du hero. */
+  short: "Hébergement dans l'Union européenne",
+  /** Titre de la carte dans la section sécurité. */
+  title: "Hébergement européen",
+  body: "Vos dossiers sont stockés et traités sur une infrastructure située dans l'Union européenne. La localisation exacte et la liste à jour des sous-traitants figurent dans la politique de confidentialité.",
+} as const;

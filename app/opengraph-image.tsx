@@ -2,6 +2,8 @@ import { ImageResponse } from "next/og";
 
 import { site } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export const alt = `${site.name} — L'analyse des dossiers pénaux, assistée par IA`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -64,7 +66,7 @@ export default function OpengraphImage() {
             paddingTop: "28px",
           }}
         >
-          Chronologie sourcée · Traçabilité au PDF · Hébergement en France
+          Chronologie sourcée · Traçabilité au PDF · Hébergement en Europe
         </div>
       </div>
     ),

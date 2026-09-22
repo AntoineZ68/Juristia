@@ -1,0 +1,47 @@
+# Déploiement du site vitrine sur Render en "Static Site" (gratuit, CDN, pas de
+# mise en veille — contrairement à un Web Service free qui s'endort après 15 min).
+# Les en-têtes de sécurité définis dans next.config.ts ne s'appliquent pas en
+# export statique : ils sont redéclarés ici.
+services:
+  - type: web
+    runtime: static
+    name: juristia-vitrine
+    buildCommand: npm ci && npm run build:static
+    staticPublishPath: ./out
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      - key: NEXT_PUBLIC_APP_URL
+        sync: false
+      - key: NEXT_PUBLIC_CONTACT_EMAIL
+        sync: false
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=()
+      # Le fichier exporté n'a pas d'extension : on force le type MIME.
+      - path: /opengraph-image
+        name: Content-Type
+        value: image/png
+    routes:
+      # URLs propres : /cgv -> /cgv.html (déclaré explicitement, sans dépendre
+      # du comportement par défaut de l'hébergeur).
+      - type: rewrite
+        source: /mentions-legales
+        destination: /mentions-legales.html
+      - type: rewrite
+        source: /cgv
+        destination: /cgv.html
+      - type: rewrite
+        source: /confidentialite
+        destination: /confidentialite.html

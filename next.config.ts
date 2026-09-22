@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
+/**
+ * STATIC_EXPORT=true produit un dossier `out/` 100 % statique
+ * (cible : Render Static Site, Cloudflare Pages, n'importe quel CDN).
+ * Dans ce mode, les en-têtes ci-dessous ne sont PAS appliqués par Next :
+ * ils sont repris dans `render.yaml`. Voir README.
+ */
+const isStaticExport = process.env.STATIC_EXPORT === "true";
+
 const nextConfig: NextConfig = {
+  ...(isStaticExport ? { output: "export" as const } : {}),
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,

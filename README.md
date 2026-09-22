@@ -78,11 +78,13 @@ surlignage jaune (`.todo`) sur les pages légales :
    raison sociale, RCS, hébergeur, DPO, durées de conservation, ressort
    compétent. Trames à faire relire par un conseil — ce ne sont pas des
    documents juridiques validés.
-2. **Engagements de sécurité** (`components/security.tsx`) : chaque affirmation
-   (hébergement en France, absence de transfert hors UE, zéro entraînement) est
-   opposable. À confirmer contractuellement avec l'hébergeur et les
-   fournisseurs de modèles avant publication. Ne jamais afficher une
-   certification non obtenue.
+2. **Engagements de sécurité** : chaque affirmation est opposable. La mention
+   d'hébergement est centralisée dans `lib/site.ts` (objet `hosting`), avec les
+   trois formulations possibles et leurs conditions. Rappel : Render n'a aucune
+   région française (Oregon, Ohio, Virginie, Francfort, Singapour) — « hébergement
+   en France » est donc faux tant que le compute tourne sur Render. La mention
+   « aucun transfert hors UE » suppose que le fournisseur de modèles d'IA traite
+   lui aussi en UE. Ne jamais afficher une certification non obtenue.
 3. **Tarifs** (`components/pricing.tsx`) : montants de départ à aligner sur la
    grille réelle, et à répercuter dans le JSON-LD de `app/layout.tsx`.
 4. **Promesses de performance** : « 2 800 pages », « 41 min » (hero et
@@ -96,8 +98,28 @@ surlignage jaune (`.todo`) sur les pages légales :
 
 ## Déploiement
 
-Site 100 % statique après build : déployable sur Vercel (zéro configuration),
-Netlify ou tout hébergeur Node. Renseigner les trois variables
-d'environnement, puis pointer le DNS. Les en-têtes de sécurité
-(`X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`) sont définis
-dans `next.config.ts`.
+Deux modes de build, selon l'hébergeur :
+
+| Mode | Commande | Sortie | Cible |
+| --- | --- | --- | --- |
+| Serveur (défaut) | `npm run build` | `.next/` | Vercel, Netlify — en-têtes de sécurité gérés par `next.config.ts` |
+| Export statique | `npm run build:static` | `out/` (~1,7 Mo) | Render **Static Site**, Cloudflare Pages, tout CDN |
+
+### Render (blueprint fourni)
+
+`render.yaml` déclare un **Static Site**, pas un Web Service : gratuit, servi par
+CDN, et surtout **sans mise en veille** (un Web Service du plan gratuit s'endort
+après ~15 min d'inactivité — cold start de 30 à 60 s sur la première visite, ce
+qui est rédhibitoire pour une landing page).
+
+Le blueprint reprend les en-têtes de sécurité (non appliqués en export statique),
+force le type MIME de la carte OpenGraph et déclare les réécritures d'URL propres.
+Après le premier déploiement, vérifier :
+
+```bash
+curl -sI https://<domaine>/opengraph-image | grep -i content-type   # image/png
+curl -sI https://<domaine>/cgv | head -1                            # 200
+```
+
+Renseigner les trois variables d'environnement dans le dashboard Render
+(elles sont déclarées `sync: false`, donc jamais commitées).

@@ -1,6 +1,6 @@
 import { ProductMock } from "@/components/product-mock";
 import { Reveal } from "@/components/reveal";
-import { site } from "@/lib/site";
+import { hosting, site } from "@/lib/site";
 
 export function Hero() {
   return (
@@ -46,7 +46,7 @@ export function Hero() {
               </div>
 
               <p className="mt-6 text-[0.8125rem] leading-relaxed text-ink-faint">
-                Hébergement en France · Chiffrement de bout en bout · Vos dossiers ne
+                {hosting.short} · Chiffrement de bout en bout · Vos dossiers ne
                 servent jamais à entraîner de modèle.
               </p>
             </Reveal>

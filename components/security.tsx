@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/reveal";
+import { hosting } from "@/lib/site";
 
 /**
  * ⚠️ À VALIDER AVANT MISE EN LIGNE
@@ -9,8 +10,8 @@ import { Reveal } from "@/components/reveal";
  */
 const pillars = [
   {
-    title: "Hébergement en France",
-    body: "Vos dossiers sont stockés et traités sur une infrastructure située en France, opérée par un hébergeur européen. Aucun transfert hors Union européenne.",
+    title: hosting.title,
+    body: hosting.body,
   },
   {
     title: "Secret professionnel",
