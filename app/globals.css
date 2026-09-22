@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Design tokens — Juristia
+ * Papier crème + encre chaude, une seule couleur d'accent ("sceau").
+ * Objectif : sobriété notariale, contraste élevé, zéro effet gratuit.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-paper: #f6f3ee;
+  --color-paper-deep: #efe9e0;
+  --color-paper-pure: #fffdfa;
+  --color-ink: #16130f;
+  --color-ink-muted: #5a534a;
+  --color-ink-faint: #6f6760;
+  --color-line: #e0d8cc;
+  --color-line-strong: #cec4b4;
+  --color-seal: #1f3b33;
+  --color-seal-soft: #e8efea;
+  --color-brass: #9a7b45;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-instrument-serif), "Iowan Old Style", "Times New Roman", serif;
+
+  --text-display: clamp(2.9rem, 7.2vw, 6.25rem);
+  --text-h2: clamp(2rem, 4vw, 3.25rem);
+  --text-h3: clamp(1.25rem, 1.8vw, 1.55rem);
+
+  --radius-card: 4px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  section[id] {
+    scroll-margin-top: 84px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-seal);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Gouttière commune : toutes les sections s'alignent sur cette grille. */
+  .shell {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+  }
+
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.6rem;
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  .btn-primary {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    border: 1px solid var(--color-ink);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-seal);
+    border-color: var(--color-seal);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-line-strong);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--color-ink);
+    background-color: var(--color-paper-deep);
+  }
+
+  .btn-sm {
+    padding: 0.6rem 1.15rem;
+    font-size: 0.875rem;
+  }
+
+  /* Prose des pages légales — trois pages statiques, pas besoin d'un plugin. */
+  .prose-legal {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+  }
+
+  .prose-legal > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .prose-legal h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin-top: 3rem;
+  }
+
+  .prose-legal h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-ink);
+    margin-top: 2rem;
+  }
+
+  .prose-legal strong {
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  .prose-legal a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .prose-legal ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+
+  .prose-legal li + li {
+    margin-top: 0.5rem;
+  }
+
+  /* Champ à compléter par le client avant mise en ligne. */
+  .todo {
+    background-color: #fdf3d8;
+    border-bottom: 1px solid #e0c98a;
+    padding: 0 0.2rem;
+    color: var(--color-ink);
+  }
+
+  /* Apparition douce au scroll — neutralisée si l'utilisateur limite les animations. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
