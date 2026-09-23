@@ -15,6 +15,23 @@ export const site = {
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contact@juristia.fr",
 } as const;
 
+/**
+ * Supabase — réception des demandes de démonstration.
+ * La clé ANON est publique par conception : la protection repose sur la RLS
+ * (voir supabase/migrations/0001_leads.sql), pas sur le secret de la clé.
+ * Si ces variables sont absentes, le formulaire bascule automatiquement sur
+ * un envoi par e-mail : le site reste fonctionnel sans configuration.
+ */
+export const leads = {
+  endpoint: process.env.NEXT_PUBLIC_SUPABASE_URL
+    ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/leads`
+    : "",
+  anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
+  get enabled() {
+    return Boolean(this.endpoint && this.anonKey);
+  },
+} as const;
+
 export const nav = [
   { label: "Le produit", href: "/#produit" },
   { label: "Méthode", href: "/#methode" },

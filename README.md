@@ -97,6 +97,28 @@ surlignage jaune (`.todo`) sur les pages légales :
    un bandeau de consentement conforme CNIL devient obligatoire (voir
    `app/confidentialite/page.tsx`, section Cookies).
 
+## Formulaire de démonstration
+
+Le site étant exporté en statique, le formulaire (`components/demo-form.tsx`)
+écrit directement dans Supabase via PostgREST, sans dépendance ni backend.
+
+1. Exécuter `supabase/migrations/0001_leads.sql` (SQL Editor du dashboard).
+   Il crée la table `leads`, active la RLS, et n'autorise que l'INSERT au rôle
+   `anon` — aucune politique SELECT, donc aucun visiteur ne peut relire les leads.
+2. Renseigner `NEXT_PUBLIC_SUPABASE_URL` et `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+   **Clé ANON uniquement.** La clé `service_role` contourne la RLS : l'exposer
+   côté navigateur donnerait accès à toute la base.
+3. Sans ces variables, le formulaire bascule automatiquement sur un envoi par
+   e-mail : le site reste fonctionnel sans configuration.
+
+Protection anti-spam : un honeypot et des contraintes de longueur dans la
+politique RLS. C'est suffisant au démarrage, insuffisant si le formulaire est
+ciblé — ajouter alors Cloudflare Turnstile ou un rate limit côté Supabase.
+
+Pour être notifié d'un nouveau lead, créer un Database Webhook sur `leads`
+(insert) vers un service d'envoi d'e-mail. Sinon, la table se consulte dans le
+dashboard.
+
 ## Déploiement
 
 Deux modes de build, selon l'hébergeur :

@@ -53,7 +53,7 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <a
-            href={`mailto:${site.contactEmail}?subject=Demande%20de%20démonstration%20Juristia`}
+            href="/#demo"
             className="text-[0.9375rem] text-ink-muted transition-colors hover:text-ink"
           >
             Demander une démonstration
@@ -111,7 +111,7 @@ export function SiteHeader() {
                 Se connecter
               </a>
               <a
-                href={`mailto:${site.contactEmail}?subject=Demande%20de%20démonstration%20Juristia`}
+                href="/#demo"
                 className="btn btn-outline"
               >
                 Demander une démonstration

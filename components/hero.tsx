@@ -38,7 +38,7 @@ export function Hero() {
                   Accéder à mon espace
                 </a>
                 <a
-                  href={`mailto:${site.contactEmail}?subject=Demande%20de%20démonstration%20Juristia`}
+                  href="/#demo"
                   className="btn btn-outline"
                 >
                   Demander une démonstration

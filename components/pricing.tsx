@@ -50,7 +50,7 @@ const plans = [
       "Interlocuteur dédié",
     ],
     cta: "Nous contacter",
-    href: `mailto:${site.contactEmail}?subject=Offre%20Structure%20Juristia`,
+    href: "/#demo",
     featured: false,
   },
 ];
