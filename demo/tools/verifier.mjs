@@ -60,10 +60,11 @@ async function session(nom, options) {
   await page.waitForSelector("#parcours:not([hidden]) #parcours-bulle");
   verifier(await page.isVisible("#classeur-index .entree-index"), "ordinateur : index du dossier ouvert à l'arrivée");
   await page.screenshot({ path: join(RACINE, "captures/01-accueil-visite.png") });
-  for (let i = 0; i < 3; i++) {
+  const capturesVisite = ["02-journee-reconstituee.png", "03-defense-forme.png", "04-defense-fond.png"];
+  for (const nom of capturesVisite) {
     await page.click("#parcours-suivant");
-    await page.waitForTimeout(500);
-    if (i === 1) await page.screenshot({ path: join(RACINE, "captures/02-contradictions.png") });
+    await page.waitForTimeout(700);
+    await page.screenshot({ path: join(RACINE, "captures", nom) });
   }
   await page.click("#parcours-suivant"); // « Ouvrir la pièce »
   await page.waitForSelector("#classeur:not([hidden]) .page-cadre img");
@@ -74,22 +75,25 @@ async function session(nom, options) {
   verifier(position.trim() === "Page 29 / 31", `pièce ouverte à la bonne page (${position.trim()})`);
   verifier(source.includes("cote D28"), `référence affichée : ${source}`);
   verifier(await page.locator(".zone-reperage").count() > 0, "passage cité repéré sur la page");
-  await page.screenshot({ path: join(RACINE, "captures/03-piece-D28-surlignee.png") });
+  await page.screenshot({ path: join(RACINE, "captures/05-piece-D28-surlignee.png") });
   await page.click(".page-cadre");
   await page.waitForTimeout(300);
   verifier(await page.locator(".page-cadre.agrandie").count() === 1, "clic sur la page : agrandissement");
-  await page.screenshot({ path: join(RACINE, "captures/03b-piece-D28-agrandie.png") });
+  await page.screenshot({ path: join(RACINE, "captures/05b-piece-D28-agrandie.png") });
   await page.click(".page-cadre");
 
   await page.click("#fermer-classeur");
   await page.click('.onglet[data-onglet="chrono"]');
   await page.waitForTimeout(200);
-  await page.screenshot({ path: join(RACINE, "captures/04-chronologie.png") });
+  await page.screenshot({ path: join(RACINE, "captures/06-chronologie.png") });
   await page.click('.onglet[data-onglet="infos"]');
+  await page.click(".bouton-resume-detaille");
+  verifier(await page.isVisible(".resume-detaille .renvoi-source"), "résumé détaillé dépliable, avec renvois aux pièces");
+  await page.screenshot({ path: join(RACINE, "captures/08-resume-detaille.png"), fullPage: false });
   await page.click("#bouton-nouveau");
   verifier(await page.isVisible("#avis-indisponible"), "« Nouveau dossier » renvoie vers l'accès, sans formulaire");
   verifier(await page.locator('input[type="file"]').count() === 0, "aucun champ de dépôt de fichier dans la page");
-  await page.screenshot({ path: join(RACINE, "captures/05-informations-avis.png") });
+  await page.screenshot({ path: join(RACINE, "captures/07-informations-avis.png") });
 
   // Feuilletage complet : les 31 pages existent.
   await page.click(".bouton-index");
@@ -109,7 +113,7 @@ async function session(nom, options) {
   await page.screenshot({ path: join(RACINE, "captures/10-mobile-visite.png") });
   await page.click("#parcours-suivant"); await page.waitForTimeout(400);
   await page.click("#parcours-suivant"); await page.waitForTimeout(600);
-  await page.screenshot({ path: join(RACINE, "captures/11-mobile-contradiction.png") });
+  await page.screenshot({ path: join(RACINE, "captures/11-mobile-defense.png") });
   await page.click("#parcours-suivant"); await page.waitForTimeout(400);
   await page.click("#parcours-suivant");
   await page.waitForSelector("#classeur:not([hidden]) .page-cadre img");

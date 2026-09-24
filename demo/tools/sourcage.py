@@ -147,6 +147,19 @@ def references(donnees: dict) -> list[tuple[str, int, str]]:
     for r in donnees["recoupements"]:
         for o in r["occurrences"]:
             refs.append(("declaration", o["page"], o["citation"]))
+    for bloc in donnees.get("resume_detaille", []):
+        for phrase in bloc["phrases"]:
+            for src in phrase["sources"]:
+                refs.append(("faits", src["page"], src["citation"]))
+    for e in donnees.get("journee", {}).get("evenements", []):
+        refs.append(("faits", e["page"], e["citation"]))
+    defense = donnees.get("defense", {})
+    for piste in defense.get("forme", []):
+        for src in piste["sources"]:
+            refs.append(("procedure", src["page"], src["citation"]))
+    for ligne in defense.get("fond", []):
+        for src in ligne["charge"] + ligne["decharge"]:
+            refs.append(("declaration", src["page"], src["citation"]))
     return refs
 
 

@@ -89,3 +89,86 @@
   .bandeau-lien { display: none; }
   .avis { right: 16px; bottom: 16px; }
 }
+
+/* --- Résumé détaillé --- */
+.bouton-resume-detaille { display: inline-block; margin-top: 12px; font-size: 13px; }
+.resume-detaille { margin-top: 14px; border-top: 1px solid var(--bordure-douce); padding-top: 6px; }
+.resume-detaille h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: 16px; color: var(--encre); margin: 16px 0 6px; }
+.resume-detaille p { margin: 0; font-size: 14px; line-height: 1.75; color: var(--texte); }
+.renvoi-source {
+  border: none; background: var(--accent-voile); color: var(--accent-clair); font-size: 10.5px; font-weight: 600;
+  padding: 1px 7px; border-radius: 999px; vertical-align: 1px; white-space: nowrap; letter-spacing: 0.01em;
+}
+.renvoi-source:hover { background: var(--accent-voile-fort); color: var(--accent-fonce); border: none; }
+
+/* --- Journée reconstituée --- */
+.journee-graphe { margin: 4px 0 18px; }
+.journee-piste { display: flex; align-items: center; gap: 10px; height: 30px; }
+.journee-libelle { width: 110px; flex-shrink: 0; font-size: 11.5px; color: var(--texte-att-2); text-align: right; }
+.journee-axe { position: relative; flex: 1; height: 100%; border-bottom: 1px dashed var(--bordure-douce); }
+.journee-heures { height: 22px; }
+.journee-heures .journee-axe { border-bottom: none; border-top: 1px solid var(--bordure); }
+.journee-heures span { position: absolute; top: 4px; transform: translateX(-50%); font-size: 10.5px; color: var(--texte-att-2); }
+.journee-point, .journee-plage { position: absolute; top: 50%; padding: 0; border: 2px solid var(--carte); cursor: pointer; }
+.journee-point { width: 14px; height: 14px; border-radius: 50%; transform: translate(-50%, -50%); }
+.journee-plage { height: 10px; border-radius: 6px; transform: translateY(-50%); min-width: 8px; }
+.journee-point:hover, .journee-plage:hover { border-color: var(--encre); }
+.type-victime { --teinte: #8a6a1c; }
+.type-temoin { --teinte: #3f6591; }
+.type-vehicule { --teinte: #b4533c; }
+.type-telephone { --teinte: #55705f; }
+.journee-point, .journee-plage { background: var(--teinte); }
+.journee-liste { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.journee-liste li { display: flex; align-items: baseline; gap: 10px; font-size: 13.5px; padding-left: 12px; border-left: 3px solid var(--teinte); }
+.journee-heure { font-variant-numeric: tabular-nums; font-weight: 600; font-size: 12.5px; color: var(--encre); min-width: 88px; }
+.journee-texte { flex: 1; }
+.journee-constats { margin: 16px 0 0; padding: 12px 16px 12px 30px; background: var(--carte-creuse); border-radius: var(--rayon-sm); font-size: 13px; color: var(--texte); }
+.journee-constats li + li { margin-top: 5px; }
+
+/* --- Défense --- */
+.defense-delai { border-left: 3px solid var(--alerte); background: var(--alerte-voile); border-radius: 0 var(--rayon-sm) var(--rayon-sm) 0; padding: 12px 16px; margin-bottom: 16px; }
+.defense-modes { display: flex; gap: 4px; background: var(--fond-barre); border: 1px solid var(--bordure-douce); border-radius: 999px; padding: 4px; width: fit-content; max-width: 100%; }
+.defense-mode { border: none; border-radius: 999px; padding: 8px 16px; font-size: 13px; color: var(--texte-att); background: transparent; white-space: nowrap; }
+.defense-mode:hover { border-color: transparent; }
+.defense-mode.actif { background: var(--encre); color: #faf8f4; }
+.defense-mode span { font-size: 11px; opacity: 0.7; margin-left: 4px; }
+.defense-intro { font-size: 13.5px; color: var(--texte-att); margin: -6px 0 16px; }
+.liste-pistes, .liste-fond { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.piste, .fait-fond { border: 1px solid var(--bordure-douce); border-radius: var(--rayon-sm); padding: 14px 16px; background: var(--carte); }
+.piste.qualite-oui { border-left: 3px solid var(--succes); }
+.piste.qualite-discutable { border-left: 3px solid var(--alerte); }
+.piste.qualite-non { border-left: 3px solid var(--bordure); opacity: 0.85; }
+.piste-entete { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+.piste-etiquettes { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; flex-shrink: 0; }
+.etiquette { font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.etiquette.qualite-oui { background: var(--accent-voile-fort); color: var(--succes); }
+.etiquette.qualite-discutable { background: var(--alerte-voile); color: var(--alerte); }
+.etiquette.qualite-non { background: rgba(139,145,137,0.14); color: var(--texte-att); }
+.etiquette.force { background: var(--carte-creuse); color: var(--texte-att); }
+.etiquette.niveau-faible { background: var(--accent-voile-fort); color: var(--succes); }
+.etiquette.niveau-moyenne { background: var(--alerte-voile); color: var(--alerte); }
+.etiquette.niveau-forte { background: rgba(180,83,60,0.12); color: var(--contradiction); }
+.piste-details { display: grid; grid-template-columns: 110px 1fr; gap: 6px 12px; margin: 0 0 12px; font-size: 13px; }
+.piste-details dt { color: var(--texte-att-2); font-weight: 500; }
+.piste-details dd { margin: 0; color: var(--texte); }
+.pistes-ecartees { margin-top: 16px; }
+.pistes-ecartees summary { cursor: pointer; font-size: 13px; color: var(--texte-att); padding: 6px 0; }
+.pistes-ecartees .liste-pistes { margin-top: 10px; }
+.fond-colonnes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.fond-colonne { background: var(--carte-creuse); border-radius: var(--rayon-sm); padding: 10px 12px; }
+.fond-colonne.charge { border-top: 3px solid var(--contradiction); }
+.fond-colonne.decharge { border-top: 3px solid var(--succes); }
+.fond-titre { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--texte-att); margin-bottom: 8px; }
+.fond-titre span { opacity: 0.6; margin-left: 4px; }
+.defense-note { margin: -4px 4px 20px; }
+
+@media (max-width: 720px) {
+  .piste-entete { flex-direction: column; }
+  .piste-etiquettes { justify-content: flex-start; }
+  .piste-details { grid-template-columns: 1fr; gap: 2px; }
+  .piste-details dd { margin-bottom: 6px; }
+  .fond-colonnes { grid-template-columns: 1fr; }
+  .journee-libelle { width: 64px; font-size: 10.5px; }
+  .journee-liste li { flex-wrap: wrap; }
+  .journee-heure { min-width: 0; }
+}

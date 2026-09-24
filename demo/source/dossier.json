@@ -10,363 +10,1668 @@
   },
   "donnees": {
     "resume": "Six cambriolages de pavillons commis entre janvier et mars 2026 dans l'agglomération grenobloise, instruits sous la qualification de vols en bande organisée. FONTANEL Yannick est désigné comme auteur principal, BERTHOLLET Gilles, brocanteur, comme receleur. Votre client, MARTINON Lucas, reconnaît avoir attendu dans la voiture le 12/02 et le 03/03, mais conteste le fait du 19/02, pour lequel il produit un relevé de pointage.",
-
     "personnes": [
-      { "nom": "MARTINON Lucas", "role": "client" },
-      { "nom": "FONTANEL Yannick", "role": "mis_en_cause" },
-      { "nom": "BERTHOLLET Gilles", "role": "mis_en_cause" },
-      { "nom": "SERMET Odile", "role": "victime" },
-      { "nom": "CHABERT René", "role": "témoin" },
-      { "nom": "Dr Paul ESCOFFIER", "role": "expert" },
-      { "nom": "Agnès VILLARD", "role": "expert" },
-      { "nom": "Julien SARRAZIN", "role": "enqueteur" },
-      { "nom": "Nadège COLLOMB", "role": "enqueteur" },
-      { "nom": "Hugo BRESSAND", "role": "enqueteur" },
-      { "nom": "Théo MICOUD", "role": "enqueteur" },
-      { "nom": "Étienne ROUVIÈRE", "role": "magistrat" },
-      { "nom": "Laure CHAMBAZ", "role": "magistrat" },
-      { "nom": "Hélène VIDONNE", "role": "magistrat" },
-      { "nom": "Olivier TERRAZ", "role": "avocat" },
-      { "nom": "Inès RAVANEL", "role": "avocat" }
+      {
+        "nom": "MARTINON Lucas",
+        "role": "client"
+      },
+      {
+        "nom": "FONTANEL Yannick",
+        "role": "mis_en_cause"
+      },
+      {
+        "nom": "BERTHOLLET Gilles",
+        "role": "mis_en_cause"
+      },
+      {
+        "nom": "SERMET Odile",
+        "role": "victime"
+      },
+      {
+        "nom": "CHABERT René",
+        "role": "témoin"
+      },
+      {
+        "nom": "Dr Paul ESCOFFIER",
+        "role": "expert"
+      },
+      {
+        "nom": "Agnès VILLARD",
+        "role": "expert"
+      },
+      {
+        "nom": "Julien SARRAZIN",
+        "role": "enqueteur"
+      },
+      {
+        "nom": "Nadège COLLOMB",
+        "role": "enqueteur"
+      },
+      {
+        "nom": "Hugo BRESSAND",
+        "role": "enqueteur"
+      },
+      {
+        "nom": "Théo MICOUD",
+        "role": "enqueteur"
+      },
+      {
+        "nom": "Étienne ROUVIÈRE",
+        "role": "magistrat"
+      },
+      {
+        "nom": "Laure CHAMBAZ",
+        "role": "magistrat"
+      },
+      {
+        "nom": "Hélène VIDONNE",
+        "role": "magistrat"
+      },
+      {
+        "nom": "Olivier TERRAZ",
+        "role": "avocat"
+      },
+      {
+        "nom": "Inès RAVANEL",
+        "role": "avocat"
+      }
     ],
-
     "chronologie_faits": [
-      { "date": "22/01/2026", "heure": null, "page": 4, "personne": null,
+      {
+        "date": "22/01/2026",
+        "heure": null,
+        "page": 4,
+        "personne": null,
         "description": "Cambriolage d'un pavillon à Meylan (fait n°1), même mode opératoire que les suivants.",
-        "citation": "22/01/2026 Meylan M. et Mme GAILLARD-ROUX 9 500 €" },
-      { "date": "29/01/2026", "heure": null, "page": 4, "personne": null,
+        "citation": "22/01/2026 Meylan M. et Mme GAILLARD-ROUX 9 500 €"
+      },
+      {
+        "date": "29/01/2026",
+        "heure": null,
+        "page": 4,
+        "personne": null,
         "description": "Cambriolage d'un pavillon à Saint-Ismier (fait n°2).",
-        "citation": "29/01/2026 Saint-Ismier Mme PETITJEAN 6 200 €" },
-      { "date": "05/02/2026", "heure": null, "page": 4, "personne": null,
+        "citation": "29/01/2026 Saint-Ismier Mme PETITJEAN 6 200 €"
+      },
+      {
+        "date": "05/02/2026",
+        "heure": null,
+        "page": 4,
+        "personne": null,
         "description": "Cambriolage d'un pavillon à Montbonnot (fait n°3).",
-        "citation": "05/02/2026 Montbonnot M. DUMOLARD 11 800 €" },
-      { "date": "12/02/2026", "heure": "13h30", "page": 2, "personne": "SERMET Odile",
+        "citation": "05/02/2026 Montbonnot M. DUMOLARD 11 800 €"
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "13h30",
+        "page": 2,
+        "personne": "SERMET Odile",
         "description": "La victime quitte son domicile de Biviers.",
-        "citation": "J'ai quitté mon domicile à 13h30 pour aller chez le kiné à Montbonnot, puis faire des courses." },
-      { "date": "12/02/2026", "heure": "14h02", "page": 4, "personne": "FONTANEL Yannick",
+        "citation": "J'ai quitté mon domicile à 13h30 pour aller chez le kiné à Montbonnot, puis faire des courses."
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "14h02",
+        "page": 4,
+        "personne": "FONTANEL Yannick",
         "description": "La Skoda Octavia de FONTANEL est enregistrée par la lecture automatisée des plaques en direction de Biviers, puis en sens inverse.",
-        "citation": "notamment le 12/02/2026 à 14h02 (sens Grenoble-Biviers) puis à 15h11 (sens inverse)" },
-      { "date": "12/02/2026", "heure": "14h00", "page": 3, "personne": "CHABERT René",
+        "citation": "notamment le 12/02/2026 à 14h02 (sens Grenoble-Biviers) puis à 15h11 (sens inverse)"
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "14h00",
+        "page": 3,
+        "personne": "CHABERT René",
         "description": "Le voisin voit un break garé en marche arrière au bout du chemin.",
-        "citation": "Vers deux heures, deux heures et quart, j'étais dans mon jardin. J'ai vu un break de couleur blanche garé en marche arrière au bout du chemin" },
-      { "date": "12/02/2026", "heure": "14h00", "page": 3, "personne": "CHABERT René",
+        "citation": "Vers deux heures, deux heures et quart, j'étais dans mon jardin. J'ai vu un break de couleur blanche garé en marche arrière au bout du chemin"
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "14h00",
+        "page": 3,
+        "personne": "CHABERT René",
         "description": "Le témoin décrit deux hommes : l'un part vers la maison de la victime, l'autre, plus jeune et portant une casquette rouge, reste près de la voiture.",
-        "citation": "Un homme d'une trentaine d'années, costaud, qui est parti à pied vers chez Mme SERMET. Et un plus jeune, mince, avec une casquette rouge, qui est resté près de la voiture et regardait son téléphone." },
-      { "date": "12/02/2026", "heure": "14h05", "page": 7, "personne": "MARTINON Lucas",
+        "citation": "Un homme d'une trentaine d'années, costaud, qui est parti à pied vers chez Mme SERMET. Et un plus jeune, mince, avec une casquette rouge, qui est resté près de la voiture et regardait son téléphone."
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "14h05",
+        "page": 7,
+        "personne": "MARTINON Lucas",
         "description": "La ligne de MARTINON déclenche la cellule de Biviers pendant les faits.",
-        "citation": "Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers)." },
-      { "date": "12/02/2026", "heure": "14h31", "page": 6, "personne": "FONTANEL Yannick",
+        "citation": "Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers)."
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "14h31",
+        "page": 6,
+        "personne": "FONTANEL Yannick",
         "description": "FONTANEL, qui borne lui aussi à Biviers, reçoit un appel de la ligne de MARTINON.",
-        "citation": "14h31 Appel entrant 06 39 98 63 08 00:12 BIV-CROIX-02" },
-      { "date": "12/02/2026", "heure": "16h20", "page": 6, "personne": "FONTANEL Yannick",
+        "citation": "14h31 Appel entrant 06 39 98 63 08 00:12 BIV-CROIX-02"
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "16h20",
+        "page": 6,
+        "personne": "FONTANEL Yannick",
         "description": "Moins de deux heures après les faits, la ligne de FONTANEL borne à Fontaine, dans le secteur du dépôt de BERTHOLLET.",
-        "citation": "16h20 Appel sortant 06 39 98 27 41 01:54 FON-DRAC-01" },
-      { "date": "12/02/2026", "heure": "16h45", "page": 2, "personne": "SERMET Odile",
+        "citation": "16h20 Appel sortant 06 39 98 27 41 01:54 FON-DRAC-01"
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "16h45",
+        "page": 2,
+        "personne": "SERMET Odile",
         "description": "À son retour, la victime découvre l'effraction.",
-        "citation": "En rentrant à 16h45, j'ai trouvé la porte-fenêtre du salon, côté jardin, fracturée." },
-      { "date": "12/02/2026", "heure": "16h45", "page": 2, "personne": "SERMET Odile",
+        "citation": "En rentrant à 16h45, j'ai trouvé la porte-fenêtre du salon, côté jardin, fracturée."
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "16h45",
+        "page": 2,
+        "personne": "SERMET Odile",
         "description": "Parmi les objets volés, une montre Longines identifiable par son numéro de série.",
-        "citation": "une montre de marque Longines ayant appartenu à mon mari, numéro de série 48 217 559" },
-      { "date": "12/02/2026", "heure": "18h10", "page": 2, "personne": null,
+        "citation": "une montre de marque Longines ayant appartenu à mon mari, numéro de série 48 217 559"
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "18h10",
+        "page": 2,
+        "personne": null,
         "description": "Relevé de traces par la police technique et scientifique sur la porte-fenêtre.",
-        "citation": "le service de police technique et scientifique est intervenu le 12/02/2026 à 18h10 et a procédé au relevé de traces sur le montant de la porte-fenêtre" },
-      { "date": "19/02/2026", "heure": "07h58", "page": 29, "personne": "MARTINON Lucas",
+        "citation": "le service de police technique et scientifique est intervenu le 12/02/2026 à 18h10 et a procédé au relevé de traces sur le montant de la porte-fenêtre"
+      },
+      {
+        "date": "19/02/2026",
+        "heure": "07h58",
+        "page": 29,
+        "personne": "MARTINON Lucas",
         "description": "Le jour du fait de Saint-Ismier, MARTINON est badgé à l'entrepôt de Voreppe de 07h58 à 12h03.",
-        "citation": "jeudi 19/02/2026 07h58 12h03 4h05" },
-      { "date": "19/02/2026", "heure": "10h00", "page": 29, "personne": "Olivier TERRAZ",
+        "citation": "jeudi 19/02/2026 07h58 12h03 4h05"
+      },
+      {
+        "date": "19/02/2026",
+        "heure": "10h00",
+        "page": 29,
+        "personne": "Olivier TERRAZ",
         "description": "Cambriolage à Saint-Ismier (fait n°5), aux heures où le client est au travail.",
-        "citation": "le cambriolage commis le jeudi 19/02/2026 entre 10h00 et 11h40 à Saint-Ismier" },
-      { "date": "03/03/2026", "heure": "14h30", "page": 12, "personne": null,
+        "citation": "le cambriolage commis le jeudi 19/02/2026 entre 10h00 et 11h40 à Saint-Ismier"
+      },
+      {
+        "date": "03/03/2026",
+        "heure": "14h30",
+        "page": 12,
+        "personne": null,
         "description": "Surveillance à Corenc : un jeune homme à casquette rouge attend côté passager.",
-        "citation": "Un jeune homme mince, casquette rouge, est assis côté passager." },
-      { "date": "03/03/2026", "heure": "14h49", "page": 12, "personne": "FONTANEL Yannick",
+        "citation": "Un jeune homme mince, casquette rouge, est assis côté passager."
+      },
+      {
+        "date": "03/03/2026",
+        "heure": "14h49",
+        "page": 12,
+        "personne": "FONTANEL Yannick",
         "description": "FONTANEL revient d'une allée privée avec un sac de sport bleu.",
-        "citation": "Un homme corpulent (FONTANEL, formellement reconnu) revient à pied d'une allée privée, porteur d'un sac de sport bleu, et le place dans le coffre." },
-      { "date": "03/03/2026", "heure": "15h35", "page": 12, "personne": "BERTHOLLET Gilles",
+        "citation": "Un homme corpulent (FONTANEL, formellement reconnu) revient à pied d'une allée privée, porteur d'un sac de sport bleu, et le place dans le coffre."
+      },
+      {
+        "date": "03/03/2026",
+        "heure": "15h35",
+        "page": 12,
+        "personne": "BERTHOLLET Gilles",
         "description": "Remise du sac bleu au gérant de la « Brocante du Drac ».",
-        "citation": "FONTANEL remet le sac bleu à un homme d'une soixantaine d'années (BERTHOLLET Gilles, gérant, identifié d'après sa photographie), qui le rentre dans le dépôt." },
-      { "date": "03/03/2026", "heure": "18h20", "page": 12, "personne": null,
+        "citation": "FONTANEL remet le sac bleu à un homme d'une soixantaine d'années (BERTHOLLET Gilles, gérant, identifié d'après sa photographie), qui le rentre dans le dépôt."
+      },
+      {
+        "date": "03/03/2026",
+        "heure": "18h20",
+        "page": 12,
+        "personne": null,
         "description": "Un cambriolage est signalé le même jour au lieu de la surveillance (fait n°6).",
-        "citation": "un cambriolage a été signalé le même jour à 18h20 au chemin des Buclos-Hauts à Corenc (fait n°6)" },
-      { "date": "10/03/2026", "heure": "05h20", "page": 14, "personne": "BERTHOLLET Gilles",
+        "citation": "un cambriolage a été signalé le même jour à 18h20 au chemin des Buclos-Hauts à Corenc (fait n°6)"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "05h20",
+        "page": 14,
+        "personne": "BERTHOLLET Gilles",
         "description": "La montre Longines de Mme SERMET est retrouvée dans le coffre-fort du brocanteur.",
-        "citation": "dans le même coffre : 6 montres, dont une montre Longines portant le numéro de série 48 217 559" },
-      { "date": "10/03/2026", "heure": "05h20", "page": 14, "personne": "BERTHOLLET Gilles",
+        "citation": "dans le même coffre : 6 montres, dont une montre Longines portant le numéro de série 48 217 559"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "05h20",
+        "page": 14,
+        "personne": "BERTHOLLET Gilles",
         "description": "Registre des objets mobiliers non tenu depuis novembre 2025.",
-        "citation": "le registre des objets mobiliers, dont la dernière inscription date du 18/11/2025" },
-      { "date": "10/03/2026", "heure": "05h40", "page": 16, "personne": "MARTINON Lucas",
+        "citation": "le registre des objets mobiliers, dont la dernière inscription date du 18/11/2025"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "05h40",
+        "page": 16,
+        "personne": "MARTINON Lucas",
         "description": "Saisie au domicile de MARTINON d'un téléphone et d'une casquette rouge.",
-        "citation": "une casquette de couleur rouge" },
-      { "date": "10/03/2026", "heure": "07h20", "page": 19, "personne": "FONTANEL Yannick",
+        "citation": "une casquette de couleur rouge"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "07h20",
+        "page": 19,
+        "personne": "FONTANEL Yannick",
         "description": "Pied-de-biche découvert sous le plancher du coffre de la Skoda.",
-        "citation": "dans le coffre du véhicule, sous le plancher, un pied-de-biche de 60 cm" },
-      { "date": "10/03/2026", "heure": "11h00", "page": 25, "personne": "MARTINON Lucas",
+        "citation": "dans le coffre du véhicule, sous le plancher, un pied-de-biche de 60 cm"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "11h00",
+        "page": 25,
+        "personne": "MARTINON Lucas",
         "description": "MARTINON reconnaît sa présence à Biviers comme guetteur, sans être entré dans la maison.",
-        "citation": "Oui. Je suis resté dans la voiture. Il m'a dit de le prévenir si quelqu'un arrivait. Je ne suis jamais entré dans une maison." },
-      { "date": "10/03/2026", "heure": "11h00", "page": 25, "personne": "MARTINON Lucas",
+        "citation": "Oui. Je suis resté dans la voiture. Il m'a dit de le prévenir si quelqu'un arrivait. Je ne suis jamais entré dans une maison."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "11h00",
+        "page": 25,
+        "personne": "MARTINON Lucas",
         "description": "MARTINON conteste le fait du 19/02 et invoque la pointeuse de son employeur.",
-        "citation": "Le jeudi 19, j'étais au travail à Voreppe toute la matinée." },
-      { "date": "02/04/2026", "heure": null, "page": 28, "personne": "Agnès VILLARD",
+        "citation": "Le jeudi 19, j'étais au travail à Voreppe toute la matinée."
+      },
+      {
+        "date": "02/04/2026",
+        "heure": null,
+        "page": 28,
+        "personne": "Agnès VILLARD",
         "description": "Les traces papillaires du pied-de-biche et de la porte-fenêtre sont celles de FONTANEL.",
-        "citation": "Les traces exploitables relevées sur le pied-de-biche et sur la porte-fenêtre sont identifiées comme appartenant à FONTANEL Yannick." },
-      { "date": "02/04/2026", "heure": null, "page": 28, "personne": "Agnès VILLARD",
+        "citation": "Les traces exploitables relevées sur le pied-de-biche et sur la porte-fenêtre sont identifiées comme appartenant à FONTANEL Yannick."
+      },
+      {
+        "date": "02/04/2026",
+        "heure": null,
+        "page": 28,
+        "personne": "Agnès VILLARD",
         "description": "Aucune trace n'est attribuée à MARTINON.",
-        "citation": "Aucune trace exploitable n'a pu être attribuée à MARTINON Lucas" }
+        "citation": "Aucune trace exploitable n'a pu être attribuée à MARTINON Lucas"
+      }
     ],
-
     "chronologie_procedure": [
-      { "date": "13/02/2026", "heure": "09h15", "nature": "depot_plainte", "page": 2, "personne": "SERMET Odile",
-        "citation": "L'an deux mille vingt-six, le treize février, à neuf heures quinze minutes" },
-      { "date": "13/02/2026", "heure": "14h00", "nature": "audition_temoin", "page": 3, "personne": "CHABERT René",
-        "citation": "L'an deux mille vingt-six, le treize février, à quatorze heures" },
-      { "date": "16/02/2026", "heure": "10h00", "nature": "exploitation_lapi", "page": 4, "personne": "Julien SARRAZIN",
-        "citation": "Procédons à l'exploitation des données du système de lecture automatisée des plaques d'immatriculation" },
-      { "date": "17/02/2026", "heure": "09h00", "nature": "autorisation_requisitions", "page": 5, "personne": "Laure CHAMBAZ",
-        "citation": "DISONS que la présente autorisation ne vaut que pour la ligne et la personne ci-dessus désignées." },
-      { "date": "17/02/2026", "heure": "10h30", "nature": "requisition", "page": 6, "personne": "Julien SARRAZIN",
-        "citation": "Requérons la société ORBIS Télécom de nous communiquer l'identité du titulaire" },
-      { "date": "18/02/2026", "heure": "11h15", "nature": "requisition", "page": 7, "personne": "Julien SARRAZIN",
-        "citation": "Requérons la société NEXALINE Mobile de nous communiquer l'identité du titulaire de la ligne 06 39 98 63 08" },
-      { "date": "20/02/2026", "heure": null, "nature": "requisitoire_introductif", "page": 8, "personne": "Laure CHAMBAZ",
-        "citation": "Requiert qu'il plaise au juge d'instruction désigné informer contre X par toutes voies de droit" },
-      { "date": "20/02/2026", "heure": null, "nature": "commission_rogatoire", "page": 9, "personne": "Étienne ROUVIÈRE",
-        "citation": "Donnons commission rogatoire au Chef de la Sûreté départementale de l'Isère" },
-      { "date": "23/02/2026", "heure": "04h10", "nature": "pose_geolocalisation", "page": 10, "personne": "Hugo BRESSAND",
-        "citation": "À 04h10, procédons à la mise en place sur ce véhicule d'un dispositif technique de géolocalisation en temps réel" },
-      { "date": "25/02/2026", "heure": null, "nature": "ordonnance_geolocalisation", "page": 11, "personne": "Étienne ROUVIÈRE",
-        "citation": "Autorisons la mise en place d'un moyen technique de localisation en temps réel du véhicule Skoda Octavia Combi" },
-      { "date": "03/03/2026", "heure": "14h12", "nature": "surveillance", "page": 12, "personne": "Nadège COLLOMB",
-        "citation": "Géolocalisation : arrêt du véhicule chemin des Buclos-Hauts, Corenc." },
-      { "date": "09/03/2026", "heure": "17h30", "nature": "ordonnance_perquisition_nuit", "page": 13, "personne": "Étienne ROUVIÈRE",
-        "citation": "à procéder le 10/03/2026 à compter de 05h00 à la perquisition et aux saisies dans les locaux professionnels du dépôt" },
-      { "date": "10/03/2026", "heure": "05h15", "nature": "interpellation", "page": 14, "personne": "BERTHOLLET Gilles",
-        "citation": "Mentionnons qu'il est appréhendé à 05h15 et reste à notre disposition sous la contrainte." },
-      { "date": "10/03/2026", "heure": "05h15", "nature": "placement_garde_a_vue", "page": 15, "personne": "BERTHOLLET Gilles",
-        "citation": "qu'il est placé en garde à vue à compter de 05h15, heure de son appréhension" },
-      { "date": "10/03/2026", "heure": "05h20", "nature": "debut_perquisition", "page": 14, "personne": "BERTHOLLET Gilles",
-        "citation": "À 05h20, en sa présence constante, commençons la perquisition du dépôt" },
-      { "date": "10/03/2026", "heure": "05h30", "nature": "notification_droits", "page": 15, "personne": "BERTHOLLET Gilles",
-        "citation": "« J'ai compris. Prévenez ma sœur. Pas d'avocat pour l'instant, pas de médecin. »" },
-      { "date": "10/03/2026", "heure": "05h38", "nature": "interpellation", "page": 16, "personne": "MARTINON Lucas",
-        "citation": "Mentionnons qu'il est appréhendé à 05h38." },
-      { "date": "10/03/2026", "heure": "05h40", "nature": "debut_perquisition", "page": 16, "personne": "MARTINON Lucas",
-        "citation": "commençons la perquisition de l'appartement (T2, plan ci-dessous) à 05h40" },
-      { "date": "10/03/2026", "heure": "06h05", "nature": "interpellation", "page": 19, "personne": "FONTANEL Yannick",
-        "citation": "Mentionnons qu'il est appréhendé à 06h05 et maintenu à notre disposition sous la contrainte." },
-      { "date": "10/03/2026", "heure": "06h35", "nature": "fin_perquisition", "page": 16, "personne": "MARTINON Lucas",
-        "citation": "À 06h35, fin de la perquisition." },
-      { "date": "10/03/2026", "heure": "06h40", "nature": "avis_magistrat", "page": 21, "personne": "Étienne ROUVIÈRE",
-        "citation": "À 06h40, avisons par téléphone Monsieur Étienne ROUVIÈRE, juge d'instruction, des placements en garde à vue" },
-      { "date": "10/03/2026", "heure": "06h50", "nature": "fin_perquisition", "page": 14, "personne": "BERTHOLLET Gilles",
-        "citation": "À 06h50, fin de la perquisition." },
-      { "date": "10/03/2026", "heure": "07h00", "nature": "demande_examen_medical", "page": 17, "personne": "MARTINON Lucas",
-        "citation": "requérons le Docteur Paul ESCOFFIER d'examiner MARTINON Lucas" },
-      { "date": "10/03/2026", "heure": "07h10", "nature": "realisation_examen_medical", "page": 17, "personne": "Dr Paul ESCOFFIER",
-        "citation": "certifie avoir examiné ce jour, 10/03/2026, à 07h10, au service, M. MARTINON Lucas." },
-      { "date": "10/03/2026", "heure": "07h45", "nature": "fin_perquisition", "page": 19, "personne": "FONTANEL Yannick",
-        "citation": "À 07h45, fin des opérations. L'intéressé refuse de signer." },
-      { "date": "10/03/2026", "heure": "08h55", "nature": "notification_droits", "page": 20, "personne": "FONTANEL Yannick",
-        "citation": "Notifions à 08h55 à FONTANEL Yannick" },
-      { "date": "10/03/2026", "heure": "08h55", "nature": "demande_entretien_avocat", "page": 20, "personne": "FONTANEL Yannick",
-        "citation": "« Je veux Maître RAVANEL. Je ne veux prévenir personne. Pas de médecin. »" },
-      { "date": "10/03/2026", "heure": "09h30", "nature": "notification_droits", "page": 18, "personne": "MARTINON Lucas",
-        "citation": "La notification intervient en conséquence à 09h30." },
-      { "date": "10/03/2026", "heure": "09h30", "nature": "demande_entretien_avocat", "page": 18, "personne": "MARTINON Lucas",
-        "citation": "« J'ai compris. Je veux un avocat commis d'office. Prévenez ma mère." },
-      { "date": "10/03/2026", "heure": "10h00", "nature": "realisation_entretien_avocat", "page": 23, "personne": "FONTANEL Yannick",
-        "citation": "FONTANEL 10/03 10h00-10h30 Entretien avec Me RAVANEL" },
-      { "date": "10/03/2026", "heure": "10h20", "nature": "realisation_entretien_avocat", "page": 23, "personne": "MARTINON Lucas",
-        "citation": "MARTINON 10/03 10h20-10h50 Entretien avec Me TERRAZ" },
-      { "date": "10/03/2026", "heure": "10h30", "nature": "debut_audition", "page": 24, "personne": "FONTANEL Yannick",
-        "citation": "L'an deux mille vingt-six, le dix mars, à dix heures trente minutes" },
-      { "date": "10/03/2026", "heure": "11h00", "nature": "debut_audition", "page": 25, "personne": "MARTINON Lucas",
-        "citation": "L'an deux mille vingt-six, le dix mars, à onze heures" },
-      { "date": "10/03/2026", "heure": "11h50", "nature": "avis_magistrat", "page": 22, "personne": "BERTHOLLET Gilles",
-        "citation": "Par téléphone, avisons ce jour à 11h50 Monsieur ROUVIÈRE, juge d'instruction, du placement en garde à vue" },
-      { "date": "10/03/2026", "heure": "18h40", "nature": "fin_garde_a_vue", "page": 23, "personne": "BERTHOLLET Gilles",
-        "citation": "BERTHOLLET 10/03 18h40 Fin de mesure — remis en liberté (convocation)" },
-      { "date": "11/03/2026", "heure": "05h20", "nature": "fin_garde_a_vue", "page": 23, "personne": "MARTINON Lucas",
-        "citation": "MARTINON 11/03 05h20 Fin de mesure — déferrement" },
-      { "date": "11/03/2026", "heure": "05h50", "nature": "prolongation_garde_a_vue", "page": 26, "personne": "FONTANEL Yannick",
-        "citation": "Autorisons la prolongation de la garde à vue de FONTANEL Yannick pour une durée de vingt-quatre heures." },
-      { "date": "12/03/2026", "heure": "05h45", "nature": "fin_garde_a_vue", "page": 23, "personne": "FONTANEL Yannick",
-        "citation": "FONTANEL 12/03 05h45 Fin de mesure — déferrement" },
-      { "date": "12/03/2026", "heure": "17h40", "nature": "detention_provisoire", "page": 31, "personne": "FONTANEL Yannick",
-        "citation": "Ordonnons le placement en détention provisoire de FONTANEL Yannick et décernons mandat de dépôt." }
+      {
+        "date": "13/02/2026",
+        "heure": "09h15",
+        "nature": "depot_plainte",
+        "page": 2,
+        "personne": "SERMET Odile",
+        "citation": "L'an deux mille vingt-six, le treize février, à neuf heures quinze minutes"
+      },
+      {
+        "date": "13/02/2026",
+        "heure": "14h00",
+        "nature": "audition_temoin",
+        "page": 3,
+        "personne": "CHABERT René",
+        "citation": "L'an deux mille vingt-six, le treize février, à quatorze heures"
+      },
+      {
+        "date": "16/02/2026",
+        "heure": "10h00",
+        "nature": "exploitation_lapi",
+        "page": 4,
+        "personne": "Julien SARRAZIN",
+        "citation": "Procédons à l'exploitation des données du système de lecture automatisée des plaques d'immatriculation"
+      },
+      {
+        "date": "17/02/2026",
+        "heure": "09h00",
+        "nature": "autorisation_requisitions",
+        "page": 5,
+        "personne": "Laure CHAMBAZ",
+        "citation": "DISONS que la présente autorisation ne vaut que pour la ligne et la personne ci-dessus désignées."
+      },
+      {
+        "date": "17/02/2026",
+        "heure": "10h30",
+        "nature": "requisition",
+        "page": 6,
+        "personne": "Julien SARRAZIN",
+        "citation": "Requérons la société ORBIS Télécom de nous communiquer l'identité du titulaire"
+      },
+      {
+        "date": "18/02/2026",
+        "heure": "11h15",
+        "nature": "requisition",
+        "page": 7,
+        "personne": "Julien SARRAZIN",
+        "citation": "Requérons la société NEXALINE Mobile de nous communiquer l'identité du titulaire de la ligne 06 39 98 63 08"
+      },
+      {
+        "date": "20/02/2026",
+        "heure": null,
+        "nature": "requisitoire_introductif",
+        "page": 8,
+        "personne": "Laure CHAMBAZ",
+        "citation": "Requiert qu'il plaise au juge d'instruction désigné informer contre X par toutes voies de droit"
+      },
+      {
+        "date": "20/02/2026",
+        "heure": null,
+        "nature": "commission_rogatoire",
+        "page": 9,
+        "personne": "Étienne ROUVIÈRE",
+        "citation": "Donnons commission rogatoire au Chef de la Sûreté départementale de l'Isère"
+      },
+      {
+        "date": "23/02/2026",
+        "heure": "04h10",
+        "nature": "pose_geolocalisation",
+        "page": 10,
+        "personne": "Hugo BRESSAND",
+        "citation": "À 04h10, procédons à la mise en place sur ce véhicule d'un dispositif technique de géolocalisation en temps réel"
+      },
+      {
+        "date": "25/02/2026",
+        "heure": null,
+        "nature": "ordonnance_geolocalisation",
+        "page": 11,
+        "personne": "Étienne ROUVIÈRE",
+        "citation": "Autorisons la mise en place d'un moyen technique de localisation en temps réel du véhicule Skoda Octavia Combi"
+      },
+      {
+        "date": "03/03/2026",
+        "heure": "14h12",
+        "nature": "surveillance",
+        "page": 12,
+        "personne": "Nadège COLLOMB",
+        "citation": "Géolocalisation : arrêt du véhicule chemin des Buclos-Hauts, Corenc."
+      },
+      {
+        "date": "09/03/2026",
+        "heure": "17h30",
+        "nature": "ordonnance_perquisition_nuit",
+        "page": 13,
+        "personne": "Étienne ROUVIÈRE",
+        "citation": "à procéder le 10/03/2026 à compter de 05h00 à la perquisition et aux saisies dans les locaux professionnels du dépôt"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "05h15",
+        "nature": "interpellation",
+        "page": 14,
+        "personne": "BERTHOLLET Gilles",
+        "citation": "Mentionnons qu'il est appréhendé à 05h15 et reste à notre disposition sous la contrainte."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "05h15",
+        "nature": "placement_garde_a_vue",
+        "page": 15,
+        "personne": "BERTHOLLET Gilles",
+        "citation": "qu'il est placé en garde à vue à compter de 05h15, heure de son appréhension"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "05h20",
+        "nature": "debut_perquisition",
+        "page": 14,
+        "personne": "BERTHOLLET Gilles",
+        "citation": "À 05h20, en sa présence constante, commençons la perquisition du dépôt"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "05h30",
+        "nature": "notification_droits",
+        "page": 15,
+        "personne": "BERTHOLLET Gilles",
+        "citation": "« J'ai compris. Prévenez ma sœur. Pas d'avocat pour l'instant, pas de médecin. »"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "05h38",
+        "nature": "interpellation",
+        "page": 16,
+        "personne": "MARTINON Lucas",
+        "citation": "Mentionnons qu'il est appréhendé à 05h38."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "05h40",
+        "nature": "debut_perquisition",
+        "page": 16,
+        "personne": "MARTINON Lucas",
+        "citation": "commençons la perquisition de l'appartement (T2, plan ci-dessous) à 05h40"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "06h05",
+        "nature": "interpellation",
+        "page": 19,
+        "personne": "FONTANEL Yannick",
+        "citation": "Mentionnons qu'il est appréhendé à 06h05 et maintenu à notre disposition sous la contrainte."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "06h35",
+        "nature": "fin_perquisition",
+        "page": 16,
+        "personne": "MARTINON Lucas",
+        "citation": "À 06h35, fin de la perquisition."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "06h40",
+        "nature": "avis_magistrat",
+        "page": 21,
+        "personne": "Étienne ROUVIÈRE",
+        "citation": "À 06h40, avisons par téléphone Monsieur Étienne ROUVIÈRE, juge d'instruction, des placements en garde à vue"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "06h50",
+        "nature": "fin_perquisition",
+        "page": 14,
+        "personne": "BERTHOLLET Gilles",
+        "citation": "À 06h50, fin de la perquisition."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "07h00",
+        "nature": "demande_examen_medical",
+        "page": 17,
+        "personne": "MARTINON Lucas",
+        "citation": "requérons le Docteur Paul ESCOFFIER d'examiner MARTINON Lucas"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "07h10",
+        "nature": "realisation_examen_medical",
+        "page": 17,
+        "personne": "Dr Paul ESCOFFIER",
+        "citation": "certifie avoir examiné ce jour, 10/03/2026, à 07h10, au service, M. MARTINON Lucas."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "07h45",
+        "nature": "fin_perquisition",
+        "page": 19,
+        "personne": "FONTANEL Yannick",
+        "citation": "À 07h45, fin des opérations. L'intéressé refuse de signer."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "08h55",
+        "nature": "notification_droits",
+        "page": 20,
+        "personne": "FONTANEL Yannick",
+        "citation": "Notifions à 08h55 à FONTANEL Yannick"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "08h55",
+        "nature": "demande_entretien_avocat",
+        "page": 20,
+        "personne": "FONTANEL Yannick",
+        "citation": "« Je veux Maître RAVANEL. Je ne veux prévenir personne. Pas de médecin. »"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "09h30",
+        "nature": "notification_droits",
+        "page": 18,
+        "personne": "MARTINON Lucas",
+        "citation": "La notification intervient en conséquence à 09h30."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "09h30",
+        "nature": "demande_entretien_avocat",
+        "page": 18,
+        "personne": "MARTINON Lucas",
+        "citation": "« J'ai compris. Je veux un avocat commis d'office. Prévenez ma mère."
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "10h00",
+        "nature": "realisation_entretien_avocat",
+        "page": 23,
+        "personne": "FONTANEL Yannick",
+        "citation": "FONTANEL 10/03 10h00-10h30 Entretien avec Me RAVANEL"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "10h20",
+        "nature": "realisation_entretien_avocat",
+        "page": 23,
+        "personne": "MARTINON Lucas",
+        "citation": "MARTINON 10/03 10h20-10h50 Entretien avec Me TERRAZ"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "10h30",
+        "nature": "debut_audition",
+        "page": 24,
+        "personne": "FONTANEL Yannick",
+        "citation": "L'an deux mille vingt-six, le dix mars, à dix heures trente minutes"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "11h00",
+        "nature": "debut_audition",
+        "page": 25,
+        "personne": "MARTINON Lucas",
+        "citation": "L'an deux mille vingt-six, le dix mars, à onze heures"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "11h50",
+        "nature": "avis_magistrat",
+        "page": 22,
+        "personne": "BERTHOLLET Gilles",
+        "citation": "Par téléphone, avisons ce jour à 11h50 Monsieur ROUVIÈRE, juge d'instruction, du placement en garde à vue"
+      },
+      {
+        "date": "10/03/2026",
+        "heure": "18h40",
+        "nature": "fin_garde_a_vue",
+        "page": 23,
+        "personne": "BERTHOLLET Gilles",
+        "citation": "BERTHOLLET 10/03 18h40 Fin de mesure — remis en liberté (convocation)"
+      },
+      {
+        "date": "11/03/2026",
+        "heure": "05h20",
+        "nature": "fin_garde_a_vue",
+        "page": 23,
+        "personne": "MARTINON Lucas",
+        "citation": "MARTINON 11/03 05h20 Fin de mesure — déferrement"
+      },
+      {
+        "date": "11/03/2026",
+        "heure": "05h50",
+        "nature": "prolongation_garde_a_vue",
+        "page": 26,
+        "personne": "FONTANEL Yannick",
+        "citation": "Autorisons la prolongation de la garde à vue de FONTANEL Yannick pour une durée de vingt-quatre heures."
+      },
+      {
+        "date": "12/03/2026",
+        "heure": "05h45",
+        "nature": "fin_garde_a_vue",
+        "page": 23,
+        "personne": "FONTANEL Yannick",
+        "citation": "FONTANEL 12/03 05h45 Fin de mesure — déferrement"
+      },
+      {
+        "date": "12/03/2026",
+        "heure": "17h40",
+        "nature": "detention_provisoire",
+        "page": 31,
+        "personne": "FONTANEL Yannick",
+        "citation": "Ordonnons le placement en détention provisoire de FONTANEL Yannick et décernons mandat de dépôt."
+      }
     ],
-
     "gardes_a_vue": [
-      { "personne": "MARTINON Lucas",
+      {
+        "personne": "MARTINON Lucas",
         "duree_totale_garde_a_vue": "23.7 h",
         "delai_placement_notification_droits": "232 min",
         "delai_demande_realisation_examen_medical": "10 min",
-        "delai_demande_realisation_entretien_avocat": "50 min" },
-      { "personne": "FONTANEL Yannick",
+        "delai_demande_realisation_entretien_avocat": "50 min"
+      },
+      {
+        "personne": "FONTANEL Yannick",
         "duree_totale_garde_a_vue": "47.7 h",
         "delai_placement_notification_droits": "170 min",
         "delai_demande_realisation_examen_medical": "REFUSÉ",
-        "delai_demande_realisation_entretien_avocat": "65 min" },
-      { "personne": "BERTHOLLET Gilles",
+        "delai_demande_realisation_entretien_avocat": "65 min"
+      },
+      {
+        "personne": "BERTHOLLET Gilles",
         "duree_totale_garde_a_vue": "13.4 h",
         "delai_placement_notification_droits": "15 min",
         "delai_demande_realisation_examen_medical": "REFUSÉ",
-        "delai_demande_realisation_entretien_avocat": "REFUSÉ" }
+        "delai_demande_realisation_entretien_avocat": "REFUSÉ"
+      }
     ],
-
     "contradictions": [
-      { "vedette": true,
+      {
+        "vedette": true,
         "titre": "Fait du 19/02 : le client était badgé au travail pendant le cambriolage",
         "description": "Le rapport de synthèse impute à MARTINON le cambriolage de Saint-Ismier (19/02, 10h00–11h40). Le relevé de pointage le place à l'entrepôt de Voreppe, à environ 30 km, de 07h58 à 12h03. Aucune autre pièce ne documente ce fait n°5.",
         "sources": [
-          { "personne": "Julien SARRAZIN", "page": 27, "citation": "FONTANEL et MARTINON apparaissent comme les auteurs de l'ensemble des six faits, y compris celui du 19/02/2026 à Saint-Ismier" },
-          { "personne": "MARTINON Lucas", "page": 29, "citation": "jeudi 19/02/2026 07h58 12h03 4h05" }
-        ] },
-      { "titre": "Plaque du véhicule surveillé le 03/03 : ZV-535-RT au lieu de ZV-553-RT",
+          {
+            "personne": "Julien SARRAZIN",
+            "page": 27,
+            "citation": "FONTANEL et MARTINON apparaissent comme les auteurs de l'ensemble des six faits, y compris celui du 19/02/2026 à Saint-Ismier"
+          },
+          {
+            "personne": "MARTINON Lucas",
+            "page": 29,
+            "citation": "jeudi 19/02/2026 07h58 12h03 4h05"
+          }
+        ]
+      },
+      {
+        "titre": "Plaque du véhicule surveillé le 03/03 : ZV-535-RT au lieu de ZV-553-RT",
         "description": "Le véhicule de FONTANEL est immatriculé ZV-553-RT dans toutes les autres pièces. Le PV de surveillance, qui fonde l'ordonnance de perquisition de nuit, relève une autre plaque.",
         "sources": [
-          { "personne": "Nadège COLLOMB", "page": 12, "citation": "Véhicule Skoda Octavia gris immatriculé ZV-535-RT, moteur coupé." },
-          { "personne": "Hugo BRESSAND", "page": 10, "citation": "immatriculé ZV-553-RT, utilisé par FONTANEL Yannick." }
-        ] },
-      { "titre": "Couleur du véhicule : break blanc selon le témoin, Skoda gris métallisé selon la LAPI",
+          {
+            "personne": "Nadège COLLOMB",
+            "page": 12,
+            "citation": "Véhicule Skoda Octavia gris immatriculé ZV-535-RT, moteur coupé."
+          },
+          {
+            "personne": "Hugo BRESSAND",
+            "page": 10,
+            "citation": "immatriculé ZV-553-RT, utilisé par FONTANEL Yannick."
+          }
+        ]
+      },
+      {
+        "titre": "Couleur du véhicule : break blanc selon le témoin, Skoda gris métallisé selon la LAPI",
         "description": "Le seul témoin oculaire du 12/02 décrit un break de couleur blanche ; le véhicule de FONTANEL, rattaché aux faits par la lecture des plaques, est gris métallisé.",
         "sources": [
-          { "personne": "CHABERT René", "page": 3, "citation": "J'ai vu un break de couleur blanche garé en marche arrière au bout du chemin" },
-          { "personne": "Julien SARRAZIN", "page": 4, "citation": "Skoda Octavia Combi, couleur gris métallisé" }
-        ] },
-      { "titre": "Heure d'interpellation de FONTANEL : 06h05 ou 06h30",
+          {
+            "personne": "CHABERT René",
+            "page": 3,
+            "citation": "J'ai vu un break de couleur blanche garé en marche arrière au bout du chemin"
+          },
+          {
+            "personne": "Julien SARRAZIN",
+            "page": 4,
+            "citation": "Skoda Octavia Combi, couleur gris métallisé"
+          }
+        ]
+      },
+      {
+        "titre": "Heure d'interpellation de FONTANEL : 06h05 ou 06h30",
         "description": "Le PV d'interpellation fixe l'appréhension à 06h05, point de départ de la garde à vue ; le rapport de synthèse retient 06h30.",
         "sources": [
-          { "personne": "Hugo BRESSAND", "page": 19, "citation": "Mentionnons qu'il est appréhendé à 06h05 et maintenu à notre disposition sous la contrainte." },
-          { "personne": "Julien SARRAZIN", "page": 27, "citation": "FONTANEL Yannick, interpellé à 06h30 à son domicile" }
-        ] },
-      { "titre": "Prolongation de FONTANEL : notifiée le 11/03 ou le 12/03 ?",
+          {
+            "personne": "Hugo BRESSAND",
+            "page": 19,
+            "citation": "Mentionnons qu'il est appréhendé à 06h05 et maintenu à notre disposition sous la contrainte."
+          },
+          {
+            "personne": "Julien SARRAZIN",
+            "page": 27,
+            "citation": "FONTANEL Yannick, interpellé à 06h30 à son domicile"
+          }
+        ]
+      },
+      {
+        "titre": "Prolongation de FONTANEL : notifiée le 11/03 ou le 12/03 ?",
         "description": "L'ordonnance est datée du 11/03 à 05h50 et porte « notifiée à 06h00 ». Le registre inscrit la notification le 12/03 à 06h00, soit après la fin de mesure qu'il mentionne le 12/03 à 05h45.",
         "sources": [
-          { "personne": "Étienne ROUVIÈRE", "page": 26, "citation": "Fait à Grenoble, le 11/03/2026, à 05h50" },
-          { "personne": "Hugo BRESSAND", "page": 23, "citation": "FONTANEL 12/03 06h00 Notification de la prolongation" }
-        ] },
-      { "titre": "Nombre de faits : quatre cambriolages documentés, six imputés",
+          {
+            "personne": "Étienne ROUVIÈRE",
+            "page": 26,
+            "citation": "Fait à Grenoble, le 11/03/2026, à 05h50"
+          },
+          {
+            "personne": "Hugo BRESSAND",
+            "page": 23,
+            "citation": "FONTANEL 12/03 06h00 Notification de la prolongation"
+          }
+        ]
+      },
+      {
+        "titre": "Nombre de faits : quatre cambriolages documentés, six imputés",
         "description": "L'exploitation LAPI recense quatre cambriolages. Le rapport de synthèse en retient six, dont celui du 19/02, sans plainte ni PV correspondant au dossier.",
         "sources": [
-          { "personne": "Julien SARRAZIN", "page": 4, "citation": "quatre cambriolages présentant un mode opératoire identique" },
-          { "personne": "Julien SARRAZIN", "page": 27, "citation": "Six cambriolages de pavillons ont été commis entre le 22/01/2026 et le 03/03/2026" }
-        ] }
+          {
+            "personne": "Julien SARRAZIN",
+            "page": 4,
+            "citation": "quatre cambriolages présentant un mode opératoire identique"
+          },
+          {
+            "personne": "Julien SARRAZIN",
+            "page": 27,
+            "citation": "Six cambriolages de pavillons ont été commis entre le 22/01/2026 et le 03/03/2026"
+          }
+        ]
+      }
     ],
-
     "signalements": [
-      { "titre": "Perquisition du domicile de MARTINON commencée à 05h40",
+      {
+        "titre": "Perquisition du domicile de MARTINON commencée à 05h40",
         "description": "Local d'habitation (T2). L'ordonnance du 09/03 (D12, page 13) ne vise que les locaux professionnels du dépôt de Fontaine, « à l'exclusion de tout local d'habitation ». La casquette rouge et le téléphone du client sont saisis au cours de cette perquisition.",
         "page_reference": 16,
-        "citation_reference": "commençons la perquisition de l'appartement (T2, plan ci-dessous) à 05h40" },
-      { "titre": "Balise posée le 23/02, ordonnance de géolocalisation du 25/02",
+        "citation_reference": "commençons la perquisition de l'appartement (T2, plan ci-dessous) à 05h40"
+      },
+      {
+        "titre": "Balise posée le 23/02, ordonnance de géolocalisation du 25/02",
         "description": "La pose du dispositif (D9) précède de deux jours l'ordonnance qui l'autorise (D10, page 11), elle-même rendue sur une requête du 24/02.",
         "page_reference": 10,
-        "citation_reference": "À 04h10, procédons à la mise en place sur ce véhicule d'un dispositif technique de géolocalisation en temps réel" },
-      { "titre": "Réquisition sur la ligne du client sans autorisation distincte",
+        "citation_reference": "À 04h10, procédons à la mise en place sur ce véhicule d'un dispositif technique de géolocalisation en temps réel"
+      },
+      {
+        "titre": "Réquisition sur la ligne du client sans autorisation distincte",
         "description": "L'autorisation du parquet (D4, page 5) ne vise que la ligne 06 39 98 14 52 et exige une autorisation distincte pour toute autre ligne. Aucune autorisation n'est au dossier pour la ligne 06 39 98 63 08, qui a permis d'identifier MARTINON.",
         "page_reference": 7,
-        "citation_reference": "Requérons la société NEXALINE Mobile de nous communiquer l'identité du titulaire de la ligne 06 39 98 63 08" },
-      { "titre": "Droits de FONTANEL notifiés 2 h 50 après l'appréhension",
+        "citation_reference": "Requérons la société NEXALINE Mobile de nous communiquer l'identité du titulaire de la ligne 06 39 98 63 08"
+      },
+      {
+        "titre": "Droits de FONTANEL notifiés 2 h 50 après l'appréhension",
         "description": "Appréhendé à 06h05 (D18, page 19), arrivé au service à 08h20, notifié à 08h55 ; aucune circonstance n'est mentionnée. L'avocate l'a fait acter en audition (D23, page 24).",
         "page_reference": 20,
-        "citation_reference": "Notifions à 08h55 à FONTANEL Yannick" },
-      { "titre": "Avis au juge d'instruction 6 h 35 après le placement de BERTHOLLET",
+        "citation_reference": "Notifions à 08h55 à FONTANEL Yannick"
+      },
+      {
+        "titre": "Avis au juge d'instruction 6 h 35 après le placement de BERTHOLLET",
         "description": "Placement à 05h15 ; la commission rogatoire (D8, page 9) prescrit d'informer le magistrat dès le début de la mesure.",
         "page_reference": 22,
-        "citation_reference": "Par téléphone, avisons ce jour à 11h50 Monsieur ROUVIÈRE, juge d'instruction, du placement en garde à vue" },
-      { "titre": "Prolongation de FONTANEL sur formulaire type, sans mention de présentation",
+        "citation_reference": "Par téléphone, avisons ce jour à 11h50 Monsieur ROUVIÈRE, juge d'instruction, du placement en garde à vue"
+      },
+      {
+        "titre": "Prolongation de FONTANEL sur formulaire type, sans mention de présentation",
         "description": "L'ordonnance vise les seuls articles 63 et 154, ne comporte aucune motivation propre et ne mentionne pas la présentation de l'intéressé au magistrat.",
         "page_reference": 26,
-        "citation_reference": "Formulaire type — cabinet n°2" },
-      { "titre": "Notification des droits du client différée de 3 h 52",
+        "citation_reference": "Formulaire type — cabinet n°2"
+      },
+      {
+        "titre": "Notification des droits du client différée de 3 h 52",
         "description": "Différée pour ivresse. Le certificat de 07h15 prévoit une réévaluation « après dégrisement (environ deux heures) » ; le contrôle favorable est à 09h20, la notification à 09h30.",
         "page_reference": 18,
-        "citation_reference": "La notification intervient en conséquence à 09h30." }
+        "citation_reference": "La notification intervient en conséquence à 09h30."
+      }
     ],
-
     "confrontations": [
-      { "point_factuel": "Le jeune homme à la casquette rouge, à Biviers le 12/02/2026",
+      {
+        "point_factuel": "Le jeune homme à la casquette rouge, à Biviers le 12/02/2026",
         "declarations": [
-          { "personne": "CHABERT René", "page": 3, "citation": "Et un plus jeune, mince, avec une casquette rouge, qui est resté près de la voiture et regardait son téléphone." },
-          { "personne": "MARTINON Lucas", "page": 25, "citation": "Oui. Je suis resté dans la voiture. Il m'a dit de le prévenir si quelqu'un arrivait." },
-          { "personne": "FONTANEL Yannick", "page": 24, "citation": "Je ne donnerai aucun nom." }
-        ] },
-      { "point_factuel": "Contenu du sac de sport bleu remis le 03/03/2026",
+          {
+            "personne": "CHABERT René",
+            "page": 3,
+            "citation": "Et un plus jeune, mince, avec une casquette rouge, qui est resté près de la voiture et regardait son téléphone."
+          },
+          {
+            "personne": "MARTINON Lucas",
+            "page": 25,
+            "citation": "Oui. Je suis resté dans la voiture. Il m'a dit de le prévenir si quelqu'un arrivait."
+          },
+          {
+            "personne": "FONTANEL Yannick",
+            "page": 24,
+            "citation": "Je ne donnerai aucun nom."
+          }
+        ]
+      },
+      {
+        "point_factuel": "Contenu du sac de sport bleu remis le 03/03/2026",
         "declarations": [
-          { "personne": "FONTANEL Yannick", "page": 24, "citation": "Des vieux objets de ma grand-mère, pour la brocante." },
-          { "personne": "BERTHOLLET Gilles", "page": 14, "citation": "« Ce sont des achats à des particuliers, je n'ai pas eu le temps de tout inscrire. »" }
-        ] },
-      { "point_factuel": "Présence de MARTINON à Saint-Ismier le 19/02/2026",
+          {
+            "personne": "FONTANEL Yannick",
+            "page": 24,
+            "citation": "Des vieux objets de ma grand-mère, pour la brocante."
+          },
+          {
+            "personne": "BERTHOLLET Gilles",
+            "page": 14,
+            "citation": "« Ce sont des achats à des particuliers, je n'ai pas eu le temps de tout inscrire. »"
+          }
+        ]
+      },
+      {
+        "point_factuel": "Présence de MARTINON à Saint-Ismier le 19/02/2026",
         "declarations": [
-          { "personne": "MARTINON Lucas", "page": 25, "citation": "Le jeudi 19, j'étais au travail à Voreppe toute la matinée." },
-          { "personne": "Julien SARRAZIN", "page": 27, "citation": "et conteste sa présence le 19/02/2026" }
-        ] }
+          {
+            "personne": "MARTINON Lucas",
+            "page": 25,
+            "citation": "Le jeudi 19, j'étais au travail à Voreppe toute la matinée."
+          },
+          {
+            "personne": "Julien SARRAZIN",
+            "page": 27,
+            "citation": "et conteste sa présence le 19/02/2026"
+          }
+        ]
+      }
     ],
-
     "recoupements": [
-      { "type_entite": "Téléphone", "valeur": "06 39 98 63 08 (ligne du client)",
+      {
+        "type_entite": "Téléphone",
+        "valeur": "06 39 98 63 08 (ligne du client)",
         "occurrences": [
-          { "page": 6, "citation": "Principal correspondant : 06 39 98 63 08 (NEXALINE), 96 événements." },
-          { "page": 7, "citation": "Ligne 06 39 98 63 08" },
-          { "page": 16, "citation": "un téléphone portable correspondant à la ligne 06 39 98 63 08" }
-        ] },
-      { "type_entite": "Téléphone", "valeur": "06 39 98 14 52",
+          {
+            "page": 6,
+            "citation": "Principal correspondant : 06 39 98 63 08 (NEXALINE), 96 événements."
+          },
+          {
+            "page": 7,
+            "citation": "Ligne 06 39 98 63 08"
+          },
+          {
+            "page": 16,
+            "citation": "un téléphone portable correspondant à la ligne 06 39 98 63 08"
+          }
+        ]
+      },
+      {
+        "type_entite": "Téléphone",
+        "valeur": "06 39 98 14 52",
         "occurrences": [
-          { "page": 4, "citation": "Le fichier des antécédents mentionne la ligne téléphonique 06 39 98 14 52" },
-          { "page": 6, "citation": "Ligne 06 39 98 14 52 — abonnement au nom de FONTANEL Yannick" },
-          { "page": 19, "citation": "un téléphone correspondant à la ligne 06 39 98 14 52" }
-        ] },
-      { "type_entite": "Plaque d'immatriculation", "valeur": "ZV-553-RT",
+          {
+            "page": 4,
+            "citation": "Le fichier des antécédents mentionne la ligne téléphonique 06 39 98 14 52"
+          },
+          {
+            "page": 6,
+            "citation": "Ligne 06 39 98 14 52 — abonnement au nom de FONTANEL Yannick"
+          },
+          {
+            "page": 19,
+            "citation": "un téléphone correspondant à la ligne 06 39 98 14 52"
+          }
+        ]
+      },
+      {
+        "type_entite": "Plaque d'immatriculation",
+        "valeur": "ZV-553-RT",
         "occurrences": [
-          { "page": 10, "citation": "immatriculé ZV-553-RT, utilisé par FONTANEL Yannick." },
-          { "page": 11, "citation": "immatriculé ZV-553-RT, pour une durée de quatre mois" },
-          { "page": 19, "citation": "immatriculé ZV-553-RT, stationné devant le n°9" }
-        ] },
-      { "type_entite": "Numéro de série", "valeur": "Montre Longines 48 217 559",
+          {
+            "page": 10,
+            "citation": "immatriculé ZV-553-RT, utilisé par FONTANEL Yannick."
+          },
+          {
+            "page": 11,
+            "citation": "immatriculé ZV-553-RT, pour une durée de quatre mois"
+          },
+          {
+            "page": 19,
+            "citation": "immatriculé ZV-553-RT, stationné devant le n°9"
+          }
+        ]
+      },
+      {
+        "type_entite": "Numéro de série",
+        "valeur": "Montre Longines 48 217 559",
         "occurrences": [
-          { "page": 2, "citation": "numéro de série 48 217 559" },
-          { "page": 14, "citation": "une montre Longines portant le numéro de série 48 217 559" }
-        ] },
-      { "type_entite": "Adresse", "valeur": "Rue du Moulin-Vieux, Fontaine (dépôt BERTHOLLET)",
+          {
+            "page": 2,
+            "citation": "numéro de série 48 217 559"
+          },
+          {
+            "page": 14,
+            "citation": "une montre Longines portant le numéro de série 48 217 559"
+          }
+        ]
+      },
+      {
+        "type_entite": "Adresse",
+        "valeur": "Rue du Moulin-Vieux, Fontaine (dépôt BERTHOLLET)",
         "occurrences": [
-          { "page": 6, "citation": "Cellule FON-DRAC-01 : secteur rue du Moulin-Vieux" },
-          { "page": 12, "citation": "Arrêt devant le dépôt « Brocante du Drac », 18 rue du Moulin-Vieux à Fontaine." },
-          { "page": 14, "citation": "devant le dépôt « Brocante du Drac », 18 rue du Moulin-Vieux à Fontaine" }
-        ] }
+          {
+            "page": 6,
+            "citation": "Cellule FON-DRAC-01 : secteur rue du Moulin-Vieux"
+          },
+          {
+            "page": 12,
+            "citation": "Arrêt devant le dépôt « Brocante du Drac », 18 rue du Moulin-Vieux à Fontaine."
+          },
+          {
+            "page": 14,
+            "citation": "devant le dépôt « Brocante du Drac », 18 rue du Moulin-Vieux à Fontaine"
+          }
+        ]
+      }
     ],
-
     "index_pieces": [
-      { "cote": "—",  "page_debut": 1,  "type": "Inventaire des pièces", "date": "15/04/2026" },
-      { "cote": "D1", "page_debut": 2,  "type": "Procès-verbal de plainte — SERMET Odile", "date": "13/02/2026", "heure": "09h15" },
-      { "cote": "D2", "page_debut": 3,  "type": "Audition de témoin — CHABERT René", "date": "13/02/2026", "heure": "14h00" },
-      { "cote": "D3", "page_debut": 4,  "type": "Exploitation LAPI et identification", "date": "16/02/2026", "heure": "10h00" },
-      { "cote": "D4", "page_debut": 5,  "type": "Autorisation du procureur (art. 77-1-1)", "date": "17/02/2026", "heure": "09h00" },
-      { "cote": "D5", "page_debut": 6,  "type": "Réquisition ORBIS (ligne 14 52) et réponse", "date": "17/02/2026", "heure": "10h30" },
-      { "cote": "D6", "page_debut": 7,  "type": "Réquisition NEXALINE (ligne 63 08) et réponse", "date": "18/02/2026", "heure": "11h15" },
-      { "cote": "D7", "page_debut": 8,  "type": "Réquisitoire introductif", "date": "20/02/2026" },
-      { "cote": "D8", "page_debut": 9,  "type": "Commission rogatoire", "date": "20/02/2026" },
-      { "cote": "D9", "page_debut": 10, "type": "PV de pose de la balise de géolocalisation", "date": "23/02/2026", "heure": "04h00" },
-      { "cote": "D10", "page_debut": 11, "type": "Ordonnance autorisant la géolocalisation", "date": "25/02/2026" },
-      { "cote": "D11", "page_debut": 12, "type": "Surveillance et exploitation de la géolocalisation", "date": "03/03/2026", "heure": "14h00" },
-      { "cote": "D12", "page_debut": 13, "type": "Ordonnance 706-91 (perquisition de nuit du dépôt)", "date": "09/03/2026", "heure": "17h30" },
-      { "cote": "D13", "page_debut": 14, "type": "Interpellation de BERTHOLLET et perquisition du dépôt", "date": "10/03/2026", "heure": "05h10" },
-      { "cote": "D14", "page_debut": 15, "type": "Notification de garde à vue — BERTHOLLET", "date": "10/03/2026", "heure": "05h30" },
-      { "cote": "D15", "page_debut": 16, "type": "Interpellation de MARTINON et perquisition de son domicile", "date": "10/03/2026", "heure": "05h35" },
-      { "cote": "D16", "page_debut": 17, "type": "Réquisition et certificat médical — MARTINON", "date": "10/03/2026", "heure": "07h00" },
-      { "cote": "D17", "page_debut": 18, "type": "Notification de garde à vue — MARTINON", "date": "10/03/2026", "heure": "09h30" },
-      { "cote": "D18", "page_debut": 19, "type": "Interpellation de FONTANEL et perquisition de son domicile", "date": "10/03/2026", "heure": "06h00" },
-      { "cote": "D19", "page_debut": 20, "type": "Notification de garde à vue — FONTANEL", "date": "10/03/2026", "heure": "08h55" },
-      { "cote": "D20", "page_debut": 21, "type": "Avis au juge d'instruction (MARTINON, FONTANEL)", "date": "10/03/2026", "heure": "06h40" },
-      { "cote": "D21", "page_debut": 22, "type": "Avis au juge d'instruction (BERTHOLLET)", "date": "10/03/2026", "heure": "11h50" },
-      { "cote": "D22", "page_debut": 23, "type": "Extrait du registre de garde à vue", "date": "10/03/2026" },
-      { "cote": "D23", "page_debut": 24, "type": "Audition de FONTANEL", "date": "10/03/2026", "heure": "10h30" },
-      { "cote": "D24", "page_debut": 25, "type": "Audition de MARTINON", "date": "10/03/2026", "heure": "11h00" },
-      { "cote": "D25", "page_debut": 26, "type": "Ordonnance de prolongation de garde à vue — FONTANEL", "date": "11/03/2026", "heure": "05h50" },
-      { "cote": "D26", "page_debut": 27, "type": "Rapport de synthèse", "date": "13/03/2026" },
-      { "cote": "D27", "page_debut": 28, "type": "Rapport d'examen des traces papillaires", "date": "02/04/2026" },
-      { "cote": "D28", "page_debut": 29, "type": "Courrier de Me TERRAZ et attestation de pointage", "date": "07/04/2026" },
-      { "cote": "B1", "page_debut": 30, "type": "Bulletins n°1 du casier judiciaire", "date": "11/03/2026" },
-      { "cote": "C1", "page_debut": 31, "type": "Ordonnance de placement en détention provisoire — FONTANEL", "date": "12/03/2026", "heure": "17h40" }
-    ]
+      {
+        "cote": "—",
+        "page_debut": 1,
+        "type": "Inventaire des pièces",
+        "date": "15/04/2026"
+      },
+      {
+        "cote": "D1",
+        "page_debut": 2,
+        "type": "Procès-verbal de plainte — SERMET Odile",
+        "date": "13/02/2026",
+        "heure": "09h15"
+      },
+      {
+        "cote": "D2",
+        "page_debut": 3,
+        "type": "Audition de témoin — CHABERT René",
+        "date": "13/02/2026",
+        "heure": "14h00"
+      },
+      {
+        "cote": "D3",
+        "page_debut": 4,
+        "type": "Exploitation LAPI et identification",
+        "date": "16/02/2026",
+        "heure": "10h00"
+      },
+      {
+        "cote": "D4",
+        "page_debut": 5,
+        "type": "Autorisation du procureur (art. 77-1-1)",
+        "date": "17/02/2026",
+        "heure": "09h00"
+      },
+      {
+        "cote": "D5",
+        "page_debut": 6,
+        "type": "Réquisition ORBIS (ligne 14 52) et réponse",
+        "date": "17/02/2026",
+        "heure": "10h30"
+      },
+      {
+        "cote": "D6",
+        "page_debut": 7,
+        "type": "Réquisition NEXALINE (ligne 63 08) et réponse",
+        "date": "18/02/2026",
+        "heure": "11h15"
+      },
+      {
+        "cote": "D7",
+        "page_debut": 8,
+        "type": "Réquisitoire introductif",
+        "date": "20/02/2026"
+      },
+      {
+        "cote": "D8",
+        "page_debut": 9,
+        "type": "Commission rogatoire",
+        "date": "20/02/2026"
+      },
+      {
+        "cote": "D9",
+        "page_debut": 10,
+        "type": "PV de pose de la balise de géolocalisation",
+        "date": "23/02/2026",
+        "heure": "04h00"
+      },
+      {
+        "cote": "D10",
+        "page_debut": 11,
+        "type": "Ordonnance autorisant la géolocalisation",
+        "date": "25/02/2026"
+      },
+      {
+        "cote": "D11",
+        "page_debut": 12,
+        "type": "Surveillance et exploitation de la géolocalisation",
+        "date": "03/03/2026",
+        "heure": "14h00"
+      },
+      {
+        "cote": "D12",
+        "page_debut": 13,
+        "type": "Ordonnance 706-91 (perquisition de nuit du dépôt)",
+        "date": "09/03/2026",
+        "heure": "17h30"
+      },
+      {
+        "cote": "D13",
+        "page_debut": 14,
+        "type": "Interpellation de BERTHOLLET et perquisition du dépôt",
+        "date": "10/03/2026",
+        "heure": "05h10"
+      },
+      {
+        "cote": "D14",
+        "page_debut": 15,
+        "type": "Notification de garde à vue — BERTHOLLET",
+        "date": "10/03/2026",
+        "heure": "05h30"
+      },
+      {
+        "cote": "D15",
+        "page_debut": 16,
+        "type": "Interpellation de MARTINON et perquisition de son domicile",
+        "date": "10/03/2026",
+        "heure": "05h35"
+      },
+      {
+        "cote": "D16",
+        "page_debut": 17,
+        "type": "Réquisition et certificat médical — MARTINON",
+        "date": "10/03/2026",
+        "heure": "07h00"
+      },
+      {
+        "cote": "D17",
+        "page_debut": 18,
+        "type": "Notification de garde à vue — MARTINON",
+        "date": "10/03/2026",
+        "heure": "09h30"
+      },
+      {
+        "cote": "D18",
+        "page_debut": 19,
+        "type": "Interpellation de FONTANEL et perquisition de son domicile",
+        "date": "10/03/2026",
+        "heure": "06h00"
+      },
+      {
+        "cote": "D19",
+        "page_debut": 20,
+        "type": "Notification de garde à vue — FONTANEL",
+        "date": "10/03/2026",
+        "heure": "08h55"
+      },
+      {
+        "cote": "D20",
+        "page_debut": 21,
+        "type": "Avis au juge d'instruction (MARTINON, FONTANEL)",
+        "date": "10/03/2026",
+        "heure": "06h40"
+      },
+      {
+        "cote": "D21",
+        "page_debut": 22,
+        "type": "Avis au juge d'instruction (BERTHOLLET)",
+        "date": "10/03/2026",
+        "heure": "11h50"
+      },
+      {
+        "cote": "D22",
+        "page_debut": 23,
+        "type": "Extrait du registre de garde à vue",
+        "date": "10/03/2026"
+      },
+      {
+        "cote": "D23",
+        "page_debut": 24,
+        "type": "Audition de FONTANEL",
+        "date": "10/03/2026",
+        "heure": "10h30"
+      },
+      {
+        "cote": "D24",
+        "page_debut": 25,
+        "type": "Audition de MARTINON",
+        "date": "10/03/2026",
+        "heure": "11h00"
+      },
+      {
+        "cote": "D25",
+        "page_debut": 26,
+        "type": "Ordonnance de prolongation de garde à vue — FONTANEL",
+        "date": "11/03/2026",
+        "heure": "05h50"
+      },
+      {
+        "cote": "D26",
+        "page_debut": 27,
+        "type": "Rapport de synthèse",
+        "date": "13/03/2026"
+      },
+      {
+        "cote": "D27",
+        "page_debut": 28,
+        "type": "Rapport d'examen des traces papillaires",
+        "date": "02/04/2026"
+      },
+      {
+        "cote": "D28",
+        "page_debut": 29,
+        "type": "Courrier de Me TERRAZ et attestation de pointage",
+        "date": "07/04/2026"
+      },
+      {
+        "cote": "B1",
+        "page_debut": 30,
+        "type": "Bulletins n°1 du casier judiciaire",
+        "date": "11/03/2026"
+      },
+      {
+        "cote": "C1",
+        "page_debut": 31,
+        "type": "Ordonnance de placement en détention provisoire — FONTANEL",
+        "date": "12/03/2026",
+        "heure": "17h40"
+      }
+    ],
+    "resume_detaille": [
+      {
+        "titre": "Les faits",
+        "phrases": [
+          {
+            "texte": "Entre janvier et mars 2026, des cambriolages de pavillons au mode opératoire identique sont commis dans l'est grenoblois : en journée, porte-fenêtre forcée, vol de bijoux et de numéraire.",
+            "sources": [
+              {
+                "page": 4,
+                "citation": "quatre cambriolages présentant un mode opératoire identique"
+              }
+            ]
+          },
+          {
+            "texte": "Le 12/02/2026, Mme SERMET, absente de 13h30 à 16h45, découvre sa porte-fenêtre fracturée ; une montre Longines identifiable par son numéro de série figure parmi les objets volés.",
+            "sources": [
+              {
+                "page": 2,
+                "citation": "En rentrant à 16h45, j'ai trouvé la porte-fenêtre du salon, côté jardin, fracturée."
+              },
+              {
+                "page": 2,
+                "citation": "une montre de marque Longines ayant appartenu à mon mari, numéro de série 48 217 559"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "titre": "L'enquête",
+        "phrases": [
+          {
+            "texte": "La lecture automatisée des plaques rattache la Skoda de FONTANEL à trois des cambriolages, dont celui du 12/02.",
+            "sources": [
+              {
+                "page": 4,
+                "citation": "le même véhicule est enregistré à proximité des lieux, aux heures des faits, lors des cambriolages n°1, 3 et 4"
+              }
+            ]
+          },
+          {
+            "texte": "La téléphonie de FONTANEL fait apparaître un correspondant principal : la ligne 06 39 98 63 08, dont le client est titulaire, et qui borne à Biviers pendant les faits.",
+            "sources": [
+              {
+                "page": 7,
+                "citation": "Titulaire MARTINON Lucas, né le 27/08/2003 à Grenoble"
+              },
+              {
+                "page": 7,
+                "citation": "Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers)."
+              }
+            ]
+          },
+          {
+            "texte": "Une information judiciaire est ouverte le 20/02/2026. Une balise est posée sur la Skoda et une surveillance, le 03/03, montre la remise d'un sac de sport au brocanteur BERTHOLLET.",
+            "sources": [
+              {
+                "page": 8,
+                "citation": "Requiert qu'il plaise au juge d'instruction désigné informer contre X par toutes voies de droit"
+              },
+              {
+                "page": 12,
+                "citation": "FONTANEL remet le sac bleu à un homme d'une soixantaine d'années (BERTHOLLET Gilles, gérant, identifié d'après sa photographie), qui le rentre dans le dépôt."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "titre": "Les interpellations du 10/03/2026",
+        "phrases": [
+          {
+            "texte": "Chez BERTHOLLET, la montre Longines de Mme SERMET est retrouvée dans le coffre-fort.",
+            "sources": [
+              {
+                "page": 14,
+                "citation": "dans le même coffre : 6 montres, dont une montre Longines portant le numéro de série 48 217 559"
+              }
+            ]
+          },
+          {
+            "texte": "Chez le client, perquisitionné à partir de 05h40, sont saisis son téléphone et une casquette rouge.",
+            "sources": [
+              {
+                "page": 16,
+                "citation": "commençons la perquisition de l'appartement (T2, plan ci-dessous) à 05h40"
+              },
+              {
+                "page": 16,
+                "citation": "une casquette de couleur rouge"
+              }
+            ]
+          },
+          {
+            "texte": "Chez FONTANEL, un pied-de-biche est découvert dans le coffre de la Skoda.",
+            "sources": [
+              {
+                "page": 19,
+                "citation": "dans le coffre du véhicule, sous le plancher, un pied-de-biche de 60 cm"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "titre": "Les déclarations",
+        "phrases": [
+          {
+            "texte": "Le client reconnaît avoir attendu dans la voiture le 12/02 et le 03/03, sans être entré dans une maison, et conteste toute présence le 19/02.",
+            "sources": [
+              {
+                "page": 25,
+                "citation": "Oui. Je suis resté dans la voiture. Il m'a dit de le prévenir si quelqu'un arrivait. Je ne suis jamais entré dans une maison."
+              },
+              {
+                "page": 25,
+                "citation": "Le jeudi 19, j'étais au travail à Voreppe toute la matinée."
+              }
+            ]
+          },
+          {
+            "texte": "FONTANEL garde le silence sur l'essentiel ; BERTHOLLET invoque des achats à des particuliers.",
+            "sources": [
+              {
+                "page": 24,
+                "citation": "Je ne donnerai aucun nom."
+              },
+              {
+                "page": 14,
+                "citation": "« Ce sont des achats à des particuliers, je n'ai pas eu le temps de tout inscrire. »"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "titre": "Les expertises et l'état du dossier",
+        "phrases": [
+          {
+            "texte": "Les traces papillaires du pied-de-biche et de la porte-fenêtre sont celles de FONTANEL ; aucune n'est attribuée au client.",
+            "sources": [
+              {
+                "page": 28,
+                "citation": "Les traces exploitables relevées sur le pied-de-biche et sur la porte-fenêtre sont identifiées comme appartenant à FONTANEL Yannick."
+              },
+              {
+                "page": 28,
+                "citation": "Aucune trace exploitable n'a pu être attribuée à MARTINON Lucas"
+              }
+            ]
+          },
+          {
+            "texte": "Le rapport de synthèse impute néanmoins au client les six faits, y compris celui du 19/02, contre lequel la défense produit un relevé de pointage.",
+            "sources": [
+              {
+                "page": 27,
+                "citation": "FONTANEL et MARTINON apparaissent comme les auteurs de l'ensemble des six faits, y compris celui du 19/02/2026 à Saint-Ismier"
+              },
+              {
+                "page": 29,
+                "citation": "jeudi 19/02/2026 07h58 12h03 4h05"
+              }
+            ]
+          },
+          {
+            "texte": "FONTANEL est placé en détention provisoire le 12/03/2026.",
+            "sources": [
+              {
+                "page": 31,
+                "citation": "Ordonnons le placement en détention provisoire de FONTANEL Yannick et décernons mandat de dépôt."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "journee": {
+      "date": "12/02/2026",
+      "titre": "Reconstitution — journée du 12/02/2026 (fait n°4, Biviers)",
+      "debut": "13h00",
+      "fin": "18h30",
+      "evenements": [
+        {
+          "heure": "13h30",
+          "libelle": "La victime quitte son domicile",
+          "type": "victime",
+          "page": 2,
+          "citation": "J'ai quitté mon domicile à 13h30 pour aller chez le kiné à Montbonnot, puis faire des courses."
+        },
+        {
+          "heure": "13h41",
+          "libelle": "FONTANEL appelle la ligne du client, depuis Saint-Martin-d'Hères",
+          "type": "telephone",
+          "page": 6,
+          "citation": "13h41 Appel sortant 06 39 98 63 08 00:38 SMH-CLEM-01"
+        },
+        {
+          "heure": "14h00",
+          "fin": "14h15",
+          "libelle": "Le témoin voit un break blanc et deux hommes",
+          "type": "temoin",
+          "page": 3,
+          "citation": "Vers deux heures, deux heures et quart, j'étais dans mon jardin."
+        },
+        {
+          "heure": "14h02",
+          "libelle": "LAPI : la Skoda de FONTANEL passe vers Biviers",
+          "type": "vehicule",
+          "page": 4,
+          "citation": "notamment le 12/02/2026 à 14h02 (sens Grenoble-Biviers) puis à 15h11 (sens inverse)"
+        },
+        {
+          "heure": "14h05",
+          "fin": "14h52",
+          "libelle": "Ligne du client : cellule de Biviers",
+          "type": "telephone",
+          "page": 7,
+          "citation": "Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers)."
+        },
+        {
+          "heure": "14h09",
+          "fin": "14h48",
+          "libelle": "Ligne de FONTANEL : cellule de Biviers",
+          "type": "telephone",
+          "page": 6,
+          "citation": "14h09 SMS entrant 06 39 98 63 08 — BIV-CROIX-02"
+        },
+        {
+          "heure": "14h31",
+          "libelle": "Appel de la ligne du client vers FONTANEL",
+          "type": "telephone",
+          "page": 6,
+          "citation": "14h31 Appel entrant 06 39 98 63 08 00:12 BIV-CROIX-02"
+        },
+        {
+          "heure": "15h00",
+          "libelle": "Le témoin voit la voiture repartir",
+          "type": "temoin",
+          "page": 3,
+          "citation": "La voiture est repartie vers trois heures, par la route de Montbonnot."
+        },
+        {
+          "heure": "15h11",
+          "libelle": "LAPI : la Skoda repart en sens inverse",
+          "type": "vehicule",
+          "page": 4,
+          "citation": "notamment le 12/02/2026 à 14h02 (sens Grenoble-Biviers) puis à 15h11 (sens inverse)"
+        },
+        {
+          "heure": "16h20",
+          "libelle": "Ligne de FONTANEL à Fontaine, secteur du dépôt BERTHOLLET",
+          "type": "telephone",
+          "page": 6,
+          "citation": "16h20 Appel sortant 06 39 98 27 41 01:54 FON-DRAC-01"
+        },
+        {
+          "heure": "16h45",
+          "libelle": "La victime découvre l'effraction",
+          "type": "victime",
+          "page": 2,
+          "citation": "En rentrant à 16h45, j'ai trouvé la porte-fenêtre du salon, côté jardin, fracturée."
+        },
+        {
+          "heure": "18h10",
+          "libelle": "Relevé de traces par la police scientifique",
+          "type": "victime",
+          "page": 2,
+          "citation": "le service de police technique et scientifique est intervenu le 12/02/2026 à 18h10"
+        }
+      ],
+      "constats": [
+        "Fenêtre des faits : de 13h30 à 16h45 selon la victime. Les deux lignes bornent ensemble à Biviers de 14h09 à 14h48.",
+        "Aucune pièce ne place le client hors du véhicule : le témoin le décrit « resté près de la voiture ».",
+        "Le témoin décrit un break blanc ; la LAPI enregistre une Skoda gris métallisé."
+      ]
+    },
+    "defense": {
+      "client": "MARTINON Lucas",
+      "delai": {
+        "titre": "Délai pour soulever les nullités",
+        "texte": "Six mois à compter de la mise en examen, à peine d'irrecevabilité (art. 173-1 CPP). La date de mise en examen du client ne figure pas dans la copie du dossier : à renseigner pour activer le décompte."
+      },
+      "forme": [
+        {
+          "titre": "Perquisition du domicile du client commencée à 05h40",
+          "qualite": "oui",
+          "force": "sérieuse",
+          "texte": "Art. 59 CPP (heures légales) ; art. 706-91 CPP (perquisitions de nuit en criminalité organisée).",
+          "analyse": "Perquisition d'un local d'habitation avant 6 h. La seule ordonnance de perquisition de nuit du dossier vise les locaux professionnels du dépôt de Fontaine, à l'exclusion expresse de tout local d'habitation.",
+          "qualite_motif": "Son propre domicile : le client est directement titulaire du droit en cause.",
+          "grief": "Saisie du téléphone de la ligne 06 39 98 63 08 et de la casquette rouge, deux éléments à charge.",
+          "sources": [
+            {
+              "page": 16,
+              "citation": "commençons la perquisition de l'appartement (T2, plan ci-dessous) à 05h40"
+            },
+            {
+              "page": 13,
+              "citation": "à l'exclusion de tout local d'habitation"
+            },
+            {
+              "page": 16,
+              "citation": "une casquette de couleur rouge"
+            }
+          ]
+        },
+        {
+          "titre": "Réquisition sur la ligne du client sans autorisation du parquet",
+          "qualite": "oui",
+          "force": "sérieuse",
+          "texte": "Art. 77-1-1 et 60-1-2 CPP (réquisitions de données en enquête préliminaire, sur autorisation du procureur).",
+          "analyse": "L'autorisation du 17/02 ne vise que la ligne de FONTANEL et exige une autorisation distincte pour toute autre ligne. La réquisition du 18/02 sur la ligne du client n'en vise aucune.",
+          "qualite_motif": "Le client est titulaire de la ligne requise.",
+          "grief": "C'est cette réquisition qui identifie le client et le place à Biviers le 12/02.",
+          "sources": [
+            {
+              "page": 5,
+              "citation": "Toute réquisition portant sur une autre ligne ou une autre personne fera l'objet d'une autorisation distincte."
+            },
+            {
+              "page": 7,
+              "citation": "Requérons la société NEXALINE Mobile de nous communiquer l'identité du titulaire de la ligne 06 39 98 63 08"
+            },
+            {
+              "page": 7,
+              "citation": "Titulaire MARTINON Lucas, né le 27/08/2003 à Grenoble"
+            }
+          ]
+        },
+        {
+          "titre": "Géolocalisation posée deux jours avant l'ordonnance",
+          "qualite": "discutable",
+          "force": "à approfondir",
+          "texte": "Art. 230-32 et 230-33 CPP.",
+          "analyse": "Balise posée le 23/02 sur commission rogatoire ; l'ordonnance du juge qui l'autorise est du 25/02. La surveillance du 03/03, où le client est vu en passager, procède de cette géolocalisation.",
+          "qualite_motif": "Le véhicule appartient à FONTANEL. La chambre criminelle exige en principe un droit sur le véhicule ou l'atteinte à un droit propre : à démontrer pour un passager.",
+          "grief": "La surveillance du 03/03 fonde l'imputation du fait n°6 au client.",
+          "sources": [
+            {
+              "page": 10,
+              "citation": "À 04h10, procédons à la mise en place sur ce véhicule d'un dispositif technique de géolocalisation en temps réel"
+            },
+            {
+              "page": 11,
+              "citation": "Fait en notre cabinet, le 25/02/2026"
+            },
+            {
+              "page": 12,
+              "citation": "Avisés par le poste de supervision de l'arrêt du véhicule de FONTANEL à Corenc"
+            }
+          ]
+        },
+        {
+          "titre": "Notification des droits du client différée de 3 h 52",
+          "qualite": "oui",
+          "force": "faible",
+          "texte": "Art. 63-1 CPP (notification immédiate, sauf circonstance insurmontable).",
+          "analyse": "Report justifié par l'ivresse, habituellement admise comme circonstance insurmontable. Point à vérifier : le médecin prévoit un dégrisement en deux heures environ (vers 09h15), le contrôle favorable intervient à 09h20, la notification à 09h30.",
+          "qualite_motif": "Droit propre du client.",
+          "grief": "Aucune audition avant la notification : grief difficile à établir.",
+          "sources": [
+            {
+              "page": 17,
+              "citation": "à réévaluer après dégrisement (environ deux heures)"
+            },
+            {
+              "page": 18,
+              "citation": "La notification intervient en conséquence à 09h30."
+            }
+          ]
+        },
+        {
+          "titre": "Avis au juge d'instruction 62 minutes après le placement du client",
+          "qualite": "oui",
+          "force": "faible",
+          "texte": "Art. 154 CPP ; commission rogatoire du 20/02 (information « dès le début de la mesure »).",
+          "analyse": "Placement à 05h38, avis au magistrat à 06h40.",
+          "qualite_motif": "Mesure concernant le client.",
+          "grief": "Délai bref : peu susceptible d'être sanctionné seul.",
+          "sources": [
+            {
+              "page": 9,
+              "citation": "Disons que les officiers de police judiciaire devront nous informer dès le début de la mesure de tout placement en garde à vue"
+            },
+            {
+              "page": 21,
+              "citation": "À 06h40, avisons par téléphone Monsieur Étienne ROUVIÈRE, juge d'instruction, des placements en garde à vue"
+            }
+          ]
+        },
+        {
+          "titre": "Notification tardive des droits de FONTANEL (2 h 50)",
+          "qualite": "non",
+          "force": "—",
+          "texte": "Art. 63-1 CPP.",
+          "analyse": "Irrégularité apparente, mais propre à la garde à vue de FONTANEL.",
+          "qualite_motif": "Un mis en examen ne peut se prévaloir d'un droit qui appartient en propre à une autre personne.",
+          "grief": "Utile à la défense de FONTANEL, pas à celle du client.",
+          "sources": [
+            {
+              "page": 20,
+              "citation": "Notifions à 08h55 à FONTANEL Yannick"
+            }
+          ]
+        },
+        {
+          "titre": "Avis tardif au juge pour BERTHOLLET ; prolongation de FONTANEL sur formulaire type",
+          "qualite": "non",
+          "force": "—",
+          "texte": "Art. 63 et 154 CPP.",
+          "analyse": "Irrégularités apparentes affectant les gardes à vue des coauteurs.",
+          "qualite_motif": "Droits propres à BERTHOLLET et à FONTANEL.",
+          "grief": "Sans incidence directe pour le client.",
+          "sources": [
+            {
+              "page": 22,
+              "citation": "Par téléphone, avisons ce jour à 11h50 Monsieur ROUVIÈRE, juge d'instruction, du placement en garde à vue"
+            },
+            {
+              "page": 26,
+              "citation": "Formulaire type — cabinet n°2"
+            }
+          ]
+        }
+      ],
+      "fond": [
+        {
+          "fait": "Fait n°5 — 19/02/2026, Saint-Ismier",
+          "synthese": "Seule pièce à charge : le rapport de synthèse. Alibi documenté.",
+          "niveau": "faible",
+          "charge": [
+            {
+              "personne": "Julien SARRAZIN",
+              "page": 27,
+              "citation": "FONTANEL et MARTINON apparaissent comme les auteurs de l'ensemble des six faits, y compris celui du 19/02/2026 à Saint-Ismier"
+            }
+          ],
+          "decharge": [
+            {
+              "personne": "MARTINON Lucas",
+              "page": 29,
+              "citation": "jeudi 19/02/2026 07h58 12h03 4h05"
+            },
+            {
+              "personne": "MARTINON Lucas",
+              "page": 25,
+              "citation": "Le jeudi 19, j'étais au travail à Voreppe toute la matinée."
+            },
+            {
+              "personne": "Julien SARRAZIN",
+              "page": 4,
+              "citation": "quatre cambriolages présentant un mode opératoire identique"
+            }
+          ]
+        },
+        {
+          "fait": "Faits n°1 à 3 — 22/01, 29/01 et 05/02/2026",
+          "synthese": "Aucune pièce ne rattache le client à ces dates : la LAPI concerne le véhicule de FONTANEL, le relevé de la ligne du client n'est pas exploité au dossier.",
+          "niveau": "faible",
+          "charge": [
+            {
+              "personne": "Julien SARRAZIN",
+              "page": 27,
+              "citation": "FONTANEL et MARTINON apparaissent comme les auteurs de l'ensemble des six faits"
+            },
+            {
+              "personne": "Julien SARRAZIN",
+              "page": 4,
+              "citation": "le même véhicule est enregistré à proximité des lieux, aux heures des faits, lors des cambriolages n°1, 3 et 4"
+            }
+          ],
+          "decharge": [
+            {
+              "personne": null,
+              "page": 7,
+              "citation": "Le relevé détaillé (412 événements) est transmis au format tableur."
+            }
+          ]
+        },
+        {
+          "fait": "Fait n°4 — 12/02/2026, Biviers",
+          "synthese": "Présence reconnue, rôle discuté : guet depuis le véhicule, aucune trace, pas d'identification formelle.",
+          "niveau": "forte",
+          "charge": [
+            {
+              "personne": "MARTINON Lucas",
+              "page": 25,
+              "citation": "Oui. Je suis resté dans la voiture. Il m'a dit de le prévenir si quelqu'un arrivait."
+            },
+            {
+              "personne": null,
+              "page": 7,
+              "citation": "Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers)."
+            },
+            {
+              "personne": "CHABERT René",
+              "page": 3,
+              "citation": "Et un plus jeune, mince, avec une casquette rouge, qui est resté près de la voiture et regardait son téléphone."
+            }
+          ],
+          "decharge": [
+            {
+              "personne": "MARTINON Lucas",
+              "page": 25,
+              "citation": "Je ne suis jamais entré dans une maison."
+            },
+            {
+              "personne": "Agnès VILLARD",
+              "page": 28,
+              "citation": "Aucune trace exploitable n'a pu être attribuée à MARTINON Lucas"
+            },
+            {
+              "personne": "CHABERT René",
+              "page": 3,
+              "citation": "Le jeune peut-être, à cause de la casquette."
+            }
+          ]
+        },
+        {
+          "fait": "Fait n°6 — 03/03/2026, Corenc",
+          "synthese": "Présence reconnue en passager ; aucune constatation d'une participation active.",
+          "niveau": "moyenne",
+          "charge": [
+            {
+              "personne": "Nadège COLLOMB",
+              "page": 12,
+              "citation": "Un jeune homme mince, casquette rouge, est assis côté passager."
+            },
+            {
+              "personne": "MARTINON Lucas",
+              "page": 25,
+              "citation": "Oui, j'étais dans la voiture."
+            }
+          ],
+          "decharge": [
+            {
+              "personne": "MARTINON Lucas",
+              "page": 25,
+              "citation": "Je ne savais pas où il allait."
+            },
+            {
+              "personne": "Nadège COLLOMB",
+              "page": 12,
+              "citation": "Un homme corpulent (FONTANEL, formellement reconnu) revient à pied d'une allée privée, porteur d'un sac de sport bleu"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

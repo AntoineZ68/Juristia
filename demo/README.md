@@ -108,7 +108,10 @@ renseigner `plausible.domaine` dans `site/config.js`.
 - Écrans, styles, onglets, libellés et visionneuse : ceux de l'application.
 - La visionneuse affiche des images pré-rendues au lieu du PDF via pdf.js :
   même rendu, bien plus léger, aucune bibliothèque externe.
-- **Ajouts propres à la démo** : la carte « Contradictions entre pièces »,
+- **Ajouts propres à la démo** : l'onglet « Défense » (Forme : pistes de nullité
+  triées selon la qualité à agir du client ; Fond : charges et éléments à
+  décharge par fait imputé), le résumé détaillé sourcé phrase par phrase, la
+  reconstitution de la journée du 12/02, la carte « Contradictions entre pièces »,
   l'intitulé par personne dans la chronologie de garde à vue (l'application
   n'en affiche qu'une), les rôles « Magistrat » et « Avocat », le bandeau, la
   visite guidée et le zoom sur la page.

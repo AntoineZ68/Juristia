@@ -67,6 +67,7 @@ const ICONE_INDEX = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none"
 const ONGLETS_DOSSIER = [
   ["infos", "Informations générales", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`],
   ["chrono", "Chronologie", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`],
+  ["defense", "Défense", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`],
   ["analyse", "Analyse IA", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.9 4.9L19 8.8l-4.9 1.9L12 15.6l-1.9-4.9L5 8.8l4.9-1.9L12 2z"></path><path d="M19 15l.9 2.2L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.8L19 15z"></path></svg>`],
 ];
 
@@ -431,6 +432,204 @@ function rendreBlocChronologie() {
     </div>`;
 }
 
+// --- Ajouts de la démo : résumé détaillé, journée reconstituée, défense ------
+
+// Renvoi compact vers une pièce, à la manière d'une note de bas de page.
+function renvoiSource(page, citation) {
+  const source = sourcesParPage.get(page);
+  references.push({ page, citation });
+  const i = references.length - 1;
+  const cote = source && source.cote ? `${source.cote} · ` : "";
+  return `<button type="button" class="renvoi-source" title="${esc(libelleSource(page))} — « ${esc(citation)} »" onclick="ouvrirSource(${i})">${cote}p.${page}</button>`;
+}
+
+function rendreResumeDetaille() {
+  const blocs = donnees.resume_detaille || [];
+  if (!blocs.length) return "";
+  const nbPhrases = blocs.reduce((n, b) => n + b.phrases.length, 0);
+  return `
+    <button type="button" class="lien bouton-resume-detaille" data-libelle="Lire le résumé détaillé — ${nbPhrases} points, chacun sourcé" onclick="basculerResumeDetaille(this)">Lire le résumé détaillé — ${nbPhrases} points, chacun sourcé</button>
+    <div class="resume-detaille" hidden>
+      ${blocs.map((b) => `
+        <h3>${esc(b.titre)}</h3>
+        <p>${b.phrases.map((ph) => `${esc(ph.texte)} ${ph.sources.map((s) => renvoiSource(s.page, s.citation)).join(" ")}`).join(" ")}</p>`).join("")}
+    </div>`;
+}
+
+function basculerResumeDetaille(bouton) {
+  const bloc = bouton.nextElementSibling;
+  bloc.hidden = !bloc.hidden;
+  bouton.textContent = bloc.hidden ? bouton.dataset.libelle : "Replier le résumé détaillé";
+  if (!bloc.hidden) suivre("Résumé détaillé");
+}
+window.basculerResumeDetaille = basculerResumeDetaille;
+
+const TYPES_JOURNEE = [
+  ["victime", "Victime"],
+  ["temoin", "Témoin"],
+  ["vehicule", "Véhicule (LAPI)"],
+  ["telephone", "Téléphonie"],
+];
+
+function minutes(heure) {
+  const [h, m] = heure.split("h").map(Number);
+  return h * 60 + (m || 0);
+}
+
+function rendreJournee() {
+  const j = donnees.journee;
+  if (!j) return "";
+  const debut = minutes(j.debut);
+  const duree = minutes(j.fin) - debut;
+  const pos = (h) => `${((minutes(h) - debut) / duree) * 100}%`;
+  const graduations = [];
+  for (let m = Math.ceil(debut / 60) * 60; m <= debut + duree; m += 60) graduations.push(m);
+  const pistes = TYPES_JOURNEE.map(([type, libelle]) => {
+    const evts = j.evenements.map((e, i) => ({ ...e, i })).filter((e) => e.type === type);
+    return `
+      <div class="journee-piste">
+        <div class="journee-libelle">${libelle}</div>
+        <div class="journee-axe">
+          ${evts.map((e) => e.fin
+            ? `<button type="button" class="journee-plage type-${type}" style="left:${pos(e.heure)};width:calc(${pos(e.fin)} - ${pos(e.heure)})" title="${e.heure}–${e.fin} · ${esc(e.libelle)}" onclick="ouvrirEvenementJournee(${e.i})"></button>`
+            : `<button type="button" class="journee-point type-${type}" style="left:${pos(e.heure)}" title="${e.heure} · ${esc(e.libelle)}" onclick="ouvrirEvenementJournee(${e.i})"></button>`).join("")}
+        </div>
+      </div>`;
+  }).join("");
+  return `
+    <div class="carte bloc-journee">
+      <h2>${esc(j.titre)}</h2>
+      <div class="journee-graphe">
+        ${pistes}
+        <div class="journee-piste journee-heures">
+          <div class="journee-libelle"></div>
+          <div class="journee-axe">${graduations.map((m) => `<span style="left:${((m - debut) / duree) * 100}%">${Math.floor(m / 60)}h</span>`).join("")}</div>
+        </div>
+      </div>
+      <ul class="journee-liste">
+        ${j.evenements.map((e) => `
+          <li class="type-${e.type}">
+            <span class="journee-heure">${e.heure}${e.fin ? "–" + e.fin : ""}</span>
+            <span class="journee-texte">${esc(e.libelle)}</span>
+            ${badgeSource(e.page, e.citation)}
+          </li>`).join("")}
+      </ul>
+      <ul class="journee-constats">${j.constats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>
+    </div>`;
+}
+
+function ouvrirEvenementJournee(i) {
+  const e = donnees.journee.evenements[i];
+  const k = references.findIndex((r) => r.page === e.page && r.citation === e.citation);
+  if (k >= 0) ouvrirSource(k);
+}
+window.ouvrirEvenementJournee = ouvrirEvenementJournee;
+
+const LIBELLES_QUALITE = {
+  oui: ["Invocable par votre client", "qualite-oui"],
+  discutable: ["Qualité à agir discutable", "qualite-discutable"],
+  non: ["Non invocable par votre client", "qualite-non"],
+};
+
+let vueDefense = "forme";
+
+function basculerVueDefense(vue) {
+  vueDefense = vue;
+  document.querySelectorAll(".defense-mode").forEach((b) => b.classList.toggle("actif", b.dataset.vue === vue));
+  document.querySelectorAll(".defense-vue").forEach((v) => { v.hidden = v.dataset.vue !== vue; });
+  suivre("Défense", { vue });
+}
+window.basculerVueDefense = basculerVueDefense;
+
+function rendrePiste(p) {
+  const [libelleQualite, classeQualite] = LIBELLES_QUALITE[p.qualite];
+  return `
+    <li class="piste ${classeQualite}">
+      <div class="piste-entete">
+        <div class="titre-signalement">${esc(p.titre)}</div>
+        <div class="piste-etiquettes">
+          <span class="etiquette ${classeQualite}">${libelleQualite}</span>
+          ${p.qualite !== "non" ? `<span class="etiquette force">Piste ${esc(p.force)}</span>` : ""}
+        </div>
+      </div>
+      <dl class="piste-details">
+        <dt>Textes</dt><dd>${esc(p.texte)}</dd>
+        <dt>Constat</dt><dd>${esc(p.analyse)}</dd>
+        <dt>Qualité à agir</dt><dd>${esc(p.qualite_motif)}</dd>
+        <dt>Grief</dt><dd>${esc(p.grief)}</dd>
+      </dl>
+      <div class="sources-contradiction">
+        ${p.sources.map((s) => `
+          <div class="declaration-personne">
+            <div class="nom-declarant">${badgeSource(s.page, s.citation)}</div>
+            <div class="citation-declarant">« ${esc(s.citation)} »</div>
+          </div>`).join("")}
+      </div>
+    </li>`;
+}
+
+function rendreBlocDefense() {
+  const d = donnees.defense;
+  if (!d) return "";
+  const retenues = d.forme.filter((p) => p.qualite !== "non");
+  const ecartees = d.forme.filter((p) => p.qualite === "non");
+  const compte = (q) => d.forme.filter((p) => p.qualite === q).length;
+  const colonne = (titre, items, classe) => `
+    <div class="fond-colonne ${classe}">
+      <div class="fond-titre">${titre} <span>${items.length}</span></div>
+      ${items.map((s) => `
+        <div class="declaration-personne">
+          <div class="nom-declarant">${s.personne ? esc(s.personne) + " " : ""}${badgeSource(s.page, s.citation)}</div>
+          <div class="citation-declarant">« ${esc(s.citation)} »</div>
+        </div>`).join("")}
+    </div>`;
+  return `
+    <div class="carte defense-entete">
+      <h2>Défense de ${esc(d.client)}</h2>
+      <div class="defense-delai">
+        <div class="titre-signalement">${esc(d.delai.titre)}</div>
+        <div class="description-signalement">${esc(d.delai.texte)}</div>
+      </div>
+      <div class="defense-modes" role="tablist">
+        <button type="button" class="defense-mode ${vueDefense === "forme" ? "actif" : ""}" data-vue="forme" onclick="basculerVueDefense('forme')">Forme — nullités <span>${retenues.length}</span></button>
+        <button type="button" class="defense-mode ${vueDefense === "fond" ? "actif" : ""}" data-vue="fond" onclick="basculerVueDefense('fond')">Fond — charges <span>${d.fond.length}</span></button>
+      </div>
+    </div>
+
+    <div class="defense-vue" data-vue="forme" ${vueDefense === "forme" ? "" : "hidden"}>
+      <div class="carte">
+        <h2>Pistes de nullité</h2>
+        <p class="defense-intro">${d.forme.length} irrégularités apparentes relevées dans le dossier. ${compte("oui")} sont invocables par votre client, ${compte("discutable")} suppose de démontrer sa qualité à agir, ${compte("non")} ne concernent que les coauteurs.</p>
+        <ul class="liste-pistes">${retenues.map(rendrePiste).join("")}</ul>
+        <details class="pistes-ecartees">
+          <summary>Écartées pour votre client (${ecartees.length}) — droits propres aux coauteurs</summary>
+          <ul class="liste-pistes">${ecartees.map(rendrePiste).join("")}</ul>
+        </details>
+      </div>
+    </div>
+
+    <div class="defense-vue" data-vue="fond" ${vueDefense === "fond" ? "" : "hidden"}>
+      <div class="carte">
+        <h2>Faits imputés au client : charges et éléments à décharge</h2>
+        <ul class="liste-fond">
+          ${d.fond.map((f) => `
+            <li class="fait-fond">
+              <div class="piste-entete">
+                <div class="titre-signalement">${esc(f.fait)}</div>
+                <span class="etiquette niveau-${f.niveau}">Charges ${esc(f.niveau)}s</span>
+              </div>
+              <div class="description-signalement">${esc(f.synthese)}</div>
+              <div class="fond-colonnes">
+                ${colonne("À charge", f.charge, "charge")}
+                ${colonne("À décharge", f.decharge, "decharge")}
+              </div>
+            </li>`).join("")}
+        </ul>
+      </div>
+    </div>
+    <p class="note-resume defense-note">Pistes proposées à partir des pièces du dossier — leur appréciation et leur qualification reviennent à l'avocat.</p>`;
+}
+
 function rendreDetailDossier() {
   references.length = 0;
   const badge = `<span class="badge badge-${dossier.statut}">${LIBELLES_STATUT[dossier.statut]}</span>`;
@@ -447,6 +646,7 @@ function rendreDetailDossier() {
     <div class="carte bloc-resume">
       <h2>Résumé de l'affaire</h2>
       <p class="texte-resume">${esc(donnees.resume)}</p>
+      ${rendreResumeDetaille()}
       <p class="note-resume">Généré par l'IA à partir des faits déjà vérifiés ci-dessous — à recouper, jamais à citer tel quel.</p>
     </div>
     ${rendreBlocInformations()}
@@ -465,7 +665,8 @@ function rendreDetailDossier() {
       </div>
     </div>`;
 
-  const panneauChrono = rendreBlocChronologie();
+  const panneauChrono = rendreJournee() + rendreBlocChronologie();
+  const panneauDefense = rendreBlocDefense();
   const panneauAnalyse = rendreBlocAnalyseIA();
 
   document.getElementById("vue-dossier").innerHTML = `
@@ -488,6 +689,7 @@ function rendreDetailDossier() {
     </div>
     <div class="panneau-onglet" data-panneau="infos" ${ongletDossierActif === "infos" ? "" : "hidden"}>${panneauInfos}</div>
     <div class="panneau-onglet" data-panneau="chrono" ${ongletDossierActif === "chrono" ? "" : "hidden"}>${panneauChrono}</div>
+    <div class="panneau-onglet" data-panneau="defense" ${ongletDossierActif === "defense" ? "" : "hidden"}>${panneauDefense}</div>
     <div class="panneau-onglet" data-panneau="analyse" ${ongletDossierActif === "analyse" ? "" : "hidden"}>${panneauAnalyse}</div>`;
 }
 
@@ -522,28 +724,30 @@ const ETAPES_PARCOURS = [
     onglet: "infos",
     cible: ".bloc-resume",
     titre: "Le dossier est déjà lu",
-    texte: () => `${dossier.nb_pages} pages scannées, dépouillées : résumé, ${donnees.personnes.length} personnes identifiées, ${donnees.index_pieces.length} pièces indexées. Vous arrivez sur un dossier prêt à travailler.`,
+    texte: () => `${dossier.nb_pages} pages scannées, dépouillées : ${donnees.personnes.length} personnes, ${donnees.index_pieces.length} pièces indexées. Le résumé détaillé renvoie chaque phrase à sa pièce.`,
   },
   {
     onglet: "chrono",
-    cible: ".bloc-chronologie .badge-source",
-    titre: "Chaque fait est sourcé",
-    texte: () => `${donnees.chronologie_faits.length} faits datés, chacun avec la citation exacte, la cote et la page. Un clic sur le badge ouvre la pièce, passage surligné.`,
+    cible: ".bloc-journee .journee-graphe",
+    titre: "La journée des faits, reconstituée",
+    texte: () => `Victime, témoin, lecture des plaques, bornages : ${donnees.journee.evenements.length} évènements du ${donnees.journee.date} croisés sur un même axe, chacun cliquable vers sa pièce.`,
   },
   {
-    onglet: "analyse",
-    cible: ".contradiction.vedette",
-    titre: "Les pièces qui ne concordent pas",
-    texte: () => `${donnees.contradictions.length} contradictions relevées, chacune reliée à deux sources. Ici : le rapport de synthèse impute au client un cambriolage commis pendant ses heures de travail.`,
-  },
-  {
-    onglet: "analyse",
-    cible: ".contradiction.vedette .declaration-personne:last-child .badge-source",
-    titre: "Vérifiez vous-même",
+    onglet: "defense",
+    vue: "forme",
+    cible: ".liste-pistes .piste:first-child .piste-entete",
+    titre: "Les nullités, triées pour votre client",
     texte: () => {
-      const s = sourcesParPage.get(preuveVedette.page);
-      return `Ouvrez la pièce ${s && s.cote ? s.cote + ", " : ""}page ${preuveVedette.page} : le relevé de pointage, ligne surlignée.`;
+      const f = donnees.defense.forme;
+      return `${f.length} irrégularités relevées. Lytis distingue celles que votre client peut invoquer (${f.filter((p) => p.qualite === "oui").length}) de celles qui ne concernent que ses coauteurs (${f.filter((p) => p.qualite === "non").length}).`;
     },
+  },
+  {
+    onglet: "defense",
+    vue: "fond",
+    cible: ".fait-fond .fond-colonne.decharge .declaration-personne .badge-source",
+    titre: "Au fond : ce qui manque à l'accusation",
+    texte: () => `Pour chaque fait imputé, les charges face aux éléments à décharge. Le 19/02, seule la synthèse accuse le client ; son pointage le place au travail. Ouvrez la pièce ${(sourcesParPage.get(preuveVedette.page) || {}).cote || ""}, page ${preuveVedette.page}.`,
     bouton: "Ouvrir la pièce",
   },
 ];
@@ -562,6 +766,7 @@ window.lancerParcours = lancerParcours;
 function afficherEtape() {
   const etape = ETAPES_PARCOURS[etapeParcours];
   basculerOnglet(etape.onglet);
+  if (etape.vue) basculerVueDefense(etape.vue);
   document.querySelectorAll(".parcours-cible").forEach((el) => el.classList.remove("parcours-cible"));
   const cible = document.querySelector(etape.cible);
   document.getElementById("parcours-etape").textContent = `${etapeParcours + 1} / ${ETAPES_PARCOURS.length}`;
