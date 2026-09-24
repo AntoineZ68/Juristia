@@ -58,6 +58,7 @@ async function session(nom, options) {
   const robots = await page.getAttribute('meta[name="robots"]', "content");
   verifier(robots === "noindex, nofollow", "balise <meta name=robots content=noindex, nofollow>");
   await page.waitForSelector("#parcours:not([hidden]) #parcours-bulle");
+  verifier(await page.isVisible("#classeur-index .entree-index"), "ordinateur : index du dossier ouvert à l'arrivée");
   await page.screenshot({ path: join(RACINE, "captures/01-accueil-visite.png") });
   for (let i = 0; i < 3; i++) {
     await page.click("#parcours-suivant");
@@ -104,6 +105,7 @@ async function session(nom, options) {
 {
   const { contexte, page, externes, erreurs } = await session("mobile", { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
   await page.waitForSelector("#parcours:not([hidden]) #parcours-bulle");
+  verifier(await page.isHidden("#classeur"), "mobile : classeur fermé à l'arrivée");
   await page.screenshot({ path: join(RACINE, "captures/10-mobile-visite.png") });
   await page.click("#parcours-suivant"); await page.waitForTimeout(400);
   await page.click("#parcours-suivant"); await page.waitForTimeout(600);

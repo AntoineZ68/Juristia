@@ -554,7 +554,6 @@ let etapeParcours = 0;
 function lancerParcours() {
   parcoursActif = true;
   etapeParcours = 0;
-  fermerClasseur();
   document.getElementById("parcours").hidden = false;
   afficherEtape();
 }
@@ -640,5 +639,9 @@ document.addEventListener("keydown", (e) => {
 
 rendreListeLaterale();
 rendreDetailDossier();
+// Sur ordinateur, l'index du dossier est ouvert d'emblée : l'avocat voit tout
+// de suite qu'il a le classeur complet sous la main. Sur téléphone, le
+// classeur couvrirait tout l'écran : il reste fermé.
+if (window.matchMedia("(min-width: 721px)").matches) ouvrirIndexClasseur();
 suivre("Arrivée");
 if (!lireStockage(CLE_PARCOURS)) setTimeout(lancerParcours, 700);
