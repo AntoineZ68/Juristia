@@ -14,6 +14,7 @@ demo/
     app.js         rendu (fonctions reprises de l'application) + visite guidée
     config.js      mesure d'audience (désactivée par défaut) et lien d'accès
     data.js        GÉNÉRÉ — données du dossier + position des citations
+    documents/     GÉNÉRÉ — note de défense et dossier surligné (PDF)
     pages/         GÉNÉRÉ — les 31 pages, passages cités surlignés (WebP)
     fonts/         Inter, Playfair Display, Newsreader (servies localement)
   source/        ← ce qui sert à construire le site (non publié)
@@ -45,6 +46,7 @@ Toute l'analyse affichée vient de `source/dossier.json`. Chaque élément porte
 cd demo
 pip install pymupdf pillow           # une fois
 python3 tools/build.py               # régénère data.js et les pages surlignées
+python3 tools/documents.py           # régénère les deux PDF téléchargeables
 python3 -m unittest discover -s tools -v
 ```
 

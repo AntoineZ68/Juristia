@@ -86,7 +86,8 @@
 @media (max-width: 720px) {
   :root { --hauteur-bandeau: 44px; }
   #bandeau-demo { padding: 0 12px; font-size: 12px; }
-  .bandeau-lien { display: none; }
+  .bandeau-texte { font-size: 11.5px; }
+  .bandeau-actions { gap: 12px; }
   .avis { right: 16px; bottom: 16px; }
 }
 
@@ -216,3 +217,46 @@
   .legende-details { grid-template-columns: 1fr; }
   .legende-details dd { margin-bottom: 4px; }
 }
+
+/* --- Bandeau : libellés courts sur téléphone --- */
+.bandeau-lien .court { display: none; }
+@media (max-width: 720px) {
+  .bandeau-lien .long { display: none; }
+  .bandeau-lien .court { display: inline; }
+}
+
+/* --- Onglets et étiquettes : tenir sur un portable 13-14 pouces --- */
+.onglet { padding: 8px 13px; }
+@media (max-width: 1600px) {
+  #zone-principale:has(#classeur:not([hidden])) .onglet svg { display: none; }
+}
+.piste-entete { flex-wrap: wrap; }
+.piste-etiquettes { flex-shrink: 1; min-width: 0; }
+
+/* --- Visionneuse : chargement sans page blanche, zoom signalé --- */
+#classeur-piece { position: relative; }
+#classeur-piece.page-en-chargement .page-cadre { opacity: 0.55; transition: opacity 0.15s ease; }
+.indice-zoom {
+  position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(22,18,13,0.78); color: #faf8f4; font-size: 11.5px; font-weight: 500;
+  padding: 5px 10px; border-radius: 999px; pointer-events: none;
+}
+.page-cadre.agrandie .indice-zoom { position: absolute; }
+
+/* --- Fond : rubrique « À exploiter / à vérifier » --- */
+.fond-vide { margin: 0; font-size: 12.5px; color: var(--texte-att); font-style: italic; }
+.fond-a-verifier { margin-top: 12px; background: var(--alerte-voile); border-top: 3px solid var(--alerte); border-radius: var(--rayon-sm); padding: 10px 12px; }
+.note-a-verifier { font-size: 12.5px; color: var(--texte); margin-top: 4px; }
+
+/* --- Documents générés téléchargeables --- */
+.documents-demo { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.document-genere {
+  display: flex; align-items: flex-start; gap: 10px; padding: 13px 16px; text-decoration: none; color: var(--texte);
+  background: var(--carte-creuse); border: 1px solid var(--bordure-douce); border-radius: var(--rayon-sm);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.document-genere:hover { background: var(--accent-voile); border-color: var(--accent); }
+.document-genere .icone-doc { margin-top: 2px; }
+.document-genere strong { display: block; font-size: 13.5px; font-weight: 600; color: var(--encre); }
+.document-genere small { display: block; font-size: 12px; color: var(--texte-att); margin-top: 2px; line-height: 1.45; }
+.page-cadre.agrandie .indice-zoom { right: auto; left: 10px; }

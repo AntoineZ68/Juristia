@@ -50,15 +50,11 @@ function ecrireStockage(cle, valeur) { try { localStorage.setItem(cle, valeur); 
 
 // --- Libellés (repris de l'application, complétés pour ce dossier) ---------
 
-const LIVRABLES = [
-  ["00_dossier_surligne.pdf", "PDF surligné"],
-  ["01_index.xlsx", "Index des pièces"],
-  ["02_chronologie_procedure.docx", "Chronologie de la procédure"],
-  ["03_chronologie_faits.docx", "Chronologie des faits"],
-  ["04_declarations.xlsx", "Déclarations"],
-  ["05_personnalite.docx", "Personnalité"],
-  ["06_signalements_procedure.docx", "Signalements procéduraux"],
-  ["99_controle.md", "Rapport de contrôle"],
+// Documents téléchargeables, générés par tools/documents.py à partir des
+// mêmes données que le site.
+const DOCUMENTS_GENERES = [
+  ["documents/note_defense.pdf", "Note de défense", "Résumé, pistes de nullité, faits imputés et contradictions, chaque élément sourcé · PDF, 5 pages"],
+  ["documents/dossier_surligne.pdf", "Dossier surligné", "Les 31 pages, passages retenus surlignés par couleur · PDF, 4.2 Mo"],
 ];
 
 const ICONE_DOCUMENT = `<svg class="icone-doc" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>`;
@@ -76,6 +72,7 @@ const LIBELLES_STATUT = { en_attente: "En attente", en_cours: "En cours", termin
 const LIBELLES_ROLE = {
   client: "Client (mis en cause)", mis_en_cause: "Mis en cause", victime: "Victime", témoin: "Témoin",
   expert: "Expert", enqueteur: "Enquêteur", magistrat: "Magistrat", avocat: "Avocat",
+  greffe: "Greffe", autre: "Autre intervenant",
 };
 
 const NB_FAITS_APERCU = 4;
@@ -232,38 +229,74 @@ function hautDans(conteneur, element) {
   return element.getBoundingClientRect().top - conteneur.getBoundingClientRect().top + conteneur.scrollTop;
 }
 
+const ICONE_LOUPE = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"></path></svg>`;
+const imagesChargees = new Set();
+let rendusClasseur = 0;
+
+function prechargerPage(n) {
+  if (n < 1 || n > NB_PAGES || imagesChargees.has(n)) return;
+  const img = new Image();
+  img.onload = () => imagesChargees.add(n);
+  img.src = cheminPage(n);
+}
+
 function afficherPageClasseur(numero, citation) {
   classeurPage = Math.min(Math.max(1, numero), NB_PAGES);
   citationReperee = citation || null;
   majNavigationClasseur();
-  const zones = (citation && DEMO.positions[`${classeurPage}|${citation}`]) || [];
+  const page = classeurPage;
+  const jeton = ++rendusClasseur;
+  const zones = (citation && DEMO.positions[`${page}|${citation}`]) || [];
   const conteneur = document.getElementById("classeur-piece");
-  const source = sourcesParPage.get(classeurPage);
-  conteneur.innerHTML = `
-    <div class="page-cadre" onclick="basculerZoom(this)" title="Cliquer pour agrandir">
-      <img src="${cheminPage(classeurPage)}" width="1100" height="1556" alt="Page ${classeurPage} du dossier${source && source.cote ? `, cote ${source.cote}` : ""}" decoding="async" />
-      ${zones.map(([x0, y0, x1, y1]) => `<span class="zone-reperage" style="left:${x0 * 100}%;top:${y0 * 100}%;width:${(x1 - x0) * 100}%;height:${(y1 - y0) * 100}%"></span>`).join("")}
-    </div>`;
   const corps = document.getElementById("classeur-corps");
-  if (zones.length) {
-    // Amène le passage cité sous les yeux du lecteur, sans attendre le
-    // chargement de l'image : ses dimensions sont connues d'avance.
-    requestAnimationFrame(() => {
-      const cadre = conteneur.querySelector(".page-cadre");
-      const haut = Math.min(...zones.map((z) => z[1]));
-      corps.scrollTop = Math.max(0, hautDans(corps, cadre) + haut * cadre.clientHeight - corps.clientHeight * 0.3);
-    });
+  const source = sourcesParPage.get(page);
+
+  const afficher = () => {
+    // Un clic rapide sur plusieurs pages : seule la dernière demandée s'affiche.
+    if (jeton !== rendusClasseur) return;
+    conteneur.classList.remove("page-en-chargement");
+    conteneur.innerHTML = `
+      <div class="page-cadre" onclick="basculerZoom(this)">
+        <img src="${cheminPage(page)}" width="1100" height="1556" alt="Page ${page} du dossier${source && source.cote ? `, cote ${source.cote}` : ""}" />
+        ${zones.map(([x0, y0, x1, y1]) => `<span class="zone-reperage" style="left:${x0 * 100}%;top:${y0 * 100}%;width:${(x1 - x0) * 100}%;height:${(y1 - y0) * 100}%"></span>`).join("")}
+        <span class="indice-zoom">${ICONE_LOUPE}<span>Agrandir</span></span>
+      </div>`;
+    if (zones.length) {
+      // Amène le passage cité sous les yeux du lecteur.
+      requestAnimationFrame(() => {
+        const cadre = conteneur.querySelector(".page-cadre");
+        const haut = Math.min(...zones.map((z) => z[1]));
+        corps.scrollTop = Math.max(0, hautDans(corps, cadre) + haut * cadre.clientHeight - corps.clientHeight * 0.3);
+      });
+    } else {
+      corps.scrollTop = 0;
+    }
+  };
+
+  // La page précédente reste affichée tant que la nouvelle n'est pas prête :
+  // jamais de page blanche avec des cadres de surlignage dans le vide.
+  if (imagesChargees.has(page)) {
+    afficher();
   } else {
-    corps.scrollTop = 0;
+    if (!conteneur.querySelector(".page-cadre")) {
+      conteneur.innerHTML = `<div class="chargement"><span class="spinner"></span> Ouverture de la pièce…</div>`;
+    }
+    conteneur.classList.add("page-en-chargement");
+    const img = new Image();
+    img.onload = () => { imagesChargees.add(page); afficher(); };
+    img.onerror = afficher;
+    img.src = cheminPage(page);
   }
-  // Page suivante préchargée : le feuilletage reste instantané.
-  if (classeurPage < NB_PAGES) { const img = new Image(); img.src = cheminPage(classeurPage + 1); }
+  // Pages voisines préchargées : le feuilletage reste instantané.
+  prechargerPage(page + 1);
+  prechargerPage(page - 1);
 }
 
 // Clic sur la page : agrandissement ×2, centré sur le passage cité s'il y en a un.
 function basculerZoom(cadre) {
   const corps = document.getElementById("classeur-corps");
   const agrandie = cadre.classList.toggle("agrandie");
+  cadre.querySelector(".indice-zoom span").textContent = agrandie ? "Réduire" : "Agrandir";
   const zone = cadre.querySelector(".zone-reperage");
   requestAnimationFrame(() => {
     if (agrandie && zone) {
@@ -610,7 +643,7 @@ function rendreOngletProcedure() {
   const ecartees = d.forme.filter((p) => p.qualite === "non");
   const compte = (q) => d.forme.filter((p) => p.qualite === q).length;
   return `
-    ${enteteDefense(`Défense de forme — ${esc(d.client)}`, "Nullités, garde à vue et régularité des actes, à examiner en premier : elles se soulèvent in limine litis.", `
+    ${enteteDefense(`Défense de forme — ${esc(d.client)}`, "Nullités, garde à vue et régularité des actes. Pendant l'instruction, les nullités se soulèvent par requête devant la chambre de l'instruction.", `
       <div class="defense-delai">
         <div class="titre-signalement">${esc(d.delai.titre)}</div>
         <div class="description-signalement">${esc(d.delai.texte)}</div>
@@ -632,9 +665,10 @@ function rendreOngletProcedure() {
 
 function rendreOngletFond() {
   const d = donnees.defense;
-  const colonne = (titre, items, classe) => `
+  const colonne = (titre, items, classe, siVide = "") => `
     <div class="fond-colonne ${classe}">
       <div class="fond-titre">${titre} <span>${items.length}</span></div>
+      ${!items.length && siVide ? `<p class="fond-vide">${esc(siVide)}</p>` : ""}
       ${items.map((s) => `
         <div class="declaration-personne">
           <div class="nom-declarant">${s.personne ? esc(s.personne) + " " : ""}${badgeSource(s.page, s.citation)}</div>
@@ -656,8 +690,18 @@ function rendreOngletFond() {
             <div class="description-signalement">${esc(f.synthese)}</div>
             <div class="fond-colonnes">
               ${colonne("À charge", f.charge, "charge")}
-              ${colonne("À décharge", f.decharge, "decharge")}
+              ${colonne("À décharge", f.decharge, "decharge", f.decharge_vide)}
             </div>
+            ${(f.a_verifier || []).length ? `
+              <div class="fond-a-verifier">
+                <div class="fond-titre">À exploiter / à vérifier <span>${f.a_verifier.length}</span></div>
+                ${f.a_verifier.map((v) => `
+                  <div class="declaration-personne">
+                    <div class="nom-declarant">${v.personne ? esc(v.personne) + " " : ""}${badgeSource(v.page, v.citation)}</div>
+                    <div class="citation-declarant">« ${esc(v.citation)} »</div>
+                    <div class="note-a-verifier">${esc(v.note)}</div>
+                  </div>`).join("")}
+              </div>` : ""}
           </li>`).join("")}
       </ul>
     </div>
@@ -688,10 +732,11 @@ function rendreDetailDossier() {
     ${rendreBlocInformations()}
     <div class="carte">
       <h2>Documents générés</h2>
-      <div class="grille-livrables">
-        ${LIVRABLES.map(([, libelle]) =>
-          `<button type="button" onclick="actionIndisponible('${libelle.replace(/'/g, "\\'")}')">${ICONE_DOCUMENT}<span>${libelle}</span></button>`
-        ).join("")}
+      <div class="grille-livrables documents-demo">
+        ${DOCUMENTS_GENERES.map(([chemin, titre, detail]) => `
+          <a class="document-genere" href="${chemin}" target="_blank" rel="noopener" onclick="suivre('Document', { nom: '${titre}' })">
+            ${ICONE_DOCUMENT}<span><strong>${titre}</strong><small>${detail}</small></span>
+          </a>`).join("")}
       </div>
     </div>
     <div class="carte">
@@ -791,7 +836,7 @@ function rendreMentions() {
     <section>
       <h3>Éditeur</h3>
       <dl class="mentions-identite">
-        <dt>Éditeur</dt><dd>${champEditeur(e.nom)}</dd>
+        <dt>Nom</dt><dd>${champEditeur(e.nom)}</dd>
         <dt>Statut</dt><dd>${champEditeur(e.statut)}</dd>
         <dt>Adresse</dt><dd>${champEditeur(e.adresse)}</dd>
         <dt>Contact</dt><dd>${champEditeur(e.email)}</dd>
@@ -846,7 +891,8 @@ const ETAPES_PARCOURS = [
     titre: "Procédure : les nullités, triées pour votre client",
     texte: () => {
       const f = donnees.defense.forme;
-      return `${f.length} irrégularités relevées. Lytis distingue celles que votre client peut invoquer (${f.filter((p) => p.qualite === "oui").length}) de celles qui ne concernent que ses coauteurs (${f.filter((p) => p.qualite === "non").length}).`;
+      const n = (q) => f.filter((p) => p.qualite === q).length;
+      return `${f.length} irrégularités relevées : ${n("oui")} invocables par votre client, ${n("discutable")} où sa qualité à agir reste à démontrer, ${n("non")} qui ne concernent que ses coauteurs.`;
     },
   },
   {
@@ -881,7 +927,7 @@ function afficherEtape() {
   const bulle = document.getElementById("parcours-bulle");
   if (cible) {
     cible.classList.add("parcours-cible");
-    cible.scrollIntoView({ block: "center", behavior: "smooth" });
+    cible.scrollIntoView({ block: window.innerWidth <= 720 ? "start" : "center", behavior: "smooth" });
     // Positionne la bulle une fois le défilement terminé.
     setTimeout(() => placerBulle(bulle, cible), 350);
   }
@@ -899,9 +945,25 @@ function placerBulle(bulle, cible) {
   const r = cible.getBoundingClientRect();
   const largeur = bulle.offsetWidth;
   const hauteur = bulle.offsetHeight;
-  let top = r.bottom + 14;
-  if (top + hauteur > window.innerHeight - 12) top = Math.max(12, r.top - hauteur - 14);
-  const left = Math.min(Math.max(12, r.left), window.innerWidth - largeur - 12);
+  const marge = 16;
+  const hautBorne = (t) => Math.min(Math.max(12, t), window.innerHeight - hauteur - 12);
+  let left;
+  let top;
+  // Bord droit de la colonne de lecture : la bulle se place au-delà, sur le
+  // classeur au besoin, pour ne jamais masquer le texte qu'elle commente.
+  const colonne = document.querySelector("#colonne-contenu > div");
+  const bordDroit = Math.max(r.right, colonne ? colonne.getBoundingClientRect().right : r.right);
+  if (bordDroit + marge + largeur <= window.innerWidth - 12) {
+    left = bordDroit + marge;
+    top = hautBorne(r.top);
+  } else if (r.left - marge - largeur >= 12) {
+    left = r.left - marge - largeur;
+    top = hautBorne(r.top);
+  } else {
+    left = Math.min(Math.max(12, r.left), window.innerWidth - largeur - 12);
+    top = r.bottom + marge;
+    if (top + hauteur > window.innerHeight - 12) top = Math.max(12, r.top - hauteur - marge);
+  }
   bulle.style.left = `${left}px`;
   bulle.style.top = `${top}px`;
 }

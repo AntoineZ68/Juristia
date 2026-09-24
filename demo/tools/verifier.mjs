@@ -17,7 +17,7 @@ const { chromium } = require("playwright");
 
 const RACINE = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = join(RACINE, "site");
-const TYPES = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".woff2": "font/woff2", ".webp": "image/webp", ".txt": "text/plain" };
+const TYPES = { ".pdf": "application/pdf", ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".woff2": "font/woff2", ".webp": "image/webp", ".txt": "text/plain" };
 
 const serveur = createServer(async (req, res) => {
   const chemin = normalize(decodeURIComponent(new URL(req.url, "http://x").pathname)).replace(/^\/+/, "") || "index.html";
@@ -114,6 +114,33 @@ async function session(nom, options) {
   verifier(externes.length === 0, `aucune requête externe (${externes.length}) ${externes.join(" ")}`);
   verifier(erreurs.length === 0, `aucune erreur JavaScript ${erreurs.join(" | ")}`);
   await contexte.close();
+}
+
+// --- Portable 13-14 pouces : onglets et étiquettes tiennent sans défilement ---
+{
+  const { contexte, page, erreurs } = await session("portable 1366", { viewport: { width: 1366, height: 768 } });
+  await page.click("text=Passer");
+  for (const onglet of ["infos", "chrono", "procedure", "fond"]) {
+    await page.click(`.onglet[data-onglet="${onglet}"]`);
+    const deborde = await page.$eval(".barre-onglets", (el) => el.scrollWidth - el.clientWidth);
+    verifier(deborde <= 0, `1366 px : barre d'onglets sans défilement (onglet ${onglet}, ${deborde}px)`);
+  }
+  await page.click('.onglet[data-onglet="procedure"]');
+  const etiquettesHors = await page.$$eval(".piste", (pistes) => pistes.filter((p) => {
+    const r = p.getBoundingClientRect();
+    return [...p.querySelectorAll(".etiquette")].some((e) => e.getBoundingClientRect().right > r.right + 1);
+  }).length);
+  verifier(etiquettesHors === 0, "1366 px : aucune étiquette ne déborde de sa carte");
+  await page.screenshot({ path: join(RACINE, "captures/13-portable-procedure.png") });
+  verifier(erreurs.length === 0, `1366 px : aucune erreur JavaScript ${erreurs.join(" | ")}`);
+  await contexte.close();
+}
+
+// --- Documents téléchargeables ---
+for (const doc of ["documents/note_defense.pdf", "documents/dossier_surligne.pdf"]) {
+  const reponse = await fetch(`${origine}/${doc}`);
+  const octets = (await reponse.arrayBuffer()).byteLength;
+  verifier(reponse.ok && octets > 10000, `document téléchargeable : ${doc} (${Math.round(octets / 1024)} Ko)`);
 }
 
 // --- Téléphone --------------------------------------------------------------

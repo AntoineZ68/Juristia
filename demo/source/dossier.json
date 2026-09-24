@@ -28,6 +28,18 @@
         "role": "victime"
       },
       {
+        "nom": "GAILLARD-ROUX (M. et Mme)",
+        "role": "victime"
+      },
+      {
+        "nom": "PETITJEAN (Mme)",
+        "role": "victime"
+      },
+      {
+        "nom": "DUMOLARD (M.)",
+        "role": "victime"
+      },
+      {
         "nom": "CHABERT René",
         "role": "témoin"
       },
@@ -56,6 +68,10 @@
         "role": "enqueteur"
       },
       {
+        "nom": "Élodie FAVRE-BONVIN",
+        "role": "enqueteur"
+      },
+      {
         "nom": "Étienne ROUVIÈRE",
         "role": "magistrat"
       },
@@ -74,6 +90,14 @@
       {
         "nom": "Inès RAVANEL",
         "role": "avocat"
+      },
+      {
+        "nom": "S. PELLOUX",
+        "role": "greffe"
+      },
+      {
+        "nom": "C. DUFOUR (agence d'intérim)",
+        "role": "autre"
       }
     ],
     "chronologie_faits": [
@@ -111,14 +135,6 @@
       },
       {
         "date": "12/02/2026",
-        "heure": "14h02",
-        "page": 4,
-        "personne": "FONTANEL Yannick",
-        "description": "La Skoda Octavia de FONTANEL est enregistrée par la lecture automatisée des plaques en direction de Biviers, puis en sens inverse.",
-        "citation": "notamment le 12/02/2026 à 14h02 (sens Grenoble-Biviers) puis à 15h11 (sens inverse)"
-      },
-      {
-        "date": "12/02/2026",
         "heure": "14h00",
         "page": 3,
         "personne": "CHABERT René",
@@ -132,6 +148,14 @@
         "personne": "CHABERT René",
         "description": "Le témoin décrit deux hommes : l'un part vers la maison de la victime, l'autre, plus jeune et portant une casquette rouge, reste près de la voiture.",
         "citation": "Un homme d'une trentaine d'années, costaud, qui est parti à pied vers chez Mme SERMET. Et un plus jeune, mince, avec une casquette rouge, qui est resté près de la voiture et regardait son téléphone."
+      },
+      {
+        "date": "12/02/2026",
+        "heure": "14h02",
+        "page": 4,
+        "personne": "FONTANEL Yannick",
+        "description": "La Skoda Octavia de FONTANEL est enregistrée par la lecture automatisée des plaques en direction de Biviers, puis en sens inverse.",
+        "citation": "notamment le 12/02/2026 à 14h02 (sens Grenoble-Biviers) puis à 15h11 (sens inverse)"
       },
       {
         "date": "12/02/2026",
@@ -421,7 +445,7 @@
         "nature": "notification_droits",
         "page": 15,
         "personne": "BERTHOLLET Gilles",
-        "citation": "« J'ai compris. Prévenez ma sœur. Pas d'avocat pour l'instant, pas de médecin. »"
+        "citation": "J'ai compris. Prévenez ma sœur. Pas d'avocat pour l'instant, pas de médecin."
       },
       {
         "date": "10/03/2026",
@@ -509,7 +533,7 @@
         "nature": "demande_entretien_avocat",
         "page": 20,
         "personne": "FONTANEL Yannick",
-        "citation": "« Je veux Maître RAVANEL. Je ne veux prévenir personne. Pas de médecin. »"
+        "citation": "Je veux Maître RAVANEL. Je ne veux prévenir personne. Pas de médecin."
       },
       {
         "date": "10/03/2026",
@@ -525,7 +549,7 @@
         "nature": "demande_entretien_avocat",
         "page": 18,
         "personne": "MARTINON Lucas",
-        "citation": "« J'ai compris. Je veux un avocat commis d'office. Prévenez ma mère."
+        "citation": "J'ai compris. Je veux un avocat commis d'office. Prévenez ma mère."
       },
       {
         "date": "10/03/2026",
@@ -721,13 +745,18 @@
         "concerne": "FONTANEL Yannick"
       },
       {
-        "titre": "Nombre de faits : quatre cambriolages documentés, six imputés",
-        "description": "L'exploitation LAPI recense quatre cambriolages. Le rapport de synthèse en retient six, dont celui du 19/02, sans plainte ni PV correspondant au dossier.",
+        "titre": "Fait n°5 (19/02) : imputé sans aucune pièce au dossier",
+        "description": "Le rapport de synthèse retient six faits. L'exploitation LAPI en recense quatre, le PV de surveillance signale le sixième ; le fait n°5 du 19/02 ne correspond à aucune plainte ni à aucun PV du dossier.",
         "sources": [
           {
             "personne": "Julien SARRAZIN",
             "page": 4,
             "citation": "quatre cambriolages présentant un mode opératoire identique"
+          },
+          {
+            "personne": "Nadège COLLOMB",
+            "page": 12,
+            "citation": "un cambriolage a été signalé le même jour à 18h20 au chemin des Buclos-Hauts à Corenc (fait n°6)"
           },
           {
             "personne": "Julien SARRAZIN",
@@ -770,7 +799,7 @@
           {
             "personne": "BERTHOLLET Gilles",
             "page": 14,
-            "citation": "« Ce sont des achats à des particuliers, je n'ai pas eu le temps de tout inscrire. »"
+            "citation": "Ce sont des achats à des particuliers, je n'ai pas eu le temps de tout inscrire."
           }
         ]
       },
@@ -1217,7 +1246,7 @@
               },
               {
                 "page": 14,
-                "citation": "« Ce sont des achats à des particuliers, je n'ai pas eu le temps de tout inscrire. »"
+                "citation": "Ce sont des achats à des particuliers, je n'ai pas eu le temps de tout inscrire."
               }
             ]
           }
@@ -1367,8 +1396,8 @@
     "defense": {
       "client": "MARTINON Lucas",
       "delai": {
-        "titre": "Délai pour soulever les nullités",
-        "texte": "Six mois à compter de la mise en examen, à peine d'irrecevabilité (art. 173-1 CPP). La date de mise en examen du client ne figure pas dans la copie du dossier : à renseigner pour activer le décompte."
+        "titre": "Voie et délai pour soulever les nullités",
+        "texte": "Pendant l'instruction : requête en nullité devant la chambre de l'instruction (art. 173 CPP), dans les six mois de la mise en examen, à peine d'irrecevabilité (art. 173-1 CPP). Une fois devenue définitive, l'ordonnance de renvoi ou de mise en accusation purge les nullités antérieures (art. 179, 181 et 385 CPP). La date de mise en examen du client ne figure pas dans la copie du dossier : à renseigner pour activer le décompte."
       },
       "forme": [
         {
@@ -1541,7 +1570,8 @@
               "page": 4,
               "citation": "quatre cambriolages présentant un mode opératoire identique"
             }
-          ]
+          ],
+          "a_verifier": []
         },
         {
           "fait": "Faits n°1 à 3 — 22/01, 29/01 et 05/02/2026",
@@ -1559,13 +1589,16 @@
               "citation": "le même véhicule est enregistré à proximité des lieux, aux heures des faits, lors des cambriolages n°1, 3 et 4"
             }
           ],
-          "decharge": [
+          "decharge": [],
+          "a_verifier": [
             {
               "personne": null,
               "page": 7,
-              "citation": "Le relevé détaillé (412 événements) est transmis au format tableur."
+              "citation": "Le relevé détaillé (412 événements) est transmis au format tableur.",
+              "note": "Relevé de la ligne du client transmis mais non exploité au dossier : son analyse pourrait confirmer ou exclure sa présence aux dates des faits n°1 à 3."
             }
-          ]
+          ],
+          "decharge_vide": "Aucun élément à décharge propre à ces faits — mais aucune charge ne vise personnellement le client."
         },
         {
           "fait": "Fait n°4 — 12/02/2026, Biviers",
@@ -1598,11 +1631,14 @@
               "personne": "Agnès VILLARD",
               "page": 28,
               "citation": "Aucune trace exploitable n'a pu être attribuée à MARTINON Lucas"
-            },
+            }
+          ],
+          "a_verifier": [
             {
               "personne": "CHABERT René",
               "page": 3,
-              "citation": "Le jeune peut-être, à cause de la casquette."
+              "citation": "Le jeune peut-être, à cause de la casquette.",
+              "note": "Identification hésitante, fondée sur la seule casquette : ni charge ni décharge en soi, mais à faire préciser (tapissage, confrontation)."
             }
           ]
         },
@@ -1633,7 +1669,8 @@
               "page": 12,
               "citation": "Un homme corpulent (FONTANEL, formellement reconnu) revient à pied d'une allée privée, porteur d'un sac de sport bleu"
             }
-          ]
+          ],
+          "a_verifier": []
         }
       ]
     }

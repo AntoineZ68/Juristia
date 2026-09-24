@@ -66,6 +66,37 @@ class TestSourcage(unittest.TestCase):
         self.assertEqual(len(genere["donnees"]["sources"]), NB_PAGES)
 
 
+class TestContenu(unittest.TestCase):
+    """Garde-fous issus des relectures : chaque erreur corrigée reste corrigée."""
+
+    def test_pas_d_in_limine_litis_pendant_l_instruction(self):
+        # Pendant l'instruction, les nullités passent par la chambre de l'instruction (art. 173).
+        for nom in ("app.js", "data.js"):
+            texte = (RACINE / "site" / nom).read_text(encoding="utf-8")
+            self.assertNotIn("in limine litis", texte, nom)
+
+    def test_citations_sans_guillemets_doubles(self):
+        # L'interface encadre déjà chaque citation de « ».
+        for _, page, citation in references(DONNEES["donnees"]):
+            self.assertFalse(citation.startswith("«") or citation.endswith("»"), f"p.{page} {citation}")
+
+    def test_chronologie_des_faits_triee(self):
+        def cle(f):
+            j, m, a = f["date"].split("/")
+            return (a, m, j, f.get("heure") or "00h00")
+        faits = DONNEES["donnees"]["chronologie_faits"]
+        self.assertEqual(faits, sorted(faits, key=cle))
+
+    def test_personnes_citees_dans_les_pv_presentes(self):
+        noms = " ".join(p["nom"] for p in DONNEES["donnees"]["personnes"])
+        for nom in ("FAVRE-BONVIN", "GAILLARD-ROUX", "PETITJEAN", "DUMOLARD", "PELLOUX", "DUFOUR"):
+            self.assertIn(nom, noms)
+
+    def test_documents_telechargeables_presents(self):
+        for nom in ("note_defense.pdf", "dossier_surligne.pdf"):
+            self.assertTrue((RACINE / "site" / "documents" / nom).exists(), f"{nom} : lancer tools/documents.py")
+
+
 FICHIERS_SITE = ["index.html", "app.js", "config.js", "data.js", "app.css", "demo.css", "fonts.css"]
 
 

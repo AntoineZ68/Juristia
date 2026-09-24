@@ -156,7 +156,7 @@ def references(donnees: dict) -> list[tuple[str, int, str]]:
         for src in piste["sources"]:
             refs.append(("nullite", src["page"], src["citation"]))
     for ligne in defense.get("fond", []):
-        for src in ligne["charge"] + ligne["decharge"]:
+        for src in ligne["charge"] + ligne["decharge"] + ligne.get("a_verifier", []):
             refs.append(("declaration", src["page"], src["citation"]))
     return refs
 
