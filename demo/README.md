@@ -1,8 +1,8 @@
-# Juristia — démo statique
+# Lytis — démo statique
 
 Vitrine en lecture seule : un dossier pénal **entièrement fictif** (information
 JI 26/00044, affaire GENTIANE, 31 pages scannées), déjà dépouillé, présenté dans
-l'interface de l'application Juristia. Aucun compte, aucun serveur, aucun dépôt
+l'interface de l'application Lytis. Aucun compte, aucun serveur, aucun dépôt
 de document possible.
 
 ```
@@ -86,7 +86,7 @@ défilement horizontal sur mobile. Il régénère les captures.
 1. Render → **New + → Static Site**, dépôt `AntoineZ68/Juristia`, branche de la démo.
 2. **Root Directory** : `demo/site` — **Build Command** : vide — **Publish Directory** : `.`
 3. **Settings → Headers** : ajouter `/*` → `X-Robots-Tag: noindex, nofollow`.
-4. **Custom Domain** (sur un domaine qui vous appartient — juristia.fr n'est pas à vous), puis un enregistrement CNAME chez le
+4. **Custom Domain** (par ex. `demo.lytis.legal`), puis un enregistrement CNAME chez le
    registraire du domaine vers l'adresse fournie par Render.
 
 ## Bouton « Demander un accès »

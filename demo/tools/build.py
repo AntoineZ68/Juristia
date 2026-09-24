@@ -115,7 +115,7 @@ def main() -> None:
 
     (SITE / "data.js").write_text(
         "// Fichier généré par tools/build.py à partir de source/dossier.json — ne pas modifier à la main.\n"
-        f"window.JURISTIA_DEMO = {json.dumps(donnees_completes, ensure_ascii=False, separators=(',', ':'))};\n",
+        f"window.LYTIS_DEMO = {json.dumps(donnees_completes, ensure_ascii=False, separators=(',', ':'))};\n",
         encoding="utf-8",
     )
     print(f"{nb_pages} pages, {len(positions)} citations localisées.")

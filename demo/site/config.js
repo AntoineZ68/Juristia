@@ -8,12 +8,11 @@
 // Campagne : ajouter ?c=nom-de-campagne au lien envoyé par e-mail. La valeur
 // est transmise telle quelle à chaque évènement, jamais un identifiant de
 // destinataire.
-window.JURISTIA_CONFIG = {
+window.LYTIS_CONFIG = {
   plausible: {
     domaine: "",
     script: "https://plausible.io/js/script.manual.js",
   },
   // Adresse de tous les boutons « Demander un accès ».
-  // ATTENTION : juristia.fr appartient à un cabinet d'avocats sans lien avec le produit.
-  urlAcces: "",
+  urlAcces: "https://lytis.legal/#demo",
 };

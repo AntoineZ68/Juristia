@@ -1,4 +1,4 @@
-// Démo Juristia — vitrine statique.
+// Démo Lytis — vitrine statique.
 //
 // Les fonctions de rendu reprennent celles de l'application
 // (web/frontend/index.html) : mêmes classes, même balisage, même texte. Seule
@@ -7,8 +7,8 @@
 // suppression, téléchargement) est remplacée par un renvoi vers l'accès.
 "use strict";
 
-const DEMO = window.JURISTIA_DEMO;
-const CONFIG = window.JURISTIA_CONFIG || {};
+const DEMO = window.LYTIS_DEMO;
+const CONFIG = window.LYTIS_CONFIG || {};
 const dossier = DEMO.dossier;
 const donnees = DEMO.donnees;
 
@@ -521,7 +521,7 @@ document.addEventListener("click", (e) => {
 
 // --- Visite guidée -----------------------------------------------------------
 
-const CLE_PARCOURS = "juristia-demo-parcours-vu";
+const CLE_PARCOURS = "lytis-demo-parcours-vu";
 const vedette = donnees.contradictions.find((c) => c.vedette) || donnees.contradictions[0];
 const preuveVedette = vedette.sources[vedette.sources.length - 1];
 

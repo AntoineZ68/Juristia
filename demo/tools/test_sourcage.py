@@ -81,9 +81,9 @@ class TestSite(unittest.TestCase):
             self.assertNotIn("FormData", texte, nom)
 
     def test_aucune_ressource_externe(self):
-        """Seules adresses externes admises : le lien d'accès juristia.fr et
+        """Seules adresses externes admises : le lien d'accès lytis.legal et
         le script de mesure Plausible (chargé seulement si configuré)."""
-        admises = {"https://plausible.io/js/script.manual.js",
+        admises = {"https://lytis.legal/#demo", "https://plausible.io/js/script.manual.js",
                    "http://www.w3.org/2000/svg"}  # espace de noms SVG : un identifiant, pas une requête
         for nom in FICHIERS_SITE:
             texte = (RACINE / "site" / nom).read_text(encoding="utf-8")
