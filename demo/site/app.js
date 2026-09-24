@@ -708,6 +708,78 @@ document.addEventListener("click", (e) => {
   suivre("Contradiction", { titre: c.titre.slice(0, 60), phare: c.vedette ? "oui" : "non" });
 });
 
+// --- Mentions légales et confidentialité -------------------------------------
+//
+// Le texte suit l'état réel de la page : il dit « aucune mesure d'audience »
+// tant que Plausible n'est pas configuré, et signale chaque information
+// d'éditeur manquante au lieu d'en inventer une.
+
+function champEditeur(valeur) {
+  return valeur ? esc(valeur) : `<span class="a-completer">à compléter</span>`;
+}
+
+function rendreMentions() {
+  const e = CONFIG.editeur || {};
+  const h = CONFIG.hebergeur || {};
+  const mesure = CONFIG.plausible && CONFIG.plausible.domaine;
+  return `
+    <section>
+      <h3>Nature du site</h3>
+      <p>Ce site présente une démonstration d'un prototype de logiciel d'aide à l'analyse de dossiers pénaux, Lytis. Il ne propose ni service, ni vente, ni création de compte. Aucune fonction n'y traite de document réel.</p>
+    </section>
+    <section>
+      <h3>Dossier fictif</h3>
+      <p>Le dossier présenté est entièrement fictif. Les personnes, adresses, numéros de téléphone, plaques d'immatriculation et références de procédure sont inventés ; les communes citées ne servent que de décor. Toute ressemblance avec des personnes ou des affaires réelles serait fortuite.</p>
+    </section>
+    <section>
+      <h3>Absence de conseil juridique</h3>
+      <p>Les analyses affichées (pistes de nullité, contradictions, charges et éléments à décharge) illustrent le fonctionnement envisagé du logiciel. Elles ne constituent pas une consultation juridique et n'ont aucune valeur juridique. Leur appréciation revient toujours à l'avocat.</p>
+    </section>
+    <section>
+      <h3>Données personnelles</h3>
+      <ul>
+        <li><strong>Aucune collecte.</strong> Le site ne comporte ni formulaire, ni compte, ni dépôt de document : il ne recueille aucune donnée vous concernant.</li>
+        <li><strong>Aucun cookie.</strong> Votre navigateur conserve seulement l'indication que la visite guidée a déjà été vue, pour ne pas la relancer. Cette information reste sur votre appareil et n'est jamais transmise ; elle relève des traceurs de personnalisation de l'interface, dispensés de consentement.</li>
+        <li><strong>Mesure d'audience.</strong> ${mesure
+          ? "Fréquentation mesurée avec Plausible Analytics, sans cookie ni identifiant individuel : seules des statistiques agrégées sont produites (pages vues, étapes de la démonstration, campagne indiquée dans le lien)."
+          : "Aucune mesure d'audience n'est active sur ce site."}</li>
+        <li><strong>Hébergement.</strong> Comme tout hébergeur, ${esc(h.nom || "l'hébergeur")} enregistre des journaux techniques de connexion (adresse IP, date, page demandée) à des fins de sécurité et de bon fonctionnement, sur le fondement de l'intérêt légitime. L'hébergeur est établi aux États-Unis ; ces journaux sont traités dans les conditions de sa politique de confidentialité (${esc(h.site || "")}/privacy).</li>
+        <li><strong>Vos droits.</strong> Vous disposez d'un droit d'accès, de rectification, d'effacement, d'opposition et de limitation, à exercer auprès de l'éditeur : ${champEditeur(e.email)}. Vous pouvez aussi introduire une réclamation auprès de la CNIL (cnil.fr).</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Éditeur</h3>
+      <dl class="mentions-identite">
+        <dt>Éditeur</dt><dd>${champEditeur(e.nom)}</dd>
+        <dt>Statut</dt><dd>${champEditeur(e.statut)}</dd>
+        <dt>Adresse</dt><dd>${champEditeur(e.adresse)}</dd>
+        <dt>Contact</dt><dd>${champEditeur(e.email)}</dd>
+        <dt>Directeur de la publication</dt><dd>${champEditeur(e.directeur)}</dd>
+      </dl>
+    </section>
+    <section>
+      <h3>Hébergeur</h3>
+      <p>${esc(h.nom || "")} — ${esc(h.adresse || "")} — ${esc(h.site || "")}</p>
+    </section>
+    <section>
+      <h3>Propriété intellectuelle</h3>
+      <p>La présentation, les textes et l'interface de cette démonstration ne peuvent être reproduits sans l'accord de l'éditeur.</p>
+    </section>`;
+}
+
+function ouvrirMentions() {
+  document.getElementById("mentions-corps").innerHTML = rendreMentions();
+  document.getElementById("mentions").hidden = false;
+  document.querySelector(".mentions-fermer").focus();
+  suivre("Mentions légales");
+}
+window.ouvrirMentions = ouvrirMentions;
+
+function fermerMentions() {
+  document.getElementById("mentions").hidden = true;
+}
+window.fermerMentions = fermerMentions;
+
 // --- Visite guidée -----------------------------------------------------------
 
 const CLE_PARCOURS = "lytis-demo-parcours-vu";
@@ -823,7 +895,8 @@ window.addEventListener("resize", () => {
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
-    if (parcoursActif) terminerParcours(false);
+    if (!document.getElementById("mentions").hidden) fermerMentions();
+    else if (parcoursActif) terminerParcours(false);
     else fermerAvis();
   }
   if (!document.getElementById("classeur").hidden && !document.getElementById("classeur-piece").hidden) {

@@ -90,6 +90,12 @@ async function session(nom, options) {
   await page.click(".bouton-resume-detaille");
   verifier(await page.isVisible(".resume-detaille .renvoi-source"), "résumé détaillé dépliable, avec renvois aux pièces");
   await page.screenshot({ path: join(RACINE, "captures/08-resume-detaille.png"), fullPage: false });
+  await page.click('#bandeau-demo button:has-text("Confidentialité")');
+  verifier(await page.isVisible("#mentions .mentions-corps h3"), "mentions légales et confidentialité accessibles depuis le bandeau");
+  await page.screenshot({ path: join(RACINE, "captures/09-mentions-confidentialite.png") });
+  const manquants = await page.locator("#mentions .a-completer").count();
+  console.log(manquants ? `    ATTENTION : ${manquants} information(s) d'éditeur à compléter dans site/config.js` : "    Mentions : éditeur complet");
+  await page.keyboard.press("Escape");
   await page.click("#bouton-nouveau");
   verifier(await page.isVisible("#avis-indisponible"), "« Nouveau dossier » renvoie vers l'accès, sans formulaire");
   verifier(await page.locator('input[type="file"]').count() === 0, "aucun champ de dépôt de fichier dans la page");

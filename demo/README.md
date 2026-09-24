@@ -89,6 +89,14 @@ défilement horizontal sur mobile. Il régénère les captures.
 4. **Custom Domain** (par ex. `demo.lytis.legal`), puis un enregistrement CNAME chez le
    registraire du domaine vers l'adresse fournie par Render.
 
+## Mentions légales et confidentialité
+
+Accessibles depuis le bandeau (« Confidentialité ») et le bas de la barre
+latérale. L'identité de l'éditeur se renseigne dans `site/config.js`
+(`editeur`) ; tant qu'un champ est vide, la page affiche « à compléter » et
+`tools/verifier.mjs` le signale. Le paragraphe sur la mesure d'audience suit
+automatiquement la configuration de Plausible.
+
 ## Aucun lien sortant
 
 La démo ne renvoie vers aucun site : les actions indisponibles affichent « Ceci est une démonstration ».

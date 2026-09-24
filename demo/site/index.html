@@ -18,6 +18,7 @@
 <div id="bandeau-demo" role="note">
   <span class="bandeau-texte"><span class="bandeau-point"></span>Démonstration · dossier fictif</span>
   <span class="bandeau-actions">
+    <button type="button" class="bandeau-lien" onclick="ouvrirMentions()">Confidentialité</button>
     <button type="button" class="bandeau-lien" onclick="lancerParcours()">Revoir la visite</button>
   </span>
 </div>
@@ -37,6 +38,7 @@
       <p id="avertissement-veille">
         Dossier entièrement fictif, déjà analysé. Aucun document ne peut être déposé dans cette démonstration.
       </p>
+      <button type="button" class="lien lien-mentions" onclick="ouvrirMentions()">Mentions légales · Confidentialité</button>
     </div>
   </div>
 
@@ -67,6 +69,17 @@
        <div id="classeur-index" hidden></div>
      </div>
    </aside>
+  </div>
+</div>
+
+<div id="mentions" hidden>
+  <div class="mentions-voile" onclick="fermerMentions()"></div>
+  <div class="mentions-fenetre" role="dialog" aria-modal="true" aria-labelledby="mentions-titre">
+    <header class="mentions-entete">
+      <h2 id="mentions-titre">Mentions légales et confidentialité</h2>
+      <button type="button" class="mentions-fermer" onclick="fermerMentions()" title="Fermer">✕</button>
+    </header>
+    <div class="mentions-corps" id="mentions-corps"></div>
   </div>
 </div>
 
