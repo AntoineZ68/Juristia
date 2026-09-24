@@ -1,0 +1,97 @@
+/* Ajouts propres à la démo : bandeau, avis « disponible dans votre espace »,
+   visite guidée, carte des contradictions, visionneuse en images. Tout le
+   reste vient de app.css, inchangé. */
+
+:root { --hauteur-bandeau: 40px; --contradiction: #b4533c; --contradiction-voile: rgba(180,83,60,0.08); }
+
+/* --- Bandeau persistant --- */
+#bandeau-demo {
+  height: var(--hauteur-bandeau); display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 0 16px; background: var(--encre); color: #efe9df; font-size: 12.5px; position: relative; z-index: 30;
+}
+.bandeau-texte { display: inline-flex; align-items: center; gap: 8px; letter-spacing: 0.02em; white-space: nowrap; }
+.bandeau-point { width: 7px; height: 7px; border-radius: 50%; background: #d9b25c; flex-shrink: 0; }
+.bandeau-actions { display: inline-flex; align-items: center; gap: 14px; }
+.bandeau-lien {
+  border: none; background: none; padding: 0; color: #cfc6b8; font-size: 12px; text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.bandeau-lien:hover { color: #fff; background: none; }
+.bandeau-cta, .bouton-lien-primaire {
+  display: inline-flex; align-items: center; font-size: 12.5px; font-weight: 500; text-decoration: none;
+  padding: 6px 14px; border-radius: 999px; background: #faf8f4; color: var(--encre); white-space: nowrap;
+}
+.bandeau-cta:hover { background: #fff; }
+
+/* L'appli occupe la hauteur restante sous le bandeau. */
+#appli { height: calc(100vh - var(--hauteur-bandeau)); }
+@supports (height: 100dvh) { #appli { height: calc(100dvh - var(--hauteur-bandeau)); } }
+
+/* Le dossier est ouvert d'emblée : sur ordinateur, pas de bouton retour. */
+@media (min-width: 721px) { #bouton-retour-mobile { display: none !important; } }
+
+/* --- Visionneuse en images (remplace le canvas pdf.js) --- */
+.page-cadre { position: relative; aspect-ratio: 1100 / 1556; border-radius: var(--rayon-sm); overflow: hidden;
+  background: #fff; box-shadow: var(--ombre-douce); }
+.page-cadre img { width: 100%; height: 100%; display: block; }
+.page-cadre { cursor: zoom-in; }
+.page-cadre.agrandie { width: 200%; cursor: zoom-out; }
+.classeur-corps { overflow-x: auto; }
+.zone-reperage {
+  position: absolute; border-radius: 3px; pointer-events: none;
+  box-shadow: 0 0 0 2px var(--contradiction); animation: reperage 1.6s ease-out 2;
+}
+@keyframes reperage {
+  0% { box-shadow: 0 0 0 2px var(--contradiction), 0 0 0 0 rgba(180,83,60,0.45); }
+  70% { box-shadow: 0 0 0 2px var(--contradiction), 0 0 0 12px rgba(180,83,60,0); }
+  100% { box-shadow: 0 0 0 2px var(--contradiction), 0 0 0 0 rgba(180,83,60,0); }
+}
+
+/* --- Contradictions --- */
+.liste-contradictions { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.contradiction {
+  border-left: 3px solid var(--contradiction); background: var(--contradiction-voile);
+  border-radius: 0 var(--rayon-sm) var(--rayon-sm) 0; padding: 12px 16px;
+}
+.contradiction.vedette { background: rgba(180,83,60,0.12); }
+.contradiction .description-signalement { margin-bottom: 10px; }
+.sources-contradiction { background: var(--carte); border: 1px solid var(--bordure-douce); border-radius: var(--rayon-sm); padding: 10px 12px; }
+
+/* Plusieurs gardes à vue : un intitulé par personne. */
+.gav-personne { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; color: var(--accent); margin: 16px 0 8px; }
+.gav-personne:first-of-type { margin-top: 0; }
+
+/* --- Avis « disponible dans votre espace » --- */
+.avis {
+  position: fixed; right: 20px; bottom: 20px; z-index: 50; width: min(380px, calc(100vw - 32px));
+  background: var(--carte); border: 1px solid var(--bordure); border-radius: var(--rayon); box-shadow: var(--ombre);
+  padding: 18px 20px;
+}
+.avis-titre { font-family: 'Playfair Display', Georgia, serif; font-size: 17px; color: var(--encre); margin-bottom: 6px; }
+.avis-texte { margin: 0 0 14px; font-size: 13px; color: var(--texte-att); }
+.avis-actions { display: flex; gap: 10px; align-items: center; }
+.avis-actions .bouton-lien-primaire { background: var(--encre); color: #faf8f4; padding: 9px 18px; }
+.avis-actions button { padding: 8px 16px; }
+
+/* --- Visite guidée --- */
+#parcours-bulle {
+  position: fixed; z-index: 60; width: 340px; background: var(--encre); color: #efe9df;
+  border-radius: var(--rayon); padding: 18px 20px 14px; box-shadow: var(--ombre);
+  transition: top 0.2s ease, left 0.2s ease;
+}
+#parcours-bulle.bulle-bas { left: 16px !important; right: 16px; bottom: 16px; top: auto !important; width: auto; }
+.parcours-etape { font-size: 11px; letter-spacing: 0.08em; color: #b8ae9f; margin-bottom: 4px; }
+.parcours-titre { font-family: 'Playfair Display', Georgia, serif; font-size: 19px; color: #fff; margin-bottom: 6px; }
+.parcours-texte { margin: 0 0 14px; font-size: 13.5px; line-height: 1.55; color: #ddd5c8; }
+.parcours-actions { display: flex; justify-content: space-between; align-items: center; }
+.parcours-actions button.lien { color: #b8ae9f; }
+.parcours-actions .bouton-primaire { background: #faf8f4; color: var(--encre); border-color: #faf8f4; padding: 8px 18px; }
+.parcours-actions .bouton-primaire:hover { background: #fff; color: var(--encre); }
+.parcours-cible { outline: 3px solid #d9b25c; outline-offset: 4px; border-radius: 6px; transition: outline-color 0.2s ease; }
+
+@media (max-width: 720px) {
+  :root { --hauteur-bandeau: 44px; }
+  #bandeau-demo { padding: 0 12px; font-size: 12px; }
+  .bandeau-lien { display: none; }
+  .avis { right: 16px; bottom: 16px; }
+}

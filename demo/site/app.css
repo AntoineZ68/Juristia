@@ -1,0 +1,422 @@
+/* Copie conforme des styles de l'application (web/frontend/index.html, commit 6042c2b).
+   Ne pas modifier ici : les ajouts propres à la démo vont dans demo.css. */
+  /* Charte reprise du site vitrine Juristia : fond ivoire chaud, encre
+     presque noire, vert-gris sourd pour le texte courant. Deux accents
+     seulement, et chacun a un rôle : l'ENCRE est l'action (bouton plein,
+     titre), le VERT est le signal (source, rôle, repère). Le doré de la
+     version précédente jouait les deux à la fois, si bien que rien ne
+     ressortait vraiment. */
+  :root {
+    --fond: #f6f3ed;
+    --fond-barre: #f1ece3;
+    --carte: #fffdf9;
+    --carte-creuse: #f3efe6;   /* surface en retrait DANS une carte */
+    --bordure: #ded7c9;
+    --bordure-douce: #e9e3d7;
+    --encre: #16120d;
+    --texte: #16120d;
+    --texte-att: #55655b;
+    --texte-att-2: #606c66;   /* 4,9:1 sur le papier — voir note ci-dessous */
+    --accent: #55705f;
+    --accent-clair: #3d5548;
+    --accent-fonce: #2f4437;
+    --accent-voile: rgba(85,112,95,0.10);
+    --accent-voile-fort: rgba(85,112,95,0.16);
+    --erreur: #a6412f;
+    --succes: #426b4b;
+    --encours: #3f6591;
+    --alerte: #7c5f19;
+    --alerte-voile: rgba(138,106,28,0.12);
+    /* Sur fond clair, une ombre portée doit rester un souffle : deux
+       couches très faibles valent mieux qu'une seule marquée, qui
+       ferait flotter les cartes au-dessus du papier. */
+    --ombre: 0 1px 2px rgba(22,18,13,0.04), 0 16px 40px rgba(22,18,13,0.07);
+    --ombre-douce: 0 1px 2px rgba(22,18,13,0.04), 0 4px 14px rgba(22,18,13,0.045);
+    --rayon: 14px;
+    --rayon-sm: 9px;
+    --pilule: 999px;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--fond);
+    color: var(--texte);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Deux serifs, deux voix : Playfair Display porte la marque (titres,
+     logo), comme sur le site ; Newsreader reste réservé aux citations du
+     dossier — c'est une police de lecture, pas d'affiche, et le lecteur
+     doit voir au premier coup d'œil qu'une citation vient de la procédure
+     et non de nous. */
+  h1, h2, .police-serif { font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; }
+  /* Boutons en pilule pleine, comme « Accéder à mon espace » sur le site. */
+  button {
+    font-family: inherit; font-size: 13.5px; font-weight: 500; padding: 10px 20px; border-radius: var(--pilule);
+    border: 1px solid var(--bordure); background: transparent; color: var(--texte); cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+  }
+  button:hover { border-color: var(--encre); color: var(--encre); background: rgba(22,18,13,0.03); }
+  button:active { transform: translateY(1px); }
+  button:disabled { opacity: 0.45; cursor: default; transform: none; }
+  button.lien { border: none; padding: 0; margin: 0; text-decoration: underline; text-underline-offset: 3px; font-size: 13px; color: var(--accent); background: none; }
+  button.lien:hover { color: var(--accent-clair); background: none; }
+  button.bouton-primaire {
+    background: var(--encre); border-color: var(--encre); color: #faf8f4; font-weight: 500;
+  }
+  button.bouton-primaire:hover { background: #2c251c; border-color: #2c251c; color: #faf8f4; }
+  label { display: block; font-size: 12.5px; font-weight: 500; color: var(--texte-att); margin: 14px 0 6px; letter-spacing: 0.01em; }
+  input[type=text], input[type=email], input[type=password] {
+    width: 100%; padding: 11px 14px; background: var(--carte); border: 1px solid var(--bordure);
+    border-radius: var(--rayon-sm); color: var(--texte); font-family: inherit; font-size: 14px;
+    transition: border-color 0.15s ease;
+  }
+  input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+    outline: none; border-color: var(--encre); box-shadow: 0 0 0 3px rgba(22,18,13,0.05);
+  }
+  input[type=file] { color: var(--texte-att); font-size: 13px; margin-top: 6px; }
+  .erreur { color: var(--erreur); font-size: 13px; margin-top: 10px; }
+  .vide { color: var(--texte-att); font-size: 13.5px; }
+
+  /* --- Écran de connexion --- */
+  #ecran-auth { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px;
+    background: var(--fond); }
+  .auth-conteneur {
+    width: 100%; max-width: 880px; display: flex; border-radius: var(--rayon); overflow: hidden;
+    box-shadow: var(--ombre); border: 1px solid var(--bordure-douce);
+  }
+  .auth-marque {
+    flex: 1; min-width: 0; padding: 48px 42px; background: var(--fond-barre);
+    display: flex; flex-direction: column; justify-content: center; gap: 20px;
+  }
+  /* Le logo est le mot lui-même, point final compris, comme sur le site —
+     pas une pastille avec une initiale. */
+  .marque-logo {
+    font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 500;
+    color: var(--encre); letter-spacing: -0.02em; line-height: 1;
+  }
+  .surtitre {
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--accent); font-weight: 600; margin-bottom: -14px;
+  }
+  .auth-marque h1 { margin: 0; font-size: 34px; font-weight: 400; color: var(--encre); line-height: 1.15; }
+  .auth-marque h1 em { font-style: italic; }
+  .auth-accroche { margin: 0; font-size: 14.5px; color: var(--texte-att); line-height: 1.65; max-width: 360px; }
+  .auth-points { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .auth-points li { font-size: 13px; color: var(--texte-att); padding-left: 20px; position: relative; }
+  .auth-points li::before {
+    content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .auth-formulaire {
+    flex: 1; min-width: 300px; background: var(--carte); padding: 44px 38px; display: flex; flex-direction: column; justify-content: center;
+  }
+  #ecran-auth h2 { margin: 0 0 18px; font-size: 22px; font-weight: 400; color: var(--encre); }
+  #ecran-auth button[type=submit] { width: 100%; margin-top: 20px; padding: 11px 18px; }
+  .bascule { font-size: 13px; color: var(--texte-att); margin-top: 16px; }
+  @media (max-width: 720px) {
+    .auth-conteneur { flex-direction: column; max-width: 420px; }
+    .auth-marque { padding: 32px 28px 20px; }
+    .auth-points { display: none; }
+  }
+
+  /* --- Appli (après connexion) --- */
+  #appli { display: none; height: 100vh; }
+  #appli.visible { display: flex; }
+  #barre-laterale {
+    width: 264px; flex-shrink: 0; background: var(--fond-barre); border-right: 1px solid var(--bordure-douce);
+    display: flex; flex-direction: column; padding: 20px 16px;
+  }
+  .marque-barre { display: flex; align-items: center; gap: 10px; margin: 2px 6px 20px; }
+  .marque-barre .marque-logo { font-size: 19px; }
+  .marque-barre h1 { display: none; }
+  #bouton-nouveau { width: 100%; text-align: center; margin-bottom: 18px; }
+  .titre-section {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--texte-att-2);
+    margin: 4px 10px 8px; font-weight: 600;
+  }
+  #liste-dossiers { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
+  .item-dossier {
+    display: block; width: 100%; text-align: left; background: none; border: 1px solid transparent;
+    border-left: 2px solid transparent; color: var(--texte); padding: 9px 11px; border-radius: var(--rayon-sm);
+    cursor: pointer; font-family: inherit; font-size: 13.5px;
+  }
+  .item-dossier:hover { background: rgba(22,18,13,0.035); border-color: transparent; }
+  .item-dossier.selectionne { background: var(--accent-voile); border-left-color: var(--accent); }
+  .item-dossier .nom-item { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+  .item-dossier .ligne-meta { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 4px; }
+  .item-dossier .ref-item { color: var(--texte-att-2); font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pastille { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .pastille-en_attente { background: var(--texte-att-2); }
+  .pastille-en_cours { background: var(--encours); box-shadow: 0 0 0 3px rgba(63,101,145,0.18); }
+  .pastille-termine { background: var(--succes); }
+  .pastille-erreur { background: var(--erreur); }
+  #pied-barre { border-top: 1px solid var(--bordure-douce); padding-top: 14px; margin-top: 12px; }
+  #pied-barre #email-utilisateur { display: block; font-size: 12px; color: var(--texte-att); margin-bottom: 10px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #pied-barre button { width: 100%; font-size: 12px; padding: 7px 10px; }
+  #avertissement-veille {
+    font-size: 11px; color: var(--texte-att-2); margin-top: 12px; line-height: 1.5; padding: 9px 10px;
+    background: var(--carte-creuse); border: 1px solid var(--bordure-douce); border-radius: var(--rayon-sm);
+  }
+
+  /* La zone principale se scinde en deux : la colonne de lecture (onglets)
+     et le classeur escamotable. Le défilement appartient à chaque colonne,
+     pas au conteneur : ouvrir le classeur ne doit pas décaler ni faire
+     défiler la lecture en cours. */
+  #zone-principale { flex: 1; display: flex; min-width: 0; overflow: hidden; }
+  #colonne-contenu { flex: 1; min-width: 0; overflow-y: auto; padding: 40px 32px; }
+  #colonne-contenu > div { max-width: 680px; margin: 0 auto; }
+
+  #bouton-retour-mobile { display: none; }
+
+  /* --- Classeur (visionneuse du dossier source) --- */
+  #classeur {
+    width: 46%; min-width: 360px; max-width: 760px; flex-shrink: 0;
+    border-left: 1px solid var(--bordure); background: var(--fond-barre);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  #classeur[hidden] { display: none; }
+  .classeur-entete {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 12px 14px; border-bottom: 1px solid var(--bordure-douce); flex-shrink: 0;
+  }
+  .classeur-modes { display: flex; gap: 4px; background: var(--fond); border-radius: 999px; padding: 3px; }
+  .mode-classeur {
+    border: none; background: transparent; color: var(--texte-att); font-size: 12.5px;
+    padding: 6px 14px; border-radius: 999px; font-weight: 500;
+  }
+  .mode-classeur.actif { background: var(--carte); color: var(--encre); box-shadow: var(--ombre-douce); }
+  #fermer-classeur {
+    border: none; background: transparent; color: var(--texte-att-2); font-size: 15px;
+    padding: 4px 8px; line-height: 1;
+  }
+  #fermer-classeur:hover { color: var(--texte); }
+  .classeur-navigation {
+    display: flex; align-items: center; gap: 8px; padding: 8px 14px;
+    border-bottom: 1px solid var(--bordure-douce); font-size: 12.5px; color: var(--texte-att);
+    flex-shrink: 0;
+  }
+  .classeur-navigation button {
+    border: 1px solid var(--bordure-douce); background: none; color: var(--texte-att);
+    padding: 2px 10px; border-radius: var(--rayon-sm); font-size: 15px; line-height: 1.4;
+  }
+  .classeur-navigation button:hover:not(:disabled) { color: var(--texte); }
+  .classeur-navigation button:disabled { opacity: 0.35; }
+  #classeur-source {
+    margin-left: auto; font-size: 11.5px; color: var(--texte-att-2);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .classeur-corps { flex: 1; overflow-y: auto; padding: 14px; }
+  #classeur-piece canvas {
+    width: 100%; height: auto; display: block; border-radius: var(--rayon-sm);
+    background: #fff; box-shadow: var(--ombre-douce);
+  }
+
+  .liste-index { display: flex; flex-direction: column; gap: 4px; }
+  .entree-index {
+    width: 100%; text-align: left; background: none; border: 1px solid transparent;
+    border-left: 2px solid transparent; color: var(--texte); padding: 9px 11px;
+    border-radius: var(--rayon-sm); font-family: inherit; font-size: 13px;
+  }
+  .entree-index:hover { background: rgba(22,18,13,0.035); border-color: transparent; color: var(--texte); }
+  .entree-index.actif { background: var(--accent-voile); border-left-color: var(--accent); }
+  .entree-index .type-piece { display: block; font-weight: 500; }
+  .entree-index .meta-piece { display: block; font-size: 11.5px; color: var(--texte-att-2); margin-top: 3px; }
+
+  /* Badge de traçabilité : rend chaque élément extrait cliquable vers sa
+     page d'origine. Discret par défaut — l'avocat lit d'abord le fait,
+     la source n'est là que pour être vérifiable en un clic. */
+  .badge-source {
+    border: 1px solid var(--bordure-douce); background: none; color: var(--texte-att-2);
+    font-family: inherit; font-size: 11px; padding: 2px 8px; border-radius: 999px;
+    white-space: nowrap;
+  }
+  .badge-source:hover { color: var(--accent-clair); border-color: var(--accent); background: var(--accent-voile); }
+  /* Page dont le texte reconnu est douteux : l'avertissement doit se voir
+     sur l'élément lui-même, pas seulement dans un rapport annexe que
+     personne n'ouvre. */
+  .badge-source.source-illisible { border-color: var(--alerte); color: var(--alerte); background: var(--alerte-voile); }
+  .badge-source.source-illisible::after { content: " ⚠"; }
+
+  /* --- Appli sur mobile : la barre latérale et la zone de contenu ne
+     tiennent pas côte à côte sur un écran de téléphone (~390-430px de
+     large) — en dessous de ce seuil, l'une masque l'autre en fonction de
+     l'écran affiché (liste de dossiers vs dossier ouvert/formulaire), avec
+     un bouton retour pour revenir à la liste. */
+  @media (max-width: 720px) {
+    #barre-laterale { width: 100%; }
+    #colonne-contenu { padding: 20px 16px; }
+    #appli.contenu-actif #barre-laterale { display: none; }
+    #appli:not(.contenu-actif) #zone-principale { display: none; }
+    #bouton-retour-mobile {
+      display: inline-flex; align-items: center; gap: 6px; margin-bottom: 16px;
+      background: none; border: 1px solid var(--bordure-douce); color: var(--texte-att);
+      font-size: 12.5px; padding: 7px 12px; border-radius: var(--rayon-sm);
+    }
+    /* Deux colonnes ne tiennent pas sur un téléphone : le classeur ouvert
+       prend tout l'écran et masque la lecture, comme la barre latérale. */
+    #classeur { width: 100%; min-width: 0; max-width: none; }
+    #zone-principale:has(#classeur:not([hidden])) #colonne-contenu { display: none; }
+    /* Sur un téléphone, le nom d'affaire et les actions ne tiennent pas sur
+       une même ligne : le titre se retrouvait comprimé sur trois lignes
+       contre le badge d'état. On les empile. */
+    .entete-detail { flex-direction: column; align-items: stretch; gap: 12px; }
+    .entete-detail h2 { font-size: 23px; }
+    .entete-actions { order: -1; }
+  }
+
+  .carte { background: var(--carte); border: 1px solid var(--bordure-douce); border-radius: var(--rayon); padding: 24px 26px;
+    margin-bottom: 18px; box-shadow: var(--ombre-douce); }
+  .carte h2 { margin: 0 0 16px; font-size: 19px; font-weight: 400; color: var(--encre); }
+  #form-envoi button[type=submit] { margin-top: 18px; padding: 11px 22px; }
+
+  .entete-detail h2 { margin: 0; font-size: 28px; font-weight: 400; color: var(--encre); }
+  .entete-detail .ref-detail { color: var(--texte-att); font-size: 13px; margin-top: 4px; }
+  .entete-detail { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 22px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.05em; font-weight: 600; padding: 5px 11px 5px 9px; border-radius: 20px; white-space: nowrap;
+  }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+  .badge-en_attente { background: rgba(139,145,137,0.14); color: var(--texte-att); }
+  .badge-en_cours { background: rgba(63,101,145,0.12); color: var(--encours); }
+  .badge-termine { background: var(--accent-voile-fort); color: var(--succes); }
+  .badge-erreur { background: rgba(166,65,47,0.12); color: var(--erreur); }
+
+  .infos-rapides { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .infos-rapides > span {
+    font-size: 12.5px; color: var(--texte-att); background: var(--carte); border: 1px solid var(--bordure-douce);
+    padding: 7px 14px; border-radius: var(--pilule);
+  }
+  .infos-rapides strong { color: var(--encre); font-weight: 600; }
+  /* Porte d'entrée du classeur en mode Index. Le bouton « Index » existait
+     déjà dans le classeur, mais le classeur ne s'ouvrait qu'en cliquant une
+     source : un avocat qui voulait feuilleter le dossier depuis le début
+     n'avait aucun point d'entrée visible. */
+  .bouton-index {
+    margin-left: auto; display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; padding: 7px 16px; border-color: var(--encre); color: var(--encre);
+    background: var(--carte);
+  }
+  .bouton-index:hover { background: var(--encre); color: #faf8f4; }
+
+  .liste-etapes { list-style: none; margin: 0; padding: 0; }
+  .liste-etapes li { display: flex; align-items: center; gap: 12px; padding: 9px 0; font-size: 14px; }
+  .puce-etape { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center;
+    justify-content: center; font-size: 11px; border: 1px solid var(--bordure); color: var(--texte-att); }
+  .puce-etape.fait { background: var(--succes); border-color: var(--succes); color: #fffdf9; }
+  .puce-etape.encours { border-color: var(--encours); color: var(--encours); box-shadow: 0 0 0 3px rgba(63,101,145,0.14); }
+  .puce-etape.erreur { background: var(--erreur); border-color: var(--erreur); color: #fffdf9; }
+  .liste-etapes li.a-venir { color: var(--texte-att-2); }
+  .detail-etape { display: block; font-size: 12.5px; color: var(--texte-att); margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+  .grille-livrables { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+  .grille-livrables button {
+    width: 100%; text-align: left; padding: 13px 16px; display: flex; align-items: center; gap: 10px;
+    background: var(--carte-creuse); border-radius: var(--rayon-sm);
+  }
+  .grille-livrables button:hover { background: var(--accent-voile); border-color: var(--accent); }
+  .icone-doc { flex-shrink: 0; color: var(--accent); opacity: 0.85; }
+
+  .liste-documents-transmis {
+    display: flex; flex-direction: column; gap: 6px; max-height: 280px; overflow-y: auto; padding-right: 4px;
+  }
+  .liste-documents-transmis button {
+    width: 100%; text-align: left; padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+    background: var(--carte-creuse); border-radius: var(--rayon-sm); overflow: hidden;
+  }
+  .liste-documents-transmis button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .liste-documents-transmis button:hover { background: var(--accent-voile); border-color: var(--accent); }
+
+  .bloc-resume { border: 1px solid var(--bordure-douce); position: relative; overflow: hidden; }
+  .bloc-resume::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+  .texte-resume { font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 19px; line-height: 1.55; margin: 0 0 10px; color: var(--encre); }
+  .note-resume { font-size: 11.5px; color: var(--texte-att-2); margin: 0; }
+
+  .liste-personnes { list-style: none; margin: 0; padding: 0; font-size: 14px; display: flex; flex-direction: column; gap: 9px; }
+  .liste-personnes li { display: flex; align-items: center; gap: 10px; }
+  .role-personne {
+    color: var(--accent); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600;
+    background: var(--accent-voile-fort); padding: 3px 9px; border-radius: var(--pilule); white-space: nowrap;
+  }
+
+  .frise { list-style: none; margin: 0; padding: 0; position: relative; }
+  .frise::before { content: ""; position: absolute; left: 4px; top: 6px; bottom: 6px; width: 1px; background: var(--bordure); }
+  .frise li { position: relative; padding: 0 0 20px 24px; }
+  .frise li:last-child { padding-bottom: 0; }
+  .frise li::before {
+    content: ""; position: absolute; left: 0; top: 4px; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--carte); border: 2px solid var(--accent);
+  }
+  .liste-faits.reste { display: none; }
+  .bloc-chronologie.developpe .liste-faits.reste { display: block; }
+  .fait-entete { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--texte-att-2); margin-bottom: 5px; font-weight: 500; }
+  .fait-description { font-size: 14px; margin-bottom: 6px; }
+  .fait-citation {
+    font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 13.5px; color: var(--texte-att);
+    border-left: 2px solid var(--bordure); padding-left: 10px; margin: 0;
+  }
+  .bloc-chronologie button.lien { display: block; margin-top: 16px; font-size: 13px; }
+
+  .etat-vide { text-align: center; padding: 60px 20px; color: var(--texte-att); }
+  .etat-vide p { font-size: 14px; max-width: 320px; margin: 0 auto; }
+
+  .chargement {
+    display: flex; align-items: center; justify-content: center; gap: 10px; padding: 70px 20px;
+    color: var(--texte-att); font-size: 13.5px;
+  }
+  .spinner {
+    width: 15px; height: 15px; border: 2px solid var(--bordure); border-top-color: var(--accent);
+    border-radius: 50%; flex-shrink: 0; animation: tourner 0.7s linear infinite;
+  }
+  @keyframes tourner { to { transform: rotate(360deg); } }
+
+  #liste-dossiers .chargement { padding: 16px 4px; justify-content: flex-start; }
+
+  .entete-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  #bouton-supprimer-dossier { border-color: var(--bordure); color: var(--texte-att); font-size: 12px; padding: 7px 12px; }
+  #bouton-supprimer-dossier:hover { border-color: var(--erreur); color: var(--erreur); }
+
+  .barre-onglets {
+    display: flex; gap: 4px; background: var(--fond-barre); border: 1px solid var(--bordure-douce);
+    border-radius: 999px; padding: 4px; margin-bottom: 22px; width: fit-content; max-width: 100%;
+    overflow-x: auto;
+  }
+  .onglet {
+    display: flex; align-items: center; gap: 7px; border: none; border-radius: 999px; padding: 8px 16px;
+    font-size: 13px; font-weight: 500; color: var(--texte-att); background: transparent; white-space: nowrap;
+  }
+  .onglet:hover { color: var(--texte); border-color: transparent; }
+  .onglet.actif { background: var(--carte); color: var(--encre); box-shadow: var(--ombre-douce); }
+  .onglet svg { flex-shrink: 0; }
+  .panneau-onglet[hidden] { display: none !important; }
+
+  .bloc-analyse-ia { text-align: center; padding: 48px 24px; }
+  .bloc-analyse-ia .icone-analyse-ia {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--accent-voile-fort); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+  }
+  .bloc-analyse-ia h3 { margin: 0 0 8px; font-size: 16px; font-weight: 500; color: var(--texte); }
+  .bloc-analyse-ia p { margin: 0; font-size: 13.5px; color: var(--texte-att); max-width: 360px; margin: 0 auto; }
+
+  .stats-gav { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .stat-gav { background: var(--carte-creuse); border: 1px solid var(--bordure-douce); border-radius: var(--rayon-sm); padding: 16px 18px; }
+  .stat-gav .valeur-stat { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 500; color: var(--encre); }
+  .stat-gav .libelle-stat { font-size: 11px; color: var(--texte-att-2); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .liste-signalements { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .signalement { border-left: 3px solid var(--accent); background: var(--accent-voile); border-radius: 0 var(--rayon-sm) var(--rayon-sm) 0; padding: 12px 16px; }
+  .titre-signalement { font-size: 13.5px; font-weight: 600; color: var(--texte); margin-bottom: 4px; }
+  .description-signalement { font-size: 13px; color: var(--texte-att); line-height: 1.5; }
+  .source-signalement { font-size: 12px; color: var(--texte-att-2); font-style: italic; margin-top: 6px; }
+
+  .liste-confrontations { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+  .point-factuel { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; color: var(--accent); margin-bottom: 8px; }
+  .declaration-personne { border-top: 1px solid var(--bordure-douce); padding: 9px 0; }
+  .declaration-personne:first-of-type { border-top: none; padding-top: 0; }
+  .nom-declarant { font-size: 12.5px; font-weight: 500; color: var(--texte); }
+  .citation-declarant { font-size: 13px; color: var(--texte-att); font-style: italic; margin-top: 3px; }
