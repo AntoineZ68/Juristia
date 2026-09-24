@@ -1,10 +1,10 @@
-// Démo Lytis — vitrine statique.
+// Démo Lytis — vitrine statique, sans aucun lien sortant.
 //
 // Les fonctions de rendu reprennent celles de l'application
 // (web/frontend/index.html) : mêmes classes, même balisage, même texte. Seule
 // la source des données change — un fichier local (data.js) au lieu de l'API
 // et de Supabase — et toute action qui demanderait un serveur (dépôt,
-// suppression, téléchargement) est remplacée par un renvoi vers l'accès.
+// suppression, téléchargement) affiche simplement « ceci est une démonstration ».
 "use strict";
 
 const DEMO = window.LYTIS_DEMO;
@@ -38,14 +38,6 @@ function suivre(evenement, proprietes = {}) {
   if (typeof window.plausible !== "function") return;
   window.plausible(evenement, { props: { campagne, ...proprietes } });
 }
-
-// Tous les boutons d'accès pointent vers une seule adresse, réglée dans config.js.
-document.querySelectorAll("[data-cta]").forEach((a) => { a.href = CONFIG.urlAcces || "#"; });
-
-document.addEventListener("click", (e) => {
-  const cta = e.target.closest("[data-cta]");
-  if (cta) suivre("CTA", { emplacement: cta.dataset.cta });
-});
 
 // --- Utilitaires ------------------------------------------------------------
 
@@ -280,7 +272,7 @@ function rendreIndexClasseur() {
 let minuteurAvis = null;
 function actionIndisponible(nomAction) {
   const avis = document.getElementById("avis-indisponible");
-  document.getElementById("avis-titre").textContent = `${nomAction} — disponible dans votre espace`;
+  document.getElementById("avis-titre").textContent = `${nomAction} — ceci est une démonstration`;
   avis.hidden = false;
   clearTimeout(minuteurAvis);
   minuteurAvis = setTimeout(fermerAvis, 9000);

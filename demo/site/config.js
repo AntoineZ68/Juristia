@@ -13,6 +13,4 @@ window.LYTIS_CONFIG = {
     domaine: "",
     script: "https://plausible.io/js/script.manual.js",
   },
-  // Adresse de tous les boutons « Demander un accès ».
-  urlAcces: "https://lytis.legal/#demo",
 };

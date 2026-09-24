@@ -89,9 +89,9 @@ défilement horizontal sur mobile. Il régénère les captures.
 4. **Custom Domain** (par ex. `demo.lytis.legal`), puis un enregistrement CNAME chez le
    registraire du domaine vers l'adresse fournie par Render.
 
-## Bouton « Demander un accès »
+## Aucun lien sortant
 
-Son adresse se règle à un seul endroit : `urlAcces` dans `site/config.js`.
+La démo ne renvoie vers aucun site : les actions indisponibles affichent « Ceci est une démonstration ».
 
 ## Mesure d'audience
 
@@ -100,8 +100,7 @@ l'activer, créer le site de la démo dans Plausible (sans cookie) et
 renseigner `plausible.domaine` dans `site/config.js`.
 
 Évènements envoyés : `pageview`, `Arrivée`, `Parcours terminé`, `Parcours passé`,
-`Contradiction` (avec `phare: oui/non`), `Source ouverte` (cote, page), `CTA`
-(emplacement). Chacun porte la propriété `campagne`, lue dans le lien :
+`Contradiction` (avec `phare: oui/non`), `Source ouverte` (cote, page). Chacun porte la propriété `campagne`, lue dans le lien :
 `https://<adresse-de-la-demo>/?c=barreau-lyon-oct`. Aucun identifiant individuel.
 
 ## Ce que la démo montre, et ce qui la distingue de l'application
