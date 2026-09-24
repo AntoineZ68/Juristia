@@ -672,7 +672,8 @@
             "citation": "jeudi 19/02/2026 07h58 12h03 4h05"
           }
         ],
-        "domaine": "fond"
+        "domaine": "fond",
+        "question": "fait-19-02"
       },
       {
         "titre": "Plaque du véhicule surveillé le 03/03 : ZV-535-RT au lieu de ZV-553-RT",
@@ -1444,7 +1445,8 @@
               "page": 7,
               "citation": "Titulaire MARTINON Lucas, né le 27/08/2003 à Grenoble"
             }
-          ]
+          ],
+          "question": "telephonie"
         },
         {
           "titre": "Géolocalisation posée deux jours avant l'ordonnance",
@@ -1486,7 +1488,8 @@
               "page": 18,
               "citation": "La notification intervient en conséquence à 09h30."
             }
-          ]
+          ],
+          "question": "audition-avocat"
         },
         {
           "titre": "Avis au juge d'instruction 62 minutes après le placement du client",
@@ -1673,6 +1676,284 @@
           "a_verifier": []
         }
       ]
-    }
+    },
+    "questions": [
+      {
+        "id": "rattachement-12-02",
+        "question": "Qu'est-ce qui rattache mon client au cambriolage du 12/02 ?",
+        "reponse": [
+          {
+            "texte": "Sa ligne téléphonique borne sur la cellule de Biviers de 14h05 à 14h52, pendant l'absence de la victime.",
+            "sources": [
+              {
+                "page": 7,
+                "citation": "Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers)."
+              }
+            ]
+          },
+          {
+            "texte": "Le voisin décrit un jeune homme à casquette rouge resté près de la voiture ; une casquette rouge est saisie chez le client.",
+            "sources": [
+              {
+                "page": 3,
+                "citation": "Et un plus jeune, mince, avec une casquette rouge, qui est resté près de la voiture et regardait son téléphone."
+              },
+              {
+                "page": 16,
+                "citation": "une casquette de couleur rouge"
+              }
+            ]
+          },
+          {
+            "texte": "Le client reconnaît être resté dans la voiture pour prévenir si quelqu'un arrivait.",
+            "sources": [
+              {
+                "page": 25,
+                "citation": "Oui. Je suis resté dans la voiture. Il m'a dit de le prévenir si quelqu'un arrivait."
+              }
+            ]
+          },
+          {
+            "texte": "À l'inverse, aucune trace papillaire ne lui est attribuée, et le témoin ne l'identifie pas formellement.",
+            "sources": [
+              {
+                "page": 28,
+                "citation": "Aucune trace exploitable n'a pu être attribuée à MARTINON Lucas"
+              },
+              {
+                "page": 3,
+                "citation": "Le jeune peut-être, à cause de la casquette."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "audition-avocat",
+        "question": "Mon client a-t-il été entendu sans son avocat ?",
+        "reponse": [
+          {
+            "texte": "Non. À la notification de ses droits, à 09h30, il demande un avocat commis d'office ; la permanence est avisée à 09h40.",
+            "sources": [
+              {
+                "page": 18,
+                "citation": "J'ai compris. Je veux un avocat commis d'office. Prévenez ma mère."
+              },
+              {
+                "page": 18,
+                "citation": "Mentionnons qu'à 09h40 la permanence du barreau est avisée ; Maître Olivier TERRAZ est désigné."
+              }
+            ]
+          },
+          {
+            "texte": "Il s'entretient avec Me TERRAZ de 10h20 à 10h50, puis il est entendu de 11h00 à 11h50 en sa présence.",
+            "sources": [
+              {
+                "page": 23,
+                "citation": "MARTINON 10/03 10h20-10h50 Entretien avec Me TERRAZ"
+              },
+              {
+                "page": 23,
+                "citation": "MARTINON 10/03 11h00-11h50 Audition"
+              },
+              {
+                "page": 25,
+                "citation": "en présence de Maître Olivier TERRAZ, informé de son droit de se taire"
+              }
+            ]
+          },
+          {
+            "texte": "C'est la seule audition du client figurant dans la copie du dossier.",
+            "sources": [
+              {
+                "page": 25,
+                "citation": "L'an deux mille vingt-six, le dix mars, à onze heures"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "casquette",
+        "question": "Qui parle de la casquette rouge, et quand ?",
+        "reponse": [
+          {
+            "texte": "Le 13/02, le voisin CHABERT décrit un jeune homme mince à casquette rouge, resté près de la voiture.",
+            "sources": [
+              {
+                "page": 3,
+                "citation": "Et un plus jeune, mince, avec une casquette rouge, qui est resté près de la voiture et regardait son téléphone."
+              }
+            ]
+          },
+          {
+            "texte": "Le 16/02, les clichés LAPI du 12/02 montrent un passager à casquette « claire ou rouge », de qualité insuffisante.",
+            "sources": [
+              {
+                "page": 4,
+                "citation": "dont le passager porte une casquette de couleur claire ou rouge (qualité insuffisante)"
+              }
+            ]
+          },
+          {
+            "texte": "Le 03/03, la surveillance relève un jeune homme à casquette rouge assis côté passager.",
+            "sources": [
+              {
+                "page": 12,
+                "citation": "casquette rouge, est assis côté passager"
+              }
+            ]
+          },
+          {
+            "texte": "Le 10/03, une casquette rouge est saisie chez le client, qui confirme qu'elle est la sienne.",
+            "sources": [
+              {
+                "page": 16,
+                "citation": "une casquette de couleur rouge"
+              },
+              {
+                "page": 25,
+                "citation": "La casquette rouge saisie chez vous est-elle la vôtre ?"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "telephonie",
+        "question": "Le relevé téléphonique de mon client a-t-il été exploité ?",
+        "reponse": [
+          {
+            "texte": "Partiellement. L'opérateur transmet un relevé de 412 événements au format tableur, qui n'est pas analysé dans la copie : aucune pièce ne place la ligne du client sur les lieux des autres faits.",
+            "sources": [
+              {
+                "page": 7,
+                "citation": "Le relevé détaillé (412 événements) est transmis au format tableur."
+              }
+            ]
+          },
+          {
+            "texte": "Seule la journée du 12/02 est reprise : la ligne borne à Biviers de 14h05 à 14h52.",
+            "sources": [
+              {
+                "page": 7,
+                "citation": "Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers)."
+              }
+            ]
+          },
+          {
+            "texte": "L'extrait versé pour la ligne de FONTANEL ne porte, lui aussi, que sur le 12/02.",
+            "sources": [
+              {
+                "page": 6,
+                "citation": "Extrait du relevé détaillé, journée du 12/02/2026"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fait-19-02",
+        "question": "Que dit le dossier sur le fait du 19/02 ?",
+        "reponse": [
+          {
+            "texte": "Très peu. Le rapport de synthèse l'impute au client avec les cinq autres faits.",
+            "sources": [
+              {
+                "page": 27,
+                "citation": "FONTANEL et MARTINON apparaissent comme les auteurs de l'ensemble des six faits, y compris celui du 19/02/2026 à Saint-Ismier"
+              }
+            ]
+          },
+          {
+            "texte": "Aucune plainte ni aucun PV ne porte sur ce fait : l'exploitation LAPI ne recense que quatre cambriolages.",
+            "sources": [
+              {
+                "page": 4,
+                "citation": "quatre cambriolages présentant un mode opératoire identique"
+              }
+            ]
+          },
+          {
+            "texte": "Le client conteste sa présence, et le relevé de pointage le place au travail à Voreppe de 07h58 à 12h03, quand les faits sont situés entre 10h00 et 11h40.",
+            "sources": [
+              {
+                "page": 25,
+                "citation": "Le jeudi 19, j'étais au travail à Voreppe toute la matinée."
+              },
+              {
+                "page": 29,
+                "citation": "jeudi 19/02/2026 07h58 12h03 4h05"
+              },
+              {
+                "page": 29,
+                "citation": "le cambriolage commis le jeudi 19/02/2026 entre 10h00 et 11h40 à Saint-Ismier"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "antecedents",
+        "question": "Mon client a-t-il des antécédents ?",
+        "reponse": [
+          {
+            "texte": "Non : son bulletin n°1, délivré le 11/03/2026, porte la mention « néant ».",
+            "sources": [
+              {
+                "page": 30,
+                "citation": "NÉANT"
+              }
+            ]
+          },
+          {
+            "texte": "À la différence de FONTANEL, condamné en 2015 pour vol aggravé et en 2020 pour recel, ce que le juge des libertés retient pour le placer en détention.",
+            "sources": [
+              {
+                "page": 30,
+                "citation": "17/09/2015 TC Grenoble Vol aggravé (effraction, réunion)"
+              },
+              {
+                "page": 30,
+                "citation": "04/03/2020 TC Grenoble Recel de biens provenant d'un vol"
+              },
+              {
+                "page": 31,
+                "citation": "au regard de ses deux condamnations antérieures pour des faits de même nature"
+              }
+            ]
+          },
+          {
+            "texte": "À vérifier sur la pièce : sur ce scan, l'en-tête souligné portant le nom du client est mal reconnu par la lecture automatique.",
+            "sources": [
+              {
+                "page": 30,
+                "citation": "NÉANT"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "peine",
+        "nature": "hors_dossier",
+        "question": "Quelle peine encourt mon client ?",
+        "reponse": [
+          {
+            "texte": "Lytis répond à partir des pièces du dossier, pas du droit applicable : la peine encourue n'y figure pas.",
+            "sources": []
+          },
+          {
+            "texte": "Pour mémoire, le réquisitoire introductif vise les vols en bande organisée de l'article 311-9 du code pénal ; la qualification retenue et la peine relèvent de votre appréciation.",
+            "sources": [
+              {
+                "page": 8,
+                "citation": "vols commis en bande organisée, faits prévus et réprimés par l'article 311-9 du code pénal"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

@@ -95,6 +95,29 @@ async function session(nom, options) {
   await page.click(".bouton-resume-detaille");
   verifier(await page.isVisible(".resume-detaille .renvoi-source"), "résumé détaillé dépliable, avec renvois aux pièces");
   await page.screenshot({ path: join(RACINE, "captures/08-resume-detaille.png"), fullPage: false });
+  // Questions au dossier
+  await page.click('.onglet[data-onglet="infos"]');
+  await page.click(".barre-interroger");
+  verifier(await page.isVisible("#classeur-questions .suggestion"), "« Interroger le dossier » ouvre les questions proposées");
+  await page.click('#classeur-questions .suggestion:has-text("sans son avocat")');
+  verifier(await page.isVisible("#classeur-questions .bulle-reponse .renvoi-source"), "réponse affichée, avec renvois aux pièces");
+  await page.click('#classeur-questions .suggestion:has-text("peine")');
+  verifier(await page.isVisible("#classeur-questions .bulle-reponse.hors-dossier"), "question hors dossier : Lytis le dit");
+  await page.screenshot({ path: join(RACINE, "captures/15-questions.png") });
+  await page.locator("#classeur-questions .bulle-reponse .renvoi-source").first().click();
+  await page.waitForSelector("#classeur-piece .page-cadre img");
+  verifier(await page.isVisible("#retour-questions"), "clic sur un renvoi : la pièce s'ouvre, avec retour aux questions");
+  await page.click("#retour-questions");
+  const nbQuestions = await page.locator("#classeur-questions .bulle-question").count();
+  verifier(nbQuestions === 2, `retour aux questions : conversation conservée (${nbQuestions} questions)`);
+  await page.click("#classeur-questions .saisie-question");
+  verifier(await page.isVisible("#avis-indisponible"), "saisie libre verrouillée : avis « ceci est une démonstration »");
+  await page.click("#avis-indisponible button");
+  await page.click('.onglet[data-onglet="fond"]');
+  await page.click(".contradiction.vedette .lien-question");
+  verifier(await page.isVisible('#classeur-questions .bulle-question:has-text("19/02")'), "« Demander au dossier » depuis une carte pose la question");
+  await page.click("#fermer-classeur");
+
   await page.click('#bandeau-demo button:has-text("Confidentialité")');
   verifier(await page.isVisible("#mentions .mentions-corps h3"), "mentions légales et confidentialité accessibles depuis le bandeau");
   await page.screenshot({ path: join(RACINE, "captures/09-mentions-confidentialite.png") });

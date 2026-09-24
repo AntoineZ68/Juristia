@@ -54,11 +54,13 @@
        <div class="classeur-modes">
          <button type="button" class="mode-classeur actif" data-mode="piece" onclick="basculerModeClasseur('piece')">Pièce</button>
          <button type="button" class="mode-classeur" data-mode="index" onclick="basculerModeClasseur('index')">Index</button>
+         <button type="button" class="mode-classeur" data-mode="questions" onclick="ouvrirQuestions()">Questions</button>
        </div>
        <button type="button" id="fermer-classeur" onclick="fermerClasseur()" title="Fermer le classeur">✕</button>
      </header>
 
      <div class="classeur-navigation" id="classeur-navigation">
+       <button type="button" id="retour-questions" class="retour-questions" onclick="ouvrirQuestions()" hidden>← Questions</button>
        <button type="button" onclick="allerPageClasseur(-1)" title="Page précédente">‹</button>
        <span id="classeur-position">—</span>
        <button type="button" onclick="allerPageClasseur(1)" title="Page suivante">›</button>
@@ -70,6 +72,7 @@
      <div class="classeur-corps" id="classeur-corps">
        <div id="classeur-piece"></div>
        <div id="classeur-index" hidden></div>
+       <div id="classeur-questions" hidden></div>
      </div>
    </aside>
   </div>

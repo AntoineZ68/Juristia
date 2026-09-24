@@ -142,7 +142,9 @@ function ouvrirSource(i) {
   if (!ref) return;
   const source = sourcesParPage.get(ref.page);
   suivre("Source ouverte", { cote: (source && source.cote) || "—", page: String(ref.page) });
+  const depuisQuestions = modeClasseur === "questions" && !document.getElementById("classeur").hidden;
   ouvrirClasseur(ref.page, ref.citation);
+  document.getElementById("retour-questions").hidden = !depuisQuestions;
   if (parcoursActif && etapeParcours === ETAPES_PARCOURS.length - 1) terminerParcours(true);
 }
 window.ouvrirSource = ouvrirSource;
@@ -162,10 +164,15 @@ function fermerClasseur() {
 }
 window.fermerClasseur = fermerClasseur;
 
+let modeClasseur = "piece";
+
 function basculerModeClasseur(mode) {
   document.querySelectorAll(".mode-classeur").forEach((b) => b.classList.toggle("actif", b.dataset.mode === mode));
   document.getElementById("classeur-piece").hidden = mode !== "piece";
   document.getElementById("classeur-index").hidden = mode !== "index";
+  document.getElementById("classeur-questions").hidden = mode !== "questions";
+  if (mode !== "piece") document.getElementById("retour-questions").hidden = true;
+  modeClasseur = mode;
   document.getElementById("classeur-navigation").hidden = mode !== "piece";
   document.getElementById("classeur-legende").hidden = mode !== "piece";
   if (mode === "index") rendreIndexClasseur();
@@ -219,9 +226,8 @@ function majNavigationClasseur() {
   document.getElementById("classeur-position").textContent = `Page ${classeurPage} / ${NB_PAGES}`;
   document.getElementById("classeur-source").textContent = libelleSource(classeurPage);
   rendreLegende();
-  const boutons = document.querySelectorAll(".classeur-navigation button");
-  boutons[0].disabled = classeurPage <= 1;
-  boutons[1].disabled = classeurPage >= NB_PAGES;
+  document.querySelector('.classeur-navigation [title="Page précédente"]').disabled = classeurPage <= 1;
+  document.querySelector('.classeur-navigation [title="Page suivante"]').disabled = classeurPage >= NB_PAGES;
 }
 
 // Position verticale d'un élément dans la zone défilante du classeur.
@@ -396,6 +402,7 @@ function carteContradictions(domaine, titre) {
               ${c.concerne ? `<span class="etiquette qualite-non">Concerne ${esc(c.concerne)}</span>` : ""}
             </div>
             <div class="description-signalement">${esc(c.description)}</div>
+            ${c.question ? lienQuestion(c.question) : ""}
             <div class="sources-contradiction">
               ${c.sources.map((s) => `
                 <div class="declaration-personne">
@@ -618,6 +625,7 @@ function rendrePiste(p) {
         <dt>Qualité à agir</dt><dd>${esc(p.qualite_motif)}</dd>
         <dt>Grief</dt><dd>${esc(p.grief)}</dd>
       </dl>
+      ${p.question ? lienQuestion(p.question) : ""}
       <div class="sources-contradiction">
         ${p.sources.map((s) => `
           <div class="declaration-personne">
@@ -720,7 +728,10 @@ function rendreDetailDossier() {
       <span>Envoyé le <strong>${cree}</strong></span>
       <span><strong>${dossier.nb_pages}</strong> page(s)</span>
       <button type="button" class="bouton-index" onclick="ouvrirIndexClasseur()">${ICONE_INDEX}<span>Index du dossier</span></button>
-    </div>`;
+    </div>
+    <button type="button" class="barre-interroger" onclick="ouvrirQuestions()">
+      ${ICONE_QUESTION}<span>Interroger le dossier…</span><small>Réponses tirées des pièces, chacune sourcée</small>
+    </button>`;
 
   const panneauInfos = `
     <div class="carte bloc-resume">
@@ -951,6 +962,83 @@ document.addEventListener("click", (e) => {
   const c = donnees.contradictions[Number(item.dataset.contradiction)];
   suivre("Contradiction", { titre: c.titre.slice(0, 60), phare: c.vedette ? "oui" : "non" });
 });
+
+// --- Questions au dossier ----------------------------------------------------
+//
+// Dans le produit, l'avocat interroge librement son dossier ; chaque réponse
+// ne s'appuie que sur les pièces, chaque phrase porte sa source, et Lytis dit
+// quand l'information n'y figure pas. Dans la démonstration, sans serveur, les
+// réponses sont préparées et vérifiées contre le PDF comme tout le reste :
+// on choisit une question proposée, la saisie libre est verrouillée.
+
+const ICONE_QUESTION = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path><path d="M9.5 9.5a2.5 2.5 0 0 1 4.8 1c0 1.7-2.3 2-2.3 3.5M12 17h.01"></path></svg>`;
+const QUESTIONS = new Map((donnees.questions || []).map((q) => [q.id, q]));
+const filQuestions = [];
+
+function lienQuestion(id) {
+  const q = QUESTIONS.get(id);
+  if (!q) return "";
+  return `<button type="button" class="lien-question" onclick="event.stopPropagation(); ouvrirQuestions('${id}')">${ICONE_QUESTION}<span>Demander au dossier : « ${esc(q.question)} »</span></button>`;
+}
+
+function rendreQuestions() {
+  const el = document.getElementById("classeur-questions");
+  const restantes = [...QUESTIONS.values()].filter((q) => !filQuestions.includes(q.id));
+  el.innerHTML = `
+    <div class="questions">
+      <div class="questions-intro">
+        <div class="questions-titre">${ICONE_QUESTION}<span>Questions au dossier</span></div>
+        <ul>
+          <li>Réponses tirées <strong>uniquement des pièces</strong> du dossier.</li>
+          <li>Chaque phrase renvoie à sa <strong>cote et sa page</strong> : un clic ouvre la pièce.</li>
+          <li>Si l'information n'y est pas, Lytis <strong>le dit</strong>.</li>
+        </ul>
+      </div>
+      <div class="fil-questions">
+        ${filQuestions.map((id) => {
+          const q = QUESTIONS.get(id);
+          return `
+            <div class="bulle-question">${esc(q.question)}</div>
+            <div class="bulle-reponse ${q.nature === "hors_dossier" ? "hors-dossier" : ""}">
+              ${q.reponse.map((ph) => `<p>${esc(ph.texte)} ${ph.sources.map((s) => renvoiSource(s.page, s.citation)).join(" ")}</p>`).join("")}
+            </div>`;
+        }).join("")}
+      </div>
+      ${restantes.length ? `
+        <div class="suggestions">
+          <div class="suggestions-titre">${filQuestions.length ? "Autres questions" : "Questions proposées"}</div>
+          ${restantes.map((q) => `<button type="button" class="suggestion" onclick="poserQuestion('${q.id}')">${esc(q.question)}</button>`).join("")}
+        </div>` : ""}
+      <div class="saisie-question" onclick="actionIndisponible('Question libre')">
+        <input type="text" disabled placeholder="Posez votre question sur le dossier…" />
+        <button type="button" class="bouton-primaire" disabled>Envoyer</button>
+      </div>
+      <p class="aide-champ questions-note">Démonstration : réponses préparées sur le dossier fictif, vérifiées contre les pièces. La saisie libre est réservée à votre espace.</p>
+    </div>`;
+}
+
+function poserQuestion(id) {
+  if (!QUESTIONS.has(id)) return;
+  if (!filQuestions.includes(id)) filQuestions.push(id);
+  rendreQuestions();
+  suivre("Question", { id });
+  // Amène la dernière réponse sous les yeux.
+  requestAnimationFrame(() => {
+    const reponses = document.querySelectorAll("#classeur-questions .bulle-question");
+    const derniere = [...reponses].find((b) => b.textContent === QUESTIONS.get(id).question);
+    if (derniere) derniere.scrollIntoView({ block: "start", behavior: "smooth" });
+  });
+}
+window.poserQuestion = poserQuestion;
+
+function ouvrirQuestions(id) {
+  document.getElementById("classeur").hidden = false;
+  basculerModeClasseur("questions");
+  rendreQuestions();
+  if (id) poserQuestion(id);
+  else document.getElementById("classeur-corps").scrollTop = 0;
+}
+window.ouvrirQuestions = ouvrirQuestions;
 
 // --- Mentions légales et confidentialité -------------------------------------
 //

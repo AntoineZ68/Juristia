@@ -91,6 +91,15 @@ défilement horizontal sur mobile. Il régénère les captures.
 4. **Custom Domain** (par ex. `demo.lytis.legal`), puis un enregistrement CNAME chez le
    registraire du domaine vers l'adresse fournie par Render.
 
+## Questions au dossier
+
+Mode « Questions » du classeur, ouvert aussi par la barre « Interroger le
+dossier… » et par les liens « Demander au dossier » des cartes. Les réponses
+sont préparées dans `source/dossier.json` (`questions`) : une source par
+phrase, vérifiée par le test de sourçage comme le reste ; seule une réponse
+« hors dossier » peut n'en porter aucune, et doit le dire. La saisie libre
+est verrouillée.
+
 ## Couleurs du surlignage
 
 Cinq catégories, fixées dans `tools/build.py` (`COULEURS`, `PRIORITE`) :

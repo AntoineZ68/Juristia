@@ -61,7 +61,7 @@ class TestSourcage(unittest.TestCase):
         genere = json.loads(contenu[contenu.index("=") + 1:].strip().rstrip(";"))
         for cle in ("resume", "personnes", "chronologie_faits", "chronologie_procedure", "contradictions",
                     "confrontations", "recoupements", "gardes_a_vue",
-                    "resume_detaille", "journee", "defense"):
+                    "resume_detaille", "journee", "defense", "questions"):
             self.assertEqual(genere["donnees"][cle], DONNEES["donnees"][cle], f"{cle} : relancer tools/build.py")
         self.assertEqual(len(genere["donnees"]["sources"]), NB_PAGES)
 
@@ -91,6 +91,15 @@ class TestContenu(unittest.TestCase):
         noms = " ".join(p["nom"] for p in DONNEES["donnees"]["personnes"])
         for nom in ("FAVRE-BONVIN", "GAILLARD-ROUX", "PETITJEAN", "DUMOLARD", "PELLOUX", "DUFOUR"):
             self.assertIn(nom, noms)
+
+    def test_questions_au_dossier_sourcees(self):
+        """Toute réponse porte une source par phrase, sauf l'aveu d'une
+        question hors dossier, qui doit le dire."""
+        for q in DONNEES["donnees"]["questions"]:
+            for phrase in q["reponse"]:
+                if not phrase["sources"]:
+                    self.assertEqual(q.get("nature"), "hors_dossier", q["question"])
+                    self.assertIn("pièces du dossier", phrase["texte"])
 
     def test_documents_telechargeables_presents(self):
         for nom in ("note_defense.pdf", "dossier_surligne.pdf"):
