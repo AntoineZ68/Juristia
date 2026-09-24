@@ -86,19 +86,23 @@ défilement horizontal sur mobile. Il régénère les captures.
 1. Render → **New + → Static Site**, dépôt `AntoineZ68/Juristia`, branche de la démo.
 2. **Root Directory** : `demo/site` — **Build Command** : vide — **Publish Directory** : `.`
 3. **Settings → Headers** : ajouter `/*` → `X-Robots-Tag: noindex, nofollow`.
-4. **Custom Domain** : `demo.juristia.fr`, puis un enregistrement CNAME chez le
-   registraire du domaine vers l'adresse `*.onrender.com` indiquée par Render.
+4. **Custom Domain** (sur un domaine qui vous appartient — juristia.fr n'est pas à vous), puis un enregistrement CNAME chez le
+   registraire du domaine vers l'adresse fournie par Render.
+
+## Bouton « Demander un accès »
+
+Son adresse se règle à un seul endroit : `urlAcces` dans `site/config.js`.
 
 ## Mesure d'audience
 
 Désactivée par défaut : la page ne fait alors **aucune** requête externe. Pour
-l'activer, créer le site `demo.juristia.fr` dans Plausible (sans cookie) et
+l'activer, créer le site de la démo dans Plausible (sans cookie) et
 renseigner `plausible.domaine` dans `site/config.js`.
 
 Évènements envoyés : `pageview`, `Arrivée`, `Parcours terminé`, `Parcours passé`,
 `Contradiction` (avec `phare: oui/non`), `Source ouverte` (cote, page), `CTA`
 (emplacement). Chacun porte la propriété `campagne`, lue dans le lien :
-`https://demo.juristia.fr/?c=barreau-lyon-oct`. Aucun identifiant individuel.
+`https://<adresse-de-la-demo>/?c=barreau-lyon-oct`. Aucun identifiant individuel.
 
 ## Ce que la démo montre, et ce qui la distingue de l'application
 

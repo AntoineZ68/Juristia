@@ -39,6 +39,9 @@ function suivre(evenement, proprietes = {}) {
   window.plausible(evenement, { props: { campagne, ...proprietes } });
 }
 
+// Tous les boutons d'accès pointent vers une seule adresse, réglée dans config.js.
+document.querySelectorAll("[data-cta]").forEach((a) => { a.href = CONFIG.urlAcces || "#"; });
+
 document.addEventListener("click", (e) => {
   const cta = e.target.closest("[data-cta]");
   if (cta) suivre("CTA", { emplacement: cta.dataset.cta });
