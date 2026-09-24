@@ -787,11 +787,49 @@ function ouvrirDossier() {
   afficherVue("dossier");
 }
 
-// --- Nouveau dossier : le formulaire réel, verrouillé -----------------------
+// --- Nouveau dossier : le formulaire, verrouillé ----------------------------
 //
-// L'avocat voit ce qu'on lui demandera pour lancer une analyse. Rien n'est
-// saisissable et aucun fichier ne peut être choisi : tout clic affiche le
-// même avis « ceci est une démonstration ».
+// L'avocat voit ce qu'on lui demandera pour lancer une analyse. Seuls deux
+// choix sont manipulables — pour qui il intervient, et quelle personne — afin
+// de montrer que le formulaire s'adapte (la date de mise en examen n'est
+// demandée que pour un client mis en examen). Rien ne peut être saisi, aucun
+// fichier ne peut être choisi : tout autre clic affiche l'avis habituel.
+//
+// Les personnes et informations proposées sont celles que Lytis détecte dans
+// le dossier de démonstration.
+
+const PERSONNES_DETECTEES = {
+  defense: [
+    { nom: "MARTINON Lucas", qualite: "Mis en examen — à confirmer", source: "copie délivrée à son avocat (art. 114 CPP), inventaire p.1", misEnExamen: true, date: "", detention: "Non détectée" },
+    { nom: "FONTANEL Yannick", qualite: "Mis en examen", source: "ordonnance du JLD, C1 p.31", misEnExamen: true, date: "au plus tard le 12/03/2026 (C1 p.31)", detention: "Détention provisoire depuis le 12/03/2026 (C1 p.31)" },
+    { nom: "BERTHOLLET Gilles", qualite: "Gardé à vue, remis en liberté sur convocation", source: "registre de garde à vue, D22 p.23", misEnExamen: false, detention: "Non" },
+  ],
+  partie_civile: [
+    { nom: "SERMET Odile", qualite: "Constituée partie civile", source: "PV de plainte, D1 p.2" },
+  ],
+};
+
+const nouveauDossier = { intervention: "defense", personne: 0 };
+
+function choisirIntervention(valeur) {
+  nouveauDossier.intervention = valeur;
+  nouveauDossier.personne = 0;
+  rendreNouveauDossier();
+  suivre("Nouveau dossier — intervention", { choix: valeur });
+}
+window.choisirIntervention = choisirIntervention;
+
+function choisirPersonne(index) {
+  nouveauDossier.personne = Number(index);
+  rendreNouveauDossier();
+}
+window.choisirPersonne = choisirPersonne;
+
+function clicFormulaire(evenement) {
+  if (evenement.target.closest(".interactif")) return;
+  actionIndisponible("Nouveau dossier");
+}
+window.clicFormulaire = clicFormulaire;
 
 function champ(libelle, controle, aide = "") {
   return `
@@ -803,67 +841,97 @@ function champ(libelle, controle, aide = "") {
 }
 
 function rendreNouveauDossier() {
-  const liste = (options) => `<select disabled>${options.map((o, i) => `<option ${i === 0 ? "selected" : ""}>${o}</option>`).join("")}</select>`;
-  const cases = (options) => `<div class="cases">${options.map(([libelle, detail]) => `
-    <label class="case"><input type="checkbox" checked disabled /><span><strong>${libelle}</strong><small>${detail}</small></span></label>`).join("")}</div>`;
-  return `
+  const { intervention, personne } = nouveauDossier;
+  const personnes = PERSONNES_DETECTEES[intervention] || [];
+  const choisie = personnes[personne];
+  const option = (valeur, titre, detail) => `
+    <label class="choix-intervention interactif ${intervention === valeur ? "actif" : ""}">
+      <input type="radio" name="intervention" value="${valeur}" ${intervention === valeur ? "checked" : ""} onchange="choisirIntervention('${valeur}')" />
+      <span><strong>${titre}</strong><small>${detail}</small></span>
+    </label>`;
+
+  let blocPersonne = "";
+  if (choisie) {
+    const selecteur = `<select class="interactif" onchange="choisirPersonne(this.value)">${personnes.map((p, i) => `<option value="${i}" ${i === personne ? "selected" : ""}>${esc(p.nom)}</option>`).join("")}</select>`;
+    blocPersonne = `
+      <div class="grille-champs">
+        ${champ(intervention === "defense" ? "Votre client" : "La partie civile que vous assistez", selecteur, "Choisi parmi les personnes détectées dans le dossier.")}
+        ${champ("Qualité détectée", `<input type="text" disabled value="${esc(choisie.qualite)}" />`, `Source : ${esc(choisie.source)}.`)}
+      </div>
+      ${choisie.misEnExamen ? `
+        <div class="bloc-conditionnel">
+          ${champ("Date de mise en examen — confirmation obligatoire",
+            `<input type="text" disabled ${choisie.date ? `value="${esc(choisie.date)}"` : `placeholder="jj/mm/aaaa — non trouvée dans la copie"`} />`,
+            "Demandée parce que votre client est mis en examen : elle fait courir le délai de six mois pour soulever les nullités (art. 173-1 CPP). Lytis la propose quand il la trouve ; vous la confirmez.")}
+        </div>` : ""}
+      ${intervention === "defense" && !choisie.misEnExamen ? `<p class="note-conditionnelle">Pas de mise en examen détectée pour cette personne : aucune date à renseigner, aucun délai de nullité à suivre pour l'instant.</p>` : ""}`;
+  } else {
+    blocPersonne = `<p class="note-conditionnelle">Lecture neutre : chronologie, procédure, contradictions et recoupements, sans tri selon la qualité à agir d'un client.</p>`;
+  }
+
+  const detecte = [
+    ["Référence", "JI 26/00044 · parquet 26.038.01152"],
+    ["Juridiction", "TJ de Grenoble, cabinet d'instruction n°2"],
+    ["Stade", "Information judiciaire"],
+    ...(intervention === "defense" && choisie ? [["Détention", choisie.detention]] : []),
+    ["Nom du dossier", choisie ? `${choisie.nom} — JI 26/00044` : "Affaire GENTIANE — JI 26/00044"],
+  ];
+
+  document.getElementById("vue-nouveau").innerHTML = `
     <div class="entete-detail">
       <div>
         <h2>Nouveau dossier</h2>
-        <div class="ref-detail">Ce que Lytis vous demande pour lancer une analyse</div>
+        <div class="ref-detail">Deux étapes : déposer la copie, dire pour qui vous intervenez. Lytis déduit le reste du dossier.</div>
       </div>
     </div>
-    <div class="formulaire-demo" onclick="actionIndisponible('Nouveau dossier')">
+    <div class="formulaire-demo" onclick="clicFormulaire(event)">
       <div class="carte">
-        <h2>Le dossier</h2>
-        <div class="grille-champs">
-          ${champ("Nom du dossier", `<input type="text" disabled placeholder="ex. DURAND Paul — Affaire des entrepôts" />`)}
-          ${champ("Référence", `<input type="text" disabled placeholder="ex. JI 26/00123 · parquet 26.069.04521" />`, "Numéro d'instruction ou de parquet, tel qu'il figure sur la copie.")}
-          ${champ("Juridiction", `<input type="text" disabled placeholder="ex. TJ de Lyon, cabinet n°4" />`)}
-          ${champ("Stade de la procédure", liste(["Information judiciaire", "Enquête (garde à vue, comparution immédiate)", "Jugement", "Appel"]), "Adapte la voie et les délais des nullités proposés.")}
-        </div>
-      </div>
-
-      <div class="carte">
-        <h2>La personne que vous défendez</h2>
-        <div class="grille-champs">
-          ${champ("Nom et prénom du client", `<input type="text" disabled placeholder="ex. DURAND Paul" />`, "Toute l'analyse est orientée vers sa défense : pistes qu'il peut invoquer, charges qui le visent, éléments à décharge.")}
-          ${champ("Qualité", liste(["Mis en examen", "Témoin assisté", "Prévenu", "Accusé", "Partie civile"]))}
-          ${champ("Date de mise en examen", `<input type="text" disabled placeholder="jj/mm/aaaa" />`, "Déclenche le décompte du délai de six mois pour soulever les nullités (art. 173-1 CPP).")}
-          ${champ("Détenu", liste(["Non", "Oui — détention provisoire"]), "Signale les échéances de détention à surveiller.")}
-        </div>
-      </div>
-
-      <div class="carte">
-        <h2>Les pièces</h2>
+        <h2><span class="numero-etape">1</span>La copie du dossier</h2>
         <div class="zone-depot" aria-disabled="true">
           ${ICONE_DOCUMENT}
-          <strong>Déposez la copie du dossier</strong>
-          <span>Un ou plusieurs PDF, dans l'ordre des cotes. Les pièces scannées sont lues automatiquement.</span>
+          <strong>Déposez les pièces</strong>
+          <span>PDF, Word, images (scans ou photos), archives ZIP — plusieurs fichiers à la fois. Les pièces scannées ou photographiées sont lues automatiquement.</span>
         </div>
       </div>
 
       <div class="carte">
-        <h2>L'analyse</h2>
-        ${cases([
-          ["Chronologie des faits", "Faits datés, chacun avec sa citation, sa cote et sa page."],
-          ["Procédure", "Pistes de nullité triées selon la qualité à agir du client, délais de garde à vue, frise des actes."],
-          ["Fond", "Contradictions entre pièces, charges et éléments à décharge par fait imputé, recoupements."],
-          ["Documents", "Note de défense et dossier surligné, prêts à télécharger."],
-        ])}
+        <h2><span class="numero-etape">2</span>Vous intervenez pour</h2>
+        <div class="choix-interventions">
+          ${option("defense", "La défense d'un mis en cause", "Gardé à vue, mis en examen, prévenu, accusé")}
+          ${option("partie_civile", "Une partie civile", "Victime constituée ou à constituer")}
+          ${option("neutre", "Sans client désigné", "Lecture neutre du dossier")}
+        </div>
+        ${blocPersonne}
+      </div>
+
+      <div class="carte">
+        <h2>Détecté automatiquement, modifiable ensuite</h2>
+        <dl class="liste-detectee">
+          ${detecte.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}
+        </dl>
+        <p class="aide-champ">Valeurs détectées sur le dossier de démonstration.</p>
+      </div>
+
+      <div class="carte">
+        <h2>Ce que vous obtiendrez</h2>
+        <ul class="liste-obtenu">
+          <li><strong>Chronologie</strong> — faits datés, journée des faits reconstituée, chacun avec sa citation, sa cote et sa page.</li>
+          <li><strong>Procédure</strong> — pistes de nullité triées selon ce que votre client peut invoquer, délais de garde à vue, frise des actes.</li>
+          <li><strong>Fond</strong> — contradictions entre pièces, charges et éléments à décharge par fait, recoupements.</li>
+          <li><strong>Documents</strong> — note de défense et dossier surligné, prêts à télécharger.</li>
+        </ul>
       </div>
 
       <div class="actions-formulaire">
         <button type="button" class="bouton-primaire" disabled>Lancer l'analyse</button>
-        <span class="aide-champ">Démonstration : rien ne peut être saisi ni envoyé.</span>
+        <span class="aide-champ">Démonstration : rien ne peut être déposé ni envoyé.</span>
       </div>
     </div>`;
 }
 
 function ouvrirNouveauDossier() {
   fermerClasseur();
-  const vue = document.getElementById("vue-nouveau");
-  if (!vue.innerHTML) vue.innerHTML = rendreNouveauDossier();
+  rendreNouveauDossier();
   afficherVue("nouveau");
   suivre("Nouveau dossier");
 }

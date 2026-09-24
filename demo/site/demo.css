@@ -279,15 +279,36 @@
 .zone-depot .icone-doc { width: 26px; height: 26px; }
 .zone-depot strong { color: var(--encre); font-size: 14px; }
 .zone-depot span { font-size: 12.5px; max-width: 380px; }
-.cases { display: flex; flex-direction: column; gap: 10px; }
-.case { display: flex; align-items: flex-start; gap: 10px; margin: 0; font-size: 13.5px; color: var(--texte); }
-.case input { margin-top: 3px; accent-color: var(--accent); }
-.case strong { display: block; font-weight: 600; }
-.case small { display: block; color: var(--texte-att); font-size: 12.5px; }
 .actions-formulaire { display: flex; align-items: center; gap: 14px; margin: 4px 0 30px; flex-wrap: wrap; }
 @media (max-width: 720px) {
   .grille-champs { grid-template-columns: 1fr; }
 }
 /* Un champ désactivé ne reçoit pas les clics : on les laisse passer au
    formulaire, qui affiche l'avis « ceci est une démonstration ». */
-.formulaire-demo input, .formulaire-demo select, .formulaire-demo button { pointer-events: none; }
+.formulaire-demo input:disabled, .formulaire-demo select:disabled, .formulaire-demo button:disabled { pointer-events: none; }
+
+/* --- Nouveau dossier : parties manipulables --- */
+.formulaire-demo .interactif, .formulaire-demo .interactif * { cursor: pointer; }
+.numero-etape {
+  display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin-right: 10px;
+  border-radius: 50%; background: var(--encre); color: #faf8f4; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; vertical-align: 2px;
+}
+.choix-interventions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 8px; }
+.choix-intervention {
+  display: flex; align-items: flex-start; gap: 9px; margin: 0; padding: 12px 14px; border: 1px solid var(--bordure-douce);
+  border-radius: var(--rayon-sm); background: var(--carte-creuse); font-size: 13px; color: var(--texte);
+}
+.choix-intervention.actif { border-color: var(--encre); background: var(--carte); box-shadow: 0 0 0 1px var(--encre); }
+.choix-intervention input { margin-top: 3px; accent-color: var(--encre); }
+.choix-intervention strong { display: block; font-weight: 600; }
+.choix-intervention small { display: block; color: var(--texte-att); font-size: 12px; margin-top: 2px; }
+.formulaire-demo select.interactif { background-color: var(--carte); color: var(--encre); border-color: var(--bordure); }
+.bloc-conditionnel { margin-top: 6px; padding: 4px 14px 12px; border-left: 3px solid var(--alerte); background: var(--alerte-voile); border-radius: 0 var(--rayon-sm) var(--rayon-sm) 0; }
+.note-conditionnelle { margin: 12px 0 0; font-size: 12.5px; color: var(--texte-att); font-style: italic; }
+.liste-detectee { display: grid; grid-template-columns: 150px 1fr; gap: 6px 14px; margin: 0 0 8px; font-size: 13.5px; }
+.liste-detectee dt { color: var(--texte-att-2); }
+.liste-detectee dd { margin: 0; color: var(--encre); }
+.liste-obtenu { margin: 0; padding-left: 18px; font-size: 13.5px; }
+.liste-obtenu li + li { margin-top: 6px; }
+@media (max-width: 900px) { .choix-interventions { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .liste-detectee { grid-template-columns: 1fr; gap: 0 0; } .liste-detectee dd { margin-bottom: 6px; } }
