@@ -60,7 +60,7 @@ class TestSourcage(unittest.TestCase):
         contenu = (RACINE / "site" / "data.js").read_text(encoding="utf-8")
         genere = json.loads(contenu[contenu.index("=") + 1:].strip().rstrip(";"))
         for cle in ("resume", "personnes", "chronologie_faits", "chronologie_procedure", "contradictions",
-                    "signalements", "confrontations", "recoupements", "gardes_a_vue",
+                    "confrontations", "recoupements", "gardes_a_vue",
                     "resume_detaille", "journee", "defense"):
             self.assertEqual(genere["donnees"][cle], DONNEES["donnees"][cle], f"{cle} : relancer tools/build.py")
         self.assertEqual(len(genere["donnees"]["sources"]), NB_PAGES)

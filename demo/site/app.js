@@ -65,10 +65,10 @@ const ICONE_DOCUMENT = `<svg class="icone-doc" width="15" height="15" viewBox="0
 const ICONE_INDEX = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H18v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H18"/><path d="M8 7.5h6M8 11h6"/></svg>`;
 
 const ONGLETS_DOSSIER = [
-  ["infos", "Informations générales", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`],
+  ["infos", "Dossier", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`],
   ["chrono", "Chronologie", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`],
-  ["defense", "Défense", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`],
-  ["analyse", "Analyse IA", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.9 4.9L19 8.8l-4.9 1.9L12 15.6l-1.9-4.9L5 8.8l4.9-1.9L12 2z"></path><path d="M19 15l.9 2.2L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.8L19 15z"></path></svg>`],
+  ["procedure", "Procédure", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`],
+  ["fond", "Fond", `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"></path></svg>`],
 ];
 
 const LIBELLES_STATUT = { en_attente: "En attente", en_cours: "En cours", termine: "Terminé", erreur: "Erreur" };
@@ -308,14 +308,19 @@ function rendreBlocInformations() {
     </div>`;
 }
 
-function rendreContradictions() {
+function carteContradictions(domaine, titre) {
+  const items = donnees.contradictions.map((c, i) => ({ ...c, i })).filter((c) => c.domaine === domaine);
+  if (!items.length) return "";
   return `
     <div class="carte bloc-contradictions">
-      <h2>Contradictions entre pièces</h2>
+      <h2>${titre}</h2>
       <ul class="liste-contradictions">
-        ${donnees.contradictions.map((c, i) => `
-          <li class="contradiction ${c.vedette ? "vedette" : ""}" data-contradiction="${i}">
-            <div class="titre-signalement">${esc(c.titre)}</div>
+        ${items.map((c) => `
+          <li class="contradiction ${c.vedette ? "vedette" : ""}" data-contradiction="${c.i}">
+            <div class="piste-entete">
+              <div class="titre-signalement">${esc(c.titre)}</div>
+              ${c.concerne ? `<span class="etiquette qualite-non">Concerne ${esc(c.concerne)}</span>` : ""}
+            </div>
             <div class="description-signalement">${esc(c.description)}</div>
             <div class="sources-contradiction">
               ${c.sources.map((s) => `
@@ -330,23 +335,10 @@ function rendreContradictions() {
     </div>`;
 }
 
-function rendreBlocAnalyseIA() {
-  const sections = [rendreContradictions()];
-
-  sections.push(`
+function carteGardesAVue() {
+  return `
     <div class="carte">
-      <h2>Points d'attention structurels</h2>
-      <ul class="liste-signalements">${donnees.signalements.map((s) => `
-        <li class="signalement">
-          <div class="titre-signalement">${esc(s.titre)}</div>
-          <div class="description-signalement">${esc(s.description)}</div>
-          ${s.citation_reference ? `<div class="source-signalement">${badgeSource(s.page_reference, s.citation_reference)} « ${esc(s.citation_reference)} »</div>` : ""}
-        </li>`).join("")}</ul>
-    </div>`);
-
-  sections.push(`
-    <div class="carte">
-      <h2>Chronologie de garde à vue</h2>
+      <h2>Garde à vue : délais calculés</h2>
       ${donnees.gardes_a_vue.map((d) => `
         <div class="gav-personne">${esc(d.personne)}</div>
         <div class="stats-gav">
@@ -356,9 +348,11 @@ function rendreBlocAnalyseIA() {
           <div class="stat-gav"><div class="valeur-stat">${esc(d.delai_demande_realisation_entretien_avocat)}</div><div class="libelle-stat">Demande → entretien avocat</div></div>
         </div>`).join("")}
       <p class="note-resume" style="margin-top:14px;">Délais calculés à partir des horodatages vérifiés du dossier — à recouper avec les textes applicables, jamais une conclusion en soi.</p>
-    </div>`);
+    </div>`;
+}
 
-  sections.push(`
+function carteFriseProcedure() {
+  return `
     <div class="carte">
       <h2>Frise de la procédure</h2>
       <ul class="liste-faits frise">
@@ -372,9 +366,11 @@ function rendreBlocAnalyseIA() {
             <blockquote class="fait-citation">« ${esc(e.citation)} »</blockquote>
           </li>`).join("")}
       </ul>
-    </div>`);
+    </div>`;
+}
 
-  sections.push(`
+function carteRecoupements() {
+  return `
     <div class="carte">
       <h2>Identifiants recoupés</h2>
       <ul class="liste-confrontations">${donnees.recoupements.map((e) => `
@@ -386,9 +382,11 @@ function rendreBlocAnalyseIA() {
               <div class="citation-declarant">« ${esc(o.citation)} »</div>
             </div>`).join("")}
         </li>`).join("")}</ul>
-    </div>`);
+    </div>`;
+}
 
-  sections.push(`
+function carteConfrontations() {
+  return `
     <div class="carte">
       <h2>Points communs entre plusieurs personnes</h2>
       <ul class="liste-confrontations">${donnees.confrontations.map((c) => `
@@ -400,9 +398,7 @@ function rendreBlocAnalyseIA() {
               <div class="citation-declarant">« ${esc(d.citation)} »</div>
             </div>`).join("")}
         </li>`).join("")}</ul>
-    </div>`);
-
-  return sections.join("");
+    </div>`;
 }
 
 function rendreBlocChronologie() {
@@ -531,16 +527,6 @@ const LIBELLES_QUALITE = {
   non: ["Non invocable par votre client", "qualite-non"],
 };
 
-let vueDefense = "forme";
-
-function basculerVueDefense(vue) {
-  vueDefense = vue;
-  document.querySelectorAll(".defense-mode").forEach((b) => b.classList.toggle("actif", b.dataset.vue === vue));
-  document.querySelectorAll(".defense-vue").forEach((v) => { v.hidden = v.dataset.vue !== vue; });
-  suivre("Défense", { vue });
-}
-window.basculerVueDefense = basculerVueDefense;
-
 function rendrePiste(p) {
   const [libelleQualite, classeQualite] = LIBELLES_QUALITE[p.qualite];
   return `
@@ -568,12 +554,43 @@ function rendrePiste(p) {
     </li>`;
 }
 
-function rendreBlocDefense() {
+function enteteDefense(titre, sousTitre, complement = "") {
+  return `
+    <div class="carte defense-entete">
+      <h2>${titre}</h2>
+      <p class="defense-sous-titre">${sousTitre}</p>
+      ${complement}
+    </div>`;
+}
+
+function rendreOngletProcedure() {
   const d = donnees.defense;
-  if (!d) return "";
   const retenues = d.forme.filter((p) => p.qualite !== "non");
   const ecartees = d.forme.filter((p) => p.qualite === "non");
   const compte = (q) => d.forme.filter((p) => p.qualite === q).length;
+  return `
+    ${enteteDefense(`Défense de forme — ${esc(d.client)}`, "Nullités, garde à vue et régularité des actes, à examiner en premier : elles se soulèvent in limine litis.", `
+      <div class="defense-delai">
+        <div class="titre-signalement">${esc(d.delai.titre)}</div>
+        <div class="description-signalement">${esc(d.delai.texte)}</div>
+      </div>`)}
+    <div class="carte">
+      <h2>Pistes de nullité</h2>
+      <p class="defense-intro">${d.forme.length} irrégularités apparentes relevées dans le dossier. ${compte("oui")} sont invocables par votre client, ${compte("discutable")} suppose de démontrer sa qualité à agir, ${compte("non")} ne concernent que les coauteurs.</p>
+      <ul class="liste-pistes">${retenues.map(rendrePiste).join("")}</ul>
+      <details class="pistes-ecartees">
+        <summary>Écartées pour votre client (${ecartees.length}) — droits propres aux coauteurs</summary>
+        <ul class="liste-pistes">${ecartees.map(rendrePiste).join("")}</ul>
+      </details>
+    </div>
+    ${carteGardesAVue()}
+    ${carteContradictions("procedure", "Contradictions dans les actes de procédure")}
+    ${carteFriseProcedure()}
+    <p class="note-resume defense-note">Pistes proposées à partir des pièces du dossier — leur appréciation et leur qualification reviennent à l'avocat.</p>`;
+}
+
+function rendreOngletFond() {
+  const d = donnees.defense;
   const colonne = (titre, items, classe) => `
     <div class="fond-colonne ${classe}">
       <div class="fond-titre">${titre} <span>${items.length}</span></div>
@@ -584,50 +601,28 @@ function rendreBlocDefense() {
         </div>`).join("")}
     </div>`;
   return `
-    <div class="carte defense-entete">
-      <h2>Défense de ${esc(d.client)}</h2>
-      <div class="defense-delai">
-        <div class="titre-signalement">${esc(d.delai.titre)}</div>
-        <div class="description-signalement">${esc(d.delai.texte)}</div>
-      </div>
-      <div class="defense-modes" role="tablist">
-        <button type="button" class="defense-mode ${vueDefense === "forme" ? "actif" : ""}" data-vue="forme" onclick="basculerVueDefense('forme')">Forme — nullités <span>${retenues.length}</span></button>
-        <button type="button" class="defense-mode ${vueDefense === "fond" ? "actif" : ""}" data-vue="fond" onclick="basculerVueDefense('fond')">Fond — charges <span>${d.fond.length}</span></button>
-      </div>
+    ${enteteDefense(`Défense au fond — ${esc(d.client)}`, "Ce que les pièces établissent, ce qu'elles contredisent et ce qui manque à l'accusation, fait par fait.")}
+    ${carteContradictions("fond", "Contradictions entre pièces")}
+    <div class="carte">
+      <h2>Faits imputés au client : charges et éléments à décharge</h2>
+      <ul class="liste-fond">
+        ${d.fond.map((f) => `
+          <li class="fait-fond">
+            <div class="piste-entete">
+              <div class="titre-signalement">${esc(f.fait)}</div>
+              <span class="etiquette niveau-${f.niveau}">Charges ${esc(f.niveau)}s</span>
+            </div>
+            <div class="description-signalement">${esc(f.synthese)}</div>
+            <div class="fond-colonnes">
+              ${colonne("À charge", f.charge, "charge")}
+              ${colonne("À décharge", f.decharge, "decharge")}
+            </div>
+          </li>`).join("")}
+      </ul>
     </div>
-
-    <div class="defense-vue" data-vue="forme" ${vueDefense === "forme" ? "" : "hidden"}>
-      <div class="carte">
-        <h2>Pistes de nullité</h2>
-        <p class="defense-intro">${d.forme.length} irrégularités apparentes relevées dans le dossier. ${compte("oui")} sont invocables par votre client, ${compte("discutable")} suppose de démontrer sa qualité à agir, ${compte("non")} ne concernent que les coauteurs.</p>
-        <ul class="liste-pistes">${retenues.map(rendrePiste).join("")}</ul>
-        <details class="pistes-ecartees">
-          <summary>Écartées pour votre client (${ecartees.length}) — droits propres aux coauteurs</summary>
-          <ul class="liste-pistes">${ecartees.map(rendrePiste).join("")}</ul>
-        </details>
-      </div>
-    </div>
-
-    <div class="defense-vue" data-vue="fond" ${vueDefense === "fond" ? "" : "hidden"}>
-      <div class="carte">
-        <h2>Faits imputés au client : charges et éléments à décharge</h2>
-        <ul class="liste-fond">
-          ${d.fond.map((f) => `
-            <li class="fait-fond">
-              <div class="piste-entete">
-                <div class="titre-signalement">${esc(f.fait)}</div>
-                <span class="etiquette niveau-${f.niveau}">Charges ${esc(f.niveau)}s</span>
-              </div>
-              <div class="description-signalement">${esc(f.synthese)}</div>
-              <div class="fond-colonnes">
-                ${colonne("À charge", f.charge, "charge")}
-                ${colonne("À décharge", f.decharge, "decharge")}
-              </div>
-            </li>`).join("")}
-        </ul>
-      </div>
-    </div>
-    <p class="note-resume defense-note">Pistes proposées à partir des pièces du dossier — leur appréciation et leur qualification reviennent à l'avocat.</p>`;
+    ${carteRecoupements()}
+    ${carteConfrontations()}
+    <p class="note-resume defense-note">Rapprochements proposés à partir des pièces du dossier — leur appréciation revient à l'avocat.</p>`;
 }
 
 function rendreDetailDossier() {
@@ -666,8 +661,8 @@ function rendreDetailDossier() {
     </div>`;
 
   const panneauChrono = rendreJournee() + rendreBlocChronologie();
-  const panneauDefense = rendreBlocDefense();
-  const panneauAnalyse = rendreBlocAnalyseIA();
+  const panneauProcedure = rendreOngletProcedure();
+  const panneauFond = rendreOngletFond();
 
   document.getElementById("vue-dossier").innerHTML = `
     <div class="entete-detail">
@@ -689,8 +684,8 @@ function rendreDetailDossier() {
     </div>
     <div class="panneau-onglet" data-panneau="infos" ${ongletDossierActif === "infos" ? "" : "hidden"}>${panneauInfos}</div>
     <div class="panneau-onglet" data-panneau="chrono" ${ongletDossierActif === "chrono" ? "" : "hidden"}>${panneauChrono}</div>
-    <div class="panneau-onglet" data-panneau="defense" ${ongletDossierActif === "defense" ? "" : "hidden"}>${panneauDefense}</div>
-    <div class="panneau-onglet" data-panneau="analyse" ${ongletDossierActif === "analyse" ? "" : "hidden"}>${panneauAnalyse}</div>`;
+    <div class="panneau-onglet" data-panneau="procedure" ${ongletDossierActif === "procedure" ? "" : "hidden"}>${panneauProcedure}</div>
+    <div class="panneau-onglet" data-panneau="fond" ${ongletDossierActif === "fond" ? "" : "hidden"}>${panneauFond}</div>`;
 }
 
 function ouvrirDossier() {
@@ -733,21 +728,19 @@ const ETAPES_PARCOURS = [
     texte: () => `Victime, témoin, lecture des plaques, bornages : ${donnees.journee.evenements.length} évènements du ${donnees.journee.date} croisés sur un même axe, chacun cliquable vers sa pièce.`,
   },
   {
-    onglet: "defense",
-    vue: "forme",
+    onglet: "procedure",
     cible: ".liste-pistes .piste:first-child .piste-entete",
-    titre: "Les nullités, triées pour votre client",
+    titre: "Procédure : les nullités, triées pour votre client",
     texte: () => {
       const f = donnees.defense.forme;
       return `${f.length} irrégularités relevées. Lytis distingue celles que votre client peut invoquer (${f.filter((p) => p.qualite === "oui").length}) de celles qui ne concernent que ses coauteurs (${f.filter((p) => p.qualite === "non").length}).`;
     },
   },
   {
-    onglet: "defense",
-    vue: "fond",
-    cible: ".fait-fond .fond-colonne.decharge .declaration-personne .badge-source",
-    titre: "Au fond : ce qui manque à l'accusation",
-    texte: () => `Pour chaque fait imputé, les charges face aux éléments à décharge. Le 19/02, seule la synthèse accuse le client ; son pointage le place au travail. Ouvrez la pièce ${(sourcesParPage.get(preuveVedette.page) || {}).cote || ""}, page ${preuveVedette.page}.`,
+    onglet: "fond",
+    cible: ".contradiction.vedette .declaration-personne:last-child .badge-source",
+    titre: "Fond : les pièces qui ne concordent pas",
+    texte: () => `Le rapport de synthèse impute au client le cambriolage du 19/02 ; son relevé de pointage le place au travail à la même heure. Ouvrez la pièce ${(sourcesParPage.get(preuveVedette.page) || {}).cote || ""}, page ${preuveVedette.page}.`,
     bouton: "Ouvrir la pièce",
   },
 ];
@@ -766,7 +759,6 @@ window.lancerParcours = lancerParcours;
 function afficherEtape() {
   const etape = ETAPES_PARCOURS[etapeParcours];
   basculerOnglet(etape.onglet);
-  if (etape.vue) basculerVueDefense(etape.vue);
   document.querySelectorAll(".parcours-cible").forEach((el) => el.classList.remove("parcours-cible"));
   const cible = document.querySelector(etape.cible);
   document.getElementById("parcours-etape").textContent = `${etapeParcours + 1} / ${ETAPES_PARCOURS.length}`;

@@ -136,8 +136,6 @@ def references(donnees: dict) -> list[tuple[str, int, str]]:
         refs.append(("faits", f["page"], f["citation"]))
     for e in donnees["chronologie_procedure"]:
         refs.append(("procedure", e["page"], e["citation"]))
-    for s in donnees["signalements"]:
-        refs.append(("procedure", s["page_reference"], s["citation_reference"]))
     for c in donnees["contradictions"]:
         for s in c["sources"]:
             refs.append(("contradiction", s["page"], s["citation"]))

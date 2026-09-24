@@ -60,7 +60,7 @@ async function session(nom, options) {
   await page.waitForSelector("#parcours:not([hidden]) #parcours-bulle");
   verifier(await page.isVisible("#classeur-index .entree-index"), "ordinateur : index du dossier ouvert à l'arrivée");
   await page.screenshot({ path: join(RACINE, "captures/01-accueil-visite.png") });
-  const capturesVisite = ["02-journee-reconstituee.png", "03-defense-forme.png", "04-defense-fond.png"];
+  const capturesVisite = ["02-journee-reconstituee.png", "03-procedure.png", "04-fond.png"];
   for (const nom of capturesVisite) {
     await page.click("#parcours-suivant");
     await page.waitForTimeout(700);
@@ -113,7 +113,7 @@ async function session(nom, options) {
   await page.screenshot({ path: join(RACINE, "captures/10-mobile-visite.png") });
   await page.click("#parcours-suivant"); await page.waitForTimeout(400);
   await page.click("#parcours-suivant"); await page.waitForTimeout(600);
-  await page.screenshot({ path: join(RACINE, "captures/11-mobile-defense.png") });
+  await page.screenshot({ path: join(RACINE, "captures/11-mobile-procedure.png") });
   await page.click("#parcours-suivant"); await page.waitForTimeout(400);
   await page.click("#parcours-suivant");
   await page.waitForSelector("#classeur:not([hidden]) .page-cadre img");

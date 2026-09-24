@@ -647,7 +647,8 @@
             "page": 29,
             "citation": "jeudi 19/02/2026 07h58 12h03 4h05"
           }
-        ]
+        ],
+        "domaine": "fond"
       },
       {
         "titre": "Plaque du véhicule surveillé le 03/03 : ZV-535-RT au lieu de ZV-553-RT",
@@ -663,7 +664,8 @@
             "page": 10,
             "citation": "immatriculé ZV-553-RT, utilisé par FONTANEL Yannick."
           }
-        ]
+        ],
+        "domaine": "fond"
       },
       {
         "titre": "Couleur du véhicule : break blanc selon le témoin, Skoda gris métallisé selon la LAPI",
@@ -679,7 +681,8 @@
             "page": 4,
             "citation": "Skoda Octavia Combi, couleur gris métallisé"
           }
-        ]
+        ],
+        "domaine": "fond"
       },
       {
         "titre": "Heure d'interpellation de FONTANEL : 06h05 ou 06h30",
@@ -695,7 +698,9 @@
             "page": 27,
             "citation": "FONTANEL Yannick, interpellé à 06h30 à son domicile"
           }
-        ]
+        ],
+        "domaine": "procedure",
+        "concerne": "FONTANEL Yannick"
       },
       {
         "titre": "Prolongation de FONTANEL : notifiée le 11/03 ou le 12/03 ?",
@@ -711,7 +716,9 @@
             "page": 23,
             "citation": "FONTANEL 12/03 06h00 Notification de la prolongation"
           }
-        ]
+        ],
+        "domaine": "procedure",
+        "concerne": "FONTANEL Yannick"
       },
       {
         "titre": "Nombre de faits : quatre cambriolages documentés, six imputés",
@@ -727,51 +734,8 @@
             "page": 27,
             "citation": "Six cambriolages de pavillons ont été commis entre le 22/01/2026 et le 03/03/2026"
           }
-        ]
-      }
-    ],
-    "signalements": [
-      {
-        "titre": "Perquisition du domicile de MARTINON commencée à 05h40",
-        "description": "Local d'habitation (T2). L'ordonnance du 09/03 (D12, page 13) ne vise que les locaux professionnels du dépôt de Fontaine, « à l'exclusion de tout local d'habitation ». La casquette rouge et le téléphone du client sont saisis au cours de cette perquisition.",
-        "page_reference": 16,
-        "citation_reference": "commençons la perquisition de l'appartement (T2, plan ci-dessous) à 05h40"
-      },
-      {
-        "titre": "Balise posée le 23/02, ordonnance de géolocalisation du 25/02",
-        "description": "La pose du dispositif (D9) précède de deux jours l'ordonnance qui l'autorise (D10, page 11), elle-même rendue sur une requête du 24/02.",
-        "page_reference": 10,
-        "citation_reference": "À 04h10, procédons à la mise en place sur ce véhicule d'un dispositif technique de géolocalisation en temps réel"
-      },
-      {
-        "titre": "Réquisition sur la ligne du client sans autorisation distincte",
-        "description": "L'autorisation du parquet (D4, page 5) ne vise que la ligne 06 39 98 14 52 et exige une autorisation distincte pour toute autre ligne. Aucune autorisation n'est au dossier pour la ligne 06 39 98 63 08, qui a permis d'identifier MARTINON.",
-        "page_reference": 7,
-        "citation_reference": "Requérons la société NEXALINE Mobile de nous communiquer l'identité du titulaire de la ligne 06 39 98 63 08"
-      },
-      {
-        "titre": "Droits de FONTANEL notifiés 2 h 50 après l'appréhension",
-        "description": "Appréhendé à 06h05 (D18, page 19), arrivé au service à 08h20, notifié à 08h55 ; aucune circonstance n'est mentionnée. L'avocate l'a fait acter en audition (D23, page 24).",
-        "page_reference": 20,
-        "citation_reference": "Notifions à 08h55 à FONTANEL Yannick"
-      },
-      {
-        "titre": "Avis au juge d'instruction 6 h 35 après le placement de BERTHOLLET",
-        "description": "Placement à 05h15 ; la commission rogatoire (D8, page 9) prescrit d'informer le magistrat dès le début de la mesure.",
-        "page_reference": 22,
-        "citation_reference": "Par téléphone, avisons ce jour à 11h50 Monsieur ROUVIÈRE, juge d'instruction, du placement en garde à vue"
-      },
-      {
-        "titre": "Prolongation de FONTANEL sur formulaire type, sans mention de présentation",
-        "description": "L'ordonnance vise les seuls articles 63 et 154, ne comporte aucune motivation propre et ne mentionne pas la présentation de l'intéressé au magistrat.",
-        "page_reference": 26,
-        "citation_reference": "Formulaire type — cabinet n°2"
-      },
-      {
-        "titre": "Notification des droits du client différée de 3 h 52",
-        "description": "Différée pour ivresse. Le certificat de 07h15 prévoit une réévaluation « après dégrisement (environ deux heures) » ; le contrôle favorable est à 09h20, la notification à 09h30.",
-        "page_reference": 18,
-        "citation_reference": "La notification intervient en conséquence à 09h30."
+        ],
+        "domaine": "fond"
       }
     ],
     "confrontations": [
