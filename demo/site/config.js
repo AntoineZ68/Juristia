@@ -15,11 +15,11 @@
 // « à compléter » : ne pas diffuser la démo largement dans cet état.
 window.LYTIS_CONFIG = {
   editeur: {
-    nom: "",            // ex. "Antoine Zoller" ou "Lytis SAS"
-    statut: "",         // ex. "entrepreneur individuel, SIREN …" ou "projet en cours de création"
-    adresse: "",        // adresse postale (domicile ou siège)
-    email: "",          // adresse de contact, aussi pour les demandes RGPD
-    directeur: "",      // directeur de la publication (en général le même nom)
+    nom: "Antoine Zoller",
+    statut: "Projet en cours de création",
+    adresse: "143 rue Stéphane Déchant, 69350 La Mulatière",
+    email: "antoine.zoller@edu.em-lyon.com",   // contact, y compris pour les demandes RGPD
+    directeur: "Antoine Zoller",
   },
   hebergeur: {
     nom: "Render Services, Inc.",
