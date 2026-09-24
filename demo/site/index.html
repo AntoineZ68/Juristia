@@ -29,7 +29,7 @@
       <div class="marque-logo">Lytis.</div>
       <h1>Lytis</h1>
     </div>
-    <button type="button" id="bouton-nouveau" class="bouton-primaire" onclick="actionIndisponible('Nouveau dossier')">+ Nouveau dossier</button>
+    <button type="button" id="bouton-nouveau" class="bouton-primaire" onclick="ouvrirNouveauDossier()">+ Nouveau dossier</button>
     <div class="titre-section">Dossiers</div>
     <div id="liste-dossiers"></div>
     <div id="pied-barre">
@@ -46,6 +46,7 @@
    <div id="colonne-contenu">
     <button type="button" id="bouton-retour-mobile" onclick="retourListeMobile()">← Retour aux dossiers</button>
     <div id="vue-dossier"></div>
+    <div id="vue-nouveau" hidden></div>
    </div>
 
    <aside id="classeur" hidden>

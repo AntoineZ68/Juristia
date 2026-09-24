@@ -102,7 +102,17 @@ async function session(nom, options) {
   console.log(manquants ? `    ATTENTION : ${manquants} information(s) d'éditeur à compléter dans site/config.js` : "    Mentions : éditeur complet");
   await page.keyboard.press("Escape");
   await page.click("#bouton-nouveau");
-  verifier(await page.isVisible("#avis-indisponible"), "« Nouveau dossier » renvoie vers l'accès, sans formulaire");
+  verifier(await page.isVisible("#vue-nouveau .formulaire-demo"), "« Nouveau dossier » affiche le formulaire de création");
+  const saisissables = await page.$$eval("#vue-nouveau input, #vue-nouveau select, #vue-nouveau textarea", (els) => els.filter((e) => !e.disabled).length);
+  verifier(saisissables === 0, "formulaire entièrement verrouillé : aucun champ saisissable");
+  await page.click("#vue-nouveau .champ input", { force: true });
+  verifier(await page.isVisible("#avis-indisponible"), "clic dans un champ : avis « ceci est une démonstration »");
+  await page.click("#avis-indisponible button");
+  await page.click("#vue-nouveau .zone-depot");
+  verifier(await page.isVisible("#avis-indisponible"), "clic sur la zone de dépôt : même avis, aucun fichier sélectionnable");
+  await page.screenshot({ path: join(RACINE, "captures/14-nouveau-dossier.png") });
+  await page.click(".item-dossier");
+  verifier(await page.isVisible("#vue-dossier .barre-onglets"), "retour au dossier depuis la liste");
   verifier(await page.locator('input[type="file"]').count() === 0, "aucun champ de dépôt de fichier dans la page");
   await page.screenshot({ path: join(RACINE, "captures/07-informations-avis.png") });
 
