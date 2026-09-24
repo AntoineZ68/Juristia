@@ -34,9 +34,10 @@ COULEURS = {
     "declaration": (153, 217, 255),
     "faits": (178, 255, 178),
     "contradiction": (255, 176, 160),
+    "nullite": (214, 186, 255),
 }
 # Ordre de priorité quand un même passage relève de plusieurs catégories.
-PRIORITE = ["contradiction", "faits", "declaration", "procedure"]
+PRIORITE = ["contradiction", "nullite", "faits", "declaration", "procedure"]
 
 
 def main() -> None:
@@ -44,6 +45,10 @@ def main() -> None:
     donnees = donnees_completes["donnees"]
 
     zones_par_page: dict[int, dict[str, list]] = {}
+    # Nombre de passages distincts surlignés par couleur et par page, pour la
+    # légende du classeur. Un passage cité à plusieurs endroits ne compte
+    # qu'une fois.
+    passages_par_page: dict[int, dict[str, set]] = {}  # page -> citation -> catégories
     positions: dict[str, list] = {}
     echecs = []
     for categorie, page, citation in references(donnees):
@@ -52,6 +57,7 @@ def main() -> None:
             echecs.append((page, citation, round(r.score, 2), r.nombres_manquants))
             continue
         rects = r.zones()
+        passages_par_page.setdefault(page, {}).setdefault(citation, set()).add(categorie)
         zones_par_page.setdefault(page, {}).setdefault(categorie, []).extend(rects)
         positions[f"{page}|{citation}"] = rects
     if echecs:
@@ -112,6 +118,10 @@ def main() -> None:
         })
     donnees["sources"] = sources
     donnees_completes["positions"] = positions_relatives
+    donnees_completes["surlignage"] = {
+        "couleurs": {c: "#%02x%02x%02x" % rgb for c, rgb in COULEURS.items()},
+        "par_page": {str(p): _compter_couleurs_visibles(cits) for p, cits in passages_par_page.items()},
+    }
 
     (SITE / "data.js").write_text(
         "// Fichier généré par tools/build.py à partir de source/dossier.json — ne pas modifier à la main.\n"
@@ -119,6 +129,16 @@ def main() -> None:
         encoding="utf-8",
     )
     print(f"{nb_pages} pages, {len(positions)} citations localisées.")
+
+
+def _compter_couleurs_visibles(citations: dict[str, set]) -> dict[str, int]:
+    """Un passage relevant de plusieurs catégories n'est dessiné que dans la
+    plus prioritaire : c'est elle seule que compte la légende."""
+    compte: dict[str, int] = {}
+    for categories in citations.values():
+        visible = next(c for c in PRIORITE if c in categories)
+        compte[visible] = compte.get(visible, 0) + 1
+    return compte
 
 
 def _recouvre(a, b) -> bool:

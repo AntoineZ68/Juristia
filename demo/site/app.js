@@ -170,6 +170,7 @@ function basculerModeClasseur(mode) {
   document.getElementById("classeur-piece").hidden = mode !== "piece";
   document.getElementById("classeur-index").hidden = mode !== "index";
   document.getElementById("classeur-navigation").hidden = mode !== "piece";
+  document.getElementById("classeur-legende").hidden = mode !== "piece";
   if (mode === "index") rendreIndexClasseur();
 }
 window.basculerModeClasseur = basculerModeClasseur;
@@ -178,9 +179,49 @@ function cheminPage(n) {
   return `pages/p${String(n).padStart(3, "0")}.webp`;
 }
 
+// Légende du surlignage : quelle couleur pour quel type d'information, et
+// combien de passages de chaque couleur sur la page affichée. Les couleurs
+// sont celles des pages pré-rendues (tools/build.py) : elles ne se changent pas.
+const CATEGORIES_SURLIGNAGE = [
+  ["faits", "Faits", "Ce qui s'est passé : chronologie des faits, résumé, journée reconstituée."],
+  ["procedure", "Procédure", "Actes, heures et délais de la procédure."],
+  ["declaration", "Déclarations et preuves", "Propos des personnes entendues, charges, éléments à décharge, identifiants recoupés."],
+  ["contradiction", "Contradictions", "Passages qui ne concordent pas d'une pièce à l'autre."],
+  ["nullite", "Pistes de nullité", "Passages sur lesquels repose une piste de l'onglet Procédure."],
+];
+let legendeDepliee = false;
+
+function rendreLegende() {
+  const el = document.getElementById("classeur-legende");
+  const couleurs = DEMO.surlignage.couleurs;
+  const compte = DEMO.surlignage.par_page[String(classeurPage)] || {};
+  el.innerHTML = `
+    <button type="button" class="legende-ligne" onclick="basculerLegende()" aria-expanded="${legendeDepliee}" title="Signification des couleurs">
+      ${CATEGORIES_SURLIGNAGE.map(([c, libelle]) => `
+        <span class="legende-item ${compte[c] ? "" : "absent"}">
+          <span class="legende-pastille" style="background:${couleurs[c]}"></span>${libelle}${compte[c] ? ` <strong>${compte[c]}</strong>` : ""}
+        </span>`).join("")}
+      <span class="legende-info">${legendeDepliee ? "▴" : "ⓘ"}</span>
+    </button>
+    ${legendeDepliee ? `
+      <dl class="legende-details">
+        ${CATEGORIES_SURLIGNAGE.map(([c, libelle, detail]) => `
+          <dt><span class="legende-pastille" style="background:${couleurs[c]}"></span>${libelle}</dt><dd>${detail}</dd>`).join("")}
+        <dd class="legende-note">Les chiffres indiquent le nombre de passages surlignés sur la page affichée. Un passage relevant de plusieurs catégories prend la couleur de la plus importante.</dd>
+      </dl>` : ""}`;
+}
+
+function basculerLegende() {
+  legendeDepliee = !legendeDepliee;
+  rendreLegende();
+  if (legendeDepliee) suivre("Légende surlignage");
+}
+window.basculerLegende = basculerLegende;
+
 function majNavigationClasseur() {
   document.getElementById("classeur-position").textContent = `Page ${classeurPage} / ${NB_PAGES}`;
   document.getElementById("classeur-source").textContent = libelleSource(classeurPage);
+  rendreLegende();
   const boutons = document.querySelectorAll(".classeur-navigation button");
   boutons[0].disabled = classeurPage <= 1;
   boutons[1].disabled = classeurPage >= NB_PAGES;

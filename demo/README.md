@@ -89,6 +89,13 @@ défilement horizontal sur mobile. Il régénère les captures.
 4. **Custom Domain** (par ex. `demo.lytis.legal`), puis un enregistrement CNAME chez le
    registraire du domaine vers l'adresse fournie par Render.
 
+## Couleurs du surlignage
+
+Cinq catégories, fixées dans `tools/build.py` (`COULEURS`, `PRIORITE`) :
+faits (vert), procédure (jaune), déclarations et preuves (bleu),
+contradictions (saumon), pistes de nullité (violet). La légende du classeur
+les explique et compte les passages de chaque couleur sur la page affichée.
+
 ## Mentions légales et confidentialité
 
 Accessibles depuis le bandeau (« Confidentialité ») et le bas de la barre

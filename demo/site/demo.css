@@ -195,3 +195,24 @@
   .mentions-identite { grid-template-columns: 1fr; }
   .mentions-identite dd { margin-bottom: 6px; }
 }
+
+/* --- Légende du surlignage (classeur) --- */
+.classeur-legende { border-bottom: 1px solid var(--bordure-douce); flex-shrink: 0; }
+.legende-ligne {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; width: 100%; text-align: left;
+  border: none; border-radius: 0; background: transparent; padding: 7px 14px; font-size: 11.5px; color: var(--texte-att);
+}
+.legende-ligne:hover { background: rgba(22,18,13,0.03); border: none; color: var(--texte); }
+.legende-item { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.legende-item strong { color: var(--encre); font-weight: 600; }
+.legende-item.absent { opacity: 0.55; }
+.legende-pastille { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(22,18,13,0.12); display: inline-block; }
+.legende-info { margin-left: auto; color: var(--texte-att-2); font-size: 12px; }
+.legende-details { margin: 0; padding: 4px 14px 12px; display: grid; grid-template-columns: max-content 1fr; gap: 5px 12px; font-size: 12px; }
+.legende-details dt { display: flex; align-items: center; gap: 6px; font-weight: 600; color: var(--encre); white-space: nowrap; }
+.legende-details dd { margin: 0; color: var(--texte-att); }
+.legende-details .legende-note { grid-column: 1 / -1; font-size: 11px; color: var(--texte-att-2); margin-top: 4px; }
+@media (max-width: 720px) {
+  .legende-details { grid-template-columns: 1fr; }
+  .legende-details dd { margin-bottom: 4px; }
+}

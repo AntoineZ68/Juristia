@@ -76,6 +76,11 @@ async function session(nom, options) {
   verifier(source.includes("cote D28"), `référence affichée : ${source}`);
   verifier(await page.locator(".zone-reperage").count() > 0, "passage cité repéré sur la page");
   await page.screenshot({ path: join(RACINE, "captures/05-piece-D28-surlignee.png") });
+  verifier(await page.locator("#classeur-legende .legende-item").count() === 5, "légende du surlignage : 5 couleurs");
+  await page.click("#classeur-legende .legende-ligne");
+  verifier(await page.isVisible("#classeur-legende .legende-details"), "légende dépliable avec la signification des couleurs");
+  await page.screenshot({ path: join(RACINE, "captures/05c-legende-surlignage.png") });
+  await page.click("#classeur-legende .legende-ligne");
   await page.click(".page-cadre");
   await page.waitForTimeout(300);
   verifier(await page.locator(".page-cadre.agrandie").count() === 1, "clic sur la page : agrandissement");
