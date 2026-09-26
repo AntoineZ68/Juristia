@@ -59,6 +59,10 @@ async function session(nom, options) {
   verifier(robots === "noindex, nofollow", "balise <meta name=robots content=noindex, nofollow>");
   await page.waitForSelector("#parcours:not([hidden]) #parcours-bulle");
   verifier(await page.isVisible("#classeur-index .entree-index"), "ordinateur : index du dossier ouvert à l'arrivée");
+  await page.click('.mode-classeur[data-mode="piece"]');
+  await page.waitForSelector("#classeur-piece .page-cadre img", { timeout: 5000 }).catch(() => {});
+  verifier(await page.isVisible("#classeur-piece .page-cadre img"), "onglet « Pièce » à l'arrivée : la page 1 s'affiche (pas d'écran vide)");
+  await page.click('.mode-classeur[data-mode="index"]');
   await page.screenshot({ path: join(RACINE, "captures/01-accueil-visite.png") });
   const capturesVisite = ["02-journee-reconstituee.png", "03-procedure.png", "04-fond.png"];
   for (const nom of capturesVisite) {

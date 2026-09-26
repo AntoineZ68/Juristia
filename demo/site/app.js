@@ -327,6 +327,15 @@ function ouvrirClasseur(page, citation) {
 }
 window.ouvrirClasseur = ouvrirClasseur;
 
+// Onglet « Pièce » : si aucune page n'est encore affichée (classeur ouvert
+// sur l'index ou les questions), afficher la page courante au lieu d'un
+// panneau vide.
+function montrerPiece() {
+  basculerModeClasseur("piece");
+  if (!document.querySelector("#classeur-piece .page-cadre")) afficherPageClasseur(classeurPage);
+}
+window.montrerPiece = montrerPiece;
+
 function ouvrirIndexClasseur() {
   document.getElementById("classeur").hidden = false;
   basculerModeClasseur("index");
