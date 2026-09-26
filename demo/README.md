@@ -91,6 +91,19 @@ défilement horizontal sur mobile. Il régénère les captures.
 4. **Custom Domain** (par ex. `demo.lytis.legal`), puis un enregistrement CNAME chez le
    registraire du domaine vers l'adresse fournie par Render.
 
+## Graphiques
+
+- **Procédure — « Gardes à vue, heure par heure »** (`chronogramme_gav`) : une
+  ligne par personne, du placement à la fin de la mesure, avec les repères
+  (droits, avocat, médecin, auditions, avis au magistrat, prolongation) et le
+  délai à examiner hachuré. Échelle détaillée sur la première journée, puis
+  resserrée. Chaque repère ouvre sa pièce.
+- **Fond — « Ce qui relie votre client à chaque fait »** (`rattachement`) : un
+  tableau faits imputés × types de pièces ; chaque case dit si la pièce place
+  le client, constitue un indice, lui paraît favorable, paraît l'exclure,
+  concerne un coauteur ou si la copie ne contient rien. Un clic affiche
+  l'élément et ouvre la pièce.
+
 ## Questions au dossier
 
 Une barre de saisie sous l'en-tête (« Interroger le dossier… »), sans

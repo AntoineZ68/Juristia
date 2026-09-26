@@ -389,3 +389,70 @@ form.barre-interroger input::placeholder { color: var(--texte-att); }
 .bouton-envoyer:hover { background: var(--encre); color: #faf8f4; }
 .reponse-rapprochee { font-size: 11.5px; color: var(--texte-att-2); font-style: italic; margin-bottom: 6px !important; }
 .bulle-reponse.sans-reponse { color: var(--texte-att); border-style: dashed; }
+
+/* --- Chronogramme des gardes à vue --- */
+.bloc-chronogramme { --c-placement: #16120d; --c-droits: #426b4b; --c-avocat: #3f6591; --c-medecin: #7d5aa6;
+  --c-audition: #8a5a2b; --c-magistrat: #b08a1f; --c-repos: #9a9a92; --c-prolongation: #b4533c; --c-fin: #16120d; }
+.chrono-legende { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; color: var(--texte-att); margin: -4px 0 14px; }
+.chrono-legende span { display: inline-flex; align-items: center; gap: 5px; }
+.chrono-legende i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.gav-placement { --c: var(--c-placement); } .gav-droits { --c: var(--c-droits); } .gav-avocat { --c: var(--c-avocat); }
+.gav-medecin { --c: var(--c-medecin); } .gav-audition { --c: var(--c-audition); } .gav-magistrat { --c: var(--c-magistrat); }
+.gav-repos { --c: var(--c-repos); } .gav-prolongation { --c: var(--c-prolongation); } .gav-fin { --c: var(--c-fin); }
+.chrono-legende i, .chronogramme .chrono-point, .chronogramme .chrono-point:hover,
+.chronogramme .chrono-plage, .chronogramme .chrono-plage:hover { background: var(--c); }
+.gav-delai-legende { border-radius: 2px !important; width: 16px !important; background: repeating-linear-gradient(45deg, rgba(180,83,60,0.55) 0 3px, rgba(180,83,60,0.18) 3px 6px); }
+.chronogramme { display: flex; flex-direction: column; gap: 14px; }
+.chrono-ligne { display: grid; grid-template-columns: 150px 1fr; column-gap: 12px; align-items: center; }
+.chrono-nom { font-size: 13px; font-weight: 600; color: var(--encre); line-height: 1.3; }
+.chrono-nom small { display: block; font-weight: 400; color: var(--texte-att-2); font-size: 11.5px; }
+.chrono-client { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--succes); background: var(--accent-voile-fort); padding: 1px 6px; border-radius: 999px; }
+.chrono-piste { position: relative; height: 26px; }
+.chrono-mesure { position: absolute; top: 9px; height: 8px; background: var(--carte-creuse); border: 1px solid var(--bordure); border-radius: 4px; }
+.chrono-ligne.client .chrono-mesure { background: var(--accent-voile-fort); border-color: var(--accent); }
+.chrono-delai { position: absolute; top: 5px; height: 16px; border-radius: 3px; background: repeating-linear-gradient(45deg, rgba(180,83,60,0.55) 0 3px, rgba(180,83,60,0.18) 3px 6px); }
+.chrono-point, .chrono-plage { position: absolute; padding: 0; border: 2px solid var(--carte); cursor: pointer; }
+.chrono-point { top: 50%; width: 13px; height: 13px; border-radius: 50%; transform: translate(-50%, -50%); }
+.chrono-plage { top: 7px; height: 12px; border-radius: 3px; }
+.chrono-point:hover, .chrono-plage:hover { border-color: var(--encre); background-clip: padding-box; }
+.chrono-alerte { grid-column: 2; font-size: 11.5px; color: var(--contradiction); margin-top: 2px; }
+.chrono-axe { height: 18px; border-top: 1px solid var(--bordure); }
+.chrono-axe span { position: absolute; top: 3px; transform: translateX(-50%); font-size: 10.5px; color: var(--texte-att-2); white-space: nowrap; }
+.chrono-axe .chrono-coupure { top: -12px; font-size: 13px; color: var(--texte-att); }
+@media (max-width: 720px) {
+  .chrono-ligne { grid-template-columns: 1fr; row-gap: 4px; }
+  .chrono-alerte { grid-column: 1; }
+  .chrono-axe-ligne .chrono-nom { display: none; }
+}
+
+/* --- Rattachement du client à chaque fait --- */
+.rattachement-defilement { overflow-x: auto; margin: 0 -4px; padding: 0 4px; }
+.rattachement { width: 100%; border-collapse: separate; border-spacing: 4px; min-width: 520px; }
+.rattachement th { font-size: 11px; font-weight: 600; color: var(--texte-att); text-align: center; vertical-align: bottom; line-height: 1.25; padding: 0 2px 4px; }
+.rattachement tbody th { text-align: left; font-size: 12px; color: var(--encre); white-space: nowrap; padding-right: 6px; vertical-align: middle; line-height: 1.25; }
+.rattachement tbody th small { display: block; font-weight: 400; color: var(--texte-att-2); font-size: 11px; }
+.rattachement td { padding: 0; }
+.case-rattachement { display: block; width: 100%; height: 30px; padding: 0; border-radius: 6px; border: 1px solid transparent; cursor: pointer; }
+.case-rattachement:hover, .case-rattachement.selectionnee { outline: 2px solid var(--encre); outline-offset: 1px; }
+.etat-place { --fond-etat: #c65f47; }
+.etat-indice { --fond-etat: #e7b75f; }
+.etat-favorable { --fond-etat: #a9cfa4; }
+.etat-exclut { --fond-etat: #4f8a5b; }
+.etat-neutre { --fond-etat: repeating-linear-gradient(45deg, #d9d3c6 0 4px, #ece7dc 4px 8px); }
+.etat-vide { --fond-etat: var(--carte-creuse); border-color: var(--bordure-douce); }
+/* Plus spécifique que « button:hover » de app.css, qui effacerait la couleur. */
+.bloc-rattachement .case-rattachement, .bloc-rattachement .case-rattachement:hover,
+.etiquette-etat { background: var(--fond-etat); }
+.rattachement-legende { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 12px 0 10px; font-size: 11.5px; color: var(--texte-att); }
+.rattachement-legende span { display: inline-flex; align-items: center; gap: 6px; }
+.rattachement-legende i.case-rattachement { width: 14px; height: 14px; border-radius: 3px; display: inline-block; cursor: default; }
+.rattachement-detail { background: var(--carte-creuse); border-radius: var(--rayon-sm); padding: 10px 12px; font-size: 13px; min-height: 44px; }
+.rattachement-detail .detail-entete { margin-bottom: 4px; }
+.etiquette-etat { font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 999px; color: var(--encre); }
+.etiquette-etat.etat-place, .etiquette-etat.etat-exclut { color: #fff; }
+.chrono-piste { height: 34px; }
+.chrono-mesure { top: 13px; }
+.chrono-delai { top: 9px; }
+.chrono-plage { top: 11px; }
+.chrono-point.niveau-1 { top: 18%; }
+.chrono-point.niveau-2 { top: 82%; }

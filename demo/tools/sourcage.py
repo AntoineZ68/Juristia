@@ -149,8 +149,13 @@ def references(donnees: dict) -> list[tuple[str, int, str]]:
         for phrase in bloc["phrases"]:
             for src in phrase["sources"]:
                 refs.append(("faits", src["page"], src["citation"]))
-    for e in donnees.get("journee", {}).get("evenements", []):
-        refs.append(("faits", e["page"], e["citation"]))
+    for ligne in donnees.get("rattachement", {}).get("lignes", []):
+        for c in ligne["cellules"]:
+            if c.get("page"):
+                refs.append(("declaration", c["page"], c["citation"]))
+    for personne in donnees.get("chronogramme_gav", {}).get("personnes", []):
+        for e in personne["evenements"]:
+            refs.append(("procedure", e["page"], e["citation"]))
     for q in donnees.get("questions", []):
         for phrase in q["reponse"]:
             for src in phrase["sources"]:

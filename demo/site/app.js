@@ -421,21 +421,135 @@ function carteContradictions(domaine, titre) {
     </div>`;
 }
 
-function carteGardesAVue() {
+// --- Chronogramme des gardes à vue -----------------------------------------
+//
+// Une ligne par personne, du placement à la fin de la mesure. L'échelle est
+// détaillée sur la première journée (où tout se joue), puis resserrée jusqu'à
+// la fin des mesures. Chaque repère ouvre sa pièce.
+
+const TYPES_GAV = {
+  placement: "Début de la mesure", droits: "Notification des droits", avocat: "Avocat",
+  medecin: "Médecin", audition: "Audition", magistrat: "Avis au magistrat",
+  repos: "Dégrisement", prolongation: "Prolongation", fin: "Fin de la mesure",
+};
+
+function minutesGav(horodatage) {
+  const [date, heure] = horodatage.split(" ");
+  const jour = Number(date.split("/")[0]);
+  const [h, m] = heure.split("h").map(Number);
+  return jour * 1440 + h * 60 + (m || 0);
+}
+
+// Deux repères trop proches se chevaucheraient : on décale le second
+// au-dessus ou au-dessous de la ligne, pour que chacun reste cliquable.
+function decalerRepères(evenements, x) {
+  const ECART = 2.2; // % de largeur
+  const derniers = { 0: -99, 1: -99, 2: -99 };
+  return evenements.map((e) => {
+    if (e.fin) return { e, niveau: 0 };
+    const pos = x(e.heure);
+    const niveau = [0, 1, 2].find((n) => pos - derniers[n] >= ECART) ?? 0;
+    derniers[niveau] = pos;
+    return { e, niveau };
+  });
+}
+
+function carteChronogrammeGAV() {
+  const c = donnees.chronogramme_gav;
+  if (!c) return "";
+  const debut = minutesGav(c.debut);
+  const coupure = minutesGav(c.coupure);
+  const fin = minutesGav(c.fin);
+  const PART = 80; // % de la largeur consacré à la première journée
+  const x = (h) => {
+    const t = minutesGav(h);
+    return t <= coupure ? ((t - debut) / (coupure - debut)) * PART : PART + 2 + ((t - coupure) / (fin - coupure)) * (100 - PART - 2);
+  };
+  const graduations = [];
+  for (let h = 5; h <= 19; h += 2) graduations.push([`10/03 ${String(h).padStart(2, "0")}h00`, `${h}h`]);
+  graduations.push(["11/03 00h00", "11/03"], ["12/03 00h00", "12/03"]);
+  const lienEvt = (e) => {
+    references.push({ page: e.page, citation: e.citation });
+    return references.length - 1;
+  };
   return `
-    <div class="carte">
-      <h2>Garde à vue : délais calculés</h2>
-      ${donnees.gardes_a_vue.map((d) => `
-        <div class="gav-personne">${esc(d.personne)}</div>
-        <div class="stats-gav">
-          <div class="stat-gav"><div class="valeur-stat">${esc(d.duree_totale_garde_a_vue)}</div><div class="libelle-stat">Durée totale</div></div>
-          <div class="stat-gav"><div class="valeur-stat">${esc(d.delai_placement_notification_droits)}</div><div class="libelle-stat">Placement → notification des droits</div></div>
-          <div class="stat-gav"><div class="valeur-stat">${esc(d.delai_demande_realisation_examen_medical)}</div><div class="libelle-stat">Demande → examen médical</div></div>
-          <div class="stat-gav"><div class="valeur-stat">${esc(d.delai_demande_realisation_entretien_avocat)}</div><div class="libelle-stat">Demande → entretien avocat</div></div>
-        </div>`).join("")}
-      <p class="note-resume" style="margin-top:14px;">Délais calculés à partir des horodatages vérifiés du dossier — à recouper avec les textes applicables, jamais une conclusion en soi.</p>
+    <div class="carte bloc-chronogramme">
+      <h2>${esc(c.titre)}</h2>
+      <div class="chrono-legende">
+        ${Object.entries(TYPES_GAV).map(([t, l]) => `<span><i class="gav-${t}"></i>${l}</span>`).join("")}
+        <span><i class="gav-delai-legende"></i>Délai à examiner</span>
+      </div>
+      <div class="chronogramme">
+        ${c.personnes.map((p) => `
+          <div class="chrono-ligne ${p.client ? "client" : ""}">
+            <div class="chrono-nom">${esc(p.nom)}${p.client ? ' <span class="chrono-client">client</span>' : ""}<small>${esc(p.duree)}</small></div>
+            <div class="chrono-piste">
+              <span class="chrono-mesure" style="left:${x(p.debut)}%;width:${x(p.fin) - x(p.debut)}%"></span>
+              ${p.delai ? `<span class="chrono-delai" style="left:${x(p.delai.de)}%;width:${x(p.delai.a) - x(p.delai.de)}%" title="${esc(p.delai.libelle)}"></span>` : ""}
+              ${decalerRepères(p.evenements, x).map(({ e, niveau }) => {
+                const i = lienEvt(e);
+                const titre = `${e.heure.replace(" ", " à ")}${e.fin ? "–" + e.fin.split(" ")[1] : ""} · ${e.libelle}`;
+                return e.fin
+                  ? `<button type="button" class="chrono-plage gav-${e.type}" style="left:${x(e.heure)}%;width:${Math.max(0.8, x(e.fin) - x(e.heure))}%" title="${esc(titre)}" onclick="ouvrirSource(${i})"></button>`
+                  : `<button type="button" class="chrono-point gav-${e.type} niveau-${niveau}" style="left:${x(e.heure)}%" title="${esc(titre)}" onclick="ouvrirSource(${i})"></button>`;
+              }).join("")}
+            </div>
+            ${p.delai ? `<div class="chrono-alerte">${esc(p.delai.libelle)}</div>` : ""}
+          </div>`).join("")}
+        <div class="chrono-ligne chrono-axe-ligne">
+          <div class="chrono-nom"></div>
+          <div class="chrono-piste chrono-axe">
+            ${graduations.map(([h, l]) => `<span style="left:${x(h)}%">${l}</span>`).join("")}
+            <span class="chrono-coupure" style="left:${PART + 1}%">≈</span>
+          </div>
+        </div>
+      </div>
+      <p class="note-resume" style="margin-top:12px;">Horodatages tirés des PV et du registre de garde à vue ; chaque repère ouvre sa pièce. Délais à recouper avec les textes applicables, à l'appréciation de l'avocat.</p>
     </div>`;
 }
+
+// --- Rattachement du client à chaque fait -----------------------------------
+
+function carteRattachement() {
+  const r = donnees.rattachement;
+  if (!r) return "";
+  return `
+    <div class="carte bloc-rattachement">
+      <h2>${esc(r.titre)}</h2>
+      <p class="defense-intro">Pour chaque fait imputé, ce que chaque type de pièce dit du client. Cliquez sur une case pour lire l'élément et ouvrir la pièce.</p>
+      <div class="rattachement-defilement">
+        <table class="rattachement">
+          <thead><tr><th></th>${r.colonnes.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
+          <tbody>
+            ${r.lignes.map((l, i) => `
+              <tr>
+                <th scope="row">${(() => { const [n, date, lieu] = l.fait.split(" · "); return `<span>${esc(n)} · ${esc(date)}</span><small>${esc(lieu)}</small>`; })()}</th>
+                ${l.cellules.map((c, j) => `<td><button type="button" class="case-rattachement etat-${c.etat}" title="${esc(r.etats[c.etat])} — ${esc(c.texte)}" onclick="detailRattachement(${i}, ${j})" aria-label="${esc(l.fait)}, ${esc(r.colonnes[j])} : ${esc(r.etats[c.etat])}"></button></td>`).join("")}
+              </tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
+      <div class="rattachement-legende">
+        ${Object.entries(r.etats).map(([e, l]) => `<span><i class="case-rattachement etat-${e}"></i>${l}</span>`).join("")}
+      </div>
+      <div class="rattachement-detail" id="rattachement-detail"><span class="aide-champ">Sélectionnez une case pour afficher l'élément correspondant.</span></div>
+    </div>`;
+}
+
+function detailRattachement(i, j) {
+  const r = donnees.rattachement;
+  const ligne = r.lignes[i];
+  const c = ligne.cellules[j];
+  document.querySelectorAll(".case-rattachement.selectionnee").forEach((el) => el.classList.remove("selectionnee"));
+  document.querySelectorAll(".rattachement tbody tr")[i].querySelectorAll(".case-rattachement")[j].classList.add("selectionnee");
+  document.getElementById("rattachement-detail").innerHTML = `
+    <div class="detail-entete"><strong>Fait ${esc(ligne.fait)}</strong> · ${esc(r.colonnes[j])} · <span class="etiquette-etat etat-${c.etat}">${esc(r.etats[c.etat])}</span></div>
+    <div>${esc(c.texte)} ${c.page ? badgeSource(c.page, c.citation) : ""}</div>
+    ${c.citation ? `<div class="citation-declarant">« ${esc(c.citation)} »</div>` : ""}`;
+  if (c.page) ouvrirSource(references.length - 1);
+  suivre("Rattachement", { fait: ligne.fait, colonne: r.colonnes[j] });
+}
+window.detailRattachement = detailRattachement;
 
 function carteFriseProcedure() {
   return `
@@ -546,66 +660,7 @@ function basculerResumeDetaille(bouton) {
 }
 window.basculerResumeDetaille = basculerResumeDetaille;
 
-const TYPES_JOURNEE = [
-  ["victime", "Victime"],
-  ["temoin", "Témoin"],
-  ["vehicule", "Véhicule (LAPI)"],
-  ["telephone", "Téléphonie"],
-];
 
-function minutes(heure) {
-  const [h, m] = heure.split("h").map(Number);
-  return h * 60 + (m || 0);
-}
-
-function rendreJournee() {
-  const j = donnees.journee;
-  if (!j) return "";
-  const debut = minutes(j.debut);
-  const duree = minutes(j.fin) - debut;
-  const pos = (h) => `${((minutes(h) - debut) / duree) * 100}%`;
-  const graduations = [];
-  for (let m = Math.ceil(debut / 60) * 60; m <= debut + duree; m += 60) graduations.push(m);
-  const pistes = TYPES_JOURNEE.map(([type, libelle]) => {
-    const evts = j.evenements.map((e, i) => ({ ...e, i })).filter((e) => e.type === type);
-    return `
-      <div class="journee-piste">
-        <div class="journee-libelle">${libelle}</div>
-        <div class="journee-axe">
-          ${evts.map((e) => e.fin
-            ? `<button type="button" class="journee-plage type-${type}" style="left:${pos(e.heure)};width:calc(${pos(e.fin)} - ${pos(e.heure)})" title="${e.heure}–${e.fin} · ${esc(e.libelle)}" onclick="ouvrirEvenementJournee(${e.i})"></button>`
-            : `<button type="button" class="journee-point type-${type}" style="left:${pos(e.heure)}" title="${e.heure} · ${esc(e.libelle)}" onclick="ouvrirEvenementJournee(${e.i})"></button>`).join("")}
-        </div>
-      </div>`;
-  }).join("");
-  return `
-    <div class="carte bloc-journee">
-      <h2>${esc(j.titre)}</h2>
-      <div class="journee-graphe">
-        ${pistes}
-        <div class="journee-piste journee-heures">
-          <div class="journee-libelle"></div>
-          <div class="journee-axe">${graduations.map((m) => `<span style="left:${((m - debut) / duree) * 100}%">${Math.floor(m / 60)}h</span>`).join("")}</div>
-        </div>
-      </div>
-      <ul class="journee-liste">
-        ${j.evenements.map((e) => `
-          <li class="type-${e.type}">
-            <span class="journee-heure">${e.heure}${e.fin ? "–" + e.fin : ""}</span>
-            <span class="journee-texte">${esc(e.libelle)}</span>
-            ${badgeSource(e.page, e.citation)}
-          </li>`).join("")}
-      </ul>
-      <ul class="journee-constats">${j.constats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>
-    </div>`;
-}
-
-function ouvrirEvenementJournee(i) {
-  const e = donnees.journee.evenements[i];
-  const k = references.findIndex((r) => r.page === e.page && r.citation === e.citation);
-  if (k >= 0) ouvrirSource(k);
-}
-window.ouvrirEvenementJournee = ouvrirEvenementJournee;
 
 const NIVEAUX_CHARGES = {
   faible: "Charges qui paraissent faibles",
@@ -677,7 +732,7 @@ function rendreOngletProcedure() {
         <ul class="liste-pistes">${ecartees.map(rendrePiste).join("")}</ul>
       </details>
     </div>
-    ${carteGardesAVue()}
+    ${carteChronogrammeGAV()}
     ${carteContradictions("procedure", "Contradictions dans les actes de procédure")}
     ${carteFriseProcedure()}
     <p class="note-resume defense-note">Pistes proposées à partir des pièces du dossier — leur appréciation et leur qualification reviennent à l'avocat.</p>`;
@@ -697,6 +752,7 @@ function rendreOngletFond() {
     </div>`;
   return `
     ${enteteDefense(`Défense au fond — ${esc(d.client)}`, "Ce que les pièces établissent, ce qu'elles contredisent et ce qui manque à l'accusation, fait par fait.")}
+    ${carteRattachement()}
     ${carteContradictions("fond", "Contradictions entre pièces")}
     <div class="carte">
       <h2>Faits imputés au client : charges et éléments à décharge</h2>
@@ -774,7 +830,7 @@ function rendreDetailDossier() {
       </div>
     </div>`;
 
-  const panneauChrono = rendreJournee() + rendreBlocChronologie();
+  const panneauChrono = rendreBlocChronologie();
   const panneauProcedure = rendreOngletProcedure();
   const panneauFond = rendreOngletFond();
 
@@ -1190,9 +1246,9 @@ const ETAPES_PARCOURS = [
   },
   {
     onglet: "chrono",
-    cible: ".bloc-journee .journee-graphe",
-    titre: "La journée des faits, reconstituée",
-    texte: () => `Victime, témoin, lecture des plaques, bornages : ${donnees.journee.evenements.length} évènements du ${donnees.journee.date} croisés sur un même axe, chacun cliquable vers sa pièce.`,
+    cible: ".bloc-chronologie .badge-source",
+    titre: "Chaque fait est sourcé",
+    texte: () => `${donnees.chronologie_faits.length} faits datés, chacun avec la citation exacte, la cote et la page. Un clic sur le badge ouvre la pièce à droite, passage surligné.`,
   },
   {
     onglet: "procedure",
@@ -1206,9 +1262,9 @@ const ETAPES_PARCOURS = [
   },
   {
     onglet: "fond",
-    cible: ".contradiction.vedette .declaration-personne:last-child .badge-source",
-    titre: "Fond : les pièces qui ne concordent pas",
-    texte: () => `Le rapport de synthèse impute au client le cambriolage du 19/02 ; le relevé de pointage produit le situe au travail à la même heure. Ouvrez la pièce ${(sourcesParPage.get(preuveVedette.page) || {}).cote || ""}, page ${preuveVedette.page}.`,
+    cible: ".rattachement tbody tr:nth-child(5) td:last-child .case-rattachement",
+    titre: "Fond : ce qui relie votre client à chaque fait",
+    texte: () => `Une ligne par fait imputé, une colonne par type de pièce. Le 19/02, la seule case renseignée est le pointage, qui paraît exclure sa présence. Ouvrez la pièce ${(sourcesParPage.get(preuveVedette.page) || {}).cote || ""}, page ${preuveVedette.page}.`,
     bouton: "Ouvrir la pièce",
   },
 ];

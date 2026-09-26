@@ -1294,106 +1294,6 @@
         ]
       }
     ],
-    "journee": {
-      "date": "12/02/2026",
-      "titre": "Reconstitution — journée du 12/02/2026 (fait n°4, Biviers)",
-      "debut": "13h00",
-      "fin": "18h30",
-      "evenements": [
-        {
-          "heure": "13h30",
-          "libelle": "La victime quitte son domicile",
-          "type": "victime",
-          "page": 2,
-          "citation": "J'ai quitté mon domicile à 13h30 pour aller chez le kiné à Montbonnot, puis faire des courses."
-        },
-        {
-          "heure": "13h41",
-          "libelle": "FONTANEL appelle la ligne du client, depuis Saint-Martin-d'Hères",
-          "type": "telephone",
-          "page": 6,
-          "citation": "13h41 Appel sortant 06 39 98 63 08 00:38 SMH-CLEM-01"
-        },
-        {
-          "heure": "14h00",
-          "fin": "14h15",
-          "libelle": "Le témoin voit un break blanc et deux hommes",
-          "type": "temoin",
-          "page": 3,
-          "citation": "Vers deux heures, deux heures et quart, j'étais dans mon jardin."
-        },
-        {
-          "heure": "14h02",
-          "libelle": "LAPI : la Skoda de FONTANEL passe vers Biviers",
-          "type": "vehicule",
-          "page": 4,
-          "citation": "notamment le 12/02/2026 à 14h02 (sens Grenoble-Biviers) puis à 15h11 (sens inverse)"
-        },
-        {
-          "heure": "14h05",
-          "fin": "14h52",
-          "libelle": "Ligne du client : cellule de Biviers",
-          "type": "telephone",
-          "page": 7,
-          "citation": "Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers)."
-        },
-        {
-          "heure": "14h09",
-          "fin": "14h48",
-          "libelle": "Ligne de FONTANEL : cellule de Biviers",
-          "type": "telephone",
-          "page": 6,
-          "citation": "14h09 SMS entrant 06 39 98 63 08 — BIV-CROIX-02"
-        },
-        {
-          "heure": "14h31",
-          "libelle": "Appel de la ligne du client vers FONTANEL",
-          "type": "telephone",
-          "page": 6,
-          "citation": "14h31 Appel entrant 06 39 98 63 08 00:12 BIV-CROIX-02"
-        },
-        {
-          "heure": "15h00",
-          "libelle": "Le témoin voit la voiture repartir",
-          "type": "temoin",
-          "page": 3,
-          "citation": "La voiture est repartie vers trois heures, par la route de Montbonnot."
-        },
-        {
-          "heure": "15h11",
-          "libelle": "LAPI : la Skoda repart en sens inverse",
-          "type": "vehicule",
-          "page": 4,
-          "citation": "notamment le 12/02/2026 à 14h02 (sens Grenoble-Biviers) puis à 15h11 (sens inverse)"
-        },
-        {
-          "heure": "16h20",
-          "libelle": "Ligne de FONTANEL à Fontaine, secteur du dépôt BERTHOLLET",
-          "type": "telephone",
-          "page": 6,
-          "citation": "16h20 Appel sortant 06 39 98 27 41 01:54 FON-DRAC-01"
-        },
-        {
-          "heure": "16h45",
-          "libelle": "La victime découvre l'effraction",
-          "type": "victime",
-          "page": 2,
-          "citation": "En rentrant à 16h45, j'ai trouvé la porte-fenêtre du salon, côté jardin, fracturée."
-        },
-        {
-          "heure": "18h10",
-          "libelle": "Relevé de traces par la police scientifique",
-          "type": "victime",
-          "page": 2,
-          "citation": "le service de police technique et scientifique est intervenu le 12/02/2026 à 18h10"
-        }
-      ],
-      "constats": [
-        "Fenêtre des faits : de 13h30 à 16h45 selon la victime. Les deux lignes paraissent borner ensemble à Biviers entre 14h09 et 14h48.",
-        "Aucune pièce ne semble placer le client hors du véhicule : le témoin le décrit « resté près de la voiture ».",
-        "Le témoin décrit un break blanc ; la LAPI enregistre une Skoda gris métallisé."
-      ]
-    },
     "defense": {
       "client": "MARTINON Lucas",
       "delai": {
@@ -2036,6 +1936,466 @@
           ]
         ]
       }
-    ]
+    ],
+    "rattachement": {
+      "titre": "Ce qui relie votre client à chaque fait",
+      "colonnes": [
+        "Téléphonie",
+        "Lecture des plaques",
+        "Témoins et surveillance",
+        "Déclarations du client",
+        "Traces",
+        "Saisies",
+        "Pointage"
+      ],
+      "etats": {
+        "place": "Place le client",
+        "indice": "Indice, à apprécier",
+        "favorable": "Paraît favorable au client",
+        "exclut": "Paraît l'exclure",
+        "neutre": "Concerne un coauteur",
+        "vide": "Rien dans la copie"
+      },
+      "lignes": [
+        {
+          "fait": "n°1 · 22/01 · Meylan",
+          "cellules": [
+            {
+              "etat": "vide",
+              "texte": "Relevé de la ligne du client transmis, non exploité",
+              "page": 7,
+              "citation": "Le relevé détaillé (412 événements) est transmis au format tableur."
+            },
+            {
+              "etat": "neutre",
+              "texte": "Véhicule de FONTANEL enregistré ; aucun passager identifié",
+              "page": 4,
+              "citation": "le même véhicule est enregistré à proximité des lieux, aux heures des faits, lors des cambriolages n°1, 3 et 4"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            }
+          ]
+        },
+        {
+          "fait": "n°2 · 29/01 · Saint-Ismier",
+          "cellules": [
+            {
+              "etat": "vide",
+              "texte": "Relevé de la ligne du client transmis, non exploité",
+              "page": 7,
+              "citation": "Le relevé détaillé (412 événements) est transmis au format tableur."
+            },
+            {
+              "etat": "vide",
+              "texte": "Fait non relevé par la LAPI"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            }
+          ]
+        },
+        {
+          "fait": "n°3 · 05/02 · Montbonnot",
+          "cellules": [
+            {
+              "etat": "vide",
+              "texte": "Relevé de la ligne du client transmis, non exploité",
+              "page": 7,
+              "citation": "Le relevé détaillé (412 événements) est transmis au format tableur."
+            },
+            {
+              "etat": "neutre",
+              "texte": "Véhicule de FONTANEL enregistré ; aucun passager identifié",
+              "page": 4,
+              "citation": "le même véhicule est enregistré à proximité des lieux, aux heures des faits, lors des cambriolages n°1, 3 et 4"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            }
+          ]
+        },
+        {
+          "fait": "n°4 · 12/02 · Biviers",
+          "cellules": [
+            {
+              "etat": "place",
+              "texte": "Ligne du client à Biviers de 14h05 à 14h52",
+              "page": 7,
+              "citation": "Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers)."
+            },
+            {
+              "etat": "indice",
+              "texte": "Passager à casquette « claire ou rouge », cliché de qualité insuffisante",
+              "page": 4,
+              "citation": "dont le passager porte une casquette de couleur claire ou rouge (qualité insuffisante)"
+            },
+            {
+              "etat": "indice",
+              "texte": "Jeune homme à casquette rouge près de la voiture, sans identification formelle",
+              "page": 3,
+              "citation": "Et un plus jeune, mince, avec une casquette rouge"
+            },
+            {
+              "etat": "place",
+              "texte": "Reconnaît être resté dans la voiture",
+              "page": 25,
+              "citation": "Oui. Je suis resté dans la voiture. Il m'a dit de le prévenir si quelqu'un arrivait."
+            },
+            {
+              "etat": "favorable",
+              "texte": "Aucune trace attribuée au client",
+              "page": 28,
+              "citation": "Aucune trace exploitable n'a pu être attribuée à MARTINON Lucas"
+            },
+            {
+              "etat": "indice",
+              "texte": "Casquette rouge saisie à son domicile",
+              "page": 16,
+              "citation": "une casquette de couleur rouge"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            }
+          ]
+        },
+        {
+          "fait": "n°5 · 19/02 · Saint-Ismier",
+          "cellules": [
+            {
+              "etat": "vide",
+              "texte": "Relevé de la ligne du client transmis, non exploité",
+              "page": 7,
+              "citation": "Le relevé détaillé (412 événements) est transmis au format tableur."
+            },
+            {
+              "etat": "vide",
+              "texte": "Fait non relevé par la LAPI"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "favorable",
+              "texte": "Conteste : au travail toute la matinée",
+              "page": 25,
+              "citation": "Le jeudi 19, j'étais au travail à Voreppe toute la matinée."
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "exclut",
+              "texte": "Badgé à Voreppe de 07h58 à 12h03, faits entre 10h00 et 11h40",
+              "page": 29,
+              "citation": "jeudi 19/02/2026 07h58 12h03 4h05"
+            }
+          ]
+        },
+        {
+          "fait": "n°6 · 03/03 · Corenc",
+          "cellules": [
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Pas de LAPI ; véhicule suivi par géolocalisation"
+            },
+            {
+              "etat": "indice",
+              "texte": "Jeune homme à casquette rouge côté passager, non identifié formellement",
+              "page": 12,
+              "citation": "Un jeune homme mince, casquette rouge, est assis côté passager."
+            },
+            {
+              "etat": "place",
+              "texte": "Reconnaît être dans la voiture",
+              "page": 25,
+              "citation": "Oui, j'étais dans la voiture."
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            },
+            {
+              "etat": "vide",
+              "texte": "Rien dans la copie"
+            }
+          ]
+        }
+      ]
+    },
+    "chronogramme_gav": {
+      "titre": "Gardes à vue, heure par heure",
+      "debut": "10/03 05h00",
+      "fin": "12/03 06h30",
+      "coupure": "10/03 19h30",
+      "personnes": [
+        {
+          "nom": "MARTINON Lucas",
+          "client": true,
+          "debut": "10/03 05h38",
+          "fin": "11/03 05h20",
+          "duree": "23 h 42",
+          "delai": {
+            "de": "10/03 05h38",
+            "a": "10/03 09h30",
+            "libelle": "3 h 52 entre l'appréhension et la notification des droits (ivresse invoquée)"
+          },
+          "evenements": [
+            {
+              "heure": "10/03 05h38",
+              "type": "placement",
+              "libelle": "Appréhension, début de la mesure",
+              "page": 16,
+              "citation": "Mentionnons qu'il est appréhendé à 05h38."
+            },
+            {
+              "heure": "10/03 06h40",
+              "type": "magistrat",
+              "libelle": "Avis au juge d'instruction",
+              "page": 21,
+              "citation": "MARTINON Lucas 10/03/2026 à 05h38"
+            },
+            {
+              "heure": "10/03 07h10",
+              "type": "medecin",
+              "libelle": "Examen médical",
+              "page": 23,
+              "citation": "MARTINON 10/03 07h10 Examen médical — Dr ESCOFFIER"
+            },
+            {
+              "heure": "10/03 07h25",
+              "type": "repos",
+              "libelle": "Cellule de dégrisement",
+              "page": 23,
+              "citation": "MARTINON 10/03 07h25-09h15 Repos en cellule de dégrisement",
+              "fin": "10/03 09h15"
+            },
+            {
+              "heure": "10/03 09h30",
+              "type": "droits",
+              "libelle": "Notification des droits",
+              "page": 18,
+              "citation": "La notification intervient en conséquence à 09h30."
+            },
+            {
+              "heure": "10/03 09h40",
+              "type": "avocat",
+              "libelle": "Avocat avisé",
+              "page": 18,
+              "citation": "Mentionnons qu'à 09h40 la permanence du barreau est avisée ; Maître Olivier TERRAZ est désigné."
+            },
+            {
+              "heure": "10/03 10h20",
+              "type": "avocat",
+              "libelle": "Entretien avec Me TERRAZ",
+              "page": 23,
+              "citation": "MARTINON 10/03 10h20-10h50 Entretien avec Me TERRAZ",
+              "fin": "10/03 10h50"
+            },
+            {
+              "heure": "10/03 11h00",
+              "type": "audition",
+              "libelle": "Audition",
+              "page": 23,
+              "citation": "MARTINON 10/03 11h00-11h50 Audition",
+              "fin": "10/03 11h50"
+            },
+            {
+              "heure": "11/03 05h20",
+              "type": "fin",
+              "libelle": "Fin de mesure, déferrement",
+              "page": 23,
+              "citation": "MARTINON 11/03 05h20 Fin de mesure — déferrement"
+            }
+          ]
+        },
+        {
+          "nom": "FONTANEL Yannick",
+          "debut": "10/03 06h05",
+          "fin": "12/03 05h45",
+          "duree": "47 h 40",
+          "delai": {
+            "de": "10/03 06h05",
+            "a": "10/03 08h55",
+            "libelle": "2 h 50 entre l'appréhension et la notification des droits"
+          },
+          "evenements": [
+            {
+              "heure": "10/03 06h05",
+              "type": "placement",
+              "libelle": "Appréhension, début de la mesure",
+              "page": 19,
+              "citation": "Mentionnons qu'il est appréhendé à 06h05 et maintenu à notre disposition sous la contrainte."
+            },
+            {
+              "heure": "10/03 06h40",
+              "type": "magistrat",
+              "libelle": "Avis au juge d'instruction",
+              "page": 21,
+              "citation": "FONTANEL Yannick 10/03/2026 à 06h05"
+            },
+            {
+              "heure": "10/03 08h55",
+              "type": "droits",
+              "libelle": "Notification des droits",
+              "page": 20,
+              "citation": "Notifions à 08h55 à FONTANEL Yannick"
+            },
+            {
+              "heure": "10/03 09h02",
+              "type": "avocat",
+              "libelle": "Avocate avisée",
+              "page": 20,
+              "citation": "Maître Inès RAVANEL, avocate au barreau de Grenoble, est avisée à 09h02"
+            },
+            {
+              "heure": "10/03 10h00",
+              "type": "avocat",
+              "libelle": "Entretien avec Me RAVANEL",
+              "page": 23,
+              "citation": "FONTANEL 10/03 10h00-10h30 Entretien avec Me RAVANEL",
+              "fin": "10/03 10h30"
+            },
+            {
+              "heure": "10/03 10h30",
+              "type": "audition",
+              "libelle": "Audition",
+              "page": 23,
+              "citation": "FONTANEL 10/03 10h30-11h30 Audition",
+              "fin": "10/03 11h30"
+            },
+            {
+              "heure": "11/03 05h50",
+              "type": "prolongation",
+              "libelle": "Prolongation autorisée (notifiée 06h00)",
+              "page": 26,
+              "citation": "Autorisons la prolongation de la garde à vue de FONTANEL Yannick pour une durée de vingt-quatre heures."
+            },
+            {
+              "heure": "12/03 05h45",
+              "type": "fin",
+              "libelle": "Fin de mesure, déferrement",
+              "page": 23,
+              "citation": "FONTANEL 12/03 05h45 Fin de mesure — déferrement"
+            }
+          ]
+        },
+        {
+          "nom": "BERTHOLLET Gilles",
+          "debut": "10/03 05h15",
+          "fin": "10/03 18h40",
+          "duree": "13 h 25",
+          "delai": {
+            "de": "10/03 05h15",
+            "a": "10/03 11h50",
+            "libelle": "6 h 35 entre le placement et l'avis au juge d'instruction"
+          },
+          "evenements": [
+            {
+              "heure": "10/03 05h15",
+              "type": "placement",
+              "libelle": "Appréhension, début de la mesure",
+              "page": 14,
+              "citation": "Mentionnons qu'il est appréhendé à 05h15 et reste à notre disposition sous la contrainte."
+            },
+            {
+              "heure": "10/03 05h30",
+              "type": "droits",
+              "libelle": "Notification des droits",
+              "page": 15,
+              "citation": "étant sur les lieux à 05h30"
+            },
+            {
+              "heure": "10/03 11h50",
+              "type": "magistrat",
+              "libelle": "Avis au juge d'instruction",
+              "page": 22,
+              "citation": "Par téléphone, avisons ce jour à 11h50 Monsieur ROUVIÈRE, juge d'instruction, du placement en garde à vue"
+            },
+            {
+              "heure": "10/03 14h00",
+              "type": "audition",
+              "libelle": "Audition",
+              "page": 23,
+              "citation": "BERTHOLLET 10/03 14h00-15h10 Audition",
+              "fin": "10/03 15h10"
+            },
+            {
+              "heure": "10/03 18h40",
+              "type": "fin",
+              "libelle": "Fin de mesure, remise en liberté",
+              "page": 23,
+              "citation": "BERTHOLLET 10/03 18h40 Fin de mesure — remis en liberté (convocation)"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

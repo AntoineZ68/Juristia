@@ -61,7 +61,7 @@ class TestSourcage(unittest.TestCase):
         genere = json.loads(contenu[contenu.index("=") + 1:].strip().rstrip(";"))
         for cle in ("resume", "personnes", "chronologie_faits", "chronologie_procedure", "contradictions",
                     "confrontations", "recoupements", "gardes_a_vue",
-                    "resume_detaille", "journee", "defense", "questions"):
+                    "resume_detaille", "rattachement", "chronogramme_gav", "defense", "questions"):
             self.assertEqual(genere["donnees"][cle], DONNEES["donnees"][cle], f"{cle} : relancer tools/build.py")
         self.assertEqual(len(genere["donnees"]["sources"]), NB_PAGES)
 

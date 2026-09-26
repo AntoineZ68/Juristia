@@ -64,7 +64,7 @@ async function session(nom, options) {
   verifier(await page.isVisible("#classeur-piece .page-cadre img"), "onglet « Pièce » à l'arrivée : la page 1 s'affiche (pas d'écran vide)");
   await page.click('.mode-classeur[data-mode="index"]');
   await page.screenshot({ path: join(RACINE, "captures/01-accueil-visite.png") });
-  const capturesVisite = ["02-journee-reconstituee.png", "03-procedure.png", "04-fond.png"];
+  const capturesVisite = ["02-chronologie-sourcee.png", "03-procedure.png", "04-fond.png"];
   for (const nom of capturesVisite) {
     await page.click("#parcours-suivant");
     await page.waitForTimeout(700);
@@ -99,6 +99,22 @@ async function session(nom, options) {
   await page.click(".bouton-resume-detaille");
   verifier(await page.isVisible(".resume-detaille .renvoi-source"), "résumé détaillé dépliable, avec renvois aux pièces");
   await page.screenshot({ path: join(RACINE, "captures/08-resume-detaille.png"), fullPage: false });
+  // Graphiques utiles : chronogramme des gardes à vue, rattachement par fait
+  await page.click('.onglet[data-onglet="procedure"]');
+  verifier(await page.locator(".chronogramme .chrono-ligne:not(.chrono-axe-ligne)").count() === 3, "chronogramme : une ligne par personne gardée à vue");
+  await page.locator(".bloc-chronogramme").scrollIntoViewIfNeeded();
+  await page.screenshot({ path: join(RACINE, "captures/16-chronogramme-gav.png") });
+  await page.locator(".chrono-ligne.client .chrono-point.gav-droits").click();
+  await page.waitForSelector("#classeur-piece .page-cadre img");
+  verifier((await page.textContent("#classeur-position")).includes("Page 18"), "repère « notification des droits » du client : ouvre la page 18");
+  await page.click('.onglet[data-onglet="fond"]');
+  verifier(await page.locator(".rattachement tbody tr").count() === 6, "rattachement : une ligne par fait imputé");
+  await page.click(".rattachement tbody tr:nth-child(5) td:last-child .case-rattachement");
+  verifier((await page.textContent("#rattachement-detail")).includes("Paraît l'exclure"), "case du 19/02 · pointage : « Paraît l'exclure », pièce ouverte");
+  await page.locator(".bloc-rattachement").scrollIntoViewIfNeeded();
+  await page.screenshot({ path: join(RACINE, "captures/17-rattachement.png") });
+  await page.click("#fermer-classeur");
+
   // Questions au dossier : une barre de saisie, réponses dessous, pièces à droite
   await page.click('.onglet[data-onglet="infos"]');
   verifier(await page.locator('.mode-classeur[data-mode="questions"]').count() === 0, "le classeur ne garde que Pièce et Index");
