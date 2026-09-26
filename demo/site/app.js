@@ -742,9 +742,11 @@ function rendreDetailDossier() {
       <button type="button" class="bouton-index" onclick="ouvrirIndexClasseur()">${ICONE_INDEX}<span>Index du dossier</span></button>
     </div>
     <div class="bloc-questions" id="bloc-questions">
-      <button type="button" class="barre-interroger" onclick="basculerQuestions()">
-        ${ICONE_QUESTION}<span>Interroger le dossier…</span><small>Réponses tirées des pièces, chacune sourcée</small>
-      </button>
+      <form class="barre-interroger" onsubmit="envoyerQuestion(event)">
+        ${ICONE_QUESTION}
+        <input type="text" id="champ-question" placeholder="Interroger le dossier…" autocomplete="off" aria-label="Poser une question sur le dossier" onfocus="if (filQuestions.length && !questionsOuvertes) basculerQuestions(true)" />
+        <button type="submit" class="bouton-envoyer">Envoyer</button>
+      </form>
       <div id="zone-questions" hidden></div>
     </div>`;
 
@@ -1001,9 +1003,29 @@ let questionsOuvertes = false;
 // Les questions s'ouvrent sous la barre, dans la colonne de lecture : la
 // réponse reste à gauche, la pièce citée s'ouvre à droite, les deux restent
 // visibles ensemble.
+function normaliserQuestion(texte) {
+  return texte.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ");
+}
+
+// Démonstration sans serveur : une question tapée est rapprochée des réponses
+// préparées (chaque groupe de mots déclencheurs doit être présent). La
+// réponse affichée indique toujours la question à laquelle elle répond ; sans
+// correspondance, Lytis le dit au lieu d'improviser.
+function trouverReponsePreparee(texte) {
+  const t = normaliserQuestion(texte);
+  let meilleure = null;
+  let meilleurScore = 0;
+  for (const q of QUESTIONS.values()) {
+    const groupes = q.declencheurs || [];
+    if (!groupes.length || !groupes.every((g) => g.some((mot) => t.includes(mot)))) continue;
+    const score = groupes.reduce((n, g) => n + g.filter((mot) => t.includes(mot)).length, 0);
+    if (score > meilleurScore) { meilleure = q; meilleurScore = score; }
+  }
+  return meilleure;
+}
+
 function rendreQuestions() {
   const el = document.getElementById("zone-questions");
-  const restantes = [...QUESTIONS.values()].filter((q) => !filQuestions.includes(q.id));
   el.innerHTML = `
     <div class="questions">
       <div class="questions-entete">
@@ -1011,51 +1033,61 @@ function rendreQuestions() {
         <button type="button" class="lien questions-reduire" onclick="basculerQuestions(false)">Réduire</button>
       </div>
       <div class="fil-questions">
-        ${filQuestions.map((id) => {
-          const q = QUESTIONS.get(id);
+        ${filQuestions.map((echange, i) => {
+          const q = echange.id ? QUESTIONS.get(echange.id) : null;
           return `
-            <div class="bulle-question" data-question="${id}">${esc(q.question)}</div>
-            <div class="bulle-reponse ${q.nature === "hors_dossier" ? "hors-dossier" : ""}">
-              ${q.reponse.map((ph) => `<p>${esc(ph.texte)} ${ph.sources.map((src) => renvoiSource(src.page, src.citation)).join(" ")}</p>`).join("")}
-            </div>`;
+            <div class="bulle-question" data-echange="${i}">${esc(echange.texte)}</div>
+            ${q ? `
+              <div class="bulle-reponse ${q.nature === "hors_dossier" ? "hors-dossier" : ""}">
+                ${normaliserQuestion(echange.texte) !== normaliserQuestion(q.question) ? `<p class="reponse-rapprochee">Réponse préparée pour la démonstration, à la question : « ${esc(q.question)} »</p>` : ""}
+                ${q.reponse.map((ph) => `<p>${esc(ph.texte)} ${ph.sources.map((src) => renvoiSource(src.page, src.citation)).join(" ")}</p>`).join("")}
+              </div>` : `
+              <div class="bulle-reponse sans-reponse">
+                <p>Dans cette démonstration, Lytis ne répond qu'à quelques questions préparées sur le dossier fictif, et celle-ci n'en fait pas partie. Dans votre espace, il y répond à partir des pièces de votre dossier, chaque phrase sourcée.</p>
+              </div>`}`;
         }).join("")}
       </div>
-      ${restantes.length ? `
-        <div class="suggestions">
-          <div class="suggestions-titre">${filQuestions.length ? "Autres questions" : "Questions proposées"}</div>
-          <div class="suggestions-liste">
-            ${restantes.map((q) => `<button type="button" class="suggestion" onclick="poserQuestion('${q.id}')">${esc(q.question)}</button>`).join("")}
-          </div>
-        </div>` : ""}
-      <div class="saisie-question" onclick="actionIndisponible('Question libre')">
-        <input type="text" disabled placeholder="Posez votre question sur le dossier…" />
-        <button type="button" class="bouton-primaire" disabled>Envoyer</button>
-      </div>
-      <p class="aide-champ questions-note">Démonstration : réponses préparées sur le dossier fictif et vérifiées contre les pièces. La saisie libre est réservée à votre espace.</p>
     </div>`;
 }
+
+function envoyerQuestion(evenement) {
+  evenement.preventDefault();
+  const champ = document.getElementById("champ-question");
+  const texte = champ.value.trim();
+  if (!texte) return;
+  const q = trouverReponsePreparee(texte);
+  filQuestions.push({ texte, id: q ? q.id : null });
+  champ.value = "";
+  if (!questionsOuvertes) basculerQuestions(true);
+  else rendreQuestions();
+  suivre("Question", { id: q ? q.id : "sans réponse" });
+  const i = filQuestions.length - 1;
+  requestAnimationFrame(() => {
+    const bulle = document.querySelector(`#zone-questions .bulle-question[data-echange="${i}"]`);
+    if (bulle) bulle.scrollIntoView({ block: "start", behavior: "smooth" });
+  });
+}
+window.envoyerQuestion = envoyerQuestion;
 
 function basculerQuestions(ouvrir = !questionsOuvertes) {
   questionsOuvertes = ouvrir;
   const zone = document.getElementById("zone-questions");
   document.getElementById("bloc-questions").classList.toggle("ouvert", ouvrir);
   zone.hidden = !ouvrir;
-  if (ouvrir) {
-    rendreQuestions();
-    suivre("Questions ouvertes");
-  }
+  if (ouvrir) rendreQuestions();
 }
 window.basculerQuestions = basculerQuestions;
 
 function poserQuestion(id) {
-  if (!QUESTIONS.has(id)) return;
-  if (!filQuestions.includes(id)) filQuestions.push(id);
+  const q = QUESTIONS.get(id);
+  if (!q) return;
+  filQuestions.push({ texte: q.question, id });
   if (!questionsOuvertes) basculerQuestions(true);
   else rendreQuestions();
   suivre("Question", { id });
-  // Amène la question posée sous les yeux, en haut de la colonne.
+  const i = filQuestions.length - 1;
   requestAnimationFrame(() => {
-    const bulle = document.querySelector(`#zone-questions .bulle-question[data-question="${id}"]`);
+    const bulle = document.querySelector(`#zone-questions .bulle-question[data-echange="${i}"]`);
     if (bulle) bulle.scrollIntoView({ block: "start", behavior: "smooth" });
   });
 }
@@ -1065,8 +1097,8 @@ window.poserQuestion = poserQuestion;
 function ouvrirQuestions(id) {
   if (id) poserQuestion(id);
   else {
-    basculerQuestions(true);
     document.getElementById("bloc-questions").scrollIntoView({ block: "start", behavior: "smooth" });
+    document.getElementById("champ-question").focus();
   }
 }
 window.ouvrirQuestions = ouvrirQuestions;

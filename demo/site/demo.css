@@ -376,3 +376,16 @@
 .suggestions-liste { display: flex; flex-wrap: wrap; gap: 6px; }
 .suggestions-liste .suggestion { padding: 7px 11px; font-size: 12.5px; border-radius: 999px; }
 .bulle-question { scroll-margin-top: 16px; }
+
+/* --- Barre de questions : champ de saisie --- */
+form.barre-interroger { cursor: text; }
+form.barre-interroger:focus-within { border-color: var(--encre); }
+form.barre-interroger input {
+  flex: 1; min-width: 0; border: none; background: transparent; padding: 2px 0; font-family: inherit; font-size: 14px; color: var(--encre);
+}
+form.barre-interroger input:focus { outline: none; box-shadow: none; }
+form.barre-interroger input::placeholder { color: var(--texte-att); }
+.bouton-envoyer { padding: 6px 14px; font-size: 12.5px; border-color: var(--encre); color: var(--encre); }
+.bouton-envoyer:hover { background: var(--encre); color: #faf8f4; }
+.reponse-rapprochee { font-size: 11.5px; color: var(--texte-att-2); font-style: italic; margin-bottom: 6px !important; }
+.bulle-reponse.sans-reponse { color: var(--texte-att); border-style: dashed; }

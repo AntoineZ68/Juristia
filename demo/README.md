@@ -93,14 +93,14 @@ défilement horizontal sur mobile. Il régénère les captures.
 
 ## Questions au dossier
 
-La barre « Interroger le dossier… », sous l'en-tête, se déplie en place : la
-conversation s'affiche en dessous, les pièces citées s'ouvrent dans le
-classeur à droite, qui ne garde que « Pièce » et « Index ». Les liens
-« Demander au dossier » des cartes posent leur question au même endroit.
-Les réponses sont préparées dans `source/dossier.json` (`questions`) : une
-source par phrase, vérifiée par le test de sourçage ; seule une réponse
-« hors dossier » peut n'en porter aucune, et doit le dire. La saisie libre
-est verrouillée.
+Une barre de saisie sous l'en-tête (« Interroger le dossier… »), sans
+questions proposées. La conversation s'affiche dessous, les pièces citées
+s'ouvrent dans le classeur à droite. Sans serveur, une question tapée est
+rapprochée des réponses préparées dans `source/dossier.json` (`questions`,
+champ `declencheurs` : chaque groupe de mots doit être présent) ; la réponse
+indique la question à laquelle elle répond. Sans correspondance, Lytis le dit
+au lieu d'improviser. Chaque phrase de réponse porte sa source, vérifiée par
+le test de sourçage.
 
 ## Formulation des appréciations
 

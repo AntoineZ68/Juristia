@@ -1726,6 +1726,25 @@
               }
             ]
           }
+        ],
+        "declencheurs": [
+          [
+            "12/02",
+            "12 fevrier",
+            "biviers",
+            "sermet"
+          ],
+          [
+            "rattach",
+            "reli",
+            "prouv",
+            "preuve",
+            "element",
+            "charge",
+            "impliqu",
+            "place",
+            "lien"
+          ]
         ]
       },
       {
@@ -1771,6 +1790,20 @@
               }
             ]
           }
+        ],
+        "declencheurs": [
+          [
+            "avocat",
+            "terraz",
+            "conseil"
+          ],
+          [
+            "entendu",
+            "audition",
+            "interroge",
+            "sans",
+            "present"
+          ]
         ]
       },
       {
@@ -1817,6 +1850,11 @@
               }
             ]
           }
+        ],
+        "declencheurs": [
+          [
+            "casquette"
+          ]
         ]
       },
       {
@@ -1850,6 +1888,18 @@
               }
             ]
           }
+        ],
+        "declencheurs": [
+          [
+            "telephon",
+            "ligne",
+            "bornage",
+            "borne",
+            "fadette",
+            "releve",
+            "portable",
+            "operateur"
+          ]
         ]
       },
       {
@@ -1891,6 +1941,19 @@
               }
             ]
           }
+        ],
+        "declencheurs": [
+          [
+            "19/02",
+            "19 fevrier",
+            "saint-ismier",
+            "saint ismier",
+            "fait 5",
+            "fait n°5",
+            "fait numero 5",
+            "pointage",
+            "alibi"
+          ]
         ]
       },
       {
@@ -1932,6 +1995,16 @@
               }
             ]
           }
+        ],
+        "declencheurs": [
+          [
+            "antecedent",
+            "casier",
+            "condamn",
+            "bulletin",
+            "passe judiciaire",
+            "deja ete"
+          ]
         ]
       },
       {
@@ -1952,6 +2025,15 @@
               }
             ]
           }
+        ],
+        "declencheurs": [
+          [
+            "peine",
+            "encour",
+            "risque",
+            "prison",
+            "sanction"
+          ]
         ]
       }
     ]

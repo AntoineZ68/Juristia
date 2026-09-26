@@ -99,29 +99,31 @@ async function session(nom, options) {
   await page.click(".bouton-resume-detaille");
   verifier(await page.isVisible(".resume-detaille .renvoi-source"), "résumé détaillé dépliable, avec renvois aux pièces");
   await page.screenshot({ path: join(RACINE, "captures/08-resume-detaille.png"), fullPage: false });
-  // Questions au dossier : zone qui se déplie sous la barre, pièces à droite
+  // Questions au dossier : une barre de saisie, réponses dessous, pièces à droite
   await page.click('.onglet[data-onglet="infos"]');
   verifier(await page.locator('.mode-classeur[data-mode="questions"]').count() === 0, "le classeur ne garde que Pièce et Index");
-  await page.click(".barre-interroger");
-  verifier(await page.isVisible("#zone-questions .suggestion"), "« Interroger le dossier » déplie les questions sous la barre");
-  await page.click('#zone-questions .suggestion:has-text("sans son avocat")');
-  verifier(await page.isVisible("#zone-questions .bulle-reponse .renvoi-source"), "réponse affichée sous la barre, avec renvois aux pièces");
-  await page.click('#zone-questions .suggestion:has-text("peine")');
-  verifier(await page.isVisible("#zone-questions .bulle-reponse.hors-dossier"), "question hors dossier : Lytis le dit");
+  verifier(await page.locator("#zone-questions .suggestion, .suggestion").count() === 0, "aucune question proposée");
+  await page.fill("#champ-question", "Qui a parlé de la casquette ?");
+  await page.press("#champ-question", "Enter");
+  verifier(await page.isVisible("#zone-questions .bulle-reponse .renvoi-source"), "question tapée : réponse préparée affichée, avec renvois aux pièces");
+  await page.fill("#champ-question", "Il risque combien de prison ?");
+  await page.press("#champ-question", "Enter");
+  verifier(await page.isVisible("#zone-questions .bulle-reponse.hors-dossier"), "question sur la peine : Lytis dit que ce n'est pas dans les pièces");
+  await page.fill("#champ-question", "Quel temps faisait-il ce jour-là ?");
+  await page.press("#champ-question", "Enter");
+  verifier(await page.isVisible("#zone-questions .bulle-reponse.sans-reponse"), "question sans réponse préparée : Lytis le dit, sans improviser");
   await page.locator("#zone-questions .bulle-reponse .renvoi-source").first().click();
   await page.waitForSelector("#classeur-piece .page-cadre img");
   verifier(await page.isVisible("#zone-questions .bulle-reponse") && await page.isVisible("#classeur-piece .page-cadre"), "clic sur un renvoi : pièce à droite, réponse toujours visible à gauche");
+  await page.locator("#bloc-questions").scrollIntoViewIfNeeded();
   await page.screenshot({ path: join(RACINE, "captures/15-questions.png") });
-  await page.click("#zone-questions .saisie-question");
-  verifier(await page.isVisible("#avis-indisponible"), "saisie libre verrouillée : avis « ceci est une démonstration »");
-  await page.click("#avis-indisponible button");
   await page.click("#zone-questions .questions-reduire");
   verifier(!(await page.isVisible("#zone-questions")), "« Réduire » replie la zone des questions");
   await page.click('.onglet[data-onglet="fond"]');
   await page.click(".contradiction.vedette .lien-question");
-  verifier(await page.isVisible('#zone-questions .bulle-question:has-text("19/02")'), "« Demander au dossier » depuis une carte pose la question sous la barre");
+  verifier(await page.isVisible('#zone-questions .bulle-question:has-text("19/02")'), "« Demander au dossier » depuis une carte pose la question");
   const nb = await page.locator("#zone-questions .bulle-question").count();
-  verifier(nb === 3, `conversation conservée après repli (${nb} questions)`);
+  verifier(nb === 4, `conversation conservée après repli (${nb} questions)`);
   await page.click("#zone-questions .questions-reduire");
   await page.click("#fermer-classeur");
 

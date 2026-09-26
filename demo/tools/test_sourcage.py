@@ -101,6 +101,10 @@ class TestContenu(unittest.TestCase):
                     self.assertEqual(q.get("nature"), "hors_dossier", q["question"])
                     self.assertIn("pièces du dossier", phrase["texte"])
 
+    def test_questions_avec_declencheurs(self):
+        for q in DONNEES["donnees"]["questions"]:
+            self.assertTrue(q.get("declencheurs"), q["id"])
+
     def test_documents_telechargeables_presents(self):
         for nom in ("note_defense.pdf", "dossier_surligne.pdf"):
             self.assertTrue((RACINE / "site" / "documents" / nom).exists(), f"{nom} : lancer tools/documents.py")
