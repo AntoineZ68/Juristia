@@ -93,12 +93,22 @@ défilement horizontal sur mobile. Il régénère les captures.
 
 ## Questions au dossier
 
-Mode « Questions » du classeur, ouvert aussi par la barre « Interroger le
-dossier… » et par les liens « Demander au dossier » des cartes. Les réponses
-sont préparées dans `source/dossier.json` (`questions`) : une source par
-phrase, vérifiée par le test de sourçage comme le reste ; seule une réponse
+La barre « Interroger le dossier… », sous l'en-tête, se déplie en place : la
+conversation s'affiche en dessous, les pièces citées s'ouvrent dans le
+classeur à droite, qui ne garde que « Pièce » et « Index ». Les liens
+« Demander au dossier » des cartes posent leur question au même endroit.
+Les réponses sont préparées dans `source/dossier.json` (`questions`) : une
+source par phrase, vérifiée par le test de sourçage ; seule une réponse
 « hors dossier » peut n'en porter aucune, et doit le dire. La saisie libre
 est verrouillée.
+
+## Formulation des appréciations
+
+Les faits tirés des pièces sont affirmés ; tout ce qui relève d'une
+appréciation juridique est formulé au conditionnel (« semble invocable »,
+« piste qui paraît sérieuse », « charges qui paraissent faibles »), avec la
+mention « Appréciations proposées par Lytis au vu de la copie du dossier, à
+confirmer par l'avocat » en tête des onglets Procédure et Fond.
 
 ## Couleurs du surlignage
 

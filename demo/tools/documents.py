@@ -27,9 +27,9 @@ SORTIE = SITE / "documents"
 FILIGRANE = "DOSSIER FICTIF — DÉMONSTRATION — AUCUNE VALEUR JURIDIQUE"
 
 QUALITES = {
-    "oui": "Invocable par le client",
-    "discutable": "Qualité à agir discutable",
-    "non": "Non invocable par le client",
+    "oui": "Semble invocable par le client",
+    "discutable": "Qualité à agir à démontrer",
+    "non": "A priori non invocable par le client",
 }
 
 
@@ -63,7 +63,8 @@ def note_defense(donnees_completes: dict) -> None:
     parties = [
         f"<h1>Note de travail — Défense de {e(defense['client'])}</h1>",
         f"<p class='meta'>{e(dossier['reference'])} · {dossier['nb_pages']} pages analysées · "
-        "document généré par Lytis pour la démonstration, sur un dossier entièrement fictif.</p>",
+        "document généré par Lytis pour la démonstration, sur un dossier entièrement fictif. "
+        "Appréciations proposées au vu de la copie du dossier, à confirmer par l'avocat.</p>",
         "<h2>Résumé</h2>",
     ]
     for bloc in d["resume_detaille"]:
@@ -76,7 +77,7 @@ def note_defense(donnees_completes: dict) -> None:
     parties.append("<h2>Procédure — pistes de nullité</h2>")
     parties.append(f"<p class='encadre'><b>{e(defense['delai']['titre'])}.</b> {e(defense['delai']['texte'])}</p>")
     for piste in defense["forme"]:
-        etiquette = QUALITES[piste["qualite"]] + (f" · piste {piste['force']}" if piste["qualite"] != "non" else "")
+        etiquette = QUALITES[piste["qualite"]] + (f" · piste qui {'reste ' if piste['force'].startswith('à ') else ''}{piste['force']}" if piste["qualite"] != "non" else "")
         parties.append(
             f"<h3>{e(piste['titre'])}</h3><p class='etiquette'>{e(etiquette)}</p>"
             f"<p><b>Textes.</b> {e(piste['texte'])}<br/><b>Constat.</b> {e(piste['analyse'])}<br/>"

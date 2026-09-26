@@ -142,9 +142,7 @@ function ouvrirSource(i) {
   if (!ref) return;
   const source = sourcesParPage.get(ref.page);
   suivre("Source ouverte", { cote: (source && source.cote) || "—", page: String(ref.page) });
-  const depuisQuestions = modeClasseur === "questions" && !document.getElementById("classeur").hidden;
   ouvrirClasseur(ref.page, ref.citation);
-  document.getElementById("retour-questions").hidden = !depuisQuestions;
   if (parcoursActif && etapeParcours === ETAPES_PARCOURS.length - 1) terminerParcours(true);
 }
 window.ouvrirSource = ouvrirSource;
@@ -170,8 +168,6 @@ function basculerModeClasseur(mode) {
   document.querySelectorAll(".mode-classeur").forEach((b) => b.classList.toggle("actif", b.dataset.mode === mode));
   document.getElementById("classeur-piece").hidden = mode !== "piece";
   document.getElementById("classeur-index").hidden = mode !== "index";
-  document.getElementById("classeur-questions").hidden = mode !== "questions";
-  if (mode !== "piece") document.getElementById("retour-questions").hidden = true;
   modeClasseur = mode;
   document.getElementById("classeur-navigation").hidden = mode !== "piece";
   document.getElementById("classeur-legende").hidden = mode !== "piece";
@@ -611,10 +607,16 @@ function ouvrirEvenementJournee(i) {
 }
 window.ouvrirEvenementJournee = ouvrirEvenementJournee;
 
+const NIVEAUX_CHARGES = {
+  faible: "Charges qui paraissent faibles",
+  moyenne: "Charges d'intensité moyenne",
+  forte: "Charges qui paraissent solides",
+};
+
 const LIBELLES_QUALITE = {
-  oui: ["Invocable par votre client", "qualite-oui"],
-  discutable: ["Qualité à agir discutable", "qualite-discutable"],
-  non: ["Non invocable par votre client", "qualite-non"],
+  oui: ["Semble invocable par votre client", "qualite-oui"],
+  discutable: ["Qualité à agir à démontrer", "qualite-discutable"],
+  non: ["A priori non invocable par votre client", "qualite-non"],
 };
 
 function rendrePiste(p) {
@@ -625,7 +627,7 @@ function rendrePiste(p) {
         <div class="titre-signalement">${esc(p.titre)}</div>
         <div class="piste-etiquettes">
           <span class="etiquette ${classeQualite}">${libelleQualite}</span>
-          ${p.qualite !== "non" ? `<span class="etiquette force">Piste ${esc(p.force)}</span>` : ""}
+          ${p.qualite !== "non" ? `<span class="etiquette force">Piste qui ${esc(p.force.startsWith("à ") ? "reste " + p.force : p.force)}</span>` : ""}
         </div>
       </div>
       <dl class="piste-details">
@@ -650,6 +652,7 @@ function enteteDefense(titre, sousTitre, complement = "") {
     <div class="carte defense-entete">
       <h2>${titre}</h2>
       <p class="defense-sous-titre">${sousTitre}</p>
+      <p class="mention-appreciation">Appréciations proposées par Lytis au vu de la copie du dossier, à confirmer par l'avocat.</p>
       ${complement}
     </div>`;
 }
@@ -667,10 +670,10 @@ function rendreOngletProcedure() {
       </div>`)}
     <div class="carte">
       <h2>Pistes de nullité</h2>
-      <p class="defense-intro">${d.forme.length} irrégularités apparentes relevées dans le dossier. ${compte("oui")} sont invocables par votre client, ${compte("discutable")} suppose de démontrer sa qualité à agir, ${compte("non")} ne concernent que les coauteurs.</p>
+      <p class="defense-intro">${d.forme.length} irrégularités apparentes relevées dans la copie. Au vu des pièces, ${compte("oui")} semblent invocables par votre client, ${compte("discutable")} suppose de démontrer sa qualité à agir, ${compte("non")} paraissent ne concerner que les coauteurs.</p>
       <ul class="liste-pistes">${retenues.map(rendrePiste).join("")}</ul>
       <details class="pistes-ecartees">
-        <summary>Écartées pour votre client (${ecartees.length}) — droits propres aux coauteurs</summary>
+        <summary>A priori sans intérêt direct pour votre client (${ecartees.length}) — droits propres aux coauteurs</summary>
         <ul class="liste-pistes">${ecartees.map(rendrePiste).join("")}</ul>
       </details>
     </div>
@@ -702,7 +705,7 @@ function rendreOngletFond() {
           <li class="fait-fond">
             <div class="piste-entete">
               <div class="titre-signalement">${esc(f.fait)}</div>
-              <span class="etiquette niveau-${f.niveau}">Charges ${esc(f.niveau)}s</span>
+              <span class="etiquette niveau-${f.niveau}">${NIVEAUX_CHARGES[f.niveau] || ""}</span>
             </div>
             <div class="description-signalement">${esc(f.synthese)}</div>
             <div class="fond-colonnes">
@@ -738,9 +741,12 @@ function rendreDetailDossier() {
       <span><strong>${dossier.nb_pages}</strong> page(s)</span>
       <button type="button" class="bouton-index" onclick="ouvrirIndexClasseur()">${ICONE_INDEX}<span>Index du dossier</span></button>
     </div>
-    <button type="button" class="barre-interroger" onclick="ouvrirQuestions()">
-      ${ICONE_QUESTION}<span>Interroger le dossier…</span><small>Réponses tirées des pièces, chacune sourcée</small>
-    </button>`;
+    <div class="bloc-questions" id="bloc-questions">
+      <button type="button" class="barre-interroger" onclick="basculerQuestions()">
+        ${ICONE_QUESTION}<span>Interroger le dossier…</span><small>Réponses tirées des pièces, chacune sourcée</small>
+      </button>
+      <div id="zone-questions" hidden></div>
+    </div>`;
 
   const panneauInfos = `
     <div class="carte bloc-resume">
@@ -990,62 +996,78 @@ function lienQuestion(id) {
   return `<button type="button" class="lien-question" onclick="event.stopPropagation(); ouvrirQuestions('${id}')">${ICONE_QUESTION}<span>Demander au dossier : « ${esc(q.question)} »</span></button>`;
 }
 
+let questionsOuvertes = false;
+
+// Les questions s'ouvrent sous la barre, dans la colonne de lecture : la
+// réponse reste à gauche, la pièce citée s'ouvre à droite, les deux restent
+// visibles ensemble.
 function rendreQuestions() {
-  const el = document.getElementById("classeur-questions");
+  const el = document.getElementById("zone-questions");
   const restantes = [...QUESTIONS.values()].filter((q) => !filQuestions.includes(q.id));
   el.innerHTML = `
     <div class="questions">
-      <div class="questions-intro">
-        <div class="questions-titre">${ICONE_QUESTION}<span>Questions au dossier</span></div>
-        <ul>
-          <li>Réponses tirées <strong>uniquement des pièces</strong> du dossier.</li>
-          <li>Chaque phrase renvoie à sa <strong>cote et sa page</strong> : un clic ouvre la pièce.</li>
-          <li>Si l'information n'y est pas, Lytis <strong>le dit</strong>.</li>
-        </ul>
+      <div class="questions-entete">
+        <p class="questions-regles">Réponses tirées <strong>uniquement des pièces</strong> · chaque phrase renvoie à sa <strong>cote et sa page</strong>, ouverte à droite · si l'information n'y est pas, Lytis <strong>le dit</strong>.</p>
+        <button type="button" class="lien questions-reduire" onclick="basculerQuestions(false)">Réduire</button>
       </div>
       <div class="fil-questions">
         ${filQuestions.map((id) => {
           const q = QUESTIONS.get(id);
           return `
-            <div class="bulle-question">${esc(q.question)}</div>
+            <div class="bulle-question" data-question="${id}">${esc(q.question)}</div>
             <div class="bulle-reponse ${q.nature === "hors_dossier" ? "hors-dossier" : ""}">
-              ${q.reponse.map((ph) => `<p>${esc(ph.texte)} ${ph.sources.map((s) => renvoiSource(s.page, s.citation)).join(" ")}</p>`).join("")}
+              ${q.reponse.map((ph) => `<p>${esc(ph.texte)} ${ph.sources.map((src) => renvoiSource(src.page, src.citation)).join(" ")}</p>`).join("")}
             </div>`;
         }).join("")}
       </div>
       ${restantes.length ? `
         <div class="suggestions">
           <div class="suggestions-titre">${filQuestions.length ? "Autres questions" : "Questions proposées"}</div>
-          ${restantes.map((q) => `<button type="button" class="suggestion" onclick="poserQuestion('${q.id}')">${esc(q.question)}</button>`).join("")}
+          <div class="suggestions-liste">
+            ${restantes.map((q) => `<button type="button" class="suggestion" onclick="poserQuestion('${q.id}')">${esc(q.question)}</button>`).join("")}
+          </div>
         </div>` : ""}
       <div class="saisie-question" onclick="actionIndisponible('Question libre')">
         <input type="text" disabled placeholder="Posez votre question sur le dossier…" />
         <button type="button" class="bouton-primaire" disabled>Envoyer</button>
       </div>
-      <p class="aide-champ questions-note">Démonstration : réponses préparées sur le dossier fictif, vérifiées contre les pièces. La saisie libre est réservée à votre espace.</p>
+      <p class="aide-champ questions-note">Démonstration : réponses préparées sur le dossier fictif et vérifiées contre les pièces. La saisie libre est réservée à votre espace.</p>
     </div>`;
 }
+
+function basculerQuestions(ouvrir = !questionsOuvertes) {
+  questionsOuvertes = ouvrir;
+  const zone = document.getElementById("zone-questions");
+  document.getElementById("bloc-questions").classList.toggle("ouvert", ouvrir);
+  zone.hidden = !ouvrir;
+  if (ouvrir) {
+    rendreQuestions();
+    suivre("Questions ouvertes");
+  }
+}
+window.basculerQuestions = basculerQuestions;
 
 function poserQuestion(id) {
   if (!QUESTIONS.has(id)) return;
   if (!filQuestions.includes(id)) filQuestions.push(id);
-  rendreQuestions();
+  if (!questionsOuvertes) basculerQuestions(true);
+  else rendreQuestions();
   suivre("Question", { id });
-  // Amène la dernière réponse sous les yeux.
+  // Amène la question posée sous les yeux, en haut de la colonne.
   requestAnimationFrame(() => {
-    const reponses = document.querySelectorAll("#classeur-questions .bulle-question");
-    const derniere = [...reponses].find((b) => b.textContent === QUESTIONS.get(id).question);
-    if (derniere) derniere.scrollIntoView({ block: "start", behavior: "smooth" });
+    const bulle = document.querySelector(`#zone-questions .bulle-question[data-question="${id}"]`);
+    if (bulle) bulle.scrollIntoView({ block: "start", behavior: "smooth" });
   });
 }
 window.poserQuestion = poserQuestion;
 
+// Depuis une carte (« Demander au dossier ») : ouvre la zone et pose la question.
 function ouvrirQuestions(id) {
-  document.getElementById("classeur").hidden = false;
-  basculerModeClasseur("questions");
-  rendreQuestions();
   if (id) poserQuestion(id);
-  else document.getElementById("classeur-corps").scrollTop = 0;
+  else {
+    basculerQuestions(true);
+    document.getElementById("bloc-questions").scrollIntoView({ block: "start", behavior: "smooth" });
+  }
 }
 window.ouvrirQuestions = ouvrirQuestions;
 
@@ -1143,18 +1165,18 @@ const ETAPES_PARCOURS = [
   {
     onglet: "procedure",
     cible: ".liste-pistes .piste:first-child .piste-entete",
-    titre: "Procédure : les nullités, triées pour votre client",
+    titre: "Procédure : les nullités possibles, rattachées à votre client",
     texte: () => {
       const f = donnees.defense.forme;
       const n = (q) => f.filter((p) => p.qualite === q).length;
-      return `${f.length} irrégularités relevées : ${n("oui")} invocables par votre client, ${n("discutable")} où sa qualité à agir reste à démontrer, ${n("non")} qui ne concernent que ses coauteurs.`;
+      return `${f.length} irrégularités apparentes. Lytis propose un tri : ${n("oui")} semblent invocables par votre client, ${n("discutable")} suppose de démontrer sa qualité à agir, ${n("non")} paraissent ne concerner que ses coauteurs. L'appréciation vous revient.`;
     },
   },
   {
     onglet: "fond",
     cible: ".contradiction.vedette .declaration-personne:last-child .badge-source",
     titre: "Fond : les pièces qui ne concordent pas",
-    texte: () => `Le rapport de synthèse impute au client le cambriolage du 19/02 ; son relevé de pointage le place au travail à la même heure. Ouvrez la pièce ${(sourcesParPage.get(preuveVedette.page) || {}).cote || ""}, page ${preuveVedette.page}.`,
+    texte: () => `Le rapport de synthèse impute au client le cambriolage du 19/02 ; le relevé de pointage produit le situe au travail à la même heure. Ouvrez la pièce ${(sourcesParPage.get(preuveVedette.page) || {}).cote || ""}, page ${preuveVedette.page}.`,
     bouton: "Ouvrir la pièce",
   },
 ];
