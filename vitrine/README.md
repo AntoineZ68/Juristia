@@ -19,7 +19,10 @@ cd vitrine && python3 -m http.server 8000
 
 ## Déployer (Render, Static Site)
 
-1. Render → New + → Static Site, dépôt `AntoineZ68/Juristia`, cette branche.
-2. Root Directory : `vitrine` — Build Command : vide — Publish Directory : `.`
-3. Settings → Custom Domains : ajouter `lytis.legal` et `www.lytis.legal`, puis créer
-   chez le registraire les enregistrements DNS indiqués par Render.
+Un seul site sur `lytis.legal` : la vitrine à la racine, la démonstration
+sous `lytis.legal/demo/`. `construire.sh` assemble les deux dans `public/`.
+
+1. Root Directory : vide (racine du dépôt)
+2. Build Command : `bash vitrine/construire.sh` — Publish Directory : `public`
+3. Headers : `/demo/*` → `X-Robots-Tag: noindex, nofollow`
+4. Custom Domains : `lytis.legal` et `www.lytis.legal`

@@ -1,7 +1,7 @@
 // Réglages du site vitrine Lytis — le seul fichier à modifier au quotidien.
 window.LYTIS_SITE = {
-  // Adresse de la démonstration (le Static Site Render de la démo).
-  demo: "https://juristia.onrender.com/",
+  // Adresse de la démonstration, servie sous lytis.legal/demo/.
+  demo: "demo/",
   // Adresse qui reçoit les demandes du programme pilote.
   // À remplacer par contact@lytis.legal dès que le domaine et la boîte mail existent.
   email: "antoine.zoller@edu.em-lyon.com",
