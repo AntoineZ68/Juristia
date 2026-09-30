@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr" class="sans-js">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mentions légales et confidentialité — Lytis</title>
+<meta name="description" content="Mentions légales et politique de confidentialité du site Lytis." />
+<meta name="theme-color" content="#3A0914" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233A0914'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' font-weight='700' fill='%23F4E8DA' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="entete entete-fixe-claire" id="entete">
+  <div class="conteneur entete-interieur">
+    <a class="marque" href="index.html">LYTIS</a>
+    <div class="entete-actions">
+      <a class="bouton bouton-plein" href="index.html#pilote">Programme pilote</a>
+    </div>
+  </div>
+</header>
+
+<main class="page-simple">
+  <div class="conteneur conteneur-etroit">
+    <h1>Mentions légales et confidentialité</h1>
+
+    <h2>Éditeur</h2>
+    <dl>
+      <dt>Nom</dt><dd>Antoine Zoller</dd>
+      <dt>Statut</dt><dd>Projet en cours de création</dd>
+      <dt>Adresse</dt><dd>143 rue Stéphane Déchant, 69350 La Mulatière</dd>
+      <dt>Contact</dt><dd><span class="contact-email"></span></dd>
+      <dt>Directeur de la publication</dt><dd>Antoine Zoller</dd>
+    </dl>
+
+    <h2>Hébergeur</h2>
+    <p>Render Services, Inc. — 525 Brannan Street, Suite 300, San Francisco, CA 94107, États-Unis — render.com</p>
+
+    <h2>Données personnelles</h2>
+    <p><strong>Aucune collecte par ce site.</strong> Le formulaire du programme pilote ne transmet rien : il ouvre votre propre messagerie avec une demande pré-remplie, que vous choisissez d'envoyer ou non. Les informations que vous nous adressez par e-mail servent uniquement à vous répondre et à organiser votre participation au programme pilote ; elles ne sont ni cédées ni utilisées à d'autres fins.</p>
+    <p><strong>Aucun cookie, aucune mesure d'audience.</strong> Les polices de caractères sont servies par le site lui-même, sans appel à un service tiers.</p>
+    <p><strong>Journaux techniques.</strong> Comme tout hébergeur, Render enregistre des journaux de connexion (adresse IP, date, page demandée) à des fins de sécurité et de bon fonctionnement, sur le fondement de l'intérêt légitime, dans les conditions de sa politique de confidentialité (render.com/privacy).</p>
+    <p><strong>Vos droits.</strong> Vous disposez d'un droit d'accès, de rectification, d'effacement, d'opposition et de limitation, à exercer par e-mail à l'adresse ci-dessus. Vous pouvez également introduire une réclamation auprès de la CNIL (cnil.fr).</p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>Les textes, visuels et éléments graphiques de ce site, ainsi que la marque Lytis, ne peuvent être reproduits sans l'accord de l'éditeur. Les captures d'écran présentent un dossier entièrement fictif.</p>
+
+    <p style="margin-top:48px;"><a class="lien-fleche" href="index.html">Retour à l'accueil</a></p>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied-interieur">
+    <div>
+      <p class="marque">LYTIS</p>
+      <p class="pied-accroche">L'IA d'analyse des dossiers pénaux</p>
+    </div>
+    <p class="pied-copyright">© 2026 Lytis</p>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="site.js"></script>
+<script>
+  document.querySelectorAll(".contact-email").forEach((el) => { el.textContent = (window.LYTIS_SITE || {}).email || ""; });
+</script>
+</body>
+</html>

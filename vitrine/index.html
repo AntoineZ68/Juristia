@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="fr" class="sans-js">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lytis — L'IA d'analyse des dossiers pénaux</title>
+<meta name="description" content="Lytis lit la copie de votre dossier pénal et vous restitue une analyse structurée : chronologie, nullités possibles, éléments à charge et à décharge. Chaque élément renvoie à sa cote et à sa page." />
+<meta name="theme-color" content="#3A0914" />
+<link rel="canonical" href="https://lytis.fr/" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content="Lytis — Le droit pénal a son IA." />
+<meta property="og:description" content="L'IA d'analyse des dossiers pénaux : chronologie sourcée, nullités possibles, éléments à charge et à décharge, chaque élément relié à sa cote et à sa page." />
+<meta property="og:image" content="https://lytis.fr/img/partage.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233A0914'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' font-weight='700' fill='%23F4E8DA' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E" />
+<link rel="preload" href="fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<header class="entete" id="entete">
+  <div class="conteneur entete-interieur">
+    <a class="marque" href="#haut" aria-label="Lytis, retour en haut de page">LYTIS</a>
+    <nav class="navigation" aria-label="Navigation principale">
+      <a href="#fonctions">Fonctionnalités</a>
+      <a href="#methode">Méthode</a>
+      <a href="#engagements">Engagements</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <div class="entete-actions">
+      <a class="bouton bouton-fantome lien-demo" href="#" target="_blank" rel="noopener">Voir la démo</a>
+      <a class="bouton bouton-plein" href="#pilote">Programme pilote</a>
+    </div>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <!-- Accroche -->
+  <section class="heros" id="haut">
+    <div class="heros-fond" aria-hidden="true">
+      <svg class="reseau" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="0.7" fill="none">
+        <path d="M700 40 L820 170 L980 110 L1120 230 L1010 360 L860 300 L820 170" />
+        <path d="M860 300 L760 430 L900 520 L1010 360 L1150 470 L1060 620 L900 520" />
+        <path d="M980 110 L1090 30 L1200 120 L1120 230 L1200 330 L1150 470" />
+        <path d="M760 430 L640 560 L780 660 L900 520" />
+        <path d="M620 250 L700 40 M620 250 L760 430 M620 250 L860 300" />
+      </g>
+      <g fill="currentColor">
+        <circle cx="820" cy="170" r="2.4" /><circle cx="980" cy="110" r="2.4" /><circle cx="1120" cy="230" r="2.4" />
+        <circle cx="1010" cy="360" r="2.4" /><circle cx="860" cy="300" r="2.4" /><circle cx="760" cy="430" r="2.4" />
+        <circle cx="900" cy="520" r="2.4" /><circle cx="1150" cy="470" r="2.4" /><circle cx="620" cy="250" r="2.4" />
+      </g>
+    </svg>
+    </div>
+    <div class="conteneur heros-grille">
+      <div class="heros-texte">
+        <p class="surtitre">L'IA d'analyse des dossiers pénaux</p>
+        <h1>Le droit pénal a son&nbsp;IA.</h1>
+        <p class="chapeau">Lytis lit la copie de votre dossier et vous restitue une analyse structurée&nbsp;: chronologie des faits, nullités possibles, éléments à charge et à décharge. Chaque élément renvoie à sa cote et à sa page.</p>
+        <div class="heros-actions">
+          <a class="bouton bouton-creme lien-demo" href="#" target="_blank" rel="noopener">Voir la démonstration</a>
+          <a class="bouton bouton-contour" href="#pilote">Rejoindre le programme pilote</a>
+        </div>
+        <ul class="garanties" aria-label="Garanties">
+          <li>Propulsé par Mistral AI</li>
+          <li>Hébergement en Europe</li>
+          <li>Chaque élément sourcé</li>
+        </ul>
+      </div>
+    </div>
+    <div class="conteneur heros-visuel apparition">
+      <figure class="fenetre">
+        <div class="fenetre-barre" aria-hidden="true"><span></span><span></span><span></span></div>
+        <img src="img/fond.webp" width="1600" height="956" alt="Écran de Lytis : tableau « Ce qui relie votre client à chaque fait » à gauche, pièce D28 ouverte et surlignée à droite." />
+      </figure>
+    </div>
+  </section>
+
+  <!-- Constat -->
+  <section class="section section-claire" aria-labelledby="titre-constat">
+    <div class="conteneur">
+      <p class="surtitre surtitre-vin">Le constat</p>
+      <h2 id="titre-constat" class="titre-section">Tout est dans le dossier. Encore faut-il le&nbsp;trouver.</h2>
+      <div class="grille-trois">
+        <article class="carte-constat apparition">
+          <span class="numero">01</span>
+          <h3>Des centaines de pages</h3>
+          <p>Procès-verbaux, réquisitions, expertises, souvent scannés et dans le désordre des cotes. Leur seule lecture prend des jours.</p>
+        </article>
+        <article class="carte-constat apparition">
+          <span class="numero">02</span>
+          <h3>Un détail qui change tout</h3>
+          <p>Une heure qui ne concorde pas, une autorisation absente, une plaque mal relevée&nbsp;: l'élément décisif tient parfois en une ligne.</p>
+        </article>
+        <article class="carte-constat apparition">
+          <span class="numero">03</span>
+          <h3>Des délais qui courent</h3>
+          <p>Les nullités se soulèvent dans des délais stricts. Chaque jour passé à dépouiller est un jour de moins pour construire la défense.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fonctionnalités -->
+  <section class="section" id="fonctions" aria-labelledby="titre-fonctions">
+    <div class="conteneur">
+      <p class="surtitre surtitre-vin">Ce que fait Lytis</p>
+      <h2 id="titre-fonctions" class="titre-section">Un dossier lu, structuré, vérifiable en&nbsp;un&nbsp;clic.</h2>
+
+      <div class="fonction apparition">
+        <div class="fonction-texte">
+          <span class="etiquette">Chronologie</span>
+          <h3>Les faits, datés et sourcés</h3>
+          <p>Chaque fait est daté, résumé et accompagné de la citation exacte du procès-verbal. Un clic ouvre la pièce à la bonne page, le passage surligné.</p>
+          <ul class="points">
+            <li>Citation, cote et page pour chaque élément</li>
+            <li>Pièces scannées lues automatiquement</li>
+            <li>Index du dossier toujours à portée de main</li>
+          </ul>
+        </div>
+        <figure class="fenetre"><img src="img/chrono.webp" width="1600" height="956" loading="lazy" alt="Chronologie des faits sourcée, avec la pièce correspondante ouverte à droite." /></figure>
+      </div>
+
+      <div class="fonction fonction-inverse apparition">
+        <div class="fonction-texte">
+          <span class="etiquette">Procédure</span>
+          <h3>Les nullités possibles, rattachées à votre client</h3>
+          <p>Lytis relève les irrégularités apparentes et propose un tri&nbsp;: ce que votre client semble pouvoir invoquer, ce qui ne concerne que ses coauteurs. Textes, constat, qualité à agir, grief&nbsp;: tout y est, à votre appréciation.</p>
+          <ul class="points">
+            <li>Appréciation proposée, jamais imposée</li>
+            <li>Rappel de la voie et du délai pour agir</li>
+            <li>Pièces à l'appui de chaque piste</li>
+          </ul>
+        </div>
+        <figure class="fenetre"><img src="img/nullites.webp" width="1600" height="956" loading="lazy" alt="Onglet Procédure : pistes de nullité avec textes, constat, qualité à agir et grief, pièce surlignée à droite." /></figure>
+      </div>
+
+      <div class="fonction apparition">
+        <div class="fonction-texte">
+          <span class="etiquette">Garde à vue</span>
+          <h3>Chaque garde à vue, heure par heure</h3>
+          <p>Placement, notification des droits, avocat, médecin, auditions, avis au magistrat&nbsp;: la mesure reconstituée sur une ligne de temps, les délais à examiner mis en évidence.</p>
+          <ul class="points">
+            <li>Une ligne par personne gardée à vue</li>
+            <li>Chaque repère ouvre sa pièce</li>
+          </ul>
+        </div>
+        <figure class="fenetre"><img src="img/gav.webp" width="1600" height="956" loading="lazy" alt="Chronogramme des gardes à vue, avec les délais à examiner hachurés." /></figure>
+      </div>
+
+      <div class="fonction fonction-inverse apparition">
+        <div class="fonction-texte">
+          <span class="etiquette">Fond</span>
+          <h3>Ce qui relie votre client à chaque fait</h3>
+          <p>Pour chaque fait imputé, ce que dit chaque type de pièce&nbsp;: téléphonie, témoins, déclarations, traces, pointage. Les charges solides et les faits sans rattachement apparaissent d'un coup d'œil.</p>
+          <ul class="points">
+            <li>Discordances entre pièces relevées</li>
+            <li>Éléments à charge et à décharge, fait par fait</li>
+          </ul>
+        </div>
+        <figure class="fenetre"><img src="img/fond.webp" width="1600" height="956" loading="lazy" alt="Tableau des faits imputés et des types de pièces, case du pointage ouverte." /></figure>
+      </div>
+
+      <div class="fonction apparition">
+        <div class="fonction-texte">
+          <span class="etiquette">Questions</span>
+          <h3>Interrogez votre dossier</h3>
+          <p>Posez une question, Lytis répond à partir des seules pièces du dossier, chaque phrase sourcée. Si l'information n'y figure pas, il le dit.</p>
+          <ul class="points">
+            <li>Réponses tirées uniquement des pièces</li>
+            <li>La preuve s'ouvre à côté de la réponse</li>
+          </ul>
+        </div>
+        <figure class="fenetre"><img src="img/questions.webp" width="1600" height="956" loading="lazy" alt="Question posée au dossier, réponse sourcée et pièce ouverte à droite." /></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Méthode -->
+  <section class="section section-claire" id="methode" aria-labelledby="titre-methode">
+    <div class="conteneur">
+      <p class="surtitre surtitre-vin">Méthode</p>
+      <h2 id="titre-methode" class="titre-section">Trois étapes, aucune configuration.</h2>
+      <ol class="etapes">
+        <li class="apparition">
+          <span class="etape-numero">1</span>
+          <h3>Déposez la copie</h3>
+          <p>Les PDF de la procédure, tels que vous les recevez, y compris les pièces scannées.</p>
+        </li>
+        <li class="apparition">
+          <span class="etape-numero">2</span>
+          <h3>Indiquez votre client</h3>
+          <p>Défense d'un mis en cause, partie civile ou lecture neutre&nbsp;: l'analyse s'oriente vers ce qui compte pour lui.</p>
+        </li>
+        <li class="apparition">
+          <span class="etape-numero">3</span>
+          <h3>Travaillez sur l'analyse</h3>
+          <p>Chronologie, procédure, fond, note de travail et dossier surligné, prêts à exploiter et à vérifier.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Engagements -->
+  <section class="section section-vin" id="engagements" aria-labelledby="titre-engagements">
+    <div class="conteneur">
+      <p class="surtitre">Nos engagements</p>
+      <h2 id="titre-engagements" class="titre-section">Un outil au service de l'avocat, pas à sa&nbsp;place.</h2>
+      <div class="grille-deux">
+        <article class="engagement apparition">
+          <h3>Rien sans sa source</h3>
+          <p>Chaque fait, chaque citation, chaque piste renvoie à une cote et à une page. Une citation introuvable dans le dossier n'est jamais affichée.</p>
+        </article>
+        <article class="engagement apparition">
+          <h3>L'avocat apprécie</h3>
+          <p>Lytis relève, rapproche et propose. La qualification juridique et la stratégie de défense restent les vôtres.</p>
+        </article>
+        <article class="engagement apparition">
+          <h3>Confidentialité</h3>
+          <p>Analyse propulsée par Mistral AI, données hébergées en Europe. Chaque dossier n'est accessible qu'au compte qui l'a déposé.</p>
+        </article>
+        <article class="engagement apparition">
+          <h3>Vous gardez la main</h3>
+          <p>Un dossier supprimé l'est avec toutes ses pièces et ses analyses.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programme pilote -->
+  <section class="section" id="pilote" aria-labelledby="titre-pilote">
+    <div class="conteneur pilote">
+      <div class="pilote-texte">
+        <p class="surtitre surtitre-vin">Programme pilote</p>
+        <h2 id="titre-pilote" class="titre-section">Construisons Lytis avec les pénalistes.</h2>
+        <p>Lytis est en cours de développement avec des avocats pénalistes. Rejoignez le programme pilote pour l'utiliser sur vos dossiers et orienter les prochaines fonctionnalités.</p>
+        <ul class="points">
+          <li>Accès anticipé, accompagnement personnalisé</li>
+          <li>Vos retours intégrés en priorité</li>
+          <li>Sans engagement</li>
+        </ul>
+      </div>
+      <form class="formulaire" id="formulaire-pilote" novalidate>
+        <div class="champ">
+          <label for="f-nom">Nom et prénom</label>
+          <input id="f-nom" name="nom" type="text" autocomplete="name" required />
+        </div>
+        <div class="champ">
+          <label for="f-cabinet">Cabinet</label>
+          <input id="f-cabinet" name="cabinet" type="text" autocomplete="organization" />
+        </div>
+        <div class="champ">
+          <label for="f-email">E-mail professionnel</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="champ">
+          <label for="f-activite">Votre activité</label>
+          <select id="f-activite" name="activite">
+            <option>Défense pénale</option>
+            <option>Partie civile</option>
+            <option>Pénal des affaires</option>
+            <option>Pratique mixte</option>
+          </select>
+        </div>
+        <div class="champ champ-large">
+          <label for="f-message">Message <span class="facultatif">(facultatif)</span></label>
+          <textarea id="f-message" name="message" rows="3"></textarea>
+        </div>
+        <button type="submit" class="bouton bouton-plein bouton-large">Demander un accès pilote</button>
+        <p class="formulaire-note" id="formulaire-note" aria-live="polite">Votre demande s'ouvre dans votre messagerie : rien n'est enregistré par ce site.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Fondateur -->
+  <section class="section section-claire" aria-labelledby="titre-fondateur">
+    <div class="conteneur fondateur apparition">
+      <div class="fondateur-photo" id="fondateur-photo" aria-hidden="true"></div>
+      <div>
+        <p class="surtitre surtitre-vin">Le fondateur</p>
+        <h2 id="titre-fondateur" class="fondateur-nom"></h2>
+        <p class="fondateur-role"></p>
+        <p class="fondateur-texte"></p>
+        <a class="lien-fleche" id="lien-linkedin" href="#" target="_blank" rel="noopener" hidden>Profil LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="titre-faq">
+    <div class="conteneur conteneur-etroit">
+      <p class="surtitre surtitre-vin">Questions fréquentes</p>
+      <h2 id="titre-faq" class="titre-section">Ce que les avocats nous demandent.</h2>
+      <div class="faq">
+        <details>
+          <summary>Lytis remplace-t-il la lecture du dossier&nbsp;?</summary>
+          <p>Non. Lytis prépare le terrain&nbsp;: il structure le dossier, relève ce qui mérite d'être examiné et vous amène à la bonne page. La lecture critique, l'appréciation et la stratégie restent celles de l'avocat.</p>
+        </details>
+        <details>
+          <summary>Comment savoir si une information est exacte&nbsp;?</summary>
+          <p>Chaque élément affiché est accompagné de sa cote, de sa page et de la citation exacte. Un clic ouvre la pièce, passage surligné&nbsp;: la vérification prend quelques secondes.</p>
+        </details>
+        <details>
+          <summary>Où sont traitées les pièces de mes dossiers&nbsp;?</summary>
+          <p>L'analyse est réalisée par Mistral AI et les données sont hébergées en Europe. Chaque dossier n'est accessible qu'au compte qui l'a déposé, et sa suppression efface les pièces comme les analyses.</p>
+        </details>
+        <details>
+          <summary>Quels documents puis-je déposer&nbsp;?</summary>
+          <p>La copie de la procédure au format PDF, en un ou plusieurs fichiers, y compris lorsque les pièces sont scannées.</p>
+        </details>
+        <details>
+          <summary>Combien coûte Lytis&nbsp;?</summary>
+          <p>Lytis est aujourd'hui proposé dans le cadre d'un programme pilote. Les conditions se définissent avec chaque cabinet participant&nbsp;: écrivez-nous.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied-interieur">
+    <div>
+      <p class="marque">LYTIS</p>
+      <p class="pied-accroche">L'IA d'analyse des dossiers pénaux</p>
+    </div>
+    <nav class="pied-liens" aria-label="Liens de pied de page">
+      <a class="lien-demo" href="#" target="_blank" rel="noopener">Démonstration</a>
+      <a href="#pilote">Programme pilote</a>
+      <a href="mentions.html">Mentions légales et confidentialité</a>
+    </nav>
+    <p class="pied-copyright">© 2026 Lytis</p>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
