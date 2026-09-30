@@ -3,7 +3,7 @@ window.LYTIS_SITE = {
   // Adresse de la démonstration (le Static Site Render de la démo).
   demo: "https://juristia.onrender.com/",
   // Adresse qui reçoit les demandes du programme pilote.
-  // À remplacer par contact@lytis.fr dès que le domaine et la boîte mail existent.
+  // À remplacer par contact@lytis.legal dès que le domaine et la boîte mail existent.
   email: "antoine.zoller@edu.em-lyon.com",
   // Profil LinkedIn du fondateur (laisser vide pour masquer le lien).
   linkedin: "",
