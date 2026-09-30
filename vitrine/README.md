@@ -4,6 +4,15 @@ Site statique (HTML/CSS/JS, polices servies localement, aucun appel externe,
 aucun cookie). Le formulaire « Programme pilote » ouvre la messagerie du
 visiteur (mailto) : rien n'est collecté par le site.
 
+## Animations
+
+- Accroche : titre révélé mot à mot (CSS), capture qui se redresse au défilement.
+- « Regardez Lytis lire un dossier » (`#recit`) : six étapes sur le dossier fictif de la démo.
+  Grand écran : scène épinglée pilotée par le défilement. Tablette et mobile : chaque maquette
+  s'anime une fois à l'écran. « Mouvement réduit » ou sans JavaScript : maquettes statiques.
+- Code : `animations.js` ; GSAP et ScrollTrigger dans `vendor/`, chargés après l'affichage.
+- Storyboard et design system : `design-system/lytis/`.
+
 ## Réglages
 
 Tout se règle dans `config.js` : adresse de la démo, e-mail de contact,

@@ -26,8 +26,8 @@
   <div class="conteneur entete-interieur">
     <a class="marque" href="#haut" aria-label="Lytis, retour en haut de page">LYTIS</a>
     <nav class="navigation" aria-label="Navigation principale">
+      <a href="#recit">Démonstration</a>
       <a href="#fonctions">Fonctionnalités</a>
-      <a href="#methode">Méthode</a>
       <a href="#engagements">Engagements</a>
       <a href="#tarifs">Tarifs</a>
       <a href="#faq">Questions</a>
@@ -62,7 +62,7 @@
     <div class="conteneur heros-grille">
       <div class="heros-texte">
         <p class="surtitre">L'IA d'analyse des dossiers pénaux</p>
-        <h1>Le droit pénal a son&nbsp;IA.</h1>
+        <h1 aria-label="Le droit pénal a son IA."><span class="mot" aria-hidden="true"><span style="--i:0">Le</span></span> <span class="mot" aria-hidden="true"><span style="--i:1">droit</span></span> <span class="mot" aria-hidden="true"><span style="--i:2">pénal</span></span> <span class="mot" aria-hidden="true"><span style="--i:3">a</span></span> <span class="mot" aria-hidden="true"><span style="--i:4">son&nbsp;IA.</span></span></h1>
         <p class="chapeau">Lytis lit la copie de votre dossier et vous restitue une analyse structurée&nbsp;: chronologie des faits, nullités possibles, éléments à charge et à décharge. Chaque élément renvoie à sa cote et à sa page.</p>
         <div class="heros-actions">
           <a class="bouton bouton-creme lien-demo" href="#" target="_blank" rel="noopener">Voir la démonstration</a>
@@ -75,10 +75,10 @@
         </ul>
       </div>
     </div>
-    <div class="conteneur heros-visuel apparition">
+    <div class="conteneur heros-visuel">
       <figure class="fenetre">
         <div class="fenetre-barre" aria-hidden="true"><span></span><span></span><span></span></div>
-        <img src="img/fond.webp" width="1600" height="956" alt="Écran de Lytis : tableau « Ce qui relie votre client à chaque fait » à gauche, pièce D28 ouverte et surlignée à droite." />
+        <img src="img/fond.webp" srcset="img/fond-800.webp 800w, img/fond.webp 1600w" sizes="(max-width: 1228px) calc(100vw - 48px), 1180px" fetchpriority="high" width="1600" height="956" alt="Écran de Lytis : tableau « Ce qui relie votre client à chaque fait » à gauche, pièce D28 ouverte et surlignée à droite." />
       </figure>
     </div>
   </section>
@@ -108,39 +108,260 @@
     </div>
   </section>
 
+  <!-- Récit : le dossier qui se transforme -->
+  <section class="recit" id="recit" aria-labelledby="titre-recit">
+    <div class="conteneur recit-intro">
+      <p class="surtitre surtitre-vin">Démonstration</p>
+      <h2 id="titre-recit" class="titre-section">Regardez Lytis lire un&nbsp;dossier.</h2>
+      <p class="recit-chapeau">Un dossier fictif de 31 pages, le même que dans la démonstration. De la copie brute à la source vérifiée, en six étapes.</p>
+    </div>
+
+    <div class="recit-scene">
+      <div class="conteneur recit-grille">
+        <div class="recit-progression" aria-label="Étapes de la démonstration">
+          <div class="recit-barre" aria-hidden="true"><span></span></div>
+          <ol>
+            <li><button type="button" data-aller="0">01</button></li>
+            <li><button type="button" data-aller="1">02</button></li>
+            <li><button type="button" data-aller="2">03</button></li>
+            <li><button type="button" data-aller="3">04</button></li>
+            <li><button type="button" data-aller="4">05</button></li>
+            <li><button type="button" data-aller="5">06</button></li>
+          </ol>
+        </div>
+
+        <ol class="recit-etapes">
+
+          <!-- 1. Dépôt -->
+          <li class="etape" data-scene="depot">
+            <div class="etape-texte">
+              <span class="etape-num">01</span>
+              <h3>Le dossier arrive tel&nbsp;quel.</h3>
+              <p>PDF scannés, pièces dans le désordre&nbsp;: Lytis prend la copie de la procédure comme vous la recevez.</p>
+            </div>
+            <div class="ecran" aria-hidden="true">
+              <div class="ecran-barre"><span></span><span></span><span></span></div>
+              <div class="ecran-app">
+                <div class="app-entete">
+                  <span class="app-logo">Lytis.</span>
+                  <span class="app-dossier">MARTINON Lucas — Affaire GENTIANE<small>Information JI 26/00044 · TJ Grenoble</small></span>
+                  <span class="app-onglets"><b class="actif">Dossier</b><b>Chronologie</b><b>Procédure</b><b>Fond</b></span>
+                </div>
+                <div class="app-corps scene-depot">
+                  <div class="depot-zone">
+                    <span class="depot-invite">Copie de la procédure · PDF, y compris scannés</span>
+                    <div class="depot-pile">
+                      <figure class="feuille" style="--r:-7deg; --x:-9.5em; --y:0.6em"><img src="img/recit/p02.webp" alt="" loading="lazy" decoding="async" width="520" height="736" /><b>D1</b></figure>
+                      <figure class="feuille" style="--r:5deg; --x:-4.8em; --y:-0.4em"><img src="img/recit/p07.webp" alt="" loading="lazy" decoding="async" width="1100" height="1556" /><b>D6</b></figure>
+                      <figure class="feuille" style="--r:-2deg; --x:0em; --y:0.3em"><img src="img/recit/p13.webp" alt="" loading="lazy" decoding="async" width="520" height="736" /><b>D12</b></figure>
+                      <figure class="feuille" style="--r:6deg; --x:4.8em; --y:-0.5em"><img src="img/recit/p16.webp" alt="" loading="lazy" decoding="async" width="1100" height="1556" /><b>D15</b></figure>
+                      <figure class="feuille" style="--r:-5deg; --x:9.5em; --y:0.5em"><img src="img/recit/p25.webp" alt="" loading="lazy" decoding="async" width="1100" height="1556" /><b>D24</b></figure>
+                    </div>
+                  </div>
+                  <div class="depot-etat">
+                    <span class="depot-compteur"><b data-compte="31">31</b> pages reçues</span>
+                    <span class="depot-detail">Procès-verbaux, réquisitions, ordonnances · pièces scannées</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 2. Lecture -->
+          <li class="etape" data-scene="lecture">
+            <div class="etape-texte">
+              <span class="etape-num">02</span>
+              <h3>Chaque page est&nbsp;lue.</h3>
+              <p>Faits, actes de procédure, déclarations&nbsp;: chaque passage utile est repéré, y compris dans les pièces scannées.</p>
+            </div>
+            <div class="ecran" aria-hidden="true">
+              <div class="ecran-barre"><span></span><span></span><span></span></div>
+              <div class="ecran-app">
+                <div class="app-entete">
+                  <span class="app-logo">Lytis.</span>
+                  <span class="app-dossier">MARTINON Lucas — Affaire GENTIANE<small>Information JI 26/00044 · TJ Grenoble</small></span>
+                  <span class="app-onglets"><b class="actif">Dossier</b><b>Chronologie</b><b>Procédure</b><b>Fond</b></span>
+                </div>
+                <div class="app-corps scene-lecture">
+                  <div class="lecture-page">
+                    <div class="page-cadre">
+                      <img src="img/recit/p16.webp" alt="" loading="lazy" decoding="async" width="1100" height="1556" />
+                      <i class="surligne s-procedure" style="--x0:.1613; --y0:.2822; --x1:.4702; --y1:.297"></i>
+                      <i class="surligne s-nullite" style="--x0:.8008; --y0:.329; --x1:.921; --y1:.3432"></i>
+                      <i class="surligne s-nullite" style="--x0:.0879; --y0:.3455; --x1:.5145; --y1:.362"></i>
+                      <i class="surligne s-preuve" style="--x0:.3766; --y0:.3974; --x1:.6081; --y1:.4122"></i>
+                      <div class="lecture-balayage"><span></span></div>
+                    </div>
+                    <span class="page-legende">D15 · p. 16 — Interpellation et perquisition</span>
+                  </div>
+                  <div class="lecture-passages">
+                    <p class="app-titre">Passages repérés</p>
+                    <div class="passage"><span class="pastille s-procedure"></span><div><em>Procédure</em>« Mentionnons qu'il est appréhendé à 05h38. »</div></div>
+                    <div class="passage"><span class="pastille s-nullite"></span><div><em>Piste de nullité</em>« commençons la perquisition de l'appartement (T2, plan ci-dessous) à 05h40 »</div></div>
+                    <div class="passage"><span class="pastille s-preuve"></span><div><em>Déclarations et preuves</em>« une casquette de couleur rouge »</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 3. Chronologie -->
+          <li class="etape" data-scene="frise">
+            <div class="etape-texte">
+              <span class="etape-num">03</span>
+              <h3>La chronologie se&nbsp;construit.</h3>
+              <p>27 faits datés, remis dans l'ordre, chacun avec sa cote et sa page.</p>
+            </div>
+            <div class="ecran" aria-hidden="true">
+              <div class="ecran-barre"><span></span><span></span><span></span></div>
+              <div class="ecran-app">
+                <div class="app-entete">
+                  <span class="app-logo">Lytis.</span>
+                  <span class="app-dossier">MARTINON Lucas — Affaire GENTIANE<small>Information JI 26/00044 · TJ Grenoble</small></span>
+                  <span class="app-onglets"><b>Dossier</b><b class="actif">Chronologie</b><b>Procédure</b><b>Fond</b></span>
+                </div>
+                <div class="app-corps scene-frise">
+                  <p class="app-titre">Chronologie des faits <span>27 faits datés</span></p>
+                  <div class="frise">
+                    <span class="frise-ligne"></span>
+                    <div class="evenement"><i></i><time>22/01</time><p>Cambriolage d'un pavillon à Meylan (fait n°1)</p><b class="source">D3 · p. 4</b></div>
+                    <div class="evenement"><i></i><time>12/02 · 14h02</time><p>La Skoda de FONTANEL relevée en direction de Biviers</p><b class="source">D3 · p. 4</b></div>
+                    <div class="evenement"><i></i><time>12/02 · 14h05</time><p>La ligne de MARTINON déclenche la cellule de Biviers</p><b class="source">D6 · p. 7</b></div>
+                    <div class="evenement"><i></i><time>19/02 · 07h58</time><p>MARTINON badgé à l'entrepôt de Voreppe jusqu'à 12h03</p><b class="source">D28 · p. 29</b></div>
+                    <div class="evenement"><i></i><time>10/03 · 05h40</time><p>Saisie au domicile&nbsp;: téléphone et casquette rouge</p><b class="source">D15 · p. 16</b></div>
+                    <div class="evenement"><i></i><time>02/04</time><p>Aucune trace papillaire attribuée à MARTINON</p><b class="source">D27 · p. 28</b></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 4. Nullités -->
+          <li class="etape" data-scene="nullites">
+            <div class="etape-texte">
+              <span class="etape-num">04</span>
+              <h3>Les nullités possibles&nbsp;ressortent.</h3>
+              <p>Triées selon ce que votre client paraît pouvoir invoquer. L'appréciation reste la vôtre.</p>
+            </div>
+            <div class="ecran" aria-hidden="true">
+              <div class="ecran-barre"><span></span><span></span><span></span></div>
+              <div class="ecran-app">
+                <div class="app-entete">
+                  <span class="app-logo">Lytis.</span>
+                  <span class="app-dossier">MARTINON Lucas — Affaire GENTIANE<small>Information JI 26/00044 · TJ Grenoble</small></span>
+                  <span class="app-onglets"><b>Dossier</b><b>Chronologie</b><b class="actif">Procédure</b><b>Fond</b></span>
+                </div>
+                <div class="app-corps scene-nullites">
+                  <p class="avertissement">Appréciations proposées par Lytis au vu de la copie du dossier, à confirmer par l'avocat.</p>
+                  <div class="nullites">
+                    <div class="nullite" data-n="3"><p class="nullite-titre">Perquisition du domicile commencée à 05h40</p><p class="nullite-texte">Art. 59 CPP ; art. 706-91 CPP</p><div class="jauge"><i></i><i></i><i></i><span>Paraît sérieuse</span></div><b class="source">D15 · p. 16</b></div>
+                    <div class="nullite" data-n="3"><p class="nullite-titre">Réquisition sur la ligne du client&nbsp;: aucune autorisation spécifique retrouvée</p><p class="nullite-texte">Art. 77-1-1 et 60-1-2 CPP</p><div class="jauge"><i></i><i></i><i></i><span>Paraît sérieuse</span></div><b class="source">D4 · p. 5</b></div>
+                    <div class="nullite" data-n="2"><p class="nullite-titre">Géolocalisation posée deux jours avant l'ordonnance</p><p class="nullite-texte">Art. 230-32 et 230-33 CPP · qualité à agir discutable</p><div class="jauge"><i></i><i></i><i></i><span>À approfondir</span></div><b class="source">D9 · p. 10</b></div>
+                    <div class="nullite" data-n="1"><p class="nullite-titre">Notification des droits différée de 3&nbsp;h&nbsp;52</p><p class="nullite-texte">Art. 63-1 CPP</p><div class="jauge"><i></i><i></i><i></i><span>Paraît fragile</span></div><b class="source">D16 · p. 17</b></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 5. Charge et décharge -->
+          <li class="etape" data-scene="balance">
+            <div class="etape-texte">
+              <span class="etape-num">05</span>
+              <h3>Charge et décharge, fait par&nbsp;fait.</h3>
+              <p>Ce qui relie votre client à chaque fait, et ce qui l'en éloigne, citations à l'appui.</p>
+            </div>
+            <div class="ecran" aria-hidden="true">
+              <div class="ecran-barre"><span></span><span></span><span></span></div>
+              <div class="ecran-app">
+                <div class="app-entete">
+                  <span class="app-logo">Lytis.</span>
+                  <span class="app-dossier">MARTINON Lucas — Affaire GENTIANE<small>Information JI 26/00044 · TJ Grenoble</small></span>
+                  <span class="app-onglets"><b>Dossier</b><b>Chronologie</b><b>Procédure</b><b class="actif">Fond</b></span>
+                </div>
+                <div class="app-corps scene-balance">
+                  <div class="balance-fait">
+                    <p class="app-titre">Fait n°4 — 12/02/2026, Biviers</p>
+                    <p>Présence reconnue&nbsp;; le rôle reste discutable&nbsp;: guet depuis le véhicule selon ses déclarations, aucune trace attribuée.</p>
+                  </div>
+                  <div class="balance">
+                    <div class="colonne colonne-charge">
+                      <p class="colonne-titre">À charge</p>
+                      <blockquote>« Oui. Je suis resté dans la voiture. Il m'a dit de le prévenir si quelqu'un arrivait. »<cite>MARTINON Lucas <b class="source">D24 · p. 25</b></cite></blockquote>
+                      <blockquote>« Le 12/02/2026 entre 14h05 et 14h52, la ligne déclenche la cellule BIV-CROIX-02 (Biviers). »<cite>Téléphonie <b class="source">D6 · p. 7</b></cite></blockquote>
+                    </div>
+                    <span class="balance-axe"></span>
+                    <div class="colonne colonne-decharge">
+                      <p class="colonne-titre">À décharge</p>
+                      <blockquote>« Je ne suis jamais entré dans une maison. »<cite>MARTINON Lucas <b class="source">D24 · p. 25</b></cite></blockquote>
+                      <blockquote>« Aucune trace exploitable n'a pu être attribuée à MARTINON Lucas »<cite>Rapport d'expertise <b class="source">D27 · p. 28</b></cite></blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 6. La source -->
+          <li class="etape" data-scene="source">
+            <div class="etape-texte">
+              <span class="etape-num">06</span>
+              <h3>Rien sans sa&nbsp;source.</h3>
+              <p>Chaque élément renvoie à l'extrait exact de la pièce. Un clic, et vous vérifiez.</p>
+            </div>
+            <div class="ecran ecran-interactif" role="group" aria-label="Exemple : ouvrir la source d'un élément">
+              <div class="ecran-barre" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="ecran-app">
+                <div class="app-entete" aria-hidden="true">
+                  <span class="app-logo">Lytis.</span>
+                  <span class="app-dossier">MARTINON Lucas — Affaire GENTIANE<small>Information JI 26/00044 · TJ Grenoble</small></span>
+                  <span class="app-onglets"><b>Dossier</b><b>Chronologie</b><b class="actif">Procédure</b><b>Fond</b></span>
+                </div>
+                <div class="app-corps scene-source">
+                  <div class="source-liste">
+                    <p class="app-titre">Choisissez un élément</p>
+                    <button type="button" class="element actif" aria-pressed="true" data-couleur="s-nullite" data-page="img/recit/p16.webp" data-legende="D15 · p. 16 — Interpellation et perquisition" data-rects=".8008,.329,.921,.3432;.0879,.3455,.5145,.362">
+                      <span>Perquisition du domicile commencée à 05h40</span><b class="source">D15 · p. 16</b>
+                    </button>
+                    <button type="button" class="element" aria-pressed="false" data-couleur="s-preuve" data-page="img/recit/p25.webp" data-legende="D24 · p. 25 — Audition de MARTINON" data-rects=".4565,.3655,.9202,.3797;.0871,.3843,.2161,.3991">
+                      <span>Le client reconnaît être resté dans la voiture</span><b class="source">D24 · p. 25</b>
+                    </button>
+                    <button type="button" class="element" aria-pressed="false" data-couleur="s-preuve" data-page="img/recit/p07.webp" data-legende="D6 · p. 7 — Réquisition téléphonique et réponse" data-rects=".5879,.606,.9226,.6209;.0903,.6243,.4177,.6391">
+                      <span>Sa ligne déclenche la cellule de Biviers à 14h05</span><b class="source">D6 · p. 7</b>
+                    </button>
+                  </div>
+                  <div class="source-visionneuse">
+                    <p class="visionneuse-legende" aria-live="polite">D15 · p. 16 — Interpellation et perquisition</p>
+                    <div class="visionneuse-cadre">
+                      <div class="visionneuse-page" style="--cx:.3012; --cy:.3538; --s:2.1">
+                        <img src="img/recit/p16.webp" alt="Page 16 du dossier fictif, passage cité surligné" loading="lazy" decoding="async" width="1100" height="1556" />
+                        <i class="surligne s-nullite" style="--x0:.8008; --y0:.329; --x1:.921; --y1:.3432"></i>
+                        <i class="surligne s-nullite" style="--x0:.0879; --y0:.3455; --x1:.5145; --y1:.362"></i>
+                      </div>
+                    </div>
+                    <p class="verifie"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" pathLength="1" /></svg>Citation retrouvée mot pour mot dans la pièce</p>
+                  </div>
+                  <svg class="source-lien" aria-hidden="true"><path pathLength="1" /><circle r="0" /></svg>
+                  <span class="curseur" aria-hidden="true"><svg viewBox="0 0 20 24"><path d="M2 2l14 11-6.2 1.1L13 21l-2.8 1.2-3.1-6.9L2 19.5z" /></svg></span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="conteneur recit-fin">
+      <a class="bouton bouton-plein lien-demo" href="#" target="_blank" rel="noopener">Ouvrir ce dossier dans la démonstration</a>
+      <p>Dossier entièrement fictif. Aucune donnée réelle.</p>
+    </div>
+  </section>
+
   <!-- Fonctionnalités -->
-  <section class="section" id="fonctions" aria-labelledby="titre-fonctions">
+  <section class="section section-claire" id="fonctions" aria-labelledby="titre-fonctions">
     <div class="conteneur">
-      <p class="surtitre surtitre-vin">Ce que fait Lytis</p>
-      <h2 id="titre-fonctions" class="titre-section">Un dossier lu, structuré, vérifiable en&nbsp;un&nbsp;clic.</h2>
-
-      <div class="fonction apparition">
-        <div class="fonction-texte">
-          <span class="etiquette">Chronologie</span>
-          <h3>Les faits, datés et sourcés</h3>
-          <p>Chaque fait est daté, résumé et accompagné de la citation exacte du procès-verbal. Un clic ouvre la pièce à la bonne page, le passage surligné.</p>
-          <ul class="points">
-            <li>Citation, cote et page pour chaque élément</li>
-            <li>Pièces scannées lues automatiquement</li>
-            <li>Index du dossier toujours à portée de main</li>
-          </ul>
-        </div>
-        <figure class="fenetre"><img src="img/chrono.webp" width="1600" height="956" loading="lazy" alt="Chronologie des faits sourcée, avec la pièce correspondante ouverte à droite." /></figure>
-      </div>
-
-      <div class="fonction fonction-inverse apparition">
-        <div class="fonction-texte">
-          <span class="etiquette">Procédure</span>
-          <h3>Les nullités possibles, rattachées à votre client</h3>
-          <p>Lytis relève les irrégularités apparentes et propose un tri&nbsp;: ce que votre client semble pouvoir invoquer, ce qui ne concerne que ses coauteurs. Textes, constat, qualité à agir, grief&nbsp;: tout y est, à votre appréciation.</p>
-          <ul class="points">
-            <li>Appréciation proposée, jamais imposée</li>
-            <li>Rappel de la voie et du délai pour agir</li>
-            <li>Pièces à l'appui de chaque piste</li>
-          </ul>
-        </div>
-        <figure class="fenetre"><img src="img/nullites.webp" width="1600" height="956" loading="lazy" alt="Onglet Procédure : pistes de nullité avec textes, constat, qualité à agir et grief, pièce surlignée à droite." /></figure>
-      </div>
+      <p class="surtitre surtitre-vin">Et dans chaque dossier</p>
+      <h2 id="titre-fonctions" class="titre-section">Les vues qui font gagner des&nbsp;heures.</h2>
 
       <div class="fonction apparition">
         <div class="fonction-texte">
@@ -152,7 +373,7 @@
             <li>Chaque repère ouvre sa pièce</li>
           </ul>
         </div>
-        <figure class="fenetre"><img src="img/gav.webp" width="1600" height="956" loading="lazy" alt="Chronogramme des gardes à vue, avec les délais à examiner hachurés." /></figure>
+        <figure class="fenetre"><img src="img/gav.webp" srcset="img/gav-800.webp 800w, img/gav.webp 1600w" sizes="(max-width: 1020px) calc(100vw - 32px), 680px" width="1600" height="956" loading="lazy" alt="Chronogramme des gardes à vue, avec les délais à examiner hachurés." /></figure>
       </div>
 
       <div class="fonction fonction-inverse apparition">
@@ -165,7 +386,7 @@
             <li>Éléments à charge et à décharge, fait par fait</li>
           </ul>
         </div>
-        <figure class="fenetre"><img src="img/fond.webp" width="1600" height="956" loading="lazy" alt="Tableau des faits imputés et des types de pièces, case du pointage ouverte." /></figure>
+        <figure class="fenetre"><img src="img/fond.webp" srcset="img/fond-800.webp 800w, img/fond.webp 1600w" sizes="(max-width: 1020px) calc(100vw - 32px), 680px" width="1600" height="956" loading="lazy" alt="Tableau des faits imputés et des types de pièces, case du pointage ouverte." /></figure>
       </div>
 
       <div class="fonction apparition">
@@ -178,13 +399,13 @@
             <li>La preuve s'ouvre à côté de la réponse</li>
           </ul>
         </div>
-        <figure class="fenetre"><img src="img/questions.webp" width="1600" height="956" loading="lazy" alt="Question posée au dossier, réponse sourcée et pièce ouverte à droite." /></figure>
+        <figure class="fenetre"><img src="img/questions.webp" srcset="img/questions-800.webp 800w, img/questions.webp 1600w" sizes="(max-width: 1020px) calc(100vw - 32px), 680px" width="1600" height="956" loading="lazy" alt="Question posée au dossier, réponse sourcée et pièce ouverte à droite." /></figure>
       </div>
     </div>
   </section>
 
   <!-- Méthode -->
-  <section class="section section-claire" id="methode" aria-labelledby="titre-methode">
+  <section class="section" id="methode" aria-labelledby="titre-methode">
     <div class="conteneur">
       <p class="surtitre surtitre-vin">Méthode</p>
       <h2 id="titre-methode" class="titre-section">Trois étapes, aucune configuration.</h2>
@@ -211,24 +432,28 @@
   <!-- Engagements -->
   <section class="section section-vin" id="engagements" aria-labelledby="titre-engagements">
     <div class="conteneur">
-      <p class="surtitre">Nos engagements</p>
+      <p class="surtitre">Confiance</p>
       <h2 id="titre-engagements" class="titre-section">Un outil au service de l'avocat, pas à sa&nbsp;place.</h2>
       <div class="grille-deux">
         <article class="engagement apparition">
-          <h3>Rien sans sa source</h3>
-          <p>Chaque fait, chaque citation, chaque piste renvoie à une cote et à une page. Une citation introuvable dans le dossier n'est jamais affichée.</p>
+          <svg class="icone" viewBox="0 0 40 40" aria-hidden="true"><path pathLength="1" d="M8 31V9h6l6 11 6-11h6v22" /><path pathLength="1" d="M4 35h32" /></svg>
+          <h3>Propulsé par Mistral AI</h3>
+          <p>L'analyse repose sur les modèles de Mistral AI, entreprise française d'intelligence artificielle.</p>
         </article>
         <article class="engagement apparition">
-          <h3>L'avocat apprécie</h3>
-          <p>Lytis relève, rapproche et propose. La qualification juridique et la stratégie de défense restent les vôtres.</p>
+          <svg class="icone" viewBox="0 0 40 40" aria-hidden="true"><circle pathLength="1" cx="20" cy="20" r="14" /><path pathLength="1" d="M6 20h28M20 6c-5 4-7 9-7 14s2 10 7 14M20 6c5 4 7 9 7 14s-2 10-7 14" /></svg>
+          <h3>Hébergement en Europe</h3>
+          <p>Les pièces et les analyses de vos dossiers sont hébergées en Europe.</p>
         </article>
         <article class="engagement apparition">
-          <h3>Confidentialité</h3>
-          <p>Analyse propulsée par Mistral AI, données hébergées en Europe. Chaque dossier n'est accessible qu'au compte qui l'a déposé.</p>
+          <svg class="icone" viewBox="0 0 40 40" aria-hidden="true"><rect pathLength="1" x="9" y="18" width="22" height="16" rx="3" /><path pathLength="1" d="M14 18v-5a6 6 0 0 1 12 0v5M20 24v4" /></svg>
+          <h3>Secret professionnel</h3>
+          <p>Chaque dossier n'est accessible qu'au compte qui l'a déposé. Sa suppression efface les pièces comme les analyses.</p>
         </article>
         <article class="engagement apparition">
-          <h3>Vous gardez la main</h3>
-          <p>Un dossier supprimé l'est avec toutes ses pièces et ses analyses.</p>
+          <svg class="icone" viewBox="0 0 40 40" aria-hidden="true"><path pathLength="1" d="M20 6v28M12 34h16M8 12h24" /><path pathLength="1" d="M8 12l-5 10a5 5 0 0 0 10 0zM32 12l-5 10a5 5 0 0 0 10 0z" /></svg>
+          <h3>L'appréciation reste la vôtre</h3>
+          <p>Lytis relève, rapproche et propose, toujours avec la source. La qualification et la stratégie de défense restent celles de l'avocat.</p>
         </article>
       </div>
     </div>
@@ -395,6 +620,6 @@
 </footer>
 
 <script src="config.js"></script>
-<script src="site.js"></script>
+<script src="site.js" defer></script>
 </body>
 </html>

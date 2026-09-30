@@ -83,3 +83,19 @@ document.querySelectorAll(".choix-demande").forEach((a) => {
     if (choix) choix.value = a.dataset.demande;
   });
 });
+
+// Animations (GSAP) : chargées une fois la page affichée, pour ne pas retarder
+// le premier rendu. Sans elles, la page reste complète.
+if (document.getElementById("recit")) {
+  const charger = (src) => new Promise((ok, ko) => {
+    const s = document.createElement("script");
+    s.src = src; s.onload = ok; s.onerror = ko;
+    document.body.append(s);
+  });
+  const lancer = () => charger("vendor/gsap.min.js")
+    .then(() => charger("vendor/ScrollTrigger.min.js"))
+    .then(() => charger("animations.js"))
+    .catch(() => {});
+  if (document.readyState === "complete") lancer();
+  else window.addEventListener("load", lancer, { once: true });
+}

@@ -9,8 +9,7 @@ citations ci-dessous existent dans la démo.
 - **Desktop (≥ 1020 px)** : colonne gauche 40 % (texte de l'étape), colonne droite 60 % (maquette
   épinglée, 16:10, cadre de fenêtre Lytis). Indicateur d'étapes 1 → 6 à gauche, cliquable
   (clic = défilement jusqu'à l'étape).
-- **Tablette (768 px)** : même principe, maquette au-dessus, texte en dessous, dans l'écran épinglé.
-- **Mobile (375 px)** : pas d'épinglage. Six cartes successives, chacune avec sa vignette de
+- **Tablette et mobile (< 1020 px, ou écran de moins de 640 px de haut)** : pas d'épinglage. Six cartes successives, chacune avec sa vignette de
   maquette dans l'état final de l'étape, qui s'anime une fois (0,6 s) à l'entrée dans l'écran.
 - **Reduced-motion / sans JS** : six blocs statiques, maquette dans l'état final, mêmes textes.
 
@@ -47,6 +46,14 @@ maquette : « Voir ce dossier dans la démonstration ».
 Trois blocs (Mistral AI, hébergement en Europe, secret professionnel) sur fond bordeaux.
 Micro-animations à l'entrée uniquement : tracé de l'icône (SVG, 0,6 s), puis texte.
 Aucun badge de certification qui n'existe pas.
+
+## Implémentation
+
+- `vitrine/index.html` (section `#recit`), `vitrine/style.css` (bloc « Récit »), `vitrine/animations.js`.
+- GSAP + ScrollTrigger copiés dans `vitrine/vendor/`, chargés **après** l'affichage de la page
+  (`site.js`), pour ne pas retarder le premier rendu. Sans eux, la page est complète et statique.
+- Le titre de l'accroche est révélé en CSS pur (aucune attente du script).
+- Mesures locales (serveur gzip) : Lighthouse mobile 90-96, ordinateur 100 ; accessibilité 100.
 
 ## Performance visée
 
