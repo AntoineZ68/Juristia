@@ -29,6 +29,7 @@
       <a href="#fonctions">Fonctionnalités</a>
       <a href="#methode">Méthode</a>
       <a href="#engagements">Engagements</a>
+      <a href="#tarifs">Tarifs</a>
       <a href="#faq">Questions</a>
     </nav>
     <div class="entete-actions">
@@ -233,11 +234,57 @@
     </div>
   </section>
 
+  <!-- Tarifs -->
+  <section class="section section-claire" id="tarifs" aria-labelledby="titre-tarifs">
+    <div class="conteneur">
+      <p class="surtitre surtitre-vin">Tarifs</p>
+      <h2 id="titre-tarifs" class="titre-section">Une offre construite avec les premiers cabinets.</h2>
+      <p class="tarifs-intro">Lytis est en phase pilote. Les tarifs seront annoncés à l'ouverture&nbsp;; d'ici là, découvrez l'outil et rejoignez les cabinets qui le façonnent.</p>
+      <div class="tarifs">
+        <article class="offre apparition">
+          <p class="offre-nom">Découverte</p>
+          <p class="offre-prix">Libre accès</p>
+          <p class="offre-detail">Un dossier pénal fictif, entièrement analysé, à parcourir sans inscription.</p>
+          <ul class="offre-liste">
+            <li>Chronologie, personnes, procédure et fond</li>
+            <li>Chaque élément relié à sa pièce</li>
+            <li>Interrogation du dossier</li>
+          </ul>
+          <a class="bouton bouton-contour-vin lien-demo" href="#" target="_blank" rel="noopener">Voir la démonstration</a>
+        </article>
+        <article class="offre offre-vedette apparition">
+          <p class="offre-badge">Places limitées</p>
+          <p class="offre-nom">Programme pilote</p>
+          <p class="offre-prix">Conditions préférentielles</p>
+          <p class="offre-detail">Pour les pénalistes qui veulent utiliser Lytis sur leurs dossiers dès maintenant.</p>
+          <ul class="offre-liste">
+            <li>Accès anticipé à l'application</li>
+            <li>Démonstration personnalisée</li>
+            <li>Vos retours intégrés en priorité</li>
+            <li>Sans engagement</li>
+          </ul>
+          <a class="bouton bouton-creme choix-demande" href="#pilote" data-demande="Rejoindre le programme pilote">Rejoindre le programme</a>
+        </article>
+        <article class="offre apparition">
+          <p class="offre-nom">Cabinet</p>
+          <p class="offre-prix">Bientôt disponible</p>
+          <p class="offre-detail">L'offre pour les avocats et les cabinets, à l'ouverture de Lytis.</p>
+          <ul class="offre-liste">
+            <li>Tarifs en cours de définition</li>
+            <li>Formules individuelles et cabinets</li>
+            <li>Soyez informé en priorité</li>
+          </ul>
+          <a class="bouton bouton-contour-vin choix-demande" href="#pilote" data-demande="Être informé du lancement et des tarifs">Être informé</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Programme pilote -->
   <section class="section" id="pilote" aria-labelledby="titre-pilote">
     <div class="conteneur pilote">
       <div class="pilote-texte">
-        <p class="surtitre surtitre-vin">Programme pilote</p>
+        <p class="surtitre surtitre-vin">Nous contacter</p>
         <h2 id="titre-pilote" class="titre-section">Construisons Lytis avec les pénalistes.</h2>
         <p>Lytis est en cours de développement avec des avocats pénalistes. Rejoignez le programme pilote pour l'utiliser sur vos dossiers et orienter les prochaines fonctionnalités.</p>
         <ul class="points">
@@ -247,6 +294,14 @@
         </ul>
       </div>
       <form class="formulaire" id="formulaire-pilote" novalidate>
+        <div class="champ champ-large">
+          <label for="f-demande">Votre demande</label>
+          <select id="f-demande" name="demande">
+            <option>Recevoir une démonstration commentée</option>
+            <option>Rejoindre le programme pilote</option>
+            <option>Être informé du lancement et des tarifs</option>
+          </select>
+        </div>
         <div class="champ">
           <label for="f-nom">Nom et prénom</label>
           <input id="f-nom" name="nom" type="text" autocomplete="name" required />
@@ -272,7 +327,7 @@
           <label for="f-message">Message <span class="facultatif">(facultatif)</span></label>
           <textarea id="f-message" name="message" rows="3"></textarea>
         </div>
-        <button type="submit" class="bouton bouton-plein bouton-large">Demander un accès pilote</button>
+        <button type="submit" class="bouton bouton-plein bouton-large">Envoyer ma demande</button>
         <p class="formulaire-note" id="formulaire-note" aria-live="polite">Votre demande s'ouvre dans votre messagerie : rien n'est enregistré par ce site.</p>
       </form>
     </div>
@@ -316,7 +371,7 @@
         </details>
         <details>
           <summary>Combien coûte Lytis&nbsp;?</summary>
-          <p>Lytis est aujourd'hui proposé dans le cadre d'un programme pilote. Les conditions se définissent avec chaque cabinet participant&nbsp;: écrivez-nous.</p>
+          <p>Les tarifs seront annoncés à l'ouverture. Pendant la phase pilote, les cabinets participants bénéficient de conditions préférentielles&nbsp;: laissez-nous vos coordonnées pour être informé en priorité.</p>
         </details>
       </div>
     </div>

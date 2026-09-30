@@ -62,6 +62,7 @@ if (formulaire) {
       return;
     }
     const corps = [
+      `Demande : ${champ("demande").value}`,
       `Nom : ${champ("nom").value.trim()}`,
       `Cabinet : ${champ("cabinet").value.trim() || "—"}`,
       `E-mail : ${champ("email").value.trim()}`,
@@ -69,8 +70,16 @@ if (formulaire) {
       "",
       champ("message").value.trim(),
     ].join("\n");
-    const sujet = `Programme pilote Lytis — ${champ("nom").value.trim()}`;
+    const sujet = `Lytis — ${champ("demande").value} — ${champ("nom").value.trim()}`;
     window.location.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
     note.textContent = "Votre messagerie s'ouvre avec la demande pré-remplie : il ne reste qu'à l'envoyer.";
   });
 }
+
+// Boutons des offres : présélectionnent la demande dans le formulaire
+document.querySelectorAll(".choix-demande").forEach((a) => {
+  a.addEventListener("click", () => {
+    const choix = document.getElementById("f-demande");
+    if (choix) choix.value = a.dataset.demande;
+  });
+});

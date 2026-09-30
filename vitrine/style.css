@@ -158,6 +158,27 @@ p { margin: 0; }
 .engagement h3 { font-size: 23px; font-weight: 600; margin-bottom: 10px; }
 .engagement p { font-size: 16px; }
 
+/* --- Tarifs --- */
+.tarifs-intro { max-width: 640px; margin-top: 18px; color: var(--texte-doux); }
+.tarifs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; align-items: stretch; }
+.offre { position: relative; display: flex; flex-direction: column; background: var(--papier); border: 1px solid var(--ligne); border-radius: 20px; padding: 36px 32px; box-shadow: var(--ombre-douce); }
+.offre-nom { font-family: var(--marque); font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vin-700); }
+.offre-prix { font-family: var(--titres); font-size: 30px; font-weight: 600; line-height: 1.15; margin: 14px 0 12px; color: var(--vin-900); }
+.offre-detail { font-size: 15px; color: var(--texte-doux); }
+.offre-liste { list-style: none; margin: 24px 0 32px; padding: 22px 0 0; border-top: 1px solid var(--ligne); display: grid; gap: 12px; flex: 1; align-content: start; }
+.offre-liste li { position: relative; padding-left: 26px; font-size: 15px; }
+.offre-liste li::before { content: ""; position: absolute; left: 2px; top: 7px; width: 12px; height: 7px; border-left: 2px solid var(--vin-600); border-bottom: 2px solid var(--vin-600); transform: rotate(-45deg); }
+.offre .bouton { align-self: stretch; justify-content: center; text-align: center; }
+.offre-vedette { background: linear-gradient(150deg, var(--vin-700), var(--vin-950)); border-color: transparent; color: rgba(244, 232, 218, 0.85); box-shadow: 0 24px 60px -24px rgba(58, 9, 20, 0.55); }
+.offre-vedette .offre-nom { color: rgba(244, 232, 218, 0.75); }
+.offre-vedette .offre-prix { color: var(--creme); }
+.offre-vedette .offre-detail { color: rgba(244, 232, 218, 0.75); }
+.offre-vedette .offre-liste { border-top-color: rgba(244, 232, 218, 0.18); }
+.offre-vedette .offre-liste li::before { border-color: var(--creme); }
+.offre-badge { position: absolute; top: -13px; left: 32px; background: var(--creme); color: var(--vin-800); font-family: var(--marque); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
+.bouton-contour-vin { border: 1px solid var(--vin-700); color: var(--vin-700); background: transparent; }
+.bouton-contour-vin:hover { background: var(--vin-700); color: var(--creme); }
+
 /* --- Programme pilote --- */
 .pilote { display: grid; grid-template-columns: 5fr 6fr; gap: 64px; align-items: start; }
 .pilote-texte p { margin-top: 20px; color: var(--texte-doux); }
@@ -233,12 +254,14 @@ p { margin: 0; }
   .fonction, .fonction-inverse { grid-template-columns: 1fr; gap: 32px; margin-top: 80px; }
   .fonction-inverse .fonction-texte { order: 0; }
   .pilote { grid-template-columns: 1fr; gap: 40px; }
+  .tarifs { grid-template-columns: 1fr; max-width: 520px; gap: 32px; }
 }
 @media (max-width: 760px) {
   body { font-size: 16px; }
   .conteneur { width: calc(100% - 32px); }
   .entete-interieur { height: 64px; gap: 12px; }
-  .entete-actions .bouton-fantome { display: none; }
+  .entete-actions .bouton-plein { display: none; }
+  .entete .entete-actions .bouton-fantome, .entete.defile .entete-actions .bouton-fantome { background: var(--vin-700); color: var(--creme); }
   .entete-actions .bouton { padding: 10px 14px; font-size: 13.5px; }
   .marque { font-size: 15px; }
   .heros { padding-top: 120px; }
