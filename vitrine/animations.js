@@ -12,6 +12,7 @@
   gsap.registerPlugin(ScrollTrigger);
   animerAccroche();
   animerRecit();
+  animerPhrases();
   ScrollTrigger.addEventListener("refresh", () => source && source.tracer());
 
   // --- Accroche : la maquette se redresse au défilement ---------------------
@@ -24,6 +25,15 @@
       { rotateX: 16, scale: 0.94, transformOrigin: "50% 0%" },
       { rotateX: 0, scale: 1, ease: "none",
         scrollTrigger: { trigger: visuel, start: "top bottom", end: "top 18%", scrub: 0.6 } });
+  }
+
+  // --- Grandes phrases : glissent en sens contraires au défilement ---------
+  function animerPhrases() {
+    const bloc = document.querySelector(".phrases");
+    if (!bloc) return;
+    const declencheur = { trigger: bloc, start: "top bottom", end: "bottom top", scrub: 0.5 };
+    gsap.fromTo(".phrase-pleine", { xPercent: 0 }, { xPercent: -22, ease: "none", scrollTrigger: declencheur });
+    gsap.fromTo(".phrase-contour", { xPercent: -34 }, { xPercent: -12, ease: "none", scrollTrigger: { ...declencheur } });
   }
 
   // --- Récit ----------------------------------------------------------------

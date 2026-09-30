@@ -84,6 +84,64 @@ document.querySelectorAll(".choix-demande").forEach((a) => {
   });
 });
 
+// Avant / après : le curseur (champ « range », accessible au clavier) fixe la
+// position de la séparation. À la première apparition, un léger va-et-vient
+// montre qu'on peut le faire glisser.
+const comparaison = document.querySelector(".comparaison");
+if (comparaison) {
+  const curseur = comparaison.querySelector(".cmp-curseur");
+  const placer = (v) => {
+    comparaison.style.setProperty("--pos", v + "%");
+    comparaison.querySelector(".cmp-etiquette-avant").style.opacity = v < 14 ? 0 : 1;
+    comparaison.querySelector(".cmp-etiquette-apres").style.opacity = v > 86 ? 0 : 1;
+  };
+  let touche = false;
+  curseur.addEventListener("input", () => { touche = true; placer(curseur.value); });
+  curseur.addEventListener("pointerdown", () => comparaison.classList.add("glisse"));
+  window.addEventListener("pointerup", () => comparaison.classList.remove("glisse"));
+  const demonstration = () => {
+    if (touche || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const etapes = [[0, 50], [700, 76], [1500, 30], [2200, 50]];
+    const debut = performance.now();
+    const adoucir = (t) => 0.5 - Math.cos(Math.PI * t) / 2;
+    const image = (maintenant) => {
+      if (touche) return;
+      const t = maintenant - debut;
+      let i = 1;
+      while (i < etapes.length - 1 && t > etapes[i][0]) i++;
+      const [t0, v0] = etapes[i - 1], [t1, v1] = etapes[i];
+      const v = v0 + (v1 - v0) * adoucir(Math.min(1, (t - t0) / (t1 - t0)));
+      placer(v); curseur.value = Math.round(v);
+      if (t < etapes[etapes.length - 1][0]) requestAnimationFrame(image);
+    };
+    requestAnimationFrame(image);
+  };
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((e) => {
+      if (e.some((x) => x.isIntersecting)) { io.disconnect(); setTimeout(demonstration, 400); }
+    }, { threshold: 0.55 });
+    io.observe(comparaison);
+  }
+}
+
+// Chiffres : comptent jusqu'à leur valeur à la première apparition.
+const chiffres = document.querySelectorAll(".chiffres-liste b[data-cible]");
+if (chiffres.length && "IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  chiffres.forEach((b) => { b.textContent = "0"; });
+  const io = new IntersectionObserver((e) => {
+    if (!e.some((x) => x.isIntersecting)) return;
+    io.disconnect();
+    const debut = performance.now(), duree = 1600;
+    const image = (maintenant) => {
+      const t = Math.min(1, (maintenant - debut) / duree), k = 1 - Math.pow(1 - t, 3);
+      chiffres.forEach((b) => { b.textContent = Math.round(Number(b.dataset.cible) * k); });
+      if (t < 1) requestAnimationFrame(image);
+    };
+    requestAnimationFrame(image);
+  }, { threshold: 0.5 });
+  io.observe(document.querySelector(".chiffres-liste"));
+}
+
 // Animations (GSAP) : chargées une fois la page affichée, pour ne pas retarder
 // le premier rendu. Sans elles, la page reste complète.
 if (document.getElementById("recit")) {
@@ -96,6 +154,13 @@ if (document.getElementById("recit")) {
     .then(() => charger("vendor/ScrollTrigger.min.js"))
     .then(() => charger("animations.js"))
     .catch(() => {});
-  if (document.readyState === "complete") lancer();
-  else window.addEventListener("load", lancer, { once: true });
+  // Au premier geste de l'utilisateur (défilement, clic, touche) ou, à défaut,
+  // quelques secondes après le chargement : le premier affichage reste léger.
+  let lance = false;
+  const unique = () => { if (!lance) { lance = true; lancer(); } };
+  ["scroll", "wheel", "touchstart", "pointerdown", "keydown"].forEach((evt) =>
+    window.addEventListener(evt, unique, { once: true, passive: true }));
+  const minuter = () => setTimeout(unique, 3500);
+  if (document.readyState === "complete") minuter();
+  else window.addEventListener("load", minuter, { once: true });
 }
