@@ -262,7 +262,7 @@ p { margin: 0; }
 .ecran-barre span { width: 10px; height: 10px; border-radius: 50%; background: #DCCFC2; }
 .ecran-app { font-size: calc(100cqi / 60); font-variant-numeric: lining-nums; aspect-ratio: 16 / 10; display: flex; flex-direction: column; line-height: 1.4; color: var(--texte); }
 .app-entete { flex: none; display: flex; align-items: center; gap: 1.6em; height: 3.6em; padding: 0 1.6em; border-bottom: 1px solid var(--ligne); background: var(--papier); }
-.app-logo { font-family: var(--titres); font-weight: 700; font-size: 1.4em; color: var(--encre); }
+.app-logo { font-family: var(--marque); font-weight: 500; font-size: 1em; letter-spacing: 0.3em; color: var(--vin-800); }
 .app-dossier { font-size: 0.95em; font-weight: 600; color: var(--encre); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .app-dossier small { display: block; font-size: 0.82em; font-weight: 400; color: var(--texte-doux); }
 .app-onglets { margin-left: auto; display: flex; gap: 0.3em; flex: none; }
