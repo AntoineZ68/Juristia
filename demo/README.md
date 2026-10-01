@@ -11,13 +11,13 @@ demo/
     index.html     page unique, noindex
     app.css        styles de l'application, copiés sans modification
     demo.css       ajouts : bandeau, visite guidée, contradictions, zoom
-    charte.css     couleurs et polices du site vitrine (bordeaux, Playfair, Montserrat)
+    charte.css     couleurs et polices du site vitrine (bordeaux, Gloock, Instrument Sans)
     app.js         rendu (fonctions reprises de l'application) + visite guidée
     config.js      mesure d'audience (désactivée par défaut) et lien d'accès
     data.js        GÉNÉRÉ — données du dossier + position des citations
     documents/     GÉNÉRÉ — note de défense et dossier surligné (PDF)
     pages/         GÉNÉRÉ — les 31 pages, passages cités surlignés (WebP)
-    fonts/         Inter, Playfair Display, Montserrat (servies localement)
+    fonts/         Gloock, Instrument Sans, Montserrat (servies localement)
   source/        ← ce qui sert à construire le site (non publié)
     dossier_scanne.pdf   le dossier fictif
     ocr/pNNN.tsv         texte reconnu de chaque page, avec position des mots

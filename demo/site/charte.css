@@ -1,12 +1,35 @@
 /* Charte Lytis — alignée sur le site vitrine (lytis.legal) : bordeaux, crème,
-   Playfair Display pour les titres et les citations, Montserrat pour la marque,
-   Inter pour l'interface. Chargée après app.css et demo.css, elle ne fait que
+   Gloock pour les titres et les citations, Instrument Sans pour l'interface,
+   Montserrat pour le seul logo LYTIS. Chargée après app.css et demo.css, elle ne fait que
    redéfinir couleurs et polices. */
 
-@font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/playfair-display-latin-600-normal.woff2) format('woff2'); }
-@font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/playfair-display-latin-700-normal.woff2) format('woff2'); }
+/* Les tirets – et — de Gloock sont des traits très fins : ils sont exclus
+   (unicode-range) et pris dans la police suivante (Georgia).
+   Typographie : Gloock pour les titres et citations, Instrument Sans pour le texte.
+   Les familles d'origine de l'application (Playfair Display, Newsreader, Inter)
+   sont redirigées vers ces fichiers : déclarées ici en dernier, elles l'emportent. */
+@font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 400; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 500; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 600; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 700; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 400; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 500; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 600; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 700; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/instrument-sans-latin-400-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/instrument-sans-latin-500-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/instrument-sans-latin-600-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/instrument-sans-latin-700-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 400; font-display: swap; src: url(fonts/instrument-sans-latin-400-italic.woff2) format('woff2'); }
 @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/montserrat-latin-500-normal.woff2) format('woff2'); }
-@font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/montserrat-latin-600-normal.woff2) format('woff2'); }
 
 :root {
   --vin-950: #22060B; --vin-900: #2A070D; --vin-800: #3A0914; --vin-700: #5E0F24; --vin-600: #7A1830;
@@ -28,8 +51,10 @@
   --accent-voile-fort: rgba(122, 24, 48, 0.14);
   --ombre: 0 1px 2px rgba(34, 6, 11, 0.05), 0 16px 40px rgba(34, 6, 11, 0.09);
   --ombre-douce: 0 1px 2px rgba(34, 6, 11, 0.04), 0 4px 14px rgba(34, 6, 11, 0.06);
-  --serif: 'Playfair Display', Georgia, serif;
+  --serif: 'Gloock', 'Playfair Display', Georgia, serif;
 }
+html { font-synthesis: none; }
+@font-face { font-family: 'Gloock'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/gloock-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-2012, U+2015-FFFF; }
 
 /* Marque : le mot LYTIS en capitales espacées, comme sur le site */
 .marque-logo { font-family: 'Montserrat', 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.32em; color: var(--vin-800); line-height: 1; }
@@ -39,7 +64,7 @@
 h1, h2, .police-serif { font-family: var(--serif); }
 .entete-detail h2 { font-weight: 600; letter-spacing: -0.015em; }
 .carte h2, .questions-titre, .avis-titre, .mentions-entete h2 { font-weight: 600; }
-.surtitre, .titre-section { font-family: 'Montserrat', 'Inter', sans-serif; letter-spacing: 0.16em; }
+.surtitre, .titre-section { font-family: 'Inter', sans-serif; letter-spacing: 0.14em; }
 
 /* Citations et résumé : Playfair italique, comme les citations du site */
 .texte-resume, .fait-citation { font-family: var(--serif); }
@@ -81,3 +106,6 @@ h1, h2, h3, .police-serif, .texte-resume, .fait-citation, .parcours-titre { font
 
 /* Visite guidée : l'élément montré est cerclé de bordeaux */
 .parcours-cible { outline-color: var(--vin-600); }
+
+/* Gloock aussi pour les chiffres clés et les titres d'onglets de la visite */
+.stat-gav .valeur-stat, .parcours-titre, .questions-titre, .avis-titre { font-family: var(--serif); }

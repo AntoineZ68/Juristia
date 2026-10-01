@@ -110,7 +110,7 @@ class TestContenu(unittest.TestCase):
             self.assertTrue((RACINE / "site" / "documents" / nom).exists(), f"{nom} : lancer tools/documents.py")
 
 
-FICHIERS_SITE = ["index.html", "app.js", "config.js", "data.js", "app.css", "demo.css", "fonts.css"]
+FICHIERS_SITE = ["index.html", "app.js", "config.js", "data.js", "app.css", "demo.css", "charte.css"]
 
 
 class TestSite(unittest.TestCase):
