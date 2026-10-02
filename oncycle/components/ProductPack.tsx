@@ -54,7 +54,7 @@ export default function ProductPack({ tone, number, name, subtitle = "Chocolat n
             <circle cx="60" cy="60" r="44" fill="none" stroke={t.accent} strokeOpacity=".7" strokeWidth=".8" strokeDasharray="1.5 4" />
             <path d="M60 22 A38 38 0 1 1 59.9 22" fill="none" stroke={t.accent} strokeWidth="1.4" strokeDasharray="160 400" strokeLinecap="round" />
             <circle cx="60" cy="22" r="3.2" fill={t.accent} />
-            <text x="60" y="66" textAnchor="middle" fontFamily="var(--font-instrument), serif" fontSize="22" fill={t.ink} fontStyle="italic">
+            <text x="60" y="66" textAnchor="middle" fontFamily="var(--font-display), serif" fontSize="22" fill={t.ink} fontStyle="italic">
               72%
             </text>
           </svg>

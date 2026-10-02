@@ -1,6 +1,17 @@
 # OnCycle. — Site vitrine
 
-One-page Next.js (App Router) + Tailwind CSS v4 + Lucide React, exporté en **site statique**.
+One-page Next.js (App Router) + Tailwind CSS v4 + Framer Motion + Lenis + Lucide React, exporté en **site statique**.
+
+## Ajouter les visuels finaux
+
+Déposez vos deux images dans `public/images/` avec ces noms exacts (JPG, ~2000 px de large, < 400 Ko idéalement) :
+
+| Fichier | Usage |
+| --- | --- |
+| `hero-tablette.jpg` | Photo produit du Hero (tablette coupée, cœur framboise) |
+| `texture-soie.jpg` | Texture soie violette + fèves, fond de la section « La Formule » |
+
+Tant qu'un fichier est absent, un placeholder SVG s'affiche automatiquement (`lib/assets.ts`).
 
 ## Lancer en local
 
@@ -14,9 +25,12 @@ npm run build      # génère le site statique dans out/
 ## Structure
 
 ```
-app/            layout (polices Instrument Serif + Plus Jakarta Sans), page, styles globaux
-components/     Header, Hero, Constat, Synergie (interactif), Gamme, Transparence, Waitlist + Footer
-components/ProductPack.tsx   packaging produit dessiné en CSS (réutilisé dans le hero et la gamme)
+app/                   layout (Playfair Display + Plus Jakarta Sans), page, styles globaux
+components/motion/     briques d'animation : SmoothScroll (Lenis), Intro (loader), CustomCursor,
+                       Magnetic, Reveal, SplitText, ShineButton, SmartImage
+components/sections/   Navbar, Hero, Constat (sticky), Formule (bento), Gamme (scroll horizontal), Footer
+components/ProductPack.tsx   packaging produit dessiné en CSS
+lib/                   easing commun, chemins des visuels
 ```
 
 ## Déployer sur Render (gratuit)

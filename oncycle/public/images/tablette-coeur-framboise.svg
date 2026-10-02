@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720">
+<defs>
+  <linearGradient id="top" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#5a3a2c"/><stop offset=".5" stop-color="#3a241b"/><stop offset="1" stop-color="#24150f"/>
+  </linearGradient>
+  <linearGradient id="sq" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#6b4635"/><stop offset=".45" stop-color="#43291f"/><stop offset="1" stop-color="#2a1912"/>
+  </linearGradient>
+  <linearGradient id="core" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#c2304f"/><stop offset=".5" stop-color="#9e1f3a"/><stop offset="1" stop-color="#6f1328"/>
+  </linearGradient>
+  <radialGradient id="drupe" cx=".35" cy=".3" r=".8">
+    <stop offset="0" stop-color="#e2506b"/><stop offset=".6" stop-color="#b3213f"/><stop offset="1" stop-color="#6e0f25"/>
+  </radialGradient>
+  <linearGradient id="gloss" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  </linearGradient>
+  <pattern id="squares" width="80" height="84" patternUnits="userSpaceOnUse" patternTransform="rotate(-4)">
+    <rect width="80" height="84" fill="#2a1811"/>
+    <rect x="7" y="7" width="66" height="70" rx="5" fill="url(#sq)"/>
+    <path d="M12 12 H68 L64 16 H16 V72 L12 76 Z" fill="#fff" opacity=".07"/>
+    <path d="M68 12 V76 H12 L16 72 H64 V16 Z" fill="#000" opacity=".22"/>
+  </pattern>
+  <clipPath id="cl"><polygon points="110,150 430,118 446,175 424,232 455,300 430,365 452,428 426,490 440,548 130,575"/></clipPath>
+  <clipPath id="cr"><polygon points="468,124 484,181 462,238 493,306 468,371 490,434 464,496 478,554 770,560 760,135"/></clipPath>
+</defs>
+
+<!-- Moitié gauche -->
+<g transform="rotate(-7 300 360)">
+  <polygon points="110,176 430,144 446,201 424,258 455,326 430,391 452,454 426,516 440,574 130,601" fill="#170d09"/>
+  <polygon points="110,150 430,118 446,175 424,232 455,300 430,365 452,428 426,490 440,548 130,575" fill="url(#top)"/>
+  <rect x="80" y="100" width="420" height="520" fill="url(#squares)" clip-path="url(#cl)"/>
+  <rect x="80" y="100" width="160" height="520" fill="url(#gloss)" clip-path="url(#cl)" transform="skewX(-14)"/>
+  <polyline points="430,118 446,175 424,232 455,300 430,365 452,428 426,490 440,548" fill="none" stroke="#2a1810" stroke-width="30" stroke-linejoin="round" transform="translate(4 13)"/>
+  <polyline points="430,118 446,175 424,232 455,300 430,365 452,428 426,490 440,548" fill="none" stroke="url(#core)" stroke-width="13" stroke-linejoin="round" transform="translate(5 13)"/>
+  <polyline points="430,118 446,175 424,232 455,300 430,365 452,428 426,490 440,548" fill="none" stroke="#f07a8f" stroke-width="2.5" stroke-linejoin="round" opacity=".7" transform="translate(2 9)"/>
+  <path d="M452 300 q14 10 6 34 q-6 18 -12 2 q-4 -14 6 -36z" fill="url(#core)"/>
+</g>
+
+<!-- Moitié droite -->
+<g transform="translate(40 30) rotate(6 600 360)">
+  <polygon points="468,150 484,207 462,264 493,332 468,397 490,460 464,522 478,580 770,586 760,161" fill="#170d09"/>
+  <polygon points="468,124 484,181 462,238 493,306 468,371 490,434 464,496 478,554 770,560 760,135" fill="url(#top)"/>
+  <rect x="440" y="100" width="360" height="520" fill="url(#squares)" clip-path="url(#cr)"/>
+  <rect x="560" y="100" width="140" height="520" fill="url(#gloss)" clip-path="url(#cr)" transform="skewX(-14)"/>
+  <polyline points="468,124 484,181 462,238 493,306 468,371 490,434 464,496 478,554" fill="none" stroke="#2a1810" stroke-width="30" stroke-linejoin="round" transform="translate(-4 13)"/>
+  <polyline points="468,124 484,181 462,238 493,306 468,371 490,434 464,496 478,554" fill="none" stroke="url(#core)" stroke-width="13" stroke-linejoin="round" transform="translate(-5 13)"/>
+  <polyline points="468,124 484,181 462,238 493,306 468,371 490,434 464,496 478,554" fill="none" stroke="#f07a8f" stroke-width="2.5" stroke-linejoin="round" opacity=".7" transform="translate(-2 9)"/>
+  <path d="M470 430 q-14 12 -8 34 q6 16 12 0 q4 -16 -4 -34z" fill="url(#core)"/>
+</g>
+
+<!-- Fruits -->
+<g transform="rotate(-20 170 620)">
+<circle cx="164.6" cy="585.8" r="7.6" fill="url(#drupe)"/>
+<circle cx="162.4" cy="583.1" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="175.4" cy="585.8" r="7.6" fill="url(#drupe)"/>
+<circle cx="173.1" cy="583.1" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="152.2" cy="599.5" r="7.6" fill="url(#drupe)"/>
+<circle cx="150.0" cy="596.8" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="165.3" cy="599.5" r="7.6" fill="url(#drupe)"/>
+<circle cx="163.1" cy="596.8" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="178.5" cy="599.5" r="7.6" fill="url(#drupe)"/>
+<circle cx="176.2" cy="596.8" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="191.6" cy="599.5" r="7.6" fill="url(#drupe)"/>
+<circle cx="189.3" cy="596.8" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="141.3" cy="613.2" r="7.6" fill="url(#drupe)"/>
+<circle cx="139.0" cy="610.5" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="155.6" cy="613.2" r="7.6" fill="url(#drupe)"/>
+<circle cx="153.4" cy="610.5" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="170.0" cy="613.2" r="7.6" fill="url(#drupe)"/>
+<circle cx="167.7" cy="610.5" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="184.4" cy="613.2" r="7.6" fill="url(#drupe)"/>
+<circle cx="182.1" cy="610.5" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="198.7" cy="613.2" r="7.6" fill="url(#drupe)"/>
+<circle cx="196.4" cy="610.5" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="141.8" cy="626.8" r="7.6" fill="url(#drupe)"/>
+<circle cx="139.5" cy="624.2" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="156.9" cy="626.8" r="7.6" fill="url(#drupe)"/>
+<circle cx="154.6" cy="624.2" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="171.9" cy="626.8" r="7.6" fill="url(#drupe)"/>
+<circle cx="169.6" cy="624.2" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="186.9" cy="626.8" r="7.6" fill="url(#drupe)"/>
+<circle cx="184.7" cy="624.2" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="202.0" cy="626.8" r="7.6" fill="url(#drupe)"/>
+<circle cx="199.7" cy="624.2" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="146.8" cy="640.5" r="7.6" fill="url(#drupe)"/>
+<circle cx="144.5" cy="637.9" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="162.3" cy="640.5" r="7.6" fill="url(#drupe)"/>
+<circle cx="160.0" cy="637.9" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="177.7" cy="640.5" r="7.6" fill="url(#drupe)"/>
+<circle cx="175.5" cy="637.9" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="193.2" cy="640.5" r="7.6" fill="url(#drupe)"/>
+<circle cx="190.9" cy="637.9" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="160.3" cy="654.2" r="7.6" fill="url(#drupe)"/>
+<circle cx="158.0" cy="651.5" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="171.9" cy="654.2" r="7.6" fill="url(#drupe)"/>
+<circle cx="169.6" cy="651.5" r="1.9" fill="#fff" opacity=".55"/>
+<circle cx="183.5" cy="654.2" r="7.6" fill="url(#drupe)"/>
+<circle cx="181.2" cy="651.5" r="1.9" fill="#fff" opacity=".55"/>
+</g>
+<g transform="rotate(25 800 170)">
+<circle cx="795.8" cy="143.0" r="6.0" fill="url(#drupe)"/>
+<circle cx="794.0" cy="140.9" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="804.2" cy="143.0" r="6.0" fill="url(#drupe)"/>
+<circle cx="802.4" cy="140.9" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="786.0" cy="153.8" r="6.0" fill="url(#drupe)"/>
+<circle cx="784.2" cy="151.7" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="796.3" cy="153.8" r="6.0" fill="url(#drupe)"/>
+<circle cx="794.5" cy="151.7" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="806.7" cy="153.8" r="6.0" fill="url(#drupe)"/>
+<circle cx="804.9" cy="151.7" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="817.0" cy="153.8" r="6.0" fill="url(#drupe)"/>
+<circle cx="815.2" cy="151.7" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="777.3" cy="164.6" r="6.0" fill="url(#drupe)"/>
+<circle cx="775.5" cy="162.5" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="788.7" cy="164.6" r="6.0" fill="url(#drupe)"/>
+<circle cx="786.9" cy="162.5" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="800.0" cy="164.6" r="6.0" fill="url(#drupe)"/>
+<circle cx="798.2" cy="162.5" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="811.3" cy="164.6" r="6.0" fill="url(#drupe)"/>
+<circle cx="809.5" cy="162.5" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="822.7" cy="164.6" r="6.0" fill="url(#drupe)"/>
+<circle cx="820.9" cy="162.5" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="777.7" cy="175.4" r="6.0" fill="url(#drupe)"/>
+<circle cx="775.9" cy="173.3" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="789.6" cy="175.4" r="6.0" fill="url(#drupe)"/>
+<circle cx="787.8" cy="173.3" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="801.5" cy="175.4" r="6.0" fill="url(#drupe)"/>
+<circle cx="799.7" cy="173.3" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="813.4" cy="175.4" r="6.0" fill="url(#drupe)"/>
+<circle cx="811.6" cy="173.3" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="825.3" cy="175.4" r="6.0" fill="url(#drupe)"/>
+<circle cx="823.5" cy="173.3" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="781.7" cy="186.2" r="6.0" fill="url(#drupe)"/>
+<circle cx="779.9" cy="184.1" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="793.9" cy="186.2" r="6.0" fill="url(#drupe)"/>
+<circle cx="792.1" cy="184.1" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="806.1" cy="186.2" r="6.0" fill="url(#drupe)"/>
+<circle cx="804.3" cy="184.1" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="818.3" cy="186.2" r="6.0" fill="url(#drupe)"/>
+<circle cx="816.5" cy="184.1" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="792.3" cy="197.0" r="6.0" fill="url(#drupe)"/>
+<circle cx="790.5" cy="194.9" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="801.5" cy="197.0" r="6.0" fill="url(#drupe)"/>
+<circle cx="799.7" cy="194.9" r="1.5" fill="#fff" opacity=".55"/>
+<circle cx="810.7" cy="197.0" r="6.0" fill="url(#drupe)"/>
+<circle cx="808.9" cy="194.9" r="1.5" fill="#fff" opacity=".55"/>
+</g>
+<g fill="#b3213f">
+  <path d="M700 640 l14 -6 l6 12 l-12 8z" opacity=".9"/>
+  <path d="M90 470 l10 -8 l8 10 l-10 6z" opacity=".8"/>
+  <circle cx="745" cy="615" r="5"/><circle cx="72" cy="420" r="4"/><circle cx="520" cy="660" r="4" fill="#3f1a36"/>
+  <circle cx="610" cy="80" r="6" fill="#3f1a36"/><circle cx="628" cy="92" r="3.5" fill="#3f1a36"/>
+</g>
+</svg>

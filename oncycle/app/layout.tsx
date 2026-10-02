@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const serif = Instrument_Serif({
+const serif = Playfair_Display({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500"],
   style: ["normal", "italic"],
-  variable: "--font-instrument",
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -17,22 +17,19 @@ const sans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "OnCycle. — Le chocolat noir fonctionnel pensé pour le cycle féminin",
+  title: "OnCycle. — Le chocolat fonctionnel pensé pour le cycle féminin",
   description:
-    "Cacao noir grand cru, farine de lentilles torréfiée et fruits rouges : une tablette gourmande, source de fer et de magnésium, pensée pour le cycle féminin.",
+    "Cacao noir 70 %, lentilles torréfiées et cœur framboise : une tablette source de fer et de magnésium, pensée pour le cycle féminin.",
   openGraph: {
-    title: "OnCycle. — Recharger vos réserves, sans compromis",
-    description:
-      "Le premier chocolat noir fonctionnel pensé pour le cycle féminin. Rejoignez le batch #01.",
+    title: "OnCycle. — Recharger vos réserves. Répondre à vos envies.",
+    description: "Le premier chocolat fonctionnel pensé pour le cycle féminin. Rejoignez le cycle.",
     locale: "fr_FR",
     type: "website",
   },
   icons: { icon: "/favicon.svg" },
 };
 
-export const viewport: Viewport = {
-  themeColor: "#FAF7F2",
-};
+export const viewport: Viewport = { themeColor: "#221510" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
