@@ -120,13 +120,13 @@ export default function Hero() {
           animate={ready ? { clipPath: "inset(0% 0% 0% 0% round 32px)", opacity: 1 } : {}}
           transition={{ duration: 1.8, ease: EASE, delay: 0.35 }}
           style={{ rotateX, rotateY }}
-          className="relative aspect-[4/5] overflow-hidden rounded-[32px] bg-[radial-gradient(120%_90%_at_70%_20%,#c76a86_0%,#4a1a2c_55%,#2e0f1b_100%)] shadow-[0_70px_80px_-40px_rgba(34,21,16,0.55),0_24px_30px_-18px_rgba(34,21,16,0.35)] sm:aspect-[2000/1091]"
+          className="relative aspect-[5/4] overflow-hidden rounded-[32px] bg-[radial-gradient(120%_90%_at_70%_20%,#c76a86_0%,#4a1a2c_55%,#2e0f1b_100%)] shadow-[0_70px_80px_-40px_rgba(34,21,16,0.55),0_24px_30px_-18px_rgba(34,21,16,0.35)] sm:aspect-[2000/1091]"
         >
           <motion.div style={{ y: productY, scale: productScale }} className="absolute inset-[-8%]">
             <SmartImage
               {...ASSETS.heroProduct}
               alt="Deux carrés de chocolat OnCycle coupés, révélant un cœur framboise et lentilles, posés sur une ardoise"
-              className="h-full w-full select-none object-cover object-[62%_50%]"
+              className="h-full w-full select-none object-cover object-[55%_50%] sm:object-[62%_50%]"
               fallbackClassName="!object-contain p-[10%] [filter:drop-shadow(0_40px_40px_rgba(0,0,0,0.45))]"
               draggable={false}
               fetchPriority="high"
@@ -139,7 +139,7 @@ export default function Hero() {
             animate={ready ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: EASE, delay: 1.4 }}
           >
-            Édition de lancement — Cœur Framboise
+            <span className="hidden sm:inline">Édition de lancement — </span>Cœur Framboise
           </motion.span>
         </motion.div>
       </motion.div>
