@@ -1,0 +1,19 @@
+# Blueprint Render : site statique OnCycle (gratuit, CDN, HTTPS automatique)
+services:
+  - type: web
+    name: oncycle
+    runtime: static
+    rootDir: oncycle
+    buildCommand: npm ci && npm run build
+    staticPublishPath: out
+    pullRequestPreviewsEnabled: true
+    headers:
+      - path: /_next/static/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Optionnel : endpoint Formspree/Tally pour collecter réellement les emails
+      - key: NEXT_PUBLIC_WAITLIST_ENDPOINT
+        sync: false

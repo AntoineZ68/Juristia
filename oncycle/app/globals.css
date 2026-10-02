@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cacao: #221510;
+  --color-cacao-soft: #3a2820;
+  --color-grenat: #832232;
+  --color-grenat-deep: #5e1723;
+  --color-poudre: #f4e8e1;
+  --color-creme: #faf7f2;
+  --color-ambre: #b8873a;
+  --color-ambre-soft: #f3e6cc;
+
+  --font-serif: var(--font-instrument), "Times New Roman", serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgb(34 21 16 / 0.04), 0 8px 24px -8px rgb(34 21 16 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(34 21 16 / 0.06), 0 30px 60px -20px rgb(34 21 16 / 0.35);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-sheen: sheen 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-10px) rotate(var(--r, 0deg)); }
+  }
+  @keyframes sheen {
+    0%, 60% { transform: translateX(-120%) skewX(-18deg); }
+    100% { transform: translateX(220%) skewX(-18deg); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-creme);
+    color: var(--color-cacao);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-grenat);
+    color: var(--color-creme);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-grenat);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* Révélation au scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Grain papier subtil */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; }
+}
