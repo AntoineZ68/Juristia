@@ -59,3 +59,43 @@ html.has-cursor input, html.has-cursor textarea { cursor: text !important; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; }
 }
+
+/* Pages légales */
+.legal-prose h2 {
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.legal-prose h2:first-child { margin-top: 0; }
+.legal-prose p, .legal-prose li {
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: color-mix(in srgb, var(--color-cacao) 85%, transparent);
+}
+.legal-prose p + p, .legal-prose ul + p { margin-top: 1rem; }
+.legal-prose ul { margin-top: 0.75rem; list-style: none; padding: 0; }
+.legal-prose li { position: relative; padding-left: 1.25rem; }
+.legal-prose li + li { margin-top: 0.4rem; }
+.legal-prose li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-framboise);
+}
+.legal-prose a:not(.no-underline) {
+  color: var(--color-framboise);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-framboise) 40%, transparent);
+  text-underline-offset: 4px;
+}
+.legal-prose strong { font-weight: 600; color: var(--color-cacao); }
+
+/* Focus visible lisible sur fonds sombres */
+.on-dark :focus-visible { outline-color: var(--color-poudre); }
