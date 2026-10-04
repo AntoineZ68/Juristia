@@ -48,3 +48,11 @@ Par défaut, le formulaire est en **mode démo** (aucun email n'est enregistré)
 Pour collecter réellement : créer un formulaire gratuit sur Formspree, puis définir
 la variable d'environnement `NEXT_PUBLIC_WAITLIST_ENDPOINT=https://formspree.io/f/xxxx`
 dans Render (Environment) et relancer un déploiement.
+
+## Panneau « Business model » (présentation orale)
+
+Un panneau plein écran en 4 étapes (marché & cible, pricing, go-to-market, concurrence) s'ouvre par-dessus le site, sans quitter la page. Fermer ramène exactement à la même position de scroll.
+
+- **Ouvrir :** le bouton discret « Business model » entre la Gamme et le pied de page, la touche **B** (hors champ de saisie), ou l'adresse `/#business-plan`.
+- **Naviguer :** flèches ← →, touches 1 à 4, ou les boutons en bas. **Échap** ferme.
+- **Modifier les chiffres :** `components/business/steps.tsx` (prix, coût de revient et marge sont en haut du fichier, la marge est calculée).
