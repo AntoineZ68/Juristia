@@ -11,7 +11,7 @@ const tones: Record<PackTone, { bg: string; accent: string; ink: string }> = {
 type Props = {
   tone: PackTone;
   number: string;
-  /** Nom court affiché sur l'étui (ex. « L'Insoumise »). */
+  /** Nom court affiché sur l'étui (ex. « L'Originelle »). */
   name: string;
   /** Ce que contient réellement la tablette, une ligne par élément (étiquette du bas). */
   composition: string[];
