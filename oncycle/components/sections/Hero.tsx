@@ -139,7 +139,7 @@ export default function Hero() {
             animate={ready ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: EASE, delay: 1.4 }}
           >
-            <span className="hidden sm:inline">Édition de lancement — </span>Cœur Framboise
+            <span className="hidden sm:inline">N°03 — </span>La Soyeuse
           </motion.span>
         </motion.div>
       </motion.div>

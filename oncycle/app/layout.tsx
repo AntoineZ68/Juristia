@@ -19,7 +19,7 @@ const sans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "OnCycle. — Le chocolat fonctionnel pensé pour le cycle féminin",
   description:
-    "Cacao noir 70 %, lentilles torréfiées et cœur framboise : une tablette source de fer et de magnésium, pensée pour le cycle féminin.",
+    "Chocolat noir, lentilles torréfiées et fruits rouges : trois tablettes sources de fer et de magnésium, pensées pour le cycle féminin.",
   openGraph: {
     title: "OnCycle. — Recharger vos réserves. Répondre à vos envies.",
     description: "Le premier chocolat fonctionnel pensé pour le cycle féminin. Rejoignez le cycle.",
