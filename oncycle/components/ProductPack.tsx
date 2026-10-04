@@ -65,7 +65,13 @@ export default function ProductPack({ tone, number, name, composition, claim, we
 
         {/* étiquette du bas : nom, composition réelle, allégations, poids */}
         <div>
-          <p className="font-serif text-[1.1rem] italic leading-[1.05] sm:text-[1.6rem] lg:text-[1.8rem]">{name}</p>
+          <p
+            className={`font-serif italic leading-[1.05] ${
+              name.length > 16 ? "text-[0.95rem] sm:text-[1.3rem] lg:text-[1.45rem]" : "text-[1.1rem] sm:text-[1.6rem] lg:text-[1.8rem]"
+            }`}
+          >
+            {name}
+          </p>
           <div className="my-[5%] h-px w-full" style={{ background: `${t.accent}55` }} />
           <ul className="space-y-[2px] text-[6.5px] uppercase leading-[1.5] tracking-[0.12em] opacity-90 sm:text-[8.5px] lg:text-[9.5px]">
             {composition.map((c) => (

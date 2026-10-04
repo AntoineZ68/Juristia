@@ -15,49 +15,52 @@ type Product = {
   bg: string;
   tags: string[];
   iron: string;
+  /** Mise en avant « Notre signature ». */
+  signature?: boolean;
   /** Lignes de l'étiquette : ce que contient réellement la tablette. */
   composition: string[];
   /** Allégations de l'étiquette : uniquement ce que la recette permet (pas de vitamine C sans fruits). */
   claim: string;
 };
 
-// Socle commun à toute la gamme : chocolat noir + lentilles torréfiées (dans la pâte).
-// Seuls changent : les lentilles soufflées (croquant) et les fruits rouges (vitamine C).
+// Ordre = ordre du discours. Socle commun : chocolat noir 70 % + farine de lentilles torréfiée.
+// Seuls changent : les lentilles soufflées (croustillant) et les fruits rouges (vitamine C).
 const products: Product[] = [
   {
     n: "01",
-    name: "L'Insoumise",
-    accroche: "Noire & croquante",
-    desc: "Le chocolat noir à nu. Une pâte soyeuse aux lentilles torréfiées, traversée de lentilles soufflées qui craquent sous la dent. Aucun fruit, aucune distraction : l'intensité du cacao et un croquant aérien.",
+    name: "L'Originelle",
+    accroche: "Croustillante",
+    desc: "Du chocolat noir et des éclats de lentilles vertes soufflées, pour un effet céréalier réconfortant.",
     tone: "cacao",
     bg: "#e9dcd2",
-    tags: ["Source de fer", "Croquante", "Cacao pur"],
+    tags: ["Source de fer", "Croustillante", "Effet céréalier"],
     iron: "9,8",
-    composition: ["Chocolat noir 70 %", "Lentilles torréfiées", "Lentilles soufflées"],
+    composition: ["Chocolat noir 70 %", "Farine de lentilles torréfiée", "Lentilles vertes soufflées"],
     claim: "Fer · Magnésium",
   },
   {
     n: "02",
-    name: "L'Ardente",
-    accroche: "Croquante & fruitée",
-    desc: "Le croquant des lentilles soufflées rencontre l'éclat acidulé des fruits rouges lyophilisés. La plus vive de la gamme, avec une vitamine C qui accroît l'absorption du fer.",
+    name: "L'Essentielle",
+    accroche: "Fruits Rouges",
+    desc: "Ici, le croquant ne vient pas de la lentille soufflée, mais des framboises et myrtilles lyophilisées, pour un côté très tonique. La farine de lentilles reste au cœur de la recette pour l'apport en fer.",
     tone: "grenat",
     bg: "#f1dcdc",
-    tags: ["Source de fer", "Vitamine C", "Croquante"],
-    iron: "9,7",
-    composition: ["Chocolat noir 70 %", "Lentilles torréfiées & soufflées", "Fruits rouges lyophilisés"],
+    tags: ["Source de fer", "Vitamine C", "Très tonique"],
+    iron: "9,6",
+    composition: ["Chocolat noir 70 %", "Farine de lentilles torréfiée", "Framboises & myrtilles lyophilisées"],
     claim: "Fer · Magnésium · Vit. C",
   },
   {
     n: "03",
-    name: "La Soyeuse",
-    accroche: "Fruits rouges",
-    desc: "Pas de croquant, tout en douceur. Un chocolat noir fondant, des lentilles torréfiées aux notes de noisette, et des éclats de framboise, myrtille et cassis. La plus veloutée, la plus fruitée.",
+    name: "Fruits Rouges",
+    accroche: "Croustillant",
+    signature: true,
+    desc: "Notre signature. Les fruits rouges s'associent au croustillant des lentilles soufflées : le meilleur des deux mondes.",
     tone: "cassis",
     bg: "#e8dae6",
-    tags: ["Source de fer", "Vitamine C", "Fondante"],
-    iron: "9,6",
-    composition: ["Chocolat noir 70 %", "Lentilles torréfiées", "Fruits rouges lyophilisés"],
+    tags: ["Source de fer", "Vitamine C", "Croustillant"],
+    iron: "9,7",
+    composition: ["Chocolat noir 70 %", "Lentilles torréfiées & soufflées", "Fruits rouges lyophilisés"],
     claim: "Fer · Magnésium · Vit. C",
   },
 ];
@@ -74,15 +77,18 @@ function ProductPanel({ p }: { p: Product }) {
         <span className="pointer-events-none absolute -bottom-[0.18em] -left-[0.04em] select-none font-serif text-[clamp(10rem,24vw,22rem)] leading-none text-white/50">
           {p.n}
         </span>
-        <div className="relative w-[38%] max-w-[260px] transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-3 group-hover:-rotate-3 group-hover:scale-[1.03]">
-          <ProductPack tone={p.tone} number={p.n} name={p.name} composition={p.composition} claim={p.claim} />
+        <div className="relative w-[52%] max-w-[260px] sm:w-[38%] transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-3 group-hover:-rotate-3 group-hover:scale-[1.03]">
+          <ProductPack tone={p.tone} number={p.n} name={p.signature ? `${p.name} ${p.accroche}` : p.name} composition={p.composition} claim={p.claim} />
           <div className="absolute -bottom-8 left-[8%] h-8 w-[84%] rounded-[50%] bg-cacao/30 blur-xl" />
         </div>
       </div>
 
       {/* Texte */}
       <div className="flex flex-col justify-end lg:w-[34%] lg:pb-4">
-        <p className="text-[10.5px] font-semibold uppercase tracking-[0.3em] text-framboise">Tablette N°{p.n}</p>
+        <p className="text-[10.5px] font-semibold uppercase tracking-[0.3em] text-framboise">
+          Tablette N°{p.n}
+          {p.signature && <span className="ml-3 rounded-full bg-framboise px-2.5 py-1 text-[9.5px] tracking-[0.22em] text-creme">Notre signature</span>}
+        </p>
         <h3 className="mt-3 font-serif text-[clamp(2.2rem,4vw,4rem)] leading-[0.92] tracking-[-0.02em]">
           {p.name}
           <br />
@@ -154,8 +160,8 @@ export default function Gamme() {
               lines={[["Trois tablettes."], [{ text: "Un même rituel.", className: "italic text-framboise" }]]}
             />
             <Reveal as="p" delay={0.15} className="mt-8 max-w-[38ch] text-[15px] leading-[1.8] text-cacao/65">
-              Un même socle, chocolat noir et lentilles torréfiées, et trois façons de répondre à l&apos;envie : croquante,
-              croquante et fruitée, ou toute en douceur. Faites défiler pour les découvrir.
+              Un même socle, chocolat noir et farine de lentilles torréfiée, puis trois façons de répondre à l&apos;envie :
+              le réconfort céréalier, le tonique des fruits rouges, ou les deux à la fois. Faites défiler pour les découvrir.
             </Reveal>
           </div>
 
