@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant short (@media (max-height: 760px));
+
 @theme {
   --color-cacao: #221510;
   --color-prune: #4a1a2c;

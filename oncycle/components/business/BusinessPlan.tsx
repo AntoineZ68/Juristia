@@ -88,7 +88,7 @@ export default function BusinessPlan({ onClose }: { onClose: () => void }) {
       <div aria-hidden className="pointer-events-none absolute -bottom-52 -left-32 h-[460px] w-[460px] rounded-full bg-prune blur-[110px]" />
 
       {/* En-tête */}
-      <header className="relative z-10 flex h-16 shrink-0 items-center justify-between px-5 sm:h-20 sm:px-8">
+      <header className="relative z-10 flex h-16 shrink-0 items-center justify-between px-5 sm:h-20 sm:px-8 short:h-14 sm:short:h-14">
         <div className="flex items-baseline gap-4">
           <span className="font-serif text-[1.6rem] leading-none tracking-[-0.02em]">
             OnCycle<span className="text-framboise">.</span>
@@ -113,7 +113,7 @@ export default function BusinessPlan({ onClose }: { onClose: () => void }) {
 
       {/* Étape */}
       <div data-lenis-prevent className="relative z-10 flex-1 overflow-y-auto overscroll-contain px-5 sm:px-8">
-        <div className="mx-auto flex min-h-full max-w-[1400px] items-center py-6">
+        <div className="mx-auto flex min-h-full max-w-[1400px] items-center py-6 short:py-2">
           <AnimatePresence mode="wait" custom={nav.dir} initial={false}>
             <motion.div key={steps[nav.step].id} custom={nav.dir} variants={slide} initial="enter" animate="center" exit="exit" className="w-full">
               <Component />
@@ -123,7 +123,7 @@ export default function BusinessPlan({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* Navigation */}
-      <footer className="relative z-10 shrink-0 border-t border-creme/10 px-5 py-4 sm:px-8">
+      <footer className="relative z-10 shrink-0 border-t border-creme/10 px-5 py-4 sm:px-8 short:py-2">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4">
           <button
             type="button"
@@ -176,7 +176,7 @@ export default function BusinessPlan({ onClose }: { onClose: () => void }) {
             </button>
           )}
         </div>
-        <p className="mt-3 hidden text-center text-[11px] tracking-[0.12em] text-creme/50 sm:block">← → naviguer · 1 à 4 aller à une étape · Échap fermer</p>
+        <p className="mt-3 hidden text-center text-[11px] tracking-[0.12em] text-creme/50 sm:block short:hidden">← → naviguer · 1 à 4 aller à une étape · Échap fermer</p>
       </footer>
     </motion.div>
   );

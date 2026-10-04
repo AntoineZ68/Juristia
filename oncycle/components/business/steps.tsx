@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { animate, motion } from "framer-motion";
-import { Check, Store, X } from "lucide-react";
+import { Check, Info, Repeat, Store, X } from "lucide-react";
 import { EASE } from "@/lib/motion";
 
 /* ───────────── Données du business model (une seule source de vérité) ───────────── */
@@ -40,19 +40,19 @@ function StepLayout({
       initial="hidden"
       animate="show"
       variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.12 } } }}
-      className="grid w-full gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16"
+      className="grid w-full gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16 short:gap-4 lg:short:gap-10"
     >
       <div>
         <Item>
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-poudre/70">{eyebrow}</p>
         </Item>
         <Item>
-          <h2 className="mt-6 font-serif text-[clamp(2.4rem,5.2vw,5rem)] leading-[0.98] tracking-[-0.03em]">{title}</h2>
+          <h2 className="mt-6 font-serif text-[clamp(2.4rem,5.2vw,5rem)] leading-[0.98] tracking-[-0.03em] short:mt-3 short:text-[clamp(2rem,3.9vw,3.3rem)]">{title}</h2>
         </Item>
         <Item>
-          <p className="mt-6 max-w-[46ch] text-[clamp(1rem,1.45vw,1.2rem)] leading-[1.7] text-creme/80">{intro}</p>
+          <p className="mt-6 max-w-[46ch] text-[clamp(1rem,1.45vw,1.2rem)] leading-[1.7] text-creme/80 short:mt-3 short:text-[0.95rem] short:leading-[1.55]">{intro}</p>
         </Item>
-        {after && <Item className="mt-8">{after}</Item>}
+        {after && <Item className="mt-8 short:mt-4">{after}</Item>}
       </div>
       <Item className="w-full">{children}</Item>
     </motion.div>
@@ -85,7 +85,7 @@ export function StepMarche() {
       title={<>Deux marchés. {em("Une cible.")}</>}
       intro="Avoir un bon produit, c'est bien. Mais pour que ce soit un vrai projet d'entreprise, il faut un business model solide. OnCycle se positionne à la croisée de la FoodTech et de la FemTech, deux marchés en forte croissance."
     >
-      <div className="mx-auto w-full max-w-[580px]">
+      <div className="mx-auto w-full max-w-[580px] short:max-w-[440px]">
         <div className="relative mx-auto aspect-[1.5/1] w-full">
           <div className="absolute left-0 top-1/2 aspect-square h-[90%] -translate-y-1/2 rounded-full border border-creme/35 bg-framboise/30" />
           <div className="absolute right-0 top-1/2 aspect-square h-[90%] -translate-y-1/2 rounded-full border border-creme/35 bg-poudre/[0.12]" />
@@ -116,22 +116,34 @@ export function StepPricing() {
   return (
     <StepLayout
       eyebrow="02 — Pricing"
-      title={<>Haut de gamme, {em("assumé.")}</>}
-      intro="Un positionnement haut de gamme, justifié par la qualité du sourcing et par le coût élevé de la lyophilisation. Une marge brute qui finance notre acquisition client."
+      title={<>Haut de gamme. {em("Prix à valider.")}</>}
+      intro="Nous visons un positionnement haut de gamme, justifié par la qualité du sourcing et par le coût élevé de la lyophilisation. 7,90 € est notre hypothèse de départ, pas encore un prix arrêté."
       after={
-        <ul className="flex flex-wrap gap-2">
-          {["Cacao grand cru équitable", "Lentilles origine France", "Lyophilisation (coût élevé)"].map((t) => (
-            <li key={t} className="rounded-full border border-creme/25 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-creme/80">
-              {t}
-            </li>
-          ))}
-        </ul>
+        <div className="space-y-4">
+          <ul className="flex flex-wrap gap-2">
+            {["Cacao grand cru équitable", "Lentilles origine France", "Lyophilisation (coût élevé)"].map((t) => (
+              <li key={t} className="rounded-full border border-creme/25 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-creme/80">
+                {t}
+              </li>
+            ))}
+          </ul>
+          <div className="flex gap-3 rounded-[20px] border border-ambre/50 bg-ambre/[0.08] p-4 short:p-3">
+            <Info className="mt-0.5 h-5 w-5 shrink-0 text-ambre" aria-hidden />
+            <p className="text-[clamp(0.9rem,1.2vw,1.05rem)] leading-[1.6] text-creme/85">
+              <strong className="font-semibold text-creme">Prix non définitif.</strong> Il sera validé auprès de notre cible avant le lancement, et la marge évoluera en conséquence.
+            </p>
+          </div>
+        </div>
       }
     >
       <div className="grid gap-4">
+        <span className="inline-flex w-fit items-center gap-2 rounded-full border border-ambre/60 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-ambre">
+          <span className="h-1.5 w-1.5 rounded-full bg-ambre" aria-hidden />
+          Hypothèses de travail · prix à valider
+        </span>
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="rounded-[24px] border border-creme/15 bg-creme/[0.05] p-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-creme/60">Prix de vente · 80 g</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-creme/60">Prix cible · 80 g</p>
             <p className="mt-4 whitespace-nowrap font-serif text-[clamp(2.1rem,3.4vw,3.1rem)] leading-none text-poudre">
               <CountUp to={PRICE} decimals={2} suffix=" €" />
             </p>
@@ -143,7 +155,7 @@ export function StepPricing() {
             </p>
           </div>
           <div className="rounded-[24px] bg-framboise p-5 shadow-lift">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-creme/80">Marge brute</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-creme/80">Marge brute estimée</p>
             <p className="mt-4 whitespace-nowrap font-serif text-[clamp(2.1rem,3.4vw,3.1rem)] leading-none">
               <CountUp to={marginPct} prefix={<span className="mr-1.5 align-[0.35em] text-[0.42em] text-creme/70">≈</span>} suffix=" %" />
             </p>
@@ -168,7 +180,7 @@ export function StepPricing() {
           </div>
           <div className="mt-3 flex justify-between text-[12px] text-creme/70">
             <span>Coût de revient · ≈ {UNIT_COST.toFixed(2).replace(".", ",")} €</span>
-            <span>Marge brute · ≈ {(PRICE - UNIT_COST).toFixed(2).replace(".", ",")} €</span>
+            <span>Marge brute estimée · ≈ {(PRICE - UNIT_COST).toFixed(2).replace(".", ",")} €</span>
           </div>
         </div>
       </div>
@@ -190,16 +202,17 @@ export function StepGTM() {
         </p>
       }
     >
-      <div className="relative grid gap-4">
+      <div className="grid gap-4">
+        <div className="relative grid gap-4">
         <div aria-hidden className="absolute bottom-10 left-[34px] top-10 hidden w-px bg-gradient-to-b from-framboise to-creme/20 sm:block" />
 
-        <div className="relative rounded-[24px] border border-creme/20 bg-creme/[0.06] p-6 sm:pl-[84px]">
-          <span className="absolute left-5 top-6 hidden h-8 w-8 items-center justify-center rounded-full bg-framboise font-serif text-lg sm:flex">1</span>
+        <div className="relative rounded-[24px] border border-creme/20 bg-creme/[0.06] p-5 short:p-3.5 sm:pl-[84px] sm:short:pl-[84px]">
+          <span className="absolute left-5 top-5 hidden h-8 w-8 items-center justify-center rounded-full bg-framboise font-serif text-lg sm:flex">1</span>
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-poudre/80">Phase 1 · Lancement</p>
-          <h3 className="mt-2 font-serif text-[clamp(1.7rem,2.6vw,2.4rem)] leading-tight">100 % digital, en Direct-to-Consumer</h3>
-          <ul className="mt-4 space-y-2 text-[clamp(0.9rem,1.2vw,1.05rem)] text-creme/80">
-            {["Notre site web comme canal de vente", "Capter la marge maximale", "Récolter de la data sur nos premières clientes pour affiner le marketing"].map((t) => (
-              <li key={t} className="flex gap-3">
+          <h3 className="mt-2 font-serif text-[clamp(1.45rem,2.2vw,2rem)] leading-tight short:text-[1.35rem]">100 % digital, en Direct-to-Consumer</h3>
+          <ul className="mt-4 space-y-2 text-[clamp(0.9rem,1.2vw,1.05rem)] text-creme/80 short:mt-2 short:space-y-1 short:text-[0.9rem]">
+            {["Notre site web comme canal de vente", "Capter la marge maximale", "Récolter de la data sur nos premières clientes pour affiner le marketing"].map((t, i) => (
+              <li key={t} className={`flex gap-3 ${i === 0 ? "short:hidden" : ""}`}>
                 <Check className="mt-1 h-4 w-4 shrink-0 text-framboise" aria-hidden />
                 {t}
               </li>
@@ -207,18 +220,30 @@ export function StepGTM() {
           </ul>
         </div>
 
-        <div className="relative rounded-[24px] border border-creme/15 bg-creme/[0.03] p-6 sm:pl-[84px]">
-          <span className="absolute left-5 top-6 hidden h-8 w-8 items-center justify-center rounded-full border border-creme/40 font-serif text-lg sm:flex">2</span>
+        <div className="relative rounded-[24px] border border-creme/15 bg-creme/[0.03] p-5 short:p-3.5 sm:pl-[84px] sm:short:pl-[84px]">
+          <span className="absolute left-5 top-5 hidden h-8 w-8 items-center justify-center rounded-full border border-creme/40 font-serif text-lg sm:flex">2</span>
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-creme/60">Phase 2 · Extension</p>
-          <h3 className="mt-2 font-serif text-[clamp(1.7rem,2.6vw,2.4rem)] leading-tight">Distribution physique très sélective</h3>
-          <ul className="mt-4 flex flex-wrap gap-2">
+          <h3 className="mt-2 font-serif text-[clamp(1.45rem,2.2vw,2rem)] leading-tight short:text-[1.35rem]">Distribution physique très sélective</h3>
+          <ul className="mt-4 flex flex-wrap gap-2 short:mt-2 short:gap-1.5">
             {["Concept stores", "Pharmacies orientées bien-être naturel", "Épiceries fines"].map((t) => (
-              <li key={t} className="inline-flex items-center gap-2 rounded-full border border-creme/25 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.1em] text-creme/85">
+              <li key={t} className="inline-flex items-center gap-2 rounded-full border border-creme/25 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.1em] text-creme/85 short:px-3 short:py-1 short:text-[11px]">
                 <Store className="h-3.5 w-3.5 text-poudre" aria-hidden />
                 {t}
               </li>
             ))}
           </ul>
+        </div>
+        </div>
+
+        <div className="relative rounded-[24px] border border-dashed border-ambre/60 bg-ambre/[0.07] p-5 short:p-3.5 sm:pl-[84px] sm:short:pl-[84px]">
+          <span className="absolute left-5 top-5 hidden h-8 w-8 items-center justify-center rounded-full border border-dashed border-ambre/70 text-ambre sm:flex">
+            <Repeat className="h-4 w-4" aria-hidden />
+          </span>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-ambre">Piste à l&apos;étude · Revenu récurrent</p>
+          <h3 className="mt-2 font-serif text-[clamp(1.45rem,2.2vw,2rem)] leading-tight short:text-[1.35rem]">Un abonnement cyclique</h3>
+          <p className="mt-2 text-[clamp(0.9rem,1.2vw,1.05rem)] leading-[1.6] text-creme/85 short:text-[0.9rem] short:leading-[1.45]">
+            Recevoir sa tablette de façon régulière, au rythme de son cycle : un revenu prévisible pour nous, une habitude simple pour elles.
+          </p>
         </div>
       </div>
     </StepLayout>
@@ -259,7 +284,7 @@ export function StepConcurrence() {
         </div>
       }
     >
-      <div className="mx-auto w-full max-w-[560px]">
+      <div className="mx-auto w-full max-w-[560px] short:max-w-[360px]">
         <div className="relative aspect-square w-full rounded-[28px] border border-creme/15 bg-creme/[0.03]">
           <span aria-hidden className="absolute bottom-5 left-1/2 top-5 w-px bg-creme/15" />
           <span aria-hidden className="absolute left-5 right-5 top-1/2 h-px bg-creme/15" />
