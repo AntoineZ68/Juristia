@@ -8,7 +8,7 @@ Déposez vos deux images dans `public/images/` avec ces noms exacts (JPG, ~2000 
 
 | Fichier | Usage |
 | --- | --- |
-| `hero-tablette.jpg` | Photo produit du Hero (tablette coupée, cœur framboise) |
+| `hero-tablette.webp` | Photo produit du Hero (portrait, ~600×670 px minimum ; idéalement 1200×1340 px). `hero-tablette.jpg` sert de secours. |
 | `texture-soie.jpg` | Texture soie violette + fèves, fond de la section « La Formule » |
 
 Tant qu'un fichier est absent, un placeholder SVG s'affiche automatiquement (`lib/assets.ts`).
