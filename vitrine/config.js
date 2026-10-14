@@ -7,7 +7,7 @@ window.LYTIS_SITE = {
   // Adresse du formulaire Formspree, de la forme "https://formspree.io/f/abcdwxyz".
   // Les demandes arrivent alors par e-mail et dans le tableau de bord Formspree.
   // Laisser vide : le formulaire ouvre la messagerie du visiteur.
-  formulaire: "",
+  formulaire: "https://formspree.io/f/mljgpqpp",
   // Profil LinkedIn du fondateur (laisser vide pour masquer le lien).
   linkedin: "https://www.linkedin.com/in/antoine-zoller-34a89433a/",
   fondateur: {
