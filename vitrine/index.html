@@ -327,9 +327,17 @@
           <label for="f-message">Message <span class="facultatif">(facultatif)</span></label>
           <textarea id="f-message" name="message" rows="3"></textarea>
         </div>
+        <div class="champ-piege" aria-hidden="true"><label for="f-gotcha">Ne pas remplir</label><input id="f-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" /></div>
         <button type="submit" class="bouton bouton-plein bouton-large">Envoyer ma demande</button>
-        <p class="formulaire-note" id="formulaire-note" aria-live="polite">Votre demande s'ouvre dans votre messagerie : rien n'est enregistré par ce site.</p>
+        <p class="formulaire-note" id="formulaire-note" aria-live="polite"></p>
+        <p class="formulaire-mention">Vos coordonnées servent uniquement à répondre à votre demande. <a href="mentions.html#donnees">Confidentialité</a></p>
       </form>
+      <div class="formulaire formulaire-merci" id="formulaire-merci" tabindex="-1" role="status" hidden>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" /><path d="M14 24.5l7 7L34.5 17" /></svg>
+        <h3>Merci, votre demande est bien envoyée.</h3>
+        <p>Antoine Zoller vous répond personnellement, en général sous 48&nbsp;heures ouvrées.</p>
+        <a class="bouton bouton-contour-vin lien-demo" href="#" target="_blank" rel="noopener">En attendant, voir la démonstration</a>
+      </div>
     </div>
   </section>
 

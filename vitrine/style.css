@@ -194,7 +194,19 @@ p { margin: 0; }
 .champ input:focus, .champ select:focus, .champ textarea:focus { outline: none; border-color: var(--vin-700); background: #fff; box-shadow: 0 0 0 4px var(--vin-voile); }
 .champ .invalide { border-color: #B4533C; }
 .formulaire .bouton-large { margin-top: 6px; padding: 16px 24px; }
-.formulaire-note { font-size: 13px; color: var(--texte-doux); text-align: center; }
+.formulaire-note { font-size: 13.5px; color: #8A2E1F; text-align: center; }
+.formulaire-note:empty { display: none; }
+.formulaire-note a { color: inherit; }
+.formulaire-mention { grid-column: 1 / -1; font-size: 13px; color: var(--texte-doux); text-align: center; }
+.formulaire-mention a { color: var(--vin-700); }
+.formulaire .bouton:disabled { opacity: 0.7; cursor: progress; transform: none; }
+.champ-piege { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.formulaire-merci { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; min-height: 420px; outline: none; }
+.formulaire-merci[hidden] { display: none; }
+.formulaire-merci svg { width: 56px; height: 56px; fill: none; stroke: var(--vin-700); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.formulaire-merci h3 { font-size: 26px; font-weight: 400; }
+.formulaire-merci p { color: var(--texte-doux); max-width: 360px; }
+.formulaire-merci .bouton { margin-top: 8px; }
 
 /* --- Fondateur --- */
 .fondateur { display: grid; grid-template-columns: 180px 1fr; gap: 48px; align-items: center; max-width: 900px; }
@@ -277,7 +289,7 @@ p { margin: 0; }
 }
 
 /* --- Typographie : Gloock partout où il reste lisible --- */
-.chapeau, .recit-chapeau, .comparer-chapeau, .tarifs-intro, .etape-texte p, .pilote-texte > p, .fonction > .fonction-texte > p,
+.chapeau, .recit-chapeau, .comparer-chapeau, .tarifs-intro, .etape-texte p, .pilote-texte > p:not(.surtitre), .fonction > .fonction-texte > p,
 .numero, .etape-numero, .etape-num, .offre-prix, .faq summary, .evenement time, .jauge span, .depot-compteur b, .chiffres-liste b {
   font-family: var(--titres);
 }
